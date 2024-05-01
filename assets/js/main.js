@@ -1,9 +1,13 @@
 /**
-* Template Name: Vesperr - v4.3.0
-* Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
+* Template Name: Techie
+* Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
+* Updated: Mar 17 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+
+
 (function() {
   "use strict";
 
@@ -68,7 +72,7 @@
     let offset = header.offsetHeight
 
     if (!header.classList.contains('header-scrolled')) {
-      offset -= 20
+      offset -= 16
     }
 
     let elementPos = select(el).offsetTop
@@ -159,6 +163,16 @@
   });
 
   /**
+   * Preloader
+   */
+  let preloader = select('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove()
+    });
+  }
+
+  /**
    * Testimonials slider
    */
   new Swiper('.testimonials-slider', {
@@ -177,12 +191,12 @@
     breakpoints: {
       320: {
         slidesPerView: 1,
-        spaceBetween: 20
+        spaceBetween: 40
       },
 
       1200: {
-        slidesPerView: 2,
-        spaceBetween: 20
+        slidesPerView: 3,
+        spaceBetween: 40
       }
     }
   });
@@ -194,8 +208,7 @@
     let portfolioContainer = select('.portfolio-container');
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
+        itemSelector: '.portfolio-item'
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
@@ -253,5 +266,10 @@
       mirror: false
     })
   });
+
+  /**
+   * Initiate Pure Counter 
+   */
+  new PureCounter();
 
 })()
