@@ -171,6 +171,8 @@
       preloader.remove()
     });
   }
+  
+
 
   /**
    * Testimonials slider
