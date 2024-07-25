@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="manifest.js">
   <title>Canada Wale Yar</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -38,16 +38,18 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="assets/img/logo.webp" alt="">
-        <!-- <h1 class="sitename">Arsha</h1> -->
+        <!-- <h1 class="sitename">CWY</h1> -->
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
+          <li><button id="install-button" style="display: none;">Install App</button></li>
           <li><a href="https://www.tiktok.com/@canadawale_yar" target="_blank"><i class="bi bi-tiktok" style="font-size: 20px;"></i></a></li>
           <li><a href="https://www.youtube.com/@mrabhijeet96" target="_blank"><i class="bi bi-facebook" style="font-size: 20px;"></i></a></li>
           <li><a href="https://www.instagram.com/canadawale_yar/" target="_blank"><i class="bi bi-instagram" style="font-size: 20px;"></i></a></li>
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#contact" class="active">Contact Us</a></li>
+
           <!-- <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
@@ -359,17 +361,45 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets//js/script.js"></script>
-  <link rel="manifest" href="/manifest.json">
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(error) {
           console.log('ServiceWorker registration failed: ', error);
         });
       });
     }
+  </script>
+  <script>
+    let deferredPrompt;
+    const installButton = document.getElementById('install-button');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      // Update UI notify the user they can install the PWA
+      installButton.style.display = 'block';
+
+      installButton.addEventListener('click', (e) => {
+        // Hide the install button
+        installButton.style.display = 'none';
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
   </script>
 
 </body>
