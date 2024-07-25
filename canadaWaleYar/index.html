@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="manifest" href="/manifest.json">
   <title>Canada Wale Yar</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -46,6 +47,7 @@
           <li><a href="https://www.youtube.com/@mrabhijeet96" target="_blank"><i class="bi bi-facebook" style="font-size: 20px;"></i></a></li>
           <li><a href="https://www.instagram.com/canadawale_yar/" target="_blank"><i class="bi bi-instagram" style="font-size: 20px;"></i></a></li>
           <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#contact" class="active">Contact Us</a></li>
           <!-- <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
@@ -73,7 +75,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#contact">Contact Us</a>
+      
 
     </div>
   </header>
@@ -89,7 +91,7 @@
           <h1 style="color: brown; text-align: center;">Search for our services</h1>
           <h3 style="color: black; text-align: center;">Trust our experienced team to take care off all your service needs. <h3>
             <div class="search-container">
-              <input type="text" name="q" class="search-bar" placeholder="A-Z Services....Search for anything" oninput="showSuggestions(this.value)">
+              <input type="text" id="service-input" name="q" class="search-bar" placeholder="A-Z Services....Search for anything" oninput="showSuggestions(this.value)">
               <a href="#about" class="search-button"><i class="bi bi-search"></i></a>
               <div id="suggestions" class="suggestions"></div>
             </div>
@@ -271,9 +273,9 @@
 
     <div class="container footer-top">
       <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
+        <div class="col-lg-3 col-md-4 footer-about">
           <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">Arsha</span>
+            <img src="assets/img/footer-logo.png">
           </a>
           <div class="footer-contact pt-3">
             <p>7071 Airport Rd,</p>
@@ -296,14 +298,24 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Services</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://www.webloped.ca">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Legal Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Tax Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Us Visa</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-2 col-md-3 footer-links">
+          <br><br>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Car Dealership</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Credit Card</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Travel Tickets</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Insurance</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-12">
           <h4>Follow Us</h4>
           <div class="social-links d-flex">
             <a href="https://www.tiktok.com/@canadawale_yar" target="_blank"><i class="bi bi-tiktok" style="font-size: 20px;"></i></a>
@@ -347,6 +359,18 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets//js/script.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(error) {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+      });
+    }
+  </script>
 
 </body>
 
