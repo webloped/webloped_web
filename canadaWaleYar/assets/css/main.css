@@ -108,6 +108,12 @@
   background-color: #f1f1f1;
 }
 
+@media only screen and (max-width: 768px) {
+  #suggestions {
+    margin-left: 12.5%;
+  }
+}
+
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/

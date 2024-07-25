@@ -1,3 +1,4 @@
+// Search Bar Suggestions
 const services = [
     { name: "Immigration Services", url: "immigration-services.html" },
     { name: "Business Consulting", url: "business-consulting.html" },
@@ -84,3 +85,4 @@ document.addEventListener('DOMContentLoaded', () => {
         suggestionsContainer.style.display = 'none';
     };
 });
+
