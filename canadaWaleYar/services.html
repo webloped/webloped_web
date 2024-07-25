@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Services</h1>
+
+    <input type="text" id="searchInput" placeholder="Search services...">
+    <ul id="serviceList">
+        <!-- Services will be dynamically added here -->
+    </ul>
+
+    <script>
+        // Array of services
+        const services = [
+            "Web Development",
+            "Mobile App Development",
+            "Graphic Design",
+            "SEO",
+            "Content Writing",
+            "Digital Marketing"
+        ];
+
+        // Function to filter services based on search input
+        function filterServices() {
+            const searchInput = document.getElementById("searchInput");
+            const serviceList = document.getElementById("serviceList");
+            const searchTerm = searchInput.value.toLowerCase();
+
+            // Clear previous services
+            serviceList.innerHTML = "";
+
+            // Filter and display services
+            services.filter(service => service.toLowerCase().includes(searchTerm))
+                .forEach(service => {
+                    const li = document.createElement("li");
+                    li.textContent = service;
+                    serviceList.appendChild(li);
+                });
+        }
+
+        // Event listener for search input
+        document.getElementById("searchInput").addEventListener("input", filterServices);
+    </script>
+</body>
+</html>
