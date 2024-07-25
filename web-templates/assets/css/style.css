@@ -40,10 +40,6 @@ h6 {
   text-align: left;
 }
 
-.container-gmo{
-  padding-top: 3%;
-}
-
 .button1 {
   background: transparent;
   color: #fff;
@@ -98,7 +94,7 @@ h6 {
   border-radius: 10em;
   font-size: 17px;
   font-weight: 600;
-  padding: 20px 20px;
+  padding: 10px 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border: 1px solid rgba(112, 85, 233, 0.411);
@@ -106,8 +102,7 @@ h6 {
   color: white;
   text-align: center;
   width: 250px;
-  margin: 8px;
-
+  margin: 10px;
   
 }
 
