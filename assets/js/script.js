@@ -6,6 +6,18 @@ document.body.innerHTML = '<header>' + headerHtml + '</header>' + document.body.
 document.body.innerHTML = document.body.innerHTML + '<footer>' + footerHtml + '</footer>';
 document.head.innerHTML = headHtml;
 
+// Progressive Web App Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(error) {
+      console.log('ServiceWorker registration failed: ', error);
+    });
+  });
+}
+
+
 // // Function to load templates from an external file
 // async function loadTemplates() {
 //     try {
