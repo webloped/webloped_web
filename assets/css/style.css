@@ -91,16 +91,19 @@ h6 {
 
 .button2 {
   background-color: rgba(94, 159, 219, 0.678);
-  color: black;
   border-radius: 10em;
   font-size: 17px;
   font-weight: 600;
-  padding: 1em 2em;
+  padding: 10px 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border: 1px solid rgba(112, 85, 233, 0.411);
   box-shadow: 0 0 0 0 rgb(95, 5, 5);
   color: white;
+  text-align: center;
+  width: 250px;
+  margin: 10px;
+  
 }
 
 .button2:hover {
@@ -113,6 +116,26 @@ h6 {
   transform: translateY(2px) translateX(1px);
   box-shadow: 0 0 0 0 black;
 };
+
+/* Adjust styles for smaller buttons inside .row */
+.row .button2 {
+  width: 250px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* Mobile-specific styles for .button2 */
+@media only screen and (max-width: 768px) {
+  .button2 {
+    width: 100%; /* Make buttons full width on mobile */
+    margin: 10px 0; /* Adjust margins for mobile */
+  }
+
+  .row .button2 {
+    width: 100%; /* Make buttons full width on mobile */
+    margin: 10px 0; /* Adjust margins for mobile */
+  }
+}
 
 
 /*--------------------------------------------------------------
