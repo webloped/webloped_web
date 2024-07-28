@@ -13,6 +13,7 @@
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
   <link rel="manifest" href="manifest.json">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -91,7 +92,7 @@
           <h2>Your Path to Digital Success!</h2>
           <br>
           <div class="row">
-            <a class="button2" href="https://calendly.com/webloped/30min">Book a Call</a>
+            <a class="button2" href="" onclick="Calendly.initPopupWidget({url: 'https:\/\/\calendly.com/webloped/30min'});return false;">Book a Call</a>
             <a class="button2" href="#contact">Get in touch</a>
             <a class="button2" href="getAQuote.html" target="_blank">Get a Quote </a>
             <a class="button2" href="web-templates/index.html">Browse Templates</a>
@@ -743,7 +744,8 @@
       </div>
 
       <!-- End TrustBox widget -->
-       
+     
+      
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
@@ -835,6 +837,10 @@
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!--Calendly Scripts-->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/webloped/30min', text: 'Book a Call', color: '#6200ff', textColor: '#ffffff', branding: undefined }); }</script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

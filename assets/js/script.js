@@ -18,6 +18,8 @@ if ('serviceWorker' in navigator) {
 }
 
 
+
+
 // // Function to load templates from an external file
 // async function loadTemplates() {
 //     try {
