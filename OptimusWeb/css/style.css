@@ -1,9 +1,8 @@
-/********** Template CSS **********/
 :root {
-    --primary: #015FC9;
-    --secondary: #0DD3F1;
+    --primary: #000000;
+    --secondary: #4e4e4e;
     --light: #F6F7FC;
-    --dark: #15233C;
+    --dark: #000000d0;
 }
 
 .back-to-top {
@@ -77,6 +76,12 @@
     font-weight: normal;
 }
 
+.booking-hover:hover {
+    background-color: var(--primary);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    transform: scale(1.1);
+}
+
 
 /*** Navbar ***/
 .navbar.sticky-top {
@@ -86,6 +91,25 @@
 
 .navbar .navbar-brand img {
     max-height: 55px;
+}
+@media (max-width: 768px) {
+    .navbar-brand img {
+        max-height: 40px;
+    }
+    .navbar-brand h2{
+        font-size: 18px;
+    }
+    
+}
+@media (max-width: 768px) {
+    .Peyecare img{
+        padding-bottom: 30px;
+    }
+}
+@media (max-width: 768px) {
+    .moto{
+        margin-bottom: 50px;
+    }
 }
 
 .navbar .navbar-nav .nav-link {
@@ -132,6 +156,16 @@
     .navbar .nav-item .dropdown-menu {
         padding-left: 30px;
     }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+    .dropdown-menu {
+        right: 0;
+        left: auto;
+        top: 100%;
+        position: absolute;
+    }
 }
 
 @media (min-width: 992px) {
@@ -158,6 +192,50 @@
     max-height: 800px;
 }
 
+
+   /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+
+  /* The Close Button */
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
 /*** Header ***/
 .carousel-caption {
     top: 0;
@@ -173,6 +251,13 @@
 .carousel-control-prev,
 .carousel-control-next {
     width: 15%;
+}
+
+.contact-boxes{
+
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 1px 1px 10px #8a8a8a;
 }
 
 .carousel-control-prev-icon,
@@ -197,6 +282,21 @@
         object-fit: cover;
     }
 }
+
+.landing-bg {
+    background: url(../img/Landing-bg.png) no-repeat center center;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+@media (max-width: 767px) {
+    .landing-bg {
+      padding: 0px;
+      font-size: 16px;
+      padding-left: 15px;
+    }
+  }
 
 .page-header {
     background: url(../img/Landing-bg.png) center center no-repeat;
@@ -255,7 +355,7 @@
 }
 
 .container.facts .facts-text {
-    background: linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(../img/carousel-1.jpg) center right no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../img/carousel-1.jpg) center right no-repeat;
     background-size: cover;
 }
 
@@ -306,7 +406,7 @@
 
 /*** Appointment ***/
 .appointment {
-    background: linear-gradient(rgba(1, 95, 201, .9), rgba(1, 95, 201, .9)), url(../img/carousel-1.jpg) center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.801), rgba(0, 0, 0, 0.829)), url(../img/carousel-1.jpg) center center no-repeat;
     background-size: cover;
 }
 
