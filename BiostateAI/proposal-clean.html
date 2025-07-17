@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostate AI - Frontend Development Proposal | Webloped AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="proposal-styles.css">
+</head>
+<body>
+
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <img src="FullLogo.png" alt="Webloped AI Logo" style="width: 200px; height: 40px;">
+                <div class="nav-links">
+                    <a href="#mockups">Mockups</a>
+                    <a href="#timeline">Timeline</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mockup Showcase -->
+    <section id="mockups" class="section mockup-showcase">
+        <div class="header">
+            <h1>Biostate AI - Frontend Design Concepts</h1>
+        </div>
+        <div class="container">
+            <!-- Comprehensive Screenshots Gallery -->
+            <div style="margin-top: 4rem;">
+                <div style="background: #f8fafc; padding: 2rem; border-radius: 8px; margin-bottom: 3rem; border: 1px solid #e2e8f0;">
+                    <h3 style="color: #1e293b; margin-bottom: 1rem; text-align: center; font-size: 1.3rem;">Initial Design Concepts & Interface Ideas</h3>
+                    <p style="text-align: center; color: #64748b; margin-bottom: 1rem; font-size: 1rem; line-height: 1.6;">
+                        Below are our initial design concepts showcasing potential layouts, functionality, and visual direction for your platform. These represent starting points that we can iterate on together based on your feedback and specific requirements.
+                    </p>
+                    <p style="text-align: center; color: #6b7280; font-size: 0.95rem; font-style: italic;">
+                        Click any image to view it in full size • All designs can be customized and refined
+                    </p>
+                </div>
+                
+                <!-- Dark Theme Screenshots -->
+                <div style="margin-bottom: 4rem;">
+                    <h4 style="text-align: center; margin-bottom: 2rem; color: #8b5cf6; font-size: 1.3rem;">
+                        <i class="fas fa-moon" style="margin-right: 8px;"></i>Dark Theme Interface
+                    </h4>
+                    <div class="screenshot-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/landingPageDark.png" alt="Landing Page Dark Theme" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/landingPageDark.png', 'Landing Page Dark Theme')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Landing Page</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Modern dark landing page design</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppDark.png" alt="Main App Dark - Primary Interface" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark.png', 'Main Application Dark Theme - Primary Interface')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Main Application Interface</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Professional dark mode with enhanced readability</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppDark01.png" alt="Main App Dark - Chat View" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark01.png', 'Main Application Dark - Chat View')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Chat View</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Dark mode optimized for extended use</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppDark02.png" alt="Main App Dark - Extended View" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark02.png', 'Main Application Dark - Extended Interface View')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Extended Interface View</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Comprehensive dark mode interface layout</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppDark03.png" alt="Main App Dark - Code Editor" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark03.png', 'Main Application Dark - Code Editor View')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Code Editor View</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Complex functionality in dark theme</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppDark_filePreview.png" alt="File Preview Dark" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark_filePreview.png', 'File Preview System - Dark Theme')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">File Preview System</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Enhanced code readability in dark mode</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Light Theme Screenshots -->
+                <div style="margin-bottom: 4rem;">
+                    <h4 style="text-align: center; margin-bottom: 2rem; color: #3b82f6; font-size: 1.3rem;">
+                        <i class="fas fa-sun" style="margin-right: 8px;"></i>Light Theme Interface
+                    </h4>
+                    <div class="screenshot-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/landingPageLigth.png" alt="Landing Page Light Theme" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/landingPageLigth.png', 'Landing Page Light Theme')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Landing Page</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Modern light landing page design</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppLight.png" alt="Main App Light - Primary Interface" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppLight.png', 'Main Application Light Theme - Primary Interface')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Main Application Interface</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Complete chat interface with sidebar navigation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppLight01.png" alt="Main App Light - Chat View" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppLight01.png', 'Main Application Light - Chat View')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Chat View</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Interactive conversation interface</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppLight02.png" alt="Main App Light - Code Editor" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppLight02.png', 'Main Application Light - Code Editor View')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">Code Editor View</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Extended functionality and controls</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item" style="border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <img src="Mockup_Images/mainAppLight_filePreview.png" alt="File Preview Light" style="width: 100%; height: 300px; object-fit: cover; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppLight_filePreview.png', 'File Preview System - Light Theme')">
+                            <div style="padding: 1.5rem; background: white;">
+                                <h5 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.1rem;">File Preview System</h5>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Advanced file handling and preview capabilities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="color: #1e293b; margin-bottom: 1rem;">Interactive Design Concepts</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; font-style: italic;">
+                Explore our initial concepts • Live demos you can interact with • Open to your feedback and modifications
+            </p>
+            <!-- Theme Toggle -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div class="theme-toggle" style="display: inline-flex; background: #f1f5f9; border-radius: 12px; padding: 4px;">
+                    <button class="theme-btn active" data-theme="light" style="padding: 8px 20px; border: none; background: white; border-radius: 8px; margin-right: 4px; cursor: pointer; font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <i class="fas fa-sun" style="margin-right: 6px;"></i>Light Theme
+                    </button>
+                    <button class="theme-btn" data-theme="dark" style="padding: 8px 20px; border: none; background: transparent; border-radius: 8px; cursor: pointer; font-weight: 500; color: #64748b;">
+                        <i class="fas fa-moon" style="margin-right: 6px;"></i>Dark Theme
+                    </button>
+                </div>
+            </div>
+            <!-- Light Theme Mockups -->
+            <div class="mockup-grid theme-content" id="light-theme">
+                <div class="mockup-card">
+                    <div class="mockup-preview" style="height: 400px; cursor: pointer;" onclick="openLightbox('Mockup_Images/landingPageLigth.png', 'Landing Page Light Theme')">
+                        <img src="Mockup_Images/landingPageLigth.png" alt="Landing Page Light Theme" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="mockup-info">
+                        <h4>Landing Page Design (Light Theme)</h4>
+                        <p>A modern, engaging landing page that introduces users to Biostate AI's capabilities with an interactive chat interface.</p>
+                        <ul class="mockup-features">
+                            <li><i class="fas fa-check"></i> Interactive chat input with auto-resize</li>
+                            <li><i class="fas fa-check"></i> Suggestion chips for common bioinformatics tasks</li>
+                            <li><i class="fas fa-check"></i> Modern gradient design with DNA branding</li>
+                            <li><i class="fas fa-check"></i> Responsive design for all devices</li>
+                            <li><i class="fas fa-check"></i> Seamless navigation to main application</li>
+                        </ul>
+                        <a href="Light/landing-page.html" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Light Theme
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview" style="height: 400px; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppLight.png', 'Main Application Light Theme')">
+                        <img src="Mockup_Images/mainAppLight.png" alt="Main Application Light Theme" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="mockup-info">
+                        <h4>Main Application Interface (Light Theme)</h4>
+                        <p>A sophisticated chat interface with conversation history, code generation panels, and real-time processing indicators.</p>
+                        <ul class="mockup-features">
+                            <li><i class="fas fa-check"></i> Collapsible conversation history panel</li>
+                            <li><i class="fas fa-check"></i> Real-time processing with progress indicators</li>
+                            <li><i class="fas fa-check"></i> Code generation and editing capabilities</li>
+                            <li><i class="fas fa-check"></i> File attachment and preview functionality</li>
+                            <li><i class="fas fa-check"></i> User profile and navigation system</li>
+                        </ul>
+                        <a href="Light/mockup-2-modern.html" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Light Theme
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dark Theme Mockups -->
+            <div class="mockup-grid theme-content" id="dark-theme" style="display: none;">
+                <div class="mockup-card">
+                    <div class="mockup-preview" style="height: 400px; cursor: pointer;" onclick="openLightbox('Mockup_Images/landingPageDark.png', 'Landing Page Dark Theme')">
+                        <img src="Mockup_Images/landingPageDark.png" alt="Landing Page Dark Theme" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="mockup-info">
+                        <h4>Landing Page Design (Dark Theme)</h4>
+                        <p>The same engaging landing page with a sleek dark theme that's easier on the eyes and perfect for extended use.</p>
+                        <ul class="mockup-features">
+                            <li><i class="fas fa-check"></i> Dark mode for reduced eye strain</li>
+                            <li><i class="fas fa-check"></i> Maintains all interactive features</li>
+                            <li><i class="fas fa-check"></i> Professional dark gradient design</li>
+                            <li><i class="fas fa-check"></i> Consistent branding across themes</li>
+                            <li><i class="fas fa-check"></i> User preference persistence</li>
+                        </ul>
+                        <a href="Dark/landing-page.html" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Dark Theme
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mockup-card">
+                    <div class="mockup-preview" style="height: 400px; cursor: pointer;" onclick="openLightbox('Mockup_Images/mainAppDark.png', 'Main Application Dark Theme')">
+                        <img src="Mockup_Images/mainAppDark.png" alt="Main Application Dark Theme" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="mockup-info">
+                        <h4>Main Application Interface (Dark Theme)</h4>
+                        <p>The sophisticated chat interface adapted for dark mode with enhanced contrast and readability.</p>
+                        <ul class="mockup-features">
+                            <li><i class="fas fa-check"></i> Dark theme optimized for long sessions</li>
+                            <li><i class="fas fa-check"></i> Enhanced code syntax highlighting</li>
+                            <li><i class="fas fa-check"></i> Improved visual hierarchy in dark mode</li>
+                            <li><i class="fas fa-check"></i> Consistent user experience</li>
+                            <li><i class="fas fa-check"></i> Professional appearance</li>
+                        </ul>
+                        <a href="Dark/mockup-2-modern.html" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Dark Theme
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Timeline -->
+    <section id="timeline" class="section" style="padding: 4rem 0; background: #fafbfc;">
+        <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 2rem;">
+            <h2 style="color: #1e293b; margin-bottom: 2rem; font-size: 2.2rem; font-weight: 600; text-align: center;">Timeline</h2>
+            
+            <div style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); line-height: 1.6; color: #374151;">
+                
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #3b82f6; margin-bottom: 2rem;">
+                    <p style="font-size: 1rem; margin: 0; color: #1e293b; text-align: center;">
+                        This 4-week framework can be adjusted based on your feedback and evolving requirements. We'll work together to ensure each milestone aligns with your vision.
+                    </p>
+                </div>
+
+                <div style="border-left: 4px solid #3b82f6; padding-left: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600;">Week 1: Foundation & Core Setup</h3>
+                    <p style="margin-bottom: 1rem; color: #4b5563; font-style: italic; font-size: 0.9rem;">Getting the fundamentals right</p>
+                    
+                    <p style="margin-bottom: 0;">Establish React/Next.js architecture, implement the landing page with basic chat interface, and create the responsive design foundation.</p>
+                </div>
+
+                <div style="border-left: 4px solid #10b981; padding-left: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600;">Week 2: Advanced Chat & User Experience</h3>
+                    <p style="margin-bottom: 1rem; color: #4b5563; font-style: italic; font-size: 0.9rem;">Building the intelligent conversation system</p>
+                    
+                    <p style="margin-bottom: 0;">Develop chat interface with conversation history, file upload design, user authentication design, real-time processing indicators.</p>
+                </div>
+
+                <div style="border-left: 4px solid #8b5cf6; padding-left: 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600;">Week 3: Code Generation & Advanced Tools</h3>
+                    <p style="margin-bottom: 1rem; color: #4b5563; font-style: italic; font-size: 0.9rem;">Empowering researchers with development tools</p>
+                    
+                    <p style="margin-bottom: 0;">Build integrated code generation panel with syntax highlighting, file preview panel setup and designand download functionality, more UI animations, backend integration and comprehensive error handling.</p>
+                </div>
+
+                <div style="border-left: 4px solid #f59e0b; padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600;">Week 4: Polish, Testing & Launch</h3>
+                    <p style="margin-bottom: 1rem; color: #4b5563; font-style: italic; font-size: 0.9rem;">Delivering a production-ready platform</p>
+                    
+                    <p style="margin-bottom: 0;">Performance optimization, UI/UX refinements, comprehensive testing, backend integration, user acceptance testing, more backend integration and final delivery with documentation.</p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 500; color: #1e293b; text-align: center; font-size: 0.95rem;">
+                        I have noted the rough timeline above but I am confident that I can deliver 1st working version of the app within 4 weeks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Ready to Collaborate?</h3>
+                <p>These concepts are just the beginning. Let's discuss your vision, gather your feedback, and work together to create the perfect frontend experience for Biostate AI. We're excited to iterate and refine these ideas with you.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@webloped.ca</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (647) 694-7001</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>webloped.ca</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <a href="#mockups" class="btn btn-primary">
+                        <i class="fas fa-eye"></i>
+                        View Mockups Again
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; cursor: pointer;" onclick="closeLightbox()">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; text-align: center;">
+            <img id="lightbox-image" src="" alt="" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="lightbox-caption" style="color: white; margin-top: 20px; font-size: 1.2rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8);"></div>
+            <div style="color: #ccc; margin-top: 10px; font-size: 0.9rem;">Click anywhere to close</div>
+        </div>
+        <button onclick="closeLightbox()" style="position: absolute; top: 30px; right: 30px; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 30px; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+            &times;
+        </button>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.backdropFilter = 'blur(20px)';
+            } else {
+                nav.style.background = 'white';
+                nav.style.backdropFilter = 'none';
+            }
+        });
+
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const lightTheme = document.getElementById('light-theme');
+            const darkTheme = document.getElementById('dark-theme');
+
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    
+                    // Update button states
+                    themeButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.style.background = 'transparent';
+                        btn.style.boxShadow = 'none';
+                        btn.style.color = '#64748b';
+                    });
+                    
+                    this.classList.add('active');
+                    this.style.background = 'white';
+                    this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                    this.style.color = '#1e293b';
+                    
+                    // Toggle theme content
+                    if (theme === 'light') {
+                        lightTheme.style.display = 'grid';
+                        darkTheme.style.display = 'none';
+                    } else {
+                        lightTheme.style.display = 'none';
+                        darkTheme.style.display = 'grid';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImage.src = imageSrc;
+            lightboxImage.alt = caption;
+            lightboxCaption.textContent = caption;
+            
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Add fade-in animation
+            lightbox.style.opacity = '0';
+            setTimeout(() => {
+                lightbox.style.transition = 'opacity 0.3s ease';
+                lightbox.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            
+            // Add fade-out animation
+            lightbox.style.transition = 'opacity 0.3s ease';
+            lightbox.style.opacity = '0';
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }, 300);
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Prevent lightbox from closing when clicking on the image
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightboxImage = document.getElementById('lightbox-image');
+            if (lightboxImage) {
+                lightboxImage.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

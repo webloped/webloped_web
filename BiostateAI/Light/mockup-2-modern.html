@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostate.AI - Modern AI Assistant</title>
+    <link rel="stylesheet" href="mockup-2-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav">
+            <div class="nav-brand">
+                <span>Biostate.AI</span>
+            </div>
+            
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="User">
+                    <div class="status-badge online"></div>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">User Account</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Chat Interface -->
+            <div class="chat-interface">
+                <!-- Chat History Panel -->
+                <div class="chat-history-panel" id="chatHistoryPanel">
+                    <div class="panel-header">
+                        <h3>Recent Conversations</h3>
+                        <div class="panel-actions">
+                            <button class="btn-icon toggle-panel" title="Toggle Panel">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="btn-icon">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-list">
+                        <div class="conversation-item active">
+                            <div class="conversation-details">
+                                <h4>Genomic Data Pipeline</h4>
+                                <p>Building a Next.js dashboard for sequence analysis...</p>
+                                <div class="conversation-meta">
+                                    <span class="status-badge completed">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="conversation-item">
+                            <div class="conversation-details">
+                                <h4>Protein Structure Analysis</h4>
+                                <p>Python script for molecular dynamics simulation...</p>
+                                <div class="conversation-meta">
+                                    <span class="status-badge completed">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="conversation-item">
+                            <div class="conversation-details">
+                                <h4>Microscopy Data Processing</h4>
+                                <p>React component for image analysis and visualization...</p>
+                                <div class="conversation-meta">
+                                    <span class="status-badge in-progress">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Chat Area -->
+                <div class="main-chat-area" id="mainChatArea">
+
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- AI Welcome Message -->
+                        <div class="message ai-message">
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Hello! How can I help you today?
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- User Follow-up -->
+                        <div class="message user-message">
+                            <div class="message-content">
+                                <div class="message-header">
+                                </div>
+                                <div class="message-text">
+                                    Write a paper on data analysis in the field of biosciences. Analyze the data and provide a detailed report.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Processing Message -->
+                        <div class="message ai-message processing">
+                            <div class="message-content">
+                                <div class="processing-card">
+                                    <div class="processing-header">
+                                        <div class="processing-icon">
+                                            <i class="fas fa-cog fa-spin"></i>
+                                        </div>
+                                        <div class="processing-info">
+                                            <h4>Enhancing Protein Viewer</h4>
+                                            <p>Adding color schemes and legend functionality</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="progress-section">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 85%"></div>
+                                        </div>
+                                        <div class="progress-details">
+                                            <span class="progress-text">85% - Implementing color schemes</span>
+                                            <span class="progress-time">0:45 remaining</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="processing-timeline">
+                                        <div class="timeline-item completed">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <span class="timeline-title">Analyzing amino acid types</span>
+                                                <span class="timeline-time">0:08</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="timeline-item completed">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <span class="timeline-title">Creating color schemes</span>
+                                                <span class="timeline-time">0:22</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="timeline-item active">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <span class="timeline-title">Implementing legend</span>
+                                                <span class="timeline-time">0:35</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="timeline-item">
+                                            <div class="timeline-icon">
+                                                <i class="fas fa-circle"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <span class="timeline-title">Testing integration</span>
+                                                <span class="timeline-time">--</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Final Response -->
+                        <div class="message ai-message">
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Perfect! I've enhanced the component with amino acid color schemes and an interactive legend. The component now supports multiple color schemes including CPK, amino acid type, and secondary structure. Here's the updated version:
+                                </div>
+                                <div class="enhanced-features">
+                                    <div class="feature-item" data-file="protein-structure">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Protein_Structure.pdf</span>
+                                    </div>
+                                    <div class="feature-item" data-file="genomic-analysis">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Genomic_Analysis.pdf</span>
+                                    </div>
+                                    <div class="feature-item" data-file="sequence-data">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Sequence_Data.pdf</span>
+                                    </div>
+                                    <div class="feature-item" data-file="research-report">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>Research_Report.pdf</span>
+                                    </div>
+                                </div>
+                                <div class="message-actions">
+                                    <button class="action-btn primary">
+                                        <i class="fas fa-download"></i>
+                                        Download Component
+                                    </button>
+                                    <button class="action-btn" id="previewFilesBtn">
+                                        <i class="fas fa-eye"></i>
+                                        Preview
+                                    </button>
+                                    <button class="action-btn">
+                                        <i class="fas fa-bookmark"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Chat Input -->
+                    <div class="floating-chat-input">
+                        <div class="chat-input-container">
+                            <textarea 
+                                class="message-input" 
+                                placeholder="Describe your bioinformatics project or coding needs..."
+                                rows="1"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button class="btn-icon" title="Attach File">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <button class="send-button" id="sendButton">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Editor Panel -->
+                <div class="code-generation-panel" id="codeGenerationPanel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Code Editor</h3>
+                        </div>
+                        <div class="panel-actions">
+                            <select class="language-select" id="languageSelect">
+                                <option value="python">Python</option>
+                                <option value="react">React</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                            <button class="btn-icon" title="Copy Code">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn-icon" title="Save File">
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button class="btn-icon" id="minimizeBtn" title="Minimize">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="code-editor-card">
+                        <div class="editor-header">
+                            <div class="file-info">
+                                <span class="file-name" id="fileName">main.js</span>
+                                <span class="language-badge" id="languageBadge">Python</span>
+                            </div>
+                            <div class="file-actions">
+                                <button class="btn-icon small" title="Run Code">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="btn-icon small" title="Format Code">
+                                    <i class="fas fa-magic"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="code-editor-container">
+                            <div class="line-numbers" id="lineNumbers"></div>
+                            <textarea 
+                                class="code-editor" 
+                                id="codeEditor"
+                                placeholder="// Start coding here..."
+                                spellcheck="false"
+                            >import React, { useState, useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+const ProteinViewer = ({ proteinData, width = 600, height = 400 }) => {
+  const mountRef = useRef(null);
+  const [scene, setScene] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!mountRef.current) return;
+
+    // Initialize Three.js scene
+    const newScene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    
+    renderer.setSize(width, height);
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Add lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(10, 10, 5);
+    newScene.add(ambientLight);
+    newScene.add(directionalLight);
+
+    // Add controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // Position camera
+    camera.position.z = 5;
+
+    // Render loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(newScene, camera);
+    };
+    animate();
+
+    setScene(newScene);
+    setLoading(false);
+
+    return () => {
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+    };
+  }, [width, height]);
+
+  const loadProteinStructure = (data) => {
+    if (!scene) return;
+
+    // Clear existing geometry
+    scene.children = scene.children.filter(child => 
+      child.type === 'AmbientLight' || child.type === 'DirectionalLight'
+    );
+
+    // Create protein structure geometry
+    const geometry = new THREE.SphereGeometry(0.1, 8, 6);
+    const material = new THREE.MeshPhongMaterial({ 
+      color: 0x00ff88,
+      transparent: true,
+      opacity: 0.8
+    });
+
+    // Add atoms as spheres
+    data.atoms.forEach(atom => {
+      const sphere = new THREE.Mesh(geometry, material);
+      sphere.position.set(atom.x, atom.y, atom.z);
+      scene.add(sphere);
+    });
+
+    // Add bonds as lines
+    data.bonds.forEach(bond => {
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array([
+        bond.start.x, bond.start.y, bond.start.z,
+        bond.end.x, bond.end.y, bond.end.z
+      ]);
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      
+      const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+      const line = new THREE.Line(geometry, material);
+      scene.add(line);
+    });
+  };
+
+  useEffect(() => {
+    if (proteinData && scene) {
+      loadProteinStructure(proteinData);
+    }
+  }, [proteinData, scene]);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p>Initializing 3D viewer...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="protein-viewer">
+      <div className="viewer-controls">
+        <button className="control-btn">
+          <i className="fas fa-home"></i>
+          Reset View
+        </button>
+        <button className="control-btn">
+          <i className="fas fa-expand"></i>
+          Fullscreen
+        </button>
+      </div>
+      <div ref={mountRef} className="viewer-canvas" />
+    </div>
+  );
+};
+
+export default ProteinViewer;</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Code Actions -->
+                    <div class="code-actions">
+                        <button class="btn-primary" id="runCodeBtn">
+                            <i class="fas fa-play"></i>
+                            Run Code
+                        </button>
+                        <button class="btn-secondary" id="formatCodeBtn">
+                            <i class="fas fa-magic"></i>
+                            Format
+                        </button>
+                        <button class="btn-secondary" id="clearCodeBtn">
+                            <i class="fas fa-trash"></i>
+                            Clear
+                        </button>
+                        <button class="btn-secondary" id="regenerateBtn">
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div class="file-preview-modal" id="filePreviewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-file-pdf"></i>
+                    <span id="modalFileName">Protein_Structure.pdf</span>
+                </div>
+                <div class="file-navigation">
+                    <button class="nav-btn" data-file="protein-structure">Protein Structure</button>
+                    <button class="nav-btn" data-file="genomic-analysis">Genomic Analysis</button>
+                    <button class="nav-btn" data-file="sequence-data">Sequence Data</button>
+                    <button class="nav-btn" data-file="research-report">Research Report</button>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-icon" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon close-modal" title="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="file-preview-container">
+                    <div class="pdf-viewer" id="pdfViewer">
+                        <div class="pdf-page">
+                            <div class="pdf-header">
+                                <h3>Protein Structure Analysis Report</h3>
+                                <p>Generated by Biostate.AI - Bioinformatics Platform</p>
+                            </div>
+                            <div class="pdf-content">
+                                <div class="section">
+                                    <h4>Executive Summary</h4>
+                                    <p>This report presents a comprehensive analysis of the protein structure identified as PDB ID: 1ABC. The analysis reveals key structural elements including alpha helices, beta sheets, and critical binding sites.</p>
+                                </div>
+                                <div class="section">
+                                    <h4>Structural Analysis</h4>
+                                    <ul>
+                                        <li><strong>Primary Structure:</strong> 245 amino acid residues</li>
+                                        <li><strong>Secondary Structure:</strong> 40% alpha helix, 25% beta sheet</li>
+                                        <li><strong>Tertiary Structure:</strong> Globular protein with multiple domains</li>
+                                        <li><strong>Quaternary Structure:</strong> Monomeric in solution</li>
+                                    </ul>
+                                </div>
+                                <div class="section">
+                                    <h4>Key Findings</h4>
+                                    <p>The protein exhibits a well-defined catalytic site with conserved residues essential for enzymatic activity. Structural analysis indicates potential binding sites for substrate molecules and cofactors.</p>
+                                </div>
+                            </div>
+                            <div class="pdf-footer">
+                                <p>Report generated on: <span id="reportDate"></span></p>
+                                <p>Analysis performed by: Biostate.AI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mockup-2-script.js"></script>
+    
+    <script>
+        // Enhanced Monaco-style code editor functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.querySelector('.toggle-panel');
+            const chatHistoryPanel = document.querySelector('.chat-history-panel');
+            
+            // Function to update chat centering based on panel states
+            function updateChatCentering() {
+                const chatHistoryPanel = document.getElementById('chatHistoryPanel');
+                const mainChatArea = document.getElementById('mainChatArea');
+                const codePanel = document.getElementById('codeGenerationPanel');
+                
+                if (chatHistoryPanel && mainChatArea && codePanel) {
+                    const isHistoryCollapsed = chatHistoryPanel.classList.contains('collapsed');
+                    const isCodeMinimized = codePanel.classList.contains('minimized');
+                    
+                    if (isHistoryCollapsed && isCodeMinimized) {
+                        // Both panels are collapsed/minimized - center the chat
+                        mainChatArea.style.marginLeft = 'auto';
+                        mainChatArea.style.marginRight = 'auto';
+                        mainChatArea.style.maxWidth = '800px';
+                        mainChatArea.style.width = '100%';
+                    } else if (isHistoryCollapsed) {
+                        // Only history panel is collapsed
+                        mainChatArea.style.marginLeft = 'auto';
+                        mainChatArea.style.marginRight = 'auto';
+                        mainChatArea.style.maxWidth = '800px';
+                        mainChatArea.style.width = '100%';
+                    } else {
+                        // Reset to normal layout
+                        mainChatArea.style.marginLeft = '';
+                        mainChatArea.style.marginRight = '';
+                        mainChatArea.style.maxWidth = '';
+                        mainChatArea.style.width = '';
+                    }
+                }
+            }
+            
+            if (toggleBtn && chatHistoryPanel) {
+                toggleBtn.addEventListener('click', function() {
+                    chatHistoryPanel.classList.toggle('collapsed');
+                    updateChatCentering();
+                });
+            }
+            
+            // Auto-resize textarea
+            const messageInput = document.querySelector('.chat-input-container .message-input');
+            if (messageInput) {
+                messageInput.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                });
+            }
+            
+            // Resizable panel functionality - Only between main chat and code panel
+            const mainChatArea = document.getElementById('mainChatArea');
+            const codePanel = document.getElementById('codeGenerationPanel');
+            
+            if (mainChatArea && codePanel) {
+                let isDragging = false;
+                let startX = 0;
+                let startMainWidth = 0;
+                let startCodeWidth = 0;
+                
+                // Handle main chat area resize
+                mainChatArea.addEventListener('mousedown', function(e) {
+                    if (e.offsetX > mainChatArea.offsetWidth - 8) {
+                        isDragging = true;
+                        startX = e.clientX;
+                        startMainWidth = mainChatArea.offsetWidth;
+                        startCodeWidth = codePanel.offsetWidth;
+                        
+                        document.body.style.cursor = 'col-resize';
+                        document.body.style.userSelect = 'none';
+                        e.preventDefault();
+                    }
+                });
+                
+                document.addEventListener('mousemove', function(e) {
+                    if (!isDragging) return;
+                    
+                    const deltaX = e.clientX - startX;
+                    const containerWidth = mainChatArea.parentElement.offsetWidth;
+                    const chatPanelWidth = document.getElementById('chatHistoryPanel').offsetWidth;
+                    const availableWidth = containerWidth - chatPanelWidth - 16; // 16px for margin
+                    
+                    const newMainWidth = Math.max(200, Math.min(availableWidth - 100, startMainWidth + deltaX));
+                    const newCodeWidth = Math.max(100, availableWidth - newMainWidth);
+                    
+                    mainChatArea.style.width = newMainWidth + 'px';
+                    codePanel.style.width = newCodeWidth + 'px';
+                });
+                
+                document.addEventListener('mouseup', function() {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = '';
+                        document.body.style.userSelect = '';
+                    }
+                });
+                
+                // Prevent text selection while dragging
+                mainChatArea.addEventListener('selectstart', function(e) {
+                    if (e.offsetX > mainChatArea.offsetWidth - 8) {
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // Enhanced Code Editor Functionality
+            const codeEditor = document.getElementById('codeEditor');
+            const lineNumbers = document.getElementById('lineNumbers');
+            const languageSelect = document.getElementById('languageSelect');
+            const languageBadge = document.getElementById('languageBadge');
+            const fileName = document.getElementById('fileName');
+            const runCodeBtn = document.getElementById('runCodeBtn');
+            const formatCodeBtn = document.getElementById('formatCodeBtn');
+            const clearCodeBtn = document.getElementById('clearCodeBtn');
+            
+            if (codeEditor && lineNumbers) {
+                // Monaco-style syntax highlighting
+                function highlightSyntax(code, language) {
+                    // Simple syntax highlighting for demonstration
+                    const keywords = ['import', 'export', 'const', 'let', 'var', 'function', 'class', 'return', 'if', 'else', 'for', 'while', 'try', 'catch', 'finally', 'new', 'this', 'super', 'extends', 'implements', 'interface', 'enum', 'static', 'async', 'await', 'default', 'from', 'as'];
+                    const strings = /"[^"]*"|'[^']*'|`[^`]*`/g;
+                    const comments = /\/\/.*$/gm;
+                    const numbers = /\b\d+\.?\d*\b/g;
+                    const functions = /\b\w+(?=\()/g;
+                    
+                    let highlighted = code;
+                    
+                    // Highlight keywords
+                    keywords.forEach(keyword => {
+                        const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                        highlighted = highlighted.replace(regex, `<span class="keyword">${keyword}</span>`);
+                    });
+                    
+                    // Highlight strings
+                    highlighted = highlighted.replace(strings, match => `<span class="string">${match}</span>`);
+                    
+                    // Highlight comments
+                    highlighted = highlighted.replace(comments, match => `<span class="comment">${match}</span>`);
+                    
+                    // Highlight numbers
+                    highlighted = highlighted.replace(numbers, match => `<span class="number">${match}</span>`);
+                    
+                    // Highlight function names
+                    highlighted = highlighted.replace(functions, match => `<span class="function">${match}</span>`);
+                    
+                    return highlighted;
+                }
+                
+                // Update line numbers with Monaco-style formatting
+                function updateLineNumbers() {
+                    const lines = codeEditor.value.split('\n');
+                    const lineNumbersHTML = lines.map((_, index) => {
+                        const lineNum = index + 1;
+                        return `<div class="line-number">${lineNum}</div>`;
+                    }).join('');
+                    lineNumbers.innerHTML = lineNumbersHTML;
+                }
+                
+                // Auto-resize textarea with Monaco-style behavior
+                function autoResize() {
+                    codeEditor.style.height = 'auto';
+                    const newHeight = Math.max(300, codeEditor.scrollHeight);
+                    codeEditor.style.height = newHeight + 'px';
+                    lineNumbers.style.height = newHeight + 'px';
+                }
+                
+                // Handle input events with syntax highlighting
+                codeEditor.addEventListener('input', function() {
+                    updateLineNumbers();
+                    autoResize();
+                    
+                    // Apply syntax highlighting (for display purposes)
+                    const highlighted = highlightSyntax(this.value, languageSelect.value);
+                    // Note: In a real implementation, you'd use a proper syntax highlighter
+                });
+                
+                // Handle scroll synchronization with Monaco-style smooth scrolling
+                codeEditor.addEventListener('scroll', function() {
+                    lineNumbers.scrollTop = codeEditor.scrollTop;
+                });
+                
+                // Enhanced Tab key handling with Monaco-style indentation
+                codeEditor.addEventListener('keydown', function(e) {
+                    if (e.key === 'Tab') {
+                        e.preventDefault();
+                        const start = this.selectionStart;
+                        const end = this.selectionEnd;
+                        
+                        if (e.shiftKey) {
+                            // Shift+Tab: Unindent
+                            const beforeCursor = this.value.substring(0, start);
+                            const afterCursor = this.value.substring(end);
+                            const lineStart = beforeCursor.lastIndexOf('\n') + 1;
+                            const lineEnd = afterCursor.indexOf('\n');
+                            const line = this.value.substring(lineStart, end + (lineEnd === -1 ? 0 : lineEnd));
+                            
+                            if (line.startsWith('  ')) {
+                                this.value = this.value.substring(0, lineStart) + line.substring(2) + this.value.substring(end + (lineEnd === -1 ? 0 : lineEnd));
+                                this.selectionStart = this.selectionEnd = start - 2;
+                            }
+                        } else {
+                            // Tab: Indent
+                            this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
+                            this.selectionStart = this.selectionEnd = start + 2;
+                        }
+                        
+                        updateLineNumbers();
+                    }
+                });
+                
+                // Initialize
+                updateLineNumbers();
+                autoResize();
+                
+                // Initialize chat centering
+                updateChatCentering();
+            }
+            
+            // Enhanced language selection with Monaco-style file extensions
+            if (languageSelect && languageBadge && fileName) {
+                languageSelect.addEventListener('change', function() {
+                    const language = this.value;
+                    languageBadge.textContent = language.charAt(0).toUpperCase() + language.slice(1);
+                    
+                    // Update file extension with Monaco-style naming
+                    const extensions = {
+                        javascript: '.js',
+                        python: '.py',
+                        react: '.jsx',
+                        html: '.html',
+                        css: '.css',
+                        java: '.java',
+                        cpp: '.cpp'
+                    };
+                    
+                    const baseName = fileName.textContent.split('.')[0];
+                    fileName.textContent = baseName + (extensions[language] || '.js');
+                    
+                    // Update syntax highlighting for the new language
+                    if (codeEditor) {
+                        const highlighted = highlightSyntax(codeEditor.value, language);
+                        // Apply new highlighting
+                    }
+                });
+            }
+            
+            // Enhanced code actions with Monaco-style feedback
+            if (runCodeBtn) {
+                runCodeBtn.addEventListener('click', function() {
+                    // Monaco-style loading state
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running...';
+                    this.disabled = true;
+                    
+                    // Simulate code execution
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        
+                        // Show Monaco-style notification
+                        showNotification('Code executed successfully!', 'success');
+                    }, 2000);
+                });
+            }
+            
+            if (formatCodeBtn) {
+                formatCodeBtn.addEventListener('click', function() {
+                    // Monaco-style formatting
+                    const code = codeEditor.value;
+                    const formatted = formatCode(code);
+                    codeEditor.value = formatted;
+                    updateLineNumbers();
+                    autoResize();
+                    
+                    showNotification('Code formatted successfully!', 'info');
+                });
+            }
+            
+            if (clearCodeBtn) {
+                clearCodeBtn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to clear the code?')) {
+                        codeEditor.value = '';
+                        updateLineNumbers();
+                        autoResize();
+                        showNotification('Code cleared!', 'warning');
+                    }
+                });
+            }
+            
+            // Monaco-style code formatting function
+            function formatCode(code) {
+                // Basic formatting - in a real implementation, use a proper formatter
+                return code
+                    .replace(/^\s+/gm, (match) => '  '.repeat(Math.floor(match.length / 2)))
+                    .replace(/\s+$/gm, '')
+                    .replace(/\n{3,}/g, '\n\n');
+            }
+            
+            // Monaco-style notification system
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `monaco-notification ${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}-circle"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => notification.classList.add('show'), 100);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+            
+            // File Preview Modal Functionality
+            const filePreviewModal = document.getElementById('filePreviewModal');
+            const modalFileName = document.getElementById('modalFileName');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const featureItems = document.querySelectorAll('.feature-item');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            
+            // Sample file data
+            const fileData = {
+                'protein-structure': {
+                    name: 'Protein_Structure.pdf',
+                    title: 'Protein Structure Analysis Report',
+                    content: {
+                        summary: 'This report presents a comprehensive analysis of the protein structure identified as PDB ID: 1ABC. The analysis reveals key structural elements including alpha helices, beta sheets, and critical binding sites.',
+                        structure: {
+                            primary: '245 amino acid residues',
+                            secondary: '40% alpha helix, 25% beta sheet',
+                            tertiary: 'Globular protein with multiple domains',
+                            quaternary: 'Monomeric in solution'
+                        },
+                        findings: 'The protein exhibits a well-defined catalytic site with conserved residues essential for enzymatic activity. Structural analysis indicates potential binding sites for substrate molecules and cofactors.'
+                    }
+                },
+                'genomic-analysis': {
+                    name: 'Genomic_Analysis.pdf',
+                    title: 'Genomic Data Analysis Report',
+                    content: {
+                        summary: 'Comprehensive genomic analysis of sample sequences revealing key genetic markers and potential therapeutic targets.',
+                        structure: {
+                            primary: 'DNA sequence analysis',
+                            secondary: 'Gene expression patterns',
+                            tertiary: 'Protein interaction networks',
+                            quaternary: 'Pathway analysis'
+                        },
+                        findings: 'Identified 15 novel genetic variants associated with disease progression. Pathway analysis reveals potential therapeutic interventions.'
+                    }
+                },
+                'sequence-data': {
+                    name: 'Sequence_Data.pdf',
+                    title: 'DNA Sequence Analysis Report',
+                    content: {
+                        summary: 'Detailed analysis of DNA sequences with alignment results and phylogenetic tree construction.',
+                        structure: {
+                            primary: 'Sequence alignment',
+                            secondary: 'Phylogenetic analysis',
+                            tertiary: 'Conservation scoring',
+                            quaternary: 'Functional annotation'
+                        },
+                        findings: 'High conservation observed in functional domains. Phylogenetic analysis supports evolutionary relationships.'
+                    }
+                },
+                'research-report': {
+                    name: 'Research_Report.pdf',
+                    title: 'Bioinformatics Research Summary',
+                    content: {
+                        summary: 'Comprehensive research report covering multiple bioinformatics analyses and findings.',
+                        structure: {
+                            primary: 'Data collection',
+                            secondary: 'Analysis pipeline',
+                            tertiary: 'Statistical validation',
+                            quaternary: 'Results interpretation'
+                        },
+                        findings: 'Significant correlations identified between genetic markers and phenotypic traits. Results support further experimental validation.'
+                    }
+                }
+            };
+            
+            // Open modal function
+            function openFilePreview(fileId) {
+                const file = fileData[fileId];
+                if (file) {
+                    modalFileName.textContent = file.name;
+                    document.getElementById('reportDate').textContent = new Date().toLocaleDateString();
+                    
+                    // Update navigation buttons
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-file') === fileId) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Update PDF content
+                    const pdfViewer = document.getElementById('pdfViewer');
+                    pdfViewer.innerHTML = `
+                        <div class="pdf-page">
+                            <div class="pdf-header">
+                                <h3>${file.title}</h3>
+                                <p>Generated by Biostate.AI - Bioinformatics Platform</p>
+                            </div>
+                            <div class="pdf-content">
+                                <div class="section">
+                                    <h4>Executive Summary</h4>
+                                    <p>${file.content.summary}</p>
+                                </div>
+                                <div class="section">
+                                    <h4>Analysis Components</h4>
+                                    <ul>
+                                        <li><strong>Primary Analysis:</strong> ${file.content.structure.primary}</li>
+                                        <li><strong>Secondary Analysis:</strong> ${file.content.structure.secondary}</li>
+                                        <li><strong>Tertiary Analysis:</strong> ${file.content.structure.tertiary}</li>
+                                        <li><strong>Quaternary Analysis:</strong> ${file.content.structure.quaternary}</li>
+                                    </ul>
+                                </div>
+                                <div class="section">
+                                    <h4>Key Findings</h4>
+                                    <p>${file.content.findings}</p>
+                                </div>
+                            </div>
+                            <div class="pdf-footer">
+                                <p>Report generated on: <span id="reportDate">${new Date().toLocaleDateString()}</span></p>
+                                <p>Analysis performed by: Biostate.AI</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    filePreviewModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            // Close modal function
+            function closeFilePreview() {
+                filePreviewModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Event listeners for feature items (click to preview)
+            featureItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const fileId = this.getAttribute('data-file');
+                    openFilePreview(fileId);
+                });
+            });
+            
+            // Event listeners for navigation buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const fileId = this.getAttribute('data-file');
+                    openFilePreview(fileId);
+                });
+            });
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeFilePreview);
+            }
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && filePreviewModal.classList.contains('active')) {
+                    closeFilePreview();
+                }
+            });
+            
+            // Main preview button functionality
+            const previewFilesBtn = document.getElementById('previewFilesBtn');
+            if (previewFilesBtn) {
+                previewFilesBtn.addEventListener('click', function() {
+                    openFilePreview('protein-structure'); // Open first file by default
+                });
+            }
+            
+            // Minimize functionality
+            const minimizeBtn = document.getElementById('minimizeBtn');
+            
+            if (minimizeBtn && codeGenerationPanel) {
+                minimizeBtn.addEventListener('click', function() {
+                    codeGenerationPanel.classList.toggle('minimized');
+                    
+                    // Update icon
+                    const icon = this.querySelector('i');
+                    if (codeGenerationPanel.classList.contains('minimized')) {
+                        icon.className = 'fas fa-plus';
+                        this.title = 'Expand';
+                    } else {
+                        icon.className = 'fas fa-minus';
+                        this.title = 'Minimize';
+                    }
+                    
+                    // Handle centering when both panels are collapsed
+                    updateChatCentering();
+                });
+            }
+            
+            // Fullscreen functionality
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const chatHistoryPanelElement = document.getElementById('chatHistoryPanel');
+            
+            if (fullscreenBtn && codeGenerationPanel) {
+                fullscreenBtn.addEventListener('click', function() {
+                    codeGenerationPanel.classList.toggle('fullscreen');
+                    
+                    // Update icon
+                    const icon = this.querySelector('i');
+                    if (codeGenerationPanel.classList.contains('fullscreen')) {
+                        icon.className = 'fas fa-compress';
+                        this.title = 'Exit Fullscreen';
+                        
+                        // Ensure chat history panel is visible
+                        if (chatHistoryPanelElement) {
+                            chatHistoryPanelElement.style.position = 'fixed';
+                            chatHistoryPanelElement.style.top = '60px';
+                            chatHistoryPanelElement.style.left = '0';
+                            chatHistoryPanelElement.style.bottom = '0';
+                            chatHistoryPanelElement.style.zIndex = '999';
+                        }
+                    } else {
+                        icon.className = 'fas fa-expand';
+                        this.title = 'Fullscreen';
+                        
+                        // Reset chat history panel
+                        if (chatHistoryPanelElement) {
+                            chatHistoryPanelElement.style.position = '';
+                            chatHistoryPanelElement.style.top = '';
+                            chatHistoryPanelElement.style.left = '';
+                            chatHistoryPanelElement.style.bottom = '';
+                            chatHistoryPanelElement.style.zIndex = '';
+                        }
+                    }
+                });
+            }
+            
+            // Regenerate functionality
+            const regenerateBtn = document.getElementById('regenerateBtn');
+            if (regenerateBtn) {
+                regenerateBtn.addEventListener('click', function() {
+                    // Show loading state
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Regenerating...';
+                    this.disabled = true;
+                    
+                    // Simulate regeneration process
+                    setTimeout(() => {
+                        // Reset button
+                        this.innerHTML = '<i class="fas fa-redo"></i> Regenerate';
+                        this.disabled = false;
+                        
+                        // Show success message or update code
+                        showNotification('Code has been regenerated!', 'success');
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

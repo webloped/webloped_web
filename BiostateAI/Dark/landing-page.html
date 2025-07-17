@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostate.AI - Bioinformatics AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="landing-page-styles.css">
+</head>
+<body>
+    <!-- Top Actions -->
+    <div class="top-actions">
+        <button class="btn-secondary">Login</button>
+        <button class="btn-primary">Sign Up</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="landing-content">
+        <div class="hero-section">
+            <div class="brand-logo">
+                <div class="brand-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <span>Biostate.AI</span>
+            </div>
+            <div class="hero-text">
+                <h1>Your AI-Powered Research Assistant</h1>
+            </div>
+            
+            <div class="chat-interface">
+                <div class="input-container">
+                    <textarea 
+                        class="message-input" 
+                        id="messageInput"
+                        placeholder="Describe your bioinformatics project or coding needs..."
+                        rows="1"
+                    ></textarea>
+                    <div class="input-actions">
+                        <button class="btn-icon" title="Attach File">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <button class="send-button" id="sendButton">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="prompt-suggestions">
+                    <div class="suggestions-header">
+                        <span>Try asking about:</span>
+                    </div>
+                    <div class="suggestion-chips">
+                        <button class="suggestion-chip" data-prompt="Help me analyze DNA sequence data">
+                            <i class="fas fa-dna"></i>
+                            Analyze DNA sequences
+                        </button>
+                        <button class="suggestion-chip" data-prompt="Create a Python script for protein structure analysis">
+                            <i class="fas fa-code"></i>
+                            Protein analysis script
+                        </button>
+                        <button class="suggestion-chip" data-prompt="Generate a bioinformatics pipeline for RNA-seq data">
+                            <i class="fas fa-project-diagram"></i>
+                            RNA-seq pipeline
+                        </button>
+                        <button class="suggestion-chip" data-prompt="Help me visualize protein structures in 3D">
+                            <i class="fas fa-cube"></i>
+                            3D protein visualization
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-description">
+                <p>Transform your research with intelligent code generation, data analysis, and protein structure visualization. Start your bioinformatics journey today.</p>
+            </div>
+        </div>
+    </main>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            
+            // Auto-resize textarea
+            function autoResize() {
+                messageInput.style.height = 'auto';
+                messageInput.style.height = Math.min(messageInput.scrollHeight, 120) + 'px';
+            }
+            
+            messageInput.addEventListener('input', autoResize);
+            
+            // Send message function
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (!message) return;
+                
+                // Redirect to mockup-2
+                window.location.href = 'mockup-2-modern.html';
+            }
+            
+            // Event listeners
+            sendButton.addEventListener('click', sendMessage);
+            
+            messageInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // Focus on input when page loads
+            messageInput.focus();
+            
+            // Handle suggestion chip clicks
+            const suggestionChips = document.querySelectorAll('.suggestion-chip');
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const prompt = this.getAttribute('data-prompt');
+                    messageInput.value = prompt;
+                    messageInput.focus();
+                    autoResize();
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
