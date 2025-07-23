@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Playground - Dynamic Multiome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Biostate.AI" class="logo-image">
+                </div>
+            </div>
+            <div class="nav-center">
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link"><span>HOME</span></a></li>
+                    <li><a href="#" class="nav-link"><span>PARTICIPANTS</span></a></li>
+                    <li><a href="#" class="nav-link active"><span>AI PLAYGROUND</span></a></li>
+                    <li><a href="#" class="nav-link"><span>PUBLICATIONS</span></a></li>
+                    <li><a href="#" class="nav-link"><span>DISEASE</span></a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="cta-btn">Get in Touch</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Our AI</span> Playground
+                </h1>
+                <p class="hero-subtitle">
+                    Simulate RNA Expression and Disease Risk in Real-Time With AI
+                </p>
+                <button class="learn-more-btn">
+                    Learn More
+                    <img src="img/Button_arrow.png" alt="Arrow" class="arrow-icon">
+                </button>
+            </div>
+        </section>
+
+        <!-- AI Pipeline Section -->
+        <section class="ai-pipeline">
+            <div class="pipeline-container">
+                <!-- RNA Expression -->
+                <div class="rna-expression">
+                    <div class="gene-visualization">
+                        <!-- Top 9 bars -->
+                        <div class="gene-bar gene-bar-1"></div>
+                        <div class="gene-bar gene-bar-2"></div>
+                        <div class="gene-bar gene-bar-3"></div>
+                        <div class="gene-bar gene-bar-4"></div>
+                        <div class="gene-bar gene-bar-5"></div>
+                        <div class="gene-bar gene-bar-6"></div>
+                        <div class="gene-bar gene-bar-7"></div>
+                        <div class="gene-bar gene-bar-8"></div>
+                        <div class="gene-bar gene-bar-9"></div>
+                        
+                        <!-- Middle dots -->
+                        <div class="gene-bar-dots">...</div>
+                        
+                        <!-- Bottom 9 bars -->
+                        <div class="gene-bar gene-bar-10"></div>
+                        <div class="gene-bar gene-bar-11"></div>
+                        <div class="gene-bar gene-bar-12"></div>
+                        <div class="gene-bar gene-bar-13"></div>
+                        <div class="gene-bar gene-bar-14"></div>
+                        <div class="gene-bar gene-bar-15"></div>
+                        <div class="gene-bar gene-bar-16"></div>
+                        <div class="gene-bar gene-bar-17"></div>
+                        <div class="gene-bar gene-bar-18"></div>
+                    </div>
+                </div>
+
+                <!-- Pipeline Flow -->
+                <div class="pipeline-flow">
+                    <!-- Pre-training Stage -->
+                    <div class="pipeline-stage pre-training">
+                        <h4>Pre-training on all human RNAseq data (unlabeled)</h4>
+                        <div class="stage-content">
+                            <span class="stage-label">Unsupervised Encoder</span>
+                            <span class="parameters">(10B+ parameters)</span>
+                        </div>
+                        <p class="stage-description">Unsupervised pre-training on unlabeled data</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="pipeline-arrow"></div>
+
+                    <!-- Latent Representation -->
+                    <div class="latent-representation">
+                        <h4>512-dim latent representation</h4>
+                        <div class="chart-container">
+                            <svg class="latent-chart" viewBox="0 0 200 120">
+                                <line x1="20" y1="100" x2="180" y2="20" stroke="#FF6B6B" stroke-width="2"/>
+                                <line x1="20" y1="80" x2="180" y2="40" stroke="#4A90E2" stroke-width="2"/>
+                                <line x1="20" y1="60" x2="180" y2="80" stroke="#50C878" stroke-width="2"/>
+                                <line x1="20" y1="40" x2="180" y2="100" stroke="#FFD700" stroke-width="2"/>
+                                <!-- Grid lines -->
+                                <line x1="20" y1="20" x2="20" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="60" y1="20" x2="60" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="100" y1="20" x2="100" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="140" y1="20" x2="140" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="180" y1="20" x2="180" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="20" y1="20" x2="180" y2="20" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="20" y1="40" x2="180" y2="40" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="20" y1="60" x2="180" y2="60" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="20" y1="80" x2="180" y2="80" stroke="#E0E0E0" stroke-width="1"/>
+                                <line x1="20" y1="100" x2="180" y2="100" stroke="#E0E0E0" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <p class="fine-tuning-label">Fine-tuning on labeled CAD dataset</p>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="pipeline-arrow"></div>
+
+                    <!-- Classifier Stage -->
+                    <div class="pipeline-stage classifier">
+                        <div class="stage-content">
+                            <span class="stage-label">Classifier</span>
+                        </div>
+                        <p class="stage-description">Supervised fine-tuning on specific disease data</p>
+                    </div>
+                </div>
+
+                <!-- Risk Prediction -->
+                <div class="risk-prediction">
+                    <div class="prediction-cards">
+                        <div class="prediction-card">
+                            <img src="img/heart_logo.png" alt="Heart" class="risk-icon heart">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <h4>Heart Failure</h4>
+                                    <div class="progress-container">
+                                        <svg class="progress-circle" width="60" height="60" viewBox="0 0 60 60">
+                                            <defs>
+                                                <linearGradient id="riskGradient1" x1="1" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#22c55e"></stop>
+                                                    <stop offset="20%" stop-color="#16a34a"></stop>
+                                                    <stop offset="40%" stop-color="#eab308"></stop>
+                                                    <stop offset="70%" stop-color="#f97316"></stop>
+                                                    <stop offset="100%" stop-color="#dc2626"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <circle class="progress__meter" cx="30" cy="30" r="24" stroke-width="6" />
+                                            <circle class="progress__value" cx="30" cy="30" r="24" stroke-width="6" stroke="url(#riskGradient1)" data-percentage="28" />
+                                        </svg>
+                                        <div class="risk-percentage">28%</div>
+                                    </div>
+                                </div>
+                                
+                                <p>Estimated risk of heart failure within 6 months</p>
+                                <div class="risk-timeline">
+                                    <span>1month</span>
+                                    <span>3month</span>
+                                    <span>6month</span>
+                                    <div class="timeline-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prediction-card">
+                            <img src="img/Lung_logo.png" alt="Lungs" class="risk-icon lungs">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <h4>Lung Cancer</h4>
+                                    <div class="progress-container">
+                                        <svg class="progress-circle" width="60" height="60" viewBox="0 0 60 60">
+                                            <defs>
+                                                <linearGradient id="riskGradient2" x1="1" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#22c55e"></stop>
+                                                    <stop offset="20%" stop-color="#16a34a"></stop>
+                                                    <stop offset="40%" stop-color="#eab308"></stop>
+                                                    <stop offset="70%" stop-color="#f97316"></stop>
+                                                    <stop offset="100%" stop-color="#dc2626"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <circle class="progress__meter" cx="30" cy="30" r="24" stroke-width="6" />
+                                            <circle class="progress__value" cx="30" cy="30" r="24" stroke-width="6" stroke="url(#riskGradient2)" data-percentage="22" />
+                                        </svg>
+                                        <div class="risk-percentage">22%</div>
+                                    </div>
+                                </div>
+                                
+                                <p>Estimated risk of lung cancer within 12 months</p>
+                                <div class="risk-timeline">
+                                    <span>1month</span>
+                                    <span>3month</span>
+                                    <span>6month</span>
+                                    <div class="timeline-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prediction-card">
+                            <img src="img/kidney_logo.png" alt="Kidney" class="risk-icon kidney">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <h4>Kidney Failure</h4>
+                                    <div class="progress-container">
+                                        <svg class="progress-circle" width="60" height="60" viewBox="0 0 60 60">
+                                            <defs>
+                                                <linearGradient id="riskGradient3" x1="1" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#22c55e"></stop>
+                                                    <stop offset="20%" stop-color="#16a34a"></stop>
+                                                    <stop offset="40%" stop-color="#eab308"></stop>
+                                                    <stop offset="70%" stop-color="#f97316"></stop>
+                                                    <stop offset="100%" stop-color="#dc2626"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                            <circle class="progress__meter" cx="30" cy="30" r="24" stroke-width="6" />
+                                            <circle class="progress__value" cx="30" cy="30" r="24" stroke-width="6" stroke="url(#riskGradient3)" data-percentage="15" />
+                                        </svg>
+                                        <div class="risk-percentage">15%</div>
+                                    </div>
+                                </div>
+                                
+                                <p>Estimated risk of kidney failure within 18 months</p>
+                                <div class="risk-timeline">
+                                    <span>1month</span>
+                                    <span>3month</span>
+                                    <span>6month</span>
+                                    <div class="timeline-indicator"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Controls Section -->
+        <section class="interactive-controls">
+            <div class="controls-container">
+                <!-- Left Controls Panel -->
+                <div class="controls-panel">
+                    <!-- Age Control -->
+                    <div class="control-group">
+                        <label class="control-label">Age</label>
+                        <div class="slider-container">
+                            <span class="slider-label-left">Young</span>
+                            <input type="range" class="slider" id="age-slider" min="18" max="90" value="52">
+                            <span class="slider-label-right">Senior</span>
+                        </div>
+                        <div class="slider-value">52</div>
+                    </div>
+
+                    <!-- Genetic Risk Control -->
+                    <div class="control-group">
+                        <label class="control-label">Genetic Risk</label>
+                        <div class="slider-container">
+                            <span class="slider-label-left">Low</span>
+                            <input type="range" class="slider genetic-risk" id="genetic-risk-slider" min="0" max="100" value="72">
+                            <span class="slider-label-right">High</span>
+                        </div>
+                        <div class="slider-value">72</div>
+                    </div>
+
+                    <!-- Disease Progress Control -->
+                    <div class="control-group">
+                        <label class="control-label">Disease Progress</label>
+                        <div class="slider-container">
+                            <span class="slider-label-left">Young</span>
+                            <input type="range" class="slider" id="disease-progress-slider" min="0" max="100" value="45">
+                            <span class="slider-label-right">Senior</span>
+                        </div>
+                        <div class="slider-value">45</div>
+                    </div>
+
+                    <!-- BMI Control -->
+                    <div class="control-group">
+                        <label class="control-label">BMI</label>
+                        <div class="slider-container">
+                            <span class="slider-label-left">Low</span>
+                            <input type="range" class="slider bmi" id="bmi-slider" min="15" max="40" value="29.3" step="0.1">
+                            <span class="slider-label-right">High</span>
+                        </div>
+                        <div class="slider-value">29.3</div>
+                    </div>
+
+                    <!-- Smoking Intensity Control -->
+                    <div class="control-group smoking">
+                        <label class="control-label">Smoking Intensity</label>
+                        <div class="smoking-options">
+                            <div class="smoking-option">
+                                <input type="radio" name="smoking" id="none" value="none">
+                                <label for="none">None</label>
+                            </div>
+                            <div class="smoking-option">
+                                <input type="radio" name="smoking" id="light" value="light" checked>
+                                <label for="light">Light</label>
+                            </div>
+                            <div class="smoking-option">
+                                <input type="radio" name="smoking" id="moderate" value="moderate">
+                                <label for="moderate">Moderate</label>
+                            </div>
+                            <div class="smoking-option">
+                                <input type="radio" name="smoking" id="heavy" value="heavy">
+                                <label for="heavy">Heavy</label>
+                            </div>
+                            <div class="smoking-option">
+                                <input type="radio" name="smoking" id="very-heavy" value="very-heavy">
+                                <label for="very-heavy">Very Heavy</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sex Control -->
+                    <div class="control-group sex">
+                        <label class="control-label">Sex</label>
+                        <div class="sex-options">
+                            <div class="sex-option">
+                                <input type="radio" name="sex" id="male" value="male" checked>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="sex-option">
+                                <input type="radio" name="sex" id="female" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Human Body Visualization -->
+                <div class="body-visualization">
+                    <div class="body-container">
+                        <div class="human-silhouette">
+                            <!-- Human hologram image -->
+                            <img src="img/human_hologram.png" alt="Human Hologram" class="hologram-image">
+                            
+                            <!-- Dynamic Info Cards will be generated here -->
+                        </div>
+                        
+                        <button class="randomize-btn">
+                            <svg class="randomize-icon" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 7V17C3 18.1 3.9 19 5 19H9L7 21L8.41 22.41L12.41 18.41C12.8 18.02 12.8 17.39 12.41 17L8.41 13L7 14.41L9 16.59H5C4.45 16.59 4 16.14 4 15.59V7.59C4 7.04 4.45 6.59 5 6.59H19C19.55 6.59 20 7.04 20 7.59V17.59C20 18.14 19.55 18.59 19 18.59H15L17 20.59L15.59 22L11.59 18C11.2 17.61 11.2 16.98 11.59 16.59L15.59 12.59L17 14L15 16H19C20.1 16 21 15.1 21 14V4C21 2.9 20.1 2 19 2H5C3.9 2 3 2.9 3 4V7Z" fill="currentColor"/>
+                            </svg>
+                            Randomize Human Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
