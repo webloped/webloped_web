@@ -141,6 +141,17 @@ body {
     }
 }
 
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 3px 12px rgba(139, 92, 246, 0.6);
+        transform: translateX(-50%) scale(1.2);
+    }
+    100% {
+        box-shadow: 0 4px 16px rgba(139, 92, 246, 0.8);
+        transform: translateX(-50%) scale(1.25);
+    }
+}
+
 .nav-link.active {
     background: rgba(0, 0, 0, 0.849);
     color: white;
@@ -733,6 +744,8 @@ main {
     z-index: 3;
     text-align: center;
     font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .risk-timeline span::before {
@@ -749,12 +762,25 @@ main {
     z-index: 2;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.risk-timeline span:not(.active) {
+    opacity: 0.6;
 }
 
 .risk-timeline span.active::before {
     background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.5);
-    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 3px 12px rgba(139, 92, 246, 0.6);
+    transform: translateX(-50%) scale(1.2);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+.risk-timeline span.active {
+    color: #8b5cf6;
+    font-weight: 600;
+    transform: scale(1.05);
 }
 
 .timeline-indicator {
@@ -1021,6 +1047,116 @@ main {
 }
 
 /* Responsive Design */
+@media (max-width: 1400px) {
+    .pipeline-container {
+        height: 48vw;
+        max-height: 650px;
+        background-size: 95% 95%;
+    }
+    
+    .rna-expression {
+        width: 4%;
+        left: 7%;
+        top: 23%;
+    }
+    
+    .gene-bar {
+        height: 16px;
+    }
+    
+    .latent-representation {
+        width: 20%;
+        min-width: 280px;
+        padding: 1.2rem;
+    }
+    
+    .latent-representation h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .risk-prediction {
+        width: 20%;
+        min-width: 280px;
+        right: 3%;
+        top: 22%;
+    }
+    
+    .prediction-card {
+        padding: 10px;
+        gap: 0.6rem;
+        border-radius: 10px;
+    }
+    
+    .prediction-card::before {
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        border-radius: 8px;
+    }
+    
+    .prediction-card h4 {
+        font-size: 18px;
+        margin-bottom: 0.3rem;
+    }
+    
+    .prediction-card p {
+        font-size: 0.75rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+    }
+    
+    .risk-icon {
+        height: 55px;
+    }
+    
+    .risk-icon.lungs {
+        height: 36px;
+    }
+    
+    .progress-circle {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .progress-circle circle {
+        r: 20;
+    }
+    
+    .progress__meter,
+    .progress__value {
+        stroke-width: 5;
+    }
+    
+    .risk-percentage {
+        font-size: 0.8rem;
+        top: 43%;
+        left: 50%;
+    }
+    
+    .risk-timeline {
+        font-size: 0.6rem;
+        margin-top: 0.4rem;
+        padding: 0 6px;
+        height: 20px;
+    }
+    
+    .risk-timeline::before {
+        top: -6px;
+        left: 6px;
+        right: 6px;
+        height: 2px;
+    }
+    
+    .risk-timeline span::before {
+        top: -12px;
+        width: 8px;
+        height: 8px;
+        border-width: 2px;
+    }
+}
+
 @media (max-width: 1200px) {
     .pipeline-container {
         height: 50vw;

@@ -113,39 +113,39 @@ function updatePredictions() {
     const currentData = getCurrentData();
     const predictions = calculateRiskPredictions(currentData);
     
-    // Update each prediction card
-    predictionCards.forEach((card, index) => {
-        const percentage = card.querySelector('.risk-percentage');
-        const timeline = card.querySelector('.timeline-indicator');
-        const progressValue = card.querySelector('.progress__value');
-        
-        let riskValue;
-        switch(index) {
-            case 0: // Heart Failure
-                riskValue = predictions.heartFailure;
-                break;
-            case 1: // Lung Cancer
-                riskValue = predictions.lungCancer;
-                break;
-            case 2: // Kidney Failure
-                riskValue = predictions.kidneyFailure;
-                break;
-        }
-        
-        // Animate percentage change
-        animateValue(percentage, parseInt(percentage.textContent), riskValue, 500);
-        
-        // Update progress bar
-        if (progressValue) {
-            const RADIUS = 24;
-            const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-            progressValue.setAttribute('data-percentage', riskValue);
-            updateProgressBar(progressValue, riskValue, CIRCUMFERENCE);
-        }
-        
-        // Update timeline position based on risk level
-        updateTimelinePosition(timeline, riskValue);
-    });
+            // Update each prediction card
+        predictionCards.forEach((card, index) => {
+            const percentage = card.querySelector('.risk-percentage');
+            const timeline = card.querySelector('.risk-timeline');
+            const progressValue = card.querySelector('.progress__value');
+            
+            let riskValue;
+            switch(index) {
+                case 0: // Heart Failure
+                    riskValue = predictions.heartFailure;
+                    break;
+                case 1: // Lung Cancer
+                    riskValue = predictions.lungCancer;
+                    break;
+                case 2: // Kidney Failure
+                    riskValue = predictions.kidneyFailure;
+                    break;
+            }
+            
+            // Animate percentage change
+            animateValue(percentage, parseInt(percentage.textContent), riskValue, 500);
+            
+            // Update progress bar
+            if (progressValue) {
+                const RADIUS = 24;
+                const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+                progressValue.setAttribute('data-percentage', riskValue);
+                updateProgressBar(progressValue, riskValue, CIRCUMFERENCE);
+            }
+            
+            // Update timeline position based on risk level
+            updateTimelinePosition(timeline, riskValue);
+        });
 }
 
 // Get current form data
@@ -244,29 +244,49 @@ function animateValue(element, start, end, duration) {
 
 // Update timeline indicator position
 function updateTimelinePosition(timeline, riskValue) {
+    if (!timeline) return;
+    
     // Get all time spans within this timeline
     const timeSpans = timeline.querySelectorAll('span');
     
     // Remove active class from all spans
-    timeSpans.forEach(span => span.classList.remove('active'));
+    timeSpans.forEach(span => {
+        span.classList.remove('active');
+        span.style.transition = 'all 0.3s ease';
+    });
     
     // Determine which time marker should be active based on risk level
     let activeIndex;
-    if (riskValue < 33) {
-        // Low risk: Activate 1month marker (first span)
+    if (riskValue <= 25) {
+        // Very low risk: Activate 1month marker (first span)
         activeIndex = 0;
-    } else if (riskValue < 67) {
-        // Medium risk: Activate 3month marker (second span)
+    } else if (riskValue <= 50) {
+        // Low to medium risk: Activate 3month marker (second span)
         activeIndex = 1;
     } else {
         // High risk: Activate 6month marker (third span)
         activeIndex = 2;
     }
     
-    // Add active class to the appropriate span
+    // Add active class to the appropriate span with animation
     if (timeSpans[activeIndex]) {
-        timeSpans[activeIndex].classList.add('active');
+        setTimeout(() => {
+            timeSpans[activeIndex].classList.add('active');
+            
+            // Add subtle pulse animation for better visual feedback
+            timeSpans[activeIndex].style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                timeSpans[activeIndex].style.transform = '';
+            }, 200);
+        }, 100);
     }
+    
+    // Add visual feedback to the timeline container
+    timeline.style.transition = 'transform 0.2s ease';
+    timeline.style.transform = 'scale(1.01)';
+    setTimeout(() => {
+        timeline.style.transform = '';
+    }, 200);
 }
 
 // Update visualizations (body silhouette, etc.)
