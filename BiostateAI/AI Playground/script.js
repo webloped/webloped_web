@@ -6,7 +6,11 @@ const sliders = {
     bmi: document.getElementById('bmi-slider')
 };
 
-const smokingOptions = document.querySelectorAll('input[name="smoking"]');
+// Smoking discrete slider elements
+const smokingDots = document.querySelectorAll('.slider-dot');
+const smokingLabels = document.querySelectorAll('.smoking-labels span');
+const sliderFill = document.querySelector('.slider-fill');
+
 const sexOptions = document.querySelectorAll('input[name="sex"]');
 const randomizeBtn = document.querySelector('.randomize-btn');
 const predictionCards = document.querySelectorAll('.prediction-card');
@@ -40,23 +44,42 @@ function initializeSliders() {
     // Update slider values in real-time
     Object.keys(sliders).forEach(key => {
         const slider = sliders[key];
-        const valueDisplay = slider.parentElement.nextElementSibling;
-        
-        slider.addEventListener('input', function() {
-            let value = parseFloat(this.value);
-            
+        const valueDisplay = slider.parentElement.parentElement.querySelector('.slider-value');
+
+        // Function to update slider value and position
+        function updateSliderValue() {
+            let value = parseFloat(slider.value);
+
             // Format value based on slider type
             if (key === 'bmi') {
                 value = value.toFixed(1);
             } else {
                 value = Math.round(value);
             }
-            
+
             valueDisplay.textContent = value;
+
+            // Calculate thumb position for tooltip
+            const min = parseFloat(slider.min) || 0;
+            const max = parseFloat(slider.max) || 100;
+            const percent = (parseFloat(slider.value) - min) / (max - min);
+            const sliderWidth = slider.offsetWidth;
+            const thumbWidth = 24; // match your CSS thumb size
+            const pos = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+            const sliderOffset = slider.offsetLeft;
+            valueDisplay.style.left = `${sliderOffset + pos}px`;
+            valueDisplay.style.transform = 'translateX(-50%)';
+
             updatePredictions();
             updateVisualizations();
             updateRNAColors();
-        });
+        }
+
+        // Initial positioning
+        updateSliderValue();
+
+        slider.addEventListener('input', updateSliderValue);
+        window.addEventListener('resize', updateSliderValue); // Recalculate on resize
     });
 }
 
@@ -86,12 +109,18 @@ function updateProgressBar(progressValue, percentage, circumference) {
 
 // Initialize control functionality
 function initializeControls() {
-    // Smoking options
-    smokingOptions.forEach(option => {
-        option.addEventListener('change', function() {
-            updatePredictions();
-            updateVisualizations();
-            updateRNAColors();
+    // Smoking discrete slider
+    smokingDots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            const value = parseInt(this.getAttribute('data-value'));
+            updateSmokingSelection(value);
+        });
+    });
+
+    // Allow clicking the smoking label text to select intensity
+    smokingLabels.forEach((label, index) => {
+        label.addEventListener('click', function() {
+            updateSmokingSelection(index);
         });
     });
 
@@ -106,6 +135,35 @@ function initializeControls() {
 
     // Randomize button
     randomizeBtn.addEventListener('click', randomizeProfile);
+}
+
+// Update smoking selection
+function updateSmokingSelection(value) {
+    // Remove all classes
+    smokingDots.forEach(dot => {
+        dot.classList.remove('active', 'progress');
+    });
+    smokingLabels.forEach(label => label.classList.remove('active'));
+
+    // Add active/progress classes
+    smokingDots.forEach((dot, idx) => {
+        if (idx < value) {
+            dot.classList.add('progress'); // solid purple, small
+        } else if (idx === value) {
+            dot.classList.add('active'); // large, main
+        }
+        // else: remain grey
+    });
+    smokingLabels[value].classList.add('active');
+
+    // Update fill width: percent to center of selected dot
+    const fillWidth = value === 0 ? 0 : (value / 4) * 100;
+    sliderFill.style.width = `${fillWidth}%`;
+
+    // Update predictions and visualizations
+    updatePredictions();
+    updateVisualizations();
+    updateRNAColors();
 }
 
 // Update prediction percentages based on current inputs
@@ -150,15 +208,18 @@ function updatePredictions() {
 
 // Get current form data
 function getCurrentData() {
-    const selectedSmoking = document.querySelector('input[name="smoking"]:checked');
+    const selectedSmoking = document.querySelector('.slider-dot.active');
     const selectedSex = document.querySelector('input[name="sex"]:checked');
+    
+    const smokingLevels = ['none', 'light', 'moderate', 'heavy', 'very-heavy'];
+    const smokingValue = selectedSmoking ? parseInt(selectedSmoking.getAttribute('data-value')) : 0;
     
     return {
         age: parseInt(sliders.age.value),
         geneticRisk: parseInt(sliders.geneticRisk.value),
         diseaseProgress: parseInt(sliders.diseaseProgress.value),
         bmi: parseFloat(sliders.bmi.value),
-        smoking: selectedSmoking ? selectedSmoking.value : 'none',
+        smoking: smokingLevels[smokingValue],
         sex: selectedSex ? selectedSex.value : 'male'
     };
 }
@@ -630,10 +691,10 @@ function randomizeProfile() {
     sliders.diseaseProgress.value = Math.floor(Math.random() * 100);
     sliders.bmi.value = (Math.random() * (40 - 15) + 15).toFixed(1);
     
-    // Update displayed values
+    // Update displayed values and positions
     Object.keys(sliders).forEach(key => {
         const slider = sliders[key];
-        const valueDisplay = slider.parentElement.nextElementSibling;
+        const valueDisplay = slider.parentElement.parentElement.querySelector('.slider-value');
         let value = parseFloat(slider.value);
         
         if (key === 'bmi') {
@@ -643,12 +704,22 @@ function randomizeProfile() {
         }
         
         valueDisplay.textContent = value;
+        
+        // Calculate thumb position for tooltip
+        const min = parseFloat(slider.min) || 0;
+        const max = parseFloat(slider.max) || 100;
+        const percent = (parseFloat(slider.value) - min) / (max - min);
+        const sliderWidth = slider.offsetWidth;
+        const thumbWidth = 24;
+        const pos = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+        const sliderOffset = slider.offsetLeft;
+        valueDisplay.style.left = `${sliderOffset + pos}px`;
+        valueDisplay.style.transform = 'translateX(-50%)';
     });
     
     // Randomize smoking
-    const smokingValues = ['none', 'light', 'moderate', 'heavy', 'very-heavy'];
-    const randomSmoking = smokingValues[Math.floor(Math.random() * smokingValues.length)];
-    document.getElementById(randomSmoking).checked = true;
+    const randomSmokingValue = Math.floor(Math.random() * 5);
+    updateSmokingSelection(randomSmokingValue);
     
     // Randomize sex
     const sexValues = ['male', 'female'];
@@ -719,29 +790,45 @@ function createAnimatedInfoCard(text, index, container) {
     card.className = 'info-card';
     card.innerHTML = `<span>${text}</span>`;
     
-    // Fixed positions matching the image layout
+    // Fixed positions matching the screenshot layout - relative to 400x500 container
+    // Added more positions to prevent overlapping when 5-6 cards appear
     const positions = [
-        { top: '120px', left: '20px' },    // Hypertension - left of chest
-        { top: '80px', right: '20px' },    // Ethnicity - right of head
-        { top: '350px', left: '30px' },    // Family History - left of hip
-        { top: '280px', right: '30px' }    // Medication - right of leg
+        { top: '140px', left: '-100px' },     // Left of chest
+        { top: '60px', right: '-100px' },      // Right of head
+        { top: '320px', left: '-90px' },       // Lower left
+        { top: '300px', right: '-140px' },     // Lower right
+        { top: '200px', left: '-110px' },      // Mid left
+        { top: '200px', right: '-110px' }      // Mid right
     ];
     
-    const basePosition = positions[index % positions.length];
+    // Use the position based on index, no modulo to prevent overlap
+    const basePosition = positions[index] || positions[0];
     
-    // Add slight random variations for natural feel
-    const topVariation = Math.floor(Math.random() * 15) - 7; // ±7px
-    const sideVariation = Math.floor(Math.random() * 8) - 4; // ±4px
-    
+    // Apply positions without random variations for consistent placement
     if (basePosition.top) {
-        card.style.top = `${parseInt(basePosition.top) + topVariation}px`;
+        card.style.top = basePosition.top;
     }
     if (basePosition.left) {
-        card.style.left = `${parseInt(basePosition.left) + sideVariation}px`;
+        card.style.left = basePosition.left;
     }
     if (basePosition.right) {
-        card.style.right = `${parseInt(basePosition.right) + sideVariation}px`;
+        card.style.right = basePosition.right;
     }
+    
+    // Create connection dot
+    const dot = document.createElement('div');
+    dot.className = 'connection-dot';
+    dot.style.cssText = `
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #e5e7eb;
+        border-radius: 50%;
+        ${basePosition.left ? 'right: -44px;' : 'left: -44px;'}
+        top: 50%;
+        transform: translateY(-50%);
+    `;
+    card.appendChild(dot);
     
     // Start invisible
     card.style.opacity = '0';
