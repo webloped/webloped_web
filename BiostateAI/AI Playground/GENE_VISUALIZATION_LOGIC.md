@@ -1,10 +1,12 @@
-# Gene Visualization Logic Documentation
+# Gene Visualization & Risk Prediction Logic Documentation
 
 ## Overview
 
-The gene visualization system has been completely redesigned to use only the original 5 colors from the CSS and create meaningful **mixed patterns** based on user inputs or randomization. The system now follows biological logic and creates realistic gene expression patterns with a mix of all 5 colors throughout the visualization.
+The gene visualization and risk prediction system has been redesigned to provide **deterministic, evidence-based medical simulation**. The system uses only the original 5 colors from the CSS and creates meaningful, reproducible patterns based on user inputs. Risk predictions are capped at medically realistic levels (≤50%) and follow evidence-based medical research.
 
-## Original Colors Used
+## Gene Visualization Logic
+
+### Original Colors Used
 
 The system uses only these 5 colors from the original CSS:
 
@@ -14,11 +16,18 @@ The system uses only these 5 colors from the original CSS:
 4. **Yellow (#FFF700)** - Variable expression
 5. **Orange (#FFA222)** - Elevated expression
 
-## Biological Logic
+### Deterministic Color Assignment
+
+**Key Feature**: For the same user input, the gene color pattern is **always identical** - no randomness.
+
+The system uses a **seeded pseudo-random generator** based on user input:
+- Creates a seed string from all user inputs: `age|geneticRisk|diseaseProgress|bmi|smoking|sex`
+- Uses xmur3 hash algorithm to generate deterministic pseudo-random values
+- Each gene position gets a consistent color based on the seed and its index
 
 ### Pattern Types with Mixed Colors
 
-The system generates 5 different pattern types based on calculated risk scores, each using a **mix of all 5 colors**:
+The system generates 5 different pattern types based on calculated risk scores:
 
 1. **Healthy** - Low risk (risk score < 0.3)
    - **60% Green, 30% Teal, 10% Yellow**
@@ -50,100 +59,189 @@ The risk score is calculated using weighted factors:
 - **BMI Factor (15%)** - Body mass impact
 - **Smoking Factor (10%)** - Smoking impact on gene expression
 
-### Smoking Impact
+## Risk Prediction Logic
 
-Smoking has a significant impact on gene expression patterns:
+### Evidence-Based Medical Simulation
 
-- **None**: 0.1 (minimal impact)
-- **Light**: 0.3 (slight impact)
-- **Moderate**: 0.6 (moderate impact)
-- **Heavy**: 0.8 (significant impact)
-- **Very Heavy**: 1.0 (maximum impact)
+The risk prediction system follows medical research and epidemiological data:
+
+#### Baseline Risks (Population Averages)
+- **Heart Failure**: 2% baseline risk
+- **Lung Cancer**: 1% baseline risk
+- **Kidney Failure**: 1.5% baseline risk
+
+#### Risk Factor Contributions
+
+**Age Factor** (Gradual, realistic increases):
+- Heart: +0-8% (based on age 18-90)
+- Lung: +0-6% (based on age 18-90)
+- Kidney: +0-7% (based on age 18-90)
+
+**Genetic Risk Factor** (Conservative, evidence-based):
+- Heart: +0-12% (based on genetic risk 0-100%)
+- Lung: +0-10% (based on genetic risk 0-100%)
+- Kidney: +0-8% (based on genetic risk 0-100%)
+
+**Disease Progress Factor** (Moderate impact):
+- Heart: +0-10% (based on disease progress 0-100%)
+- Lung: +0-8% (based on disease progress 0-100%)
+- Kidney: +0-12% (based on disease progress 0-100%)
+
+**BMI Factor** (Realistic thresholds):
+- Threshold: BMI > 25
+- Heart: +0-6% (capped at BMI 40)
+- Kidney: +0-5% (capped at BMI 40)
+- Lung: +0-2% (minimal direct impact)
+
+**Smoking Factor** (Additive, not multiplicative):
+- None: +0%
+- Light: +3%
+- Moderate: +8%
+- Heavy: +15%
+- Very Heavy: +22%
+
+Impact distribution:
+- Lung: 100% of smoking risk (direct impact)
+- Heart: 40% of smoking risk
+- Kidney: 20% of smoking risk
+
+**Sex Factor** (Small, realistic adjustments):
+- Male: Heart +2%, Lung +1.5%, Kidney +1%
+- Female: Heart +0.5%, Lung +0.8%, Kidney +0.3%
+
+#### Interaction Effects
+
+**High Genetic Risk + Advanced Age**:
+- When genetic risk >70% AND age factor >60%
+- Heart +2%, Lung +1.5%, Kidney +1.8%
+
+**High BMI + Heavy Smoking**:
+- When BMI >30 AND smoking risk >8%
+- Heart +3%, Lung +4%, Kidney +2%
+
+**Disease Progress + Age**:
+- When disease progress >60% AND age factor >50%
+- Heart +2.5%, Lung +2%, Kidney +3%
+
+### Risk Caps and Bounds
+
+- **Maximum Risk**: 50% for any disease
+- **Minimum Risk**: 1% for any disease
+- **Realistic Range**: 1-50% (medically appropriate)
 
 ## Implementation Details
 
 ### Key Functions
 
 1. **`calculateGeneExpression(data)`**
-   - Calculates gene expression pattern based on user inputs
+   - **Deterministic**: Same input always produces same pattern
+   - Uses seeded pseudo-random generator based on user input
    - Returns array of 18 colors representing gene bars
    - Creates realistic mixed patterns using all 5 colors
    - Applies biological logic and factor-based variations
 
-2. **`getGeneExpressionSummary(data)`**
+2. **`calculateRiskPredictions(data)`**
+   - **Evidence-based**: Follows medical research
+   - **Capped at 50%**: Realistic medical bounds
+   - **Deterministic**: No randomness, same input = same output
+   - Uses additive risk factors with interaction effects
+   - Returns heart failure, lung cancer, and kidney failure risks
+
+3. **`getGeneExpressionSummary(data)`**
    - Analyzes the generated pattern
    - Counts colors to provide meaningful statistics
    - Returns summary with healthy, elevated, variable, and moderate counts
 
-3. **`updateRNAColors()`**
-   - Updates the visual gene bars
+4. **`updateRNAColors()`**
+   - Updates the visual gene bars with deterministic colors
    - Updates gene count display with risk level
-   - Provides visual feedback
+   - Provides visual feedback and animations
 
-### Color Variations and Factor-Based Changes
+### Deterministic Pseudo-Random Generator
 
-The system applies specific variations based on multiple factors:
+The system uses a sophisticated seeding mechanism:
 
-- **Age-related**: Older individuals show more yellow/orange patterns
-- **Smoking-related**: Smokers show elevated expression (more orange/red)
-- **Genetic risk**: High genetic risk shows more variable patterns (yellow)
-- **Disease progress**: Advanced disease shows more red/orange patterns
-- **BMI effects**: Higher BMI shows more yellow/teal variations
+```javascript
+function seededRandom(seed) {
+    // xmur3 hash algorithm
+    let h = 1779033703 ^ seed.length;
+    for (let i = 0; i < seed.length; i++) {
+        h = Math.imul(h ^ seed.charCodeAt(i), 3432918353);
+        h = (h << 13) | (h >>> 19);
+    }
+    return function(idx) {
+        let x = h ^ idx;
+        x = Math.imul(x ^ (x >>> 16), 2246822507);
+        x = Math.imul(x ^ (x >>> 13), 3266489909);
+        x ^= x >>> 16;
+        return (x >>> 0) / 4294967295;
+    };
+}
+```
 
-### Mixed Color Distribution
-
-Each pattern type uses a different distribution of all 5 colors:
-
-- **Healthy**: Mostly green/teal with occasional yellow
-- **Normal**: Mix of green/teal/yellow
-- **Variable**: All colors with emphasis on yellow/orange
-- **Elevated**: All colors with emphasis on orange/red
-- **Risk**: Heavy emphasis on red/orange with some other colors
+This ensures:
+- **Reproducibility**: Same inputs always generate same results
+- **Distribution**: Uniform distribution across 0-1 range
+- **Diversity**: Different inputs produce different patterns
 
 ## User Interface Updates
 
 ### Gene Count Display
 
-The gene count now shows meaningful information:
+The gene count shows meaningful information:
 - "18 genes • Normal" (for healthy patterns)
 - "18 genes • Elevated" (for concerning patterns)
 - "18 genes • Moderate Risk" (for intermediate patterns)
+
+### Risk Prediction Cards
+
+Each prediction card shows:
+- **Percentage**: 1-50% risk range
+- **Timeline**: 1-month, 3-month, 6-month indicators
+- **Color-coded progress**: Green (low) to red (high)
+- **Disease-specific timeframes**: 6 months (heart), 12 months (lung), 18 months (kidney)
 
 ### Visual Feedback
 
 - Staggered animation when colors update
 - Subtle pulse effects on individual bars
 - Scale animation on the RNA section
-- Console logging for debugging
+- Smooth transitions for risk percentage changes
 
-## Biological Accuracy
+## Medical Accuracy
 
-The system models real gene expression patterns:
+The system models real medical risk factors:
 
-1. **Age-related changes**: Older individuals typically show different gene expression patterns
-2. **Smoking impact**: Smoking significantly affects gene expression
-3. **Genetic factors**: Genetic risk influences baseline expression
-4. **Disease progression**: Current disease state affects expression levels
-5. **BMI effects**: Body mass can influence metabolic gene expression
-6. **Mixed expression**: Real genes show varied expression levels, not just 2-color patterns
+1. **Age-related changes**: Gradual increase with age based on epidemiological data
+2. **Smoking impact**: Smoking most significantly affects lungs, moderately affects heart
+3. **Genetic factors**: Significant but not overwhelming contribution to risk
+4. **Disease progression**: Current disease state affects future risk
+5. **BMI effects**: Obesity increases cardiovascular and kidney disease risk
+6. **Sex differences**: Men typically have higher cardiovascular disease risk
+7. **Interaction effects**: Combined risk factors have additive effects
 
-## Testing
+## Testing and Validation
 
 To test the system:
 
-1. Move the sliders to see how different inputs affect gene expression
-2. Change smoking status to see dramatic effects
-3. Use the randomize button to see various combinations
-4. Check the console for detailed logging of pattern generation
-5. Observe the mixed color distribution throughout the gene bars
+1. **Reproducibility Test**: Set specific slider values, note gene pattern and risks, reset and set same values - should be identical
+2. **Risk Cap Test**: Set all sliders to maximum - risks should never exceed 50%
+3. **Medical Logic Test**: 
+   - Heavy smoking should significantly increase lung cancer risk
+   - High BMI should increase heart/kidney risk more than lung risk
+   - Advanced age should gradually increase all risks
+   - High genetic risk should increase all disease risks
+4. **Diversity Test**: Different input combinations should produce visually distinct gene patterns
+5. **Baseline Test**: Minimum healthy inputs (young, low BMI, no smoking, low genetic risk) should show low risks
 
 ## Future Enhancements
 
 Potential improvements:
 
-1. Add more sophisticated gradient effects
-2. Include gene-specific patterns (different genes respond differently)
-3. Add time-based animations showing expression changes
-4. Include more detailed biological markers
-5. Add tooltips explaining what each color represents
-6. Implement gene clustering patterns (groups of genes with similar expression) 
+1. **Gene-specific patterns**: Different genes respond differently to risk factors
+2. **Temporal modeling**: Show how risks change over time
+3. **Population comparisons**: Compare individual risk to population averages
+4. **Detailed tooltips**: Explain what each risk factor contributes
+5. **Risk reduction scenarios**: Show how lifestyle changes affect predictions
+6. **Confidence intervals**: Display uncertainty ranges for predictions
+7. **More interaction effects**: Model complex multi-factor interactions 

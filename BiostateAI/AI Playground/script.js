@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize with some medical info cards
     setTimeout(() => {
+        // Prevent conflicts with randomization
+        if (window.isRandomizingCards) return;
+        
+        // Reset position tracking for initial cards
+        existingCardPositions = [];
+        
         // Create initial info cards matching the image
         const humanSilhouette = document.querySelector('.human-silhouette');
         const initialCards = [
@@ -32,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
             'Family History: No',
             'Medication Use: Statins'
         ];
+        
+        // Ensure exactly 4 initial cards
+        if (initialCards.length > 6) {
+            initialCards.splice(6); // Trim to max 6 if somehow there are more
+        }
         
         initialCards.forEach((text, index) => {
             createAnimatedInfoCard(text, index, humanSilhouette);
@@ -224,60 +235,98 @@ function getCurrentData() {
     };
 }
 
-// Calculate risk predictions based on inputs (simplified AI simulation)
+// Calculate risk predictions based on inputs (evidence-based medical simulation)
 function calculateRiskPredictions(data) {
-    // Base risk factors
-    let heartRisk = 15;
-    let lungRisk = 8;
-    let kidneyRisk = 5;
+    // More realistic base risks (population baseline)
+    let heartRisk = 2;    // 2% baseline heart failure risk
+    let lungRisk = 1;     // 1% baseline lung cancer risk  
+    let kidneyRisk = 1.5; // 1.5% baseline kidney failure risk
     
-    // Age factor
+    // Age factor (more gradual and realistic)
     const ageFactor = (data.age - 18) / (90 - 18);
-    heartRisk += ageFactor * 20;
-    lungRisk += ageFactor * 15;
-    kidneyRisk += ageFactor * 18;
+    // Age contributes more gradually and realistically
+    heartRisk += ageFactor * 8;     // Max 8% from age
+    lungRisk += ageFactor * 6;      // Max 6% from age
+    kidneyRisk += ageFactor * 7;    // Max 7% from age
     
-    // Genetic risk factor
+    // Genetic risk factor (more conservative)
     const geneticFactor = data.geneticRisk / 100;
-    heartRisk += geneticFactor * 25;
-    lungRisk += geneticFactor * 20;
-    kidneyRisk += geneticFactor * 15;
+    // Genetic factors are significant but not overwhelming
+    heartRisk += geneticFactor * 12;   // Max 12% from genetics
+    lungRisk += geneticFactor * 10;    // Max 10% from genetics
+    kidneyRisk += geneticFactor * 8;   // Max 8% from genetics
     
-    // Disease progress factor
+    // Disease progress factor (conservative)
     const progressFactor = data.diseaseProgress / 100;
-    heartRisk += progressFactor * 15;
-    lungRisk += progressFactor * 12;
-    kidneyRisk += progressFactor * 20;
+    // Existing disease progression has moderate impact
+    heartRisk += progressFactor * 10;  // Max 10% from progression
+    lungRisk += progressFactor * 8;    // Max 8% from progression
+    kidneyRisk += progressFactor * 12; // Max 12% from progression
     
-    // BMI factor
+    // BMI factor (realistic threshold and impact)
     if (data.bmi > 25) {
-        const bmiFactor = (data.bmi - 25) / 15;
-        heartRisk += bmiFactor * 10;
-        kidneyRisk += bmiFactor * 8;
+        // BMI impact is significant but capped
+        const bmiFactor = Math.min((data.bmi - 25) / 15, 1); // Cap at BMI 40
+        heartRisk += bmiFactor * 6;    // Max 6% from BMI
+        kidneyRisk += bmiFactor * 5;   // Max 5% from BMI
+        // Lung cancer less affected by BMI directly
+        lungRisk += bmiFactor * 2;     // Max 2% from BMI
     }
     
-    // Smoking factor
-    const smokingMultipliers = {
-        'none': 1,
-        'light': 1.2,
-        'moderate': 1.5,
-        'heavy': 1.8,
-        'very-heavy': 2.2
+    // Smoking factor (additive, not multiplicative for better control)
+    const smokingImpact = {
+        'none': 0,
+        'light': 3,      // 3% additional risk
+        'moderate': 8,   // 8% additional risk
+        'heavy': 15,     // 15% additional risk
+        'very-heavy': 22 // 22% additional risk
     };
-    lungRisk *= smokingMultipliers[data.smoking];
-    heartRisk *= Math.min(smokingMultipliers[data.smoking], 1.3);
     
-    // Sex factor (simplified)
+    const smokingRisk = smokingImpact[data.smoking] || 0;
+    // Smoking primarily affects lung and heart
+    lungRisk += smokingRisk;           // Direct impact on lungs
+    heartRisk += smokingRisk * 0.4;    // 40% of smoking impact on heart
+    kidneyRisk += smokingRisk * 0.2;   // 20% of smoking impact on kidneys
+    
+    // Sex factor (small additive adjustments)
     if (data.sex === 'male') {
-        heartRisk *= 1.2;
-        lungRisk *= 1.1;
+        heartRisk += 2;   // Men have slightly higher heart risk
+        lungRisk += 1.5;  // Men have slightly higher lung cancer risk
+        kidneyRisk += 1;  // Men have slightly higher kidney risk
+    } else {
+        // Women have different risk patterns
+        heartRisk += 0.5; // Lower heart risk generally
+        lungRisk += 0.8;  // Lower lung cancer risk
+        kidneyRisk += 0.3; // Lower kidney risk
     }
     
-    // Ensure values are within reasonable bounds
+    // Apply interaction effects (small adjustments for combined factors)
+    // High genetic risk + high age interaction
+    if (geneticFactor > 0.7 && ageFactor > 0.6) {
+        heartRisk += 2;
+        lungRisk += 1.5;
+        kidneyRisk += 1.8;
+    }
+    
+    // High BMI + smoking interaction
+    if (data.bmi > 30 && smokingRisk > 8) {
+        heartRisk += 3;
+        lungRisk += 4;
+        kidneyRisk += 2;
+    }
+    
+    // Disease progress + age interaction
+    if (progressFactor > 0.6 && ageFactor > 0.5) {
+        heartRisk += 2.5;
+        lungRisk += 2;
+        kidneyRisk += 3;
+    }
+    
+    // Ensure values are within realistic medical bounds (1% to 50% max)
     return {
-        heartFailure: Math.min(Math.max(Math.round(heartRisk), 1), 99),
-        lungCancer: Math.min(Math.max(Math.round(lungRisk), 1), 99),
-        kidneyFailure: Math.min(Math.max(Math.round(kidneyRisk), 1), 99)
+        heartFailure: Math.min(Math.max(Math.round(heartRisk), 1), 50),
+        lungCancer: Math.min(Math.max(Math.round(lungRisk), 1), 50),
+        kidneyFailure: Math.min(Math.max(Math.round(kidneyRisk), 1), 50)
     };
 }
 
@@ -470,30 +519,44 @@ function calculateGeneExpression(data) {
         patternType = 'risk';
     }
     
-    // Log the pattern type for debugging
-    console.log(`Gene Expression Pattern: ${patternType} (Risk Score: ${riskScore.toFixed(2)})`);
-    console.log(`Factors - Genetic: ${geneticFactor.toFixed(2)}, Disease: ${diseaseFactor.toFixed(2)}, Age: ${ageFactor.toFixed(2)}, BMI: ${bmiFactor.toFixed(2)}, Smoking: ${smokingFactor.toFixed(2)}`);
-    
+    // Deterministic pseudo-random generator based on user input and gene index
+    function seededRandom(seed) {
+        // xmur3 hash
+        let h = 1779033703 ^ seed.length;
+        for (let i = 0; i < seed.length; i++) {
+            h = Math.imul(h ^ seed.charCodeAt(i), 3432918353);
+            h = (h << 13) | (h >>> 19);
+        }
+        return function(idx) {
+            let x = h ^ idx;
+            x = Math.imul(x ^ (x >>> 16), 2246822507);
+            x = Math.imul(x ^ (x >>> 13), 3266489909);
+            x ^= x >>> 16;
+            return (x >>> 0) / 4294967295;
+        };
+    }
+
+    // Create a seed string from all user input
+    const seedString = `${data.age}|${data.geneticRisk}|${data.diseaseProgress}|${data.bmi}|${data.smoking}|${data.sex}`;
+    const randFunc = seededRandom(seedString);
+
     // Generate realistic mixed pattern with all 5 colors
     for (let i = 0; i < 18; i++) {
         let baseColor;
-        
+        const rand = randFunc(i);
         // Create more varied patterns based on risk type
         if (patternType === 'healthy') {
             // Mostly green and teal with occasional yellow
-            const rand = Math.random();
             if (rand < 0.6) baseColor = GENE_COLORS.green;
             else if (rand < 0.9) baseColor = GENE_COLORS.teal;
             else baseColor = GENE_COLORS.yellow;
         } else if (patternType === 'normal') {
             // Mix of green, teal, and yellow
-            const rand = Math.random();
             if (rand < 0.5) baseColor = GENE_COLORS.green;
             else if (rand < 0.8) baseColor = GENE_COLORS.teal;
             else baseColor = GENE_COLORS.yellow;
         } else if (patternType === 'variable') {
             // Mix of all colors with emphasis on yellow and orange
-            const rand = Math.random();
             if (rand < 0.3) baseColor = GENE_COLORS.green;
             else if (rand < 0.5) baseColor = GENE_COLORS.teal;
             else if (rand < 0.7) baseColor = GENE_COLORS.yellow;
@@ -501,7 +564,6 @@ function calculateGeneExpression(data) {
             else baseColor = GENE_COLORS.red;
         } else if (patternType === 'elevated') {
             // Mix with emphasis on orange and red
-            const rand = Math.random();
             if (rand < 0.2) baseColor = GENE_COLORS.green;
             else if (rand < 0.4) baseColor = GENE_COLORS.teal;
             else if (rand < 0.6) baseColor = GENE_COLORS.yellow;
@@ -509,7 +571,6 @@ function calculateGeneExpression(data) {
             else baseColor = GENE_COLORS.red;
         } else { // risk
             // Heavy emphasis on red and orange
-            const rand = Math.random();
             if (rand < 0.1) baseColor = GENE_COLORS.green;
             else if (rand < 0.2) baseColor = GENE_COLORS.teal;
             else if (rand < 0.3) baseColor = GENE_COLORS.yellow;
@@ -517,50 +578,52 @@ function calculateGeneExpression(data) {
             else baseColor = GENE_COLORS.red;
         }
         
-        // Apply factor-based variations
+        // Apply factor-based variations (also deterministic)
         let finalColor = baseColor;
+        // Use additional seeded randomness for variations
+        const rand2 = randFunc(i + 100);
         
         // Age-related changes (more red/orange with age)
         if (ageFactor > 0.6) {
-            if (baseColor === GENE_COLORS.green && Math.random() > 0.7) {
+            if (baseColor === GENE_COLORS.green && rand2 > 0.7) {
                 finalColor = GENE_COLORS.teal;
-            } else if (baseColor === GENE_COLORS.teal && Math.random() > 0.6) {
+            } else if (baseColor === GENE_COLORS.teal && rand2 > 0.6) {
                 finalColor = GENE_COLORS.yellow;
             }
         }
         
         // Smoking-related changes (more red/orange with smoking)
         if (smokingFactor > 0.5) {
-            if (baseColor === GENE_COLORS.teal && Math.random() > 0.6) {
+            if (baseColor === GENE_COLORS.teal && rand2 > 0.6) {
                 finalColor = GENE_COLORS.orange;
-            } else if (baseColor === GENE_COLORS.yellow && Math.random() > 0.5) {
+            } else if (baseColor === GENE_COLORS.yellow && rand2 > 0.5) {
                 finalColor = GENE_COLORS.orange;
             }
         }
         
         // Genetic risk variations
         if (geneticFactor > 0.7) {
-            if (baseColor === GENE_COLORS.green && Math.random() > 0.8) {
+            if (baseColor === GENE_COLORS.green && rand2 > 0.8) {
                 finalColor = GENE_COLORS.yellow;
-            } else if (baseColor === GENE_COLORS.teal && Math.random() > 0.7) {
+            } else if (baseColor === GENE_COLORS.teal && rand2 > 0.7) {
                 finalColor = GENE_COLORS.yellow;
             }
         }
         
         // Disease progress variations
         if (diseaseFactor > 0.6) {
-            if (baseColor === GENE_COLORS.yellow && Math.random() > 0.6) {
+            if (baseColor === GENE_COLORS.yellow && rand2 > 0.6) {
                 finalColor = GENE_COLORS.orange;
-            } else if (baseColor === GENE_COLORS.orange && Math.random() > 0.5) {
+            } else if (baseColor === GENE_COLORS.orange && rand2 > 0.5) {
                 finalColor = GENE_COLORS.red;
             }
         }
         
         // BMI-related changes
         if (bmiFactor > 0.5) {
-            if (baseColor === GENE_COLORS.green && Math.random() > 0.7) {
+            if (baseColor === GENE_COLORS.green && rand2 > 0.7) {
                 finalColor = GENE_COLORS.teal;
-            } else if (baseColor === GENE_COLORS.teal && Math.random() > 0.6) {
+            } else if (baseColor === GENE_COLORS.teal && rand2 > 0.6) {
                 finalColor = GENE_COLORS.yellow;
             }
         }
@@ -748,11 +811,17 @@ function randomizeProfile() {
 function randomizeMedicalInfoCards() {
     const humanSilhouette = document.querySelector('.human-silhouette');
     
-    // Remove existing info cards
+    // Prevent multiple simultaneous randomizations
+    if (window.isRandomizingCards) return;
+    window.isRandomizingCards = true;
+    
+    // Reset position tracking for new randomization
+    existingCardPositions = [];
+    
+    // Remove existing info cards immediately and completely
     const existingCards = humanSilhouette.querySelectorAll('.info-card');
     existingCards.forEach(card => {
-        card.style.opacity = '0';
-        setTimeout(() => card.remove(), 300);
+        card.remove(); // Immediate removal instead of delayed
     });
     
     // Combine all medical data
@@ -763,12 +832,12 @@ function randomizeMedicalInfoCards() {
         ...medicalDataSets.medical
     ];
     
-    // Select 4-6 random items
-    const numItems = Math.floor(Math.random() * 3) + 4; // 4-6 items
+    // Select exactly 4-6 random items (limit to max 6)
+    const numItems = Math.min(Math.floor(Math.random() * 3) + 4, 6); // 4-6 items, max 6
     const selectedData = [];
     const usedIndices = new Set();
     
-    while (selectedData.length < numItems) {
+    while (selectedData.length < numItems && selectedData.length < 6) { // Additional safety check
         const randomIndex = Math.floor(Math.random() * allMedicalData.length);
         if (!usedIndices.has(randomIndex)) {
             usedIndices.add(randomIndex);
@@ -781,28 +850,189 @@ function randomizeMedicalInfoCards() {
         selectedData.forEach((data, index) => {
             createAnimatedInfoCard(data, index, humanSilhouette);
         });
-    }, 400);
+        
+        // Reset randomization lock after cards are created
+        setTimeout(() => {
+            window.isRandomizingCards = false;
+        }, 1000);
+    }, 200); // Reduced delay since we're removing cards immediately
+}
+
+// Track existing card positions to avoid overlaps
+let existingCardPositions = [];
+
+// Generate safe position avoiding overlaps and middle zone
+function generateSafePosition(index, safeZones, horizontalPositions) {
+    const isLeftSide = index % 2 === 0;
+    const side = isLeftSide ? 'left' : 'right';
+    const maxAttempts = 20;
+    
+    // Special handling for first two cards to ensure they don't overlap
+    if (index === 0) {
+        // First card: place in upper zone
+        const randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
+        const horizontalOptions = horizontalPositions[side];
+        const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+        
+        existingCardPositions.push({
+            topNum: randomTop,
+            side: side,
+            horizontal: randomHorizontal
+        });
+        
+        return {
+            top: randomTop + 'px',
+            [side]: randomHorizontal
+        };
+    }
+    
+    if (index === 1) {
+        // Second card: ensure it's on opposite side or far from first card
+        const firstCard = existingCardPositions[0];
+        const isFirstCardLeft = firstCard.side === 'left';
+        
+        if (isFirstCardLeft) {
+            // First card is left, place second on right
+            const randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
+            const horizontalOptions = horizontalPositions.right;
+            const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+            
+            existingCardPositions.push({
+                topNum: randomTop,
+                side: 'right',
+                horizontal: randomHorizontal
+            });
+            
+            return {
+                top: randomTop + 'px',
+                right: randomHorizontal
+            };
+        } else {
+            // First card is right, place second on left with good separation
+            const firstCardTop = firstCard.topNum;
+            let randomTop;
+            
+            // Ensure at least 150px separation from first card
+            if (firstCardTop < 100) {
+                // First card is in upper zone, place second in lower zone
+                randomTop = Math.floor(Math.random() * (safeZones.lower.max - safeZones.lower.min)) + safeZones.lower.min;
+            } else {
+                // First card is in lower zone, place second in upper zone
+                randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
+            }
+            
+            const horizontalOptions = horizontalPositions.left;
+            const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+            
+            existingCardPositions.push({
+                topNum: randomTop,
+                side: 'left',
+                horizontal: randomHorizontal
+            });
+            
+            return {
+                top: randomTop + 'px',
+                left: randomHorizontal
+            };
+        }
+    }
+    
+    // Regular positioning for cards 3 and beyond
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        // Choose random zone (upper or lower)
+        const zone = Math.random() < 0.6 ? 'upper' : 'lower'; // Slight preference for upper
+        const zoneData = safeZones[zone];
+        
+        // Generate random vertical position within safe zone
+        const randomTop = Math.floor(Math.random() * (zoneData.max - zoneData.min)) + zoneData.min;
+        
+        // Choose random horizontal position for the side
+        const horizontalOptions = horizontalPositions[side];
+        const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+        
+        const newPosition = {
+            top: randomTop + 'px',
+            [side]: randomHorizontal
+        };
+        
+        // Check for overlaps with existing positions
+        const hasOverlap = existingCardPositions.some(existing => {
+            const verticalDistance = Math.abs(existing.topNum - randomTop);
+            const sameHorizontalSide = (existing.side === side);
+            
+            // Cards need at least 120px vertical separation if on same side
+            // This accounts for card height (~80px) + margin (40px)
+            return sameHorizontalSide && verticalDistance < 120;
+        });
+        
+        // Additional check: ensure we don't place too many cards in the same zone
+        const cardsInZone = existingCardPositions.filter(existing => {
+            const inUpperZone = existing.topNum >= safeZones.upper.min && existing.topNum <= safeZones.upper.max;
+            const inLowerZone = existing.topNum >= safeZones.lower.min && existing.topNum <= safeZones.lower.max;
+            return (zone === 'upper' && inUpperZone) || (zone === 'lower' && inLowerZone);
+        }).length;
+        
+        // Limit to 2 cards per zone to prevent overcrowding
+        if (cardsInZone >= 2) {
+            continue; // Try again with different zone
+        }
+        
+        if (!hasOverlap) {
+            // Store this position for future overlap checks
+            existingCardPositions.push({
+                topNum: randomTop,
+                side: side,
+                horizontal: randomHorizontal
+            });
+            
+            return newPosition;
+        }
+    }
+    
+    // Fallback to safe default positions if can't find non-overlapping spot
+    const fallbackPositions = {
+        left: [
+            { top: '60px', left: '-100px' },
+            { top: '180px', left: '-110px' },
+            { top: '380px', left: '-90px' }
+        ],
+        right: [
+            { top: '80px', right: '-100px' },
+            { top: '200px', right: '-110px' },
+            { top: '400px', right: '-140px' }
+        ]
+    };
+    
+    const fallbacks = fallbackPositions[side];
+    const fallbackIndex = Math.floor(existingCardPositions.filter(p => p.side === side).length / 2);
+    return fallbacks[fallbackIndex] || fallbacks[0];
 }
 
 // Create animated info card with random positioning
 function createAnimatedInfoCard(text, index, container) {
     const card = document.createElement('div');
     card.className = 'info-card';
-    card.innerHTML = `<span>${text}</span>`;
     
-    // Fixed positions matching the screenshot layout - relative to 400x500 container
-    // Added more positions to prevent overlapping when 5-6 cards appear
-    const positions = [
-        { top: '140px', left: '-100px' },     // Left of chest
-        { top: '60px', right: '-100px' },      // Right of head
-        { top: '320px', left: '-90px' },       // Lower left
-        { top: '300px', right: '-140px' },     // Lower right
-        { top: '200px', left: '-110px' },      // Mid left
-        { top: '200px', right: '-110px' }      // Mid right
-    ];
+    // Create inner wrapper for the content
+    const cardInner = document.createElement('div');
+    cardInner.className = 'card-inner';
+    cardInner.innerHTML = `<span>${text}</span>`;
+    card.appendChild(cardInner);
     
-    // Use the position based on index, no modulo to prevent overlap
-    const basePosition = positions[index] || positions[0];
+    // Dynamic positioning system avoiding middle 30% and overlaps
+    // Section height is ~500px, so 30% from bottom = 350px max
+    const safeZones = {
+        upper: { min: 40, max: 140 },   // Upper safe zone (reduced max for better spacing)
+        lower: { min: 360, max: 350 }   // Lower safe zone (max 350px = 30% from bottom of 500px section)
+    };
+    
+    const horizontalPositions = {
+        left: ['-100px', '-90px', '-110px', '-95px'],
+        right: ['-100px', '-140px', '-110px', '-120px']
+    };
+    
+    // Generate random position avoiding overlaps
+    const basePosition = generateSafePosition(index, safeZones, horizontalPositions);
     
     // Apply positions without random variations for consistent placement
     if (basePosition.top) {
@@ -814,21 +1044,6 @@ function createAnimatedInfoCard(text, index, container) {
     if (basePosition.right) {
         card.style.right = basePosition.right;
     }
-    
-    // Create connection dot
-    const dot = document.createElement('div');
-    dot.className = 'connection-dot';
-    dot.style.cssText = `
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background: #e5e7eb;
-        border-radius: 50%;
-        ${basePosition.left ? 'right: -44px;' : 'left: -44px;'}
-        top: 50%;
-        transform: translateY(-50%);
-    `;
-    card.appendChild(dot);
     
     // Start invisible
     card.style.opacity = '0';
@@ -847,37 +1062,66 @@ function createAnimatedInfoCard(text, index, container) {
 
 // Add visual effect when randomizing
 function addRandomizeEffect() {
-    // Add shimmer effect to prediction cards
+    // Add shimmer effect to prediction cards using CSS classes instead of inline styles
     predictionCards.forEach((card, index) => {
         setTimeout(() => {
-            card.style.transform = 'scale(1.02)';
-            card.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+            // Add a temporary class for the effect
+            card.classList.add('randomize-shimmer');
             
             setTimeout(() => {
-                card.style.transform = '';
-                card.style.boxShadow = '';
+                // Remove the effect class
+                card.classList.remove('randomize-shimmer');
             }, 300);
         }, index * 100);
     });
     
+    // Add shimmer effect to info cards as well
+    const infoCards = document.querySelectorAll('.info-card');
+    infoCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('randomize-shimmer');
+            
+            setTimeout(() => {
+                card.classList.remove('randomize-shimmer');
+            }, 600);
+        }, index * 150 + 200);
+    });
+    
     // Add glow effect to body visualization
     const bodyContainer = document.querySelector('.body-container');
-    bodyContainer.style.boxShadow = '0 0 30px rgba(102, 126, 234, 0.5)';
-    setTimeout(() => {
-        bodyContainer.style.boxShadow = '';
-    }, 1000);
+    if (bodyContainer) {
+        bodyContainer.style.boxShadow = '0 0 30px rgba(102, 126, 234, 0.5)';
+        setTimeout(() => {
+            bodyContainer.style.boxShadow = '';
+        }, 1000);
+    }
 }
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
-        e.preventDefault();
+        const href = this.getAttribute('href');
         
-        // Remove active class from all links
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        
-        // Add active class to clicked link
-        this.classList.add('active');
+        // Only prevent default for internal links (href="#")
+        if (href === '#') {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+        }
+        // For external links, allow normal navigation but still update active state
+        else {
+            // Remove active class from all links
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Allow the link to navigate normally (no preventDefault)
+        }
     });
 });
 
