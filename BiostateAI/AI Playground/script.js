@@ -845,11 +845,18 @@ function randomizeMedicalInfoCards() {
         }
     }
     
-    // Create new info cards with random positions
+    // Create new info cards with strict overlap prevention
     setTimeout(() => {
-        selectedData.forEach((data, index) => {
-            createAnimatedInfoCard(data, index, humanSilhouette);
-        });
+        let successfulCards = 0;
+        for (let i = 0; i < selectedData.length && successfulCards < 6; i++) {
+            const cardCreated = createAnimatedInfoCard(selectedData[i], successfulCards, humanSilhouette);
+            if (cardCreated) {
+                successfulCards++;
+            }
+            // If card couldn't be placed safely, skip it entirely
+        }
+        
+        console.log(`Successfully placed ${successfulCards} cards without overlaps`);
         
         // Reset randomization lock after cards are created
         setTimeout(() => {
@@ -871,18 +878,17 @@ function generateSafePosition(index, safeZones, horizontalPositions) {
     if (index === 0) {
         // First card: place in upper zone
         const randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
-        const horizontalOptions = horizontalPositions[side];
-        const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+        const fixedHorizontal = horizontalPositions[side];
         
         existingCardPositions.push({
             topNum: randomTop,
             side: side,
-            horizontal: randomHorizontal
+            horizontal: fixedHorizontal
         });
         
         return {
             top: randomTop + 'px',
-            [side]: randomHorizontal
+            [side]: fixedHorizontal
         };
     }
     
@@ -892,47 +898,105 @@ function generateSafePosition(index, safeZones, horizontalPositions) {
         const isFirstCardLeft = firstCard.side === 'left';
         
         if (isFirstCardLeft) {
-            // First card is left, place second on right
-            const randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
-            const horizontalOptions = horizontalPositions.right;
-            const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+            // First card is left, place second on right with proper separation
+            const firstCardTop = firstCard.topNum;
+            let randomTop;
+            
+            // Ensure at least 120px separation from first card
+            const minSeparation = 120;
+            const attempts = 10;
+            
+            for (let i = 0; i < attempts; i++) {
+                randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
+                if (Math.abs(randomTop - firstCardTop) >= minSeparation) {
+                    break;
+                }
+            }
+            
+            // If still overlapping after attempts, place in lower zone
+            if (Math.abs(randomTop - firstCardTop) < minSeparation) {
+                // Try lower zone with separation check
+                for (let i = 0; i < attempts; i++) {
+                    randomTop = Math.floor(Math.random() * (safeZones.lower.max - safeZones.lower.min)) + safeZones.lower.min;
+                    if (Math.abs(randomTop - firstCardTop) >= minSeparation) {
+                        break;
+                    }
+                }
+                // Final fallback - check if forced separation would work
+                if (Math.abs(randomTop - firstCardTop) < minSeparation) {
+                    const forcedTop = firstCardTop >= 150 ? safeZones.upper.min + 40 : safeZones.lower.min + 20;
+                    if (Math.abs(forcedTop - firstCardTop) >= minSeparation) {
+                        randomTop = forcedTop;
+                    } else {
+                        // Even forced separation fails, return null
+                        console.log(`Cannot place second card without overlap on right side`);
+                        return null;
+                    }
+                }
+            }
+            
+            const fixedHorizontal = horizontalPositions.right;
             
             existingCardPositions.push({
                 topNum: randomTop,
                 side: 'right',
-                horizontal: randomHorizontal
+                horizontal: fixedHorizontal
             });
             
             return {
                 top: randomTop + 'px',
-                right: randomHorizontal
+                right: fixedHorizontal
             };
         } else {
-            // First card is right, place second on left with good separation
+            // First card is right, place second on left with proper separation
             const firstCardTop = firstCard.topNum;
             let randomTop;
             
-            // Ensure at least 150px separation from first card
-            if (firstCardTop < 100) {
-                // First card is in upper zone, place second in lower zone
-                randomTop = Math.floor(Math.random() * (safeZones.lower.max - safeZones.lower.min)) + safeZones.lower.min;
-            } else {
-                // First card is in lower zone, place second in upper zone
+            // Ensure at least 120px separation from first card (consistent with other case)
+            const minSeparation = 120;
+            const attempts = 10;
+            
+            // Try to place in upper zone first with proper separation
+            for (let i = 0; i < attempts; i++) {
                 randomTop = Math.floor(Math.random() * (safeZones.upper.max - safeZones.upper.min)) + safeZones.upper.min;
+                if (Math.abs(randomTop - firstCardTop) >= minSeparation) {
+                    break;
+                }
             }
             
-            const horizontalOptions = horizontalPositions.left;
-            const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+            // If still overlapping after attempts, place in lower zone
+            if (Math.abs(randomTop - firstCardTop) < minSeparation) {
+                // Try lower zone with separation check
+                for (let i = 0; i < attempts; i++) {
+                    randomTop = Math.floor(Math.random() * (safeZones.lower.max - safeZones.lower.min)) + safeZones.lower.min;
+                    if (Math.abs(randomTop - firstCardTop) >= minSeparation) {
+                        break;
+                    }
+                }
+                // Final fallback - check if forced separation would work
+                if (Math.abs(randomTop - firstCardTop) < minSeparation) {
+                    const forcedTop = firstCardTop >= 150 ? safeZones.upper.min + 40 : safeZones.lower.min + 20;
+                    if (Math.abs(forcedTop - firstCardTop) >= minSeparation) {
+                        randomTop = forcedTop;
+                    } else {
+                        // Even forced separation fails, return null
+                        console.log(`Cannot place second card without overlap on left side`);
+                        return null;
+                    }
+                }
+            }
+            
+            const fixedHorizontal = horizontalPositions.left;
             
             existingCardPositions.push({
                 topNum: randomTop,
                 side: 'left',
-                horizontal: randomHorizontal
+                horizontal: fixedHorizontal
             });
             
             return {
                 top: randomTop + 'px',
-                left: randomHorizontal
+                left: fixedHorizontal
             };
         }
     }
@@ -946,13 +1010,12 @@ function generateSafePosition(index, safeZones, horizontalPositions) {
         // Generate random vertical position within safe zone
         const randomTop = Math.floor(Math.random() * (zoneData.max - zoneData.min)) + zoneData.min;
         
-        // Choose random horizontal position for the side
-        const horizontalOptions = horizontalPositions[side];
-        const randomHorizontal = horizontalOptions[Math.floor(Math.random() * horizontalOptions.length)];
+        // Use fixed horizontal position for the side
+        const fixedHorizontal = horizontalPositions[side];
         
         const newPosition = {
             top: randomTop + 'px',
-            [side]: randomHorizontal
+            [side]: fixedHorizontal
         };
         
         // Check for overlaps with existing positions
@@ -982,30 +1045,51 @@ function generateSafePosition(index, safeZones, horizontalPositions) {
             existingCardPositions.push({
                 topNum: randomTop,
                 side: side,
-                horizontal: randomHorizontal
+                horizontal: fixedHorizontal
             });
             
             return newPosition;
         }
     }
     
-    // Fallback to safe default positions if can't find non-overlapping spot
+    // Try fallback positions, but still check for overlaps
     const fallbackPositions = {
         left: [
-            { top: '60px', left: '-100px' },
-            { top: '180px', left: '-110px' },
-            { top: '380px', left: '-90px' }
+            { top: '60px', left: '-80px', topNum: 60 },     // Upper zone
+            { top: '180px', left: '-80px', topNum: 180 },   // Upper zone  
+            { top: '320px', left: '-80px', topNum: 320 }    // Lower zone (avoiding lower 30%)
         ],
         right: [
-            { top: '80px', right: '-100px' },
-            { top: '200px', right: '-110px' },
-            { top: '400px', right: '-140px' }
+            { top: '80px', right: '-85px', topNum: 80 },    // Upper zone
+            { top: '190px', right: '-85px', topNum: 190 },  // Upper zone
+            { top: '330px', right: '-85px', topNum: 330 }   // Lower zone (avoiding lower 30%)
         ]
     };
     
     const fallbacks = fallbackPositions[side];
-    const fallbackIndex = Math.floor(existingCardPositions.filter(p => p.side === side).length / 2);
-    return fallbacks[fallbackIndex] || fallbacks[0];
+    
+    // Try each fallback position and check for overlaps
+    for (const fallback of fallbacks) {
+        const hasOverlap = existingCardPositions.some(existing => {
+            const verticalDistance = Math.abs(existing.topNum - fallback.topNum);
+            const sameHorizontalSide = (existing.side === side);
+            return sameHorizontalSide && verticalDistance < 120;
+        });
+        
+        if (!hasOverlap) {
+            // Store this position for future overlap checks
+            existingCardPositions.push({
+                topNum: fallback.topNum,
+                side: side,
+                horizontal: fallback[side]
+            });
+            return fallback;
+        }
+    }
+    
+    // No safe position found, even with fallbacks
+    console.log(`No safe position found for card ${index} on ${side} side`);
+    return null;
 }
 
 // Create animated info card with random positioning
@@ -1019,20 +1103,26 @@ function createAnimatedInfoCard(text, index, container) {
     cardInner.innerHTML = `<span>${text}</span>`;
     card.appendChild(cardInner);
     
-    // Dynamic positioning system avoiding middle 30% and overlaps
-    // Section height is ~500px, so 30% from bottom = 350px max
+    // Dynamic positioning system avoiding middle 20% and lower 30% areas
+    // Section height is ~500px, so 20% middle (200px-300px) restricted, lower 30% (350px-500px) also restricted
     const safeZones = {
-        upper: { min: 40, max: 140 },   // Upper safe zone (reduced max for better spacing)
-        lower: { min: 360, max: 350 }   // Lower safe zone (max 350px = 30% from bottom of 500px section)
+        upper: { min: 40, max: 200 },   // Upper safe zone (top 40% available)
+        lower: { min: 300, max: 350 }   // Lower safe zone (only 10% between middle and bottom restrictions)
     };
     
     const horizontalPositions = {
-        left: ['-100px', '-90px', '-110px', '-95px'],
-        right: ['-100px', '-140px', '-110px', '-120px']
+        left: '-80px',   // Fixed position for left side cards (moved closer to middle)
+        right: '-85px'   // Fixed position for right side cards (moved closer to middle)
     };
     
     // Generate random position avoiding overlaps
     const basePosition = generateSafePosition(index, safeZones, horizontalPositions);
+    
+    // If no safe position found, don't create the card
+    if (!basePosition) {
+        console.log(`Skipping card ${index} - no safe position available`);
+        return false; // Card creation failed
+    }
     
     // Apply positions without random variations for consistent placement
     if (basePosition.top) {
@@ -1058,6 +1148,8 @@ function createAnimatedInfoCard(text, index, container) {
         card.style.opacity = '1';
         card.style.transform = 'translateY(0) scale(1)';
     }, index * 150 + 100);
+    
+    return true; // Card creation successful
 }
 
 // Add visual effect when randomizing
