@@ -70,12 +70,20 @@ function initializeSliders() {
 
             valueDisplay.textContent = value;
 
+            // Update fill percentage for all sliders with dynamic fill
+            if (key === 'age' || key === 'diseaseProgress' || key === 'geneticRisk' || key === 'bmi') {
+                const min = parseFloat(slider.min) || 0;
+                const max = parseFloat(slider.max) || 100;
+                const fillPercent = ((parseFloat(slider.value) - min) / (max - min)) * 100;
+                slider.style.setProperty('--fill-percentage', `${fillPercent}%`);
+            }
+
             // Calculate thumb position for tooltip
             const min = parseFloat(slider.min) || 0;
             const max = parseFloat(slider.max) || 100;
             const percent = (parseFloat(slider.value) - min) / (max - min);
             const sliderWidth = slider.offsetWidth;
-            const thumbWidth = 24; // match your CSS thumb size
+            const thumbWidth = 28; // match updated CSS thumb size
             const pos = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
             const sliderOffset = slider.offsetLeft;
             valueDisplay.style.left = `${sliderOffset + pos}px`;
@@ -86,7 +94,7 @@ function initializeSliders() {
             updateRNAColors();
         }
 
-        // Initial positioning
+        // Initial positioning and fill percentage
         updateSliderValue();
 
         slider.addEventListener('input', updateSliderValue);
@@ -352,17 +360,28 @@ function animateValue(element, start, end, duration) {
     requestAnimationFrame(update);
 }
 
+// Store timeline timeouts to prevent race conditions
+const timelineTimeouts = new Map();
+
 // Update timeline indicator position
 function updateTimelinePosition(timeline, riskValue) {
     if (!timeline) return;
     
+    // Clear any existing timeout for this timeline to prevent race conditions
+    const timelineId = timeline.closest('.prediction-card')?.querySelector('.card-header h4')?.textContent || 'unknown';
+    if (timelineTimeouts.has(timelineId)) {
+        clearTimeout(timelineTimeouts.get(timelineId));
+        timelineTimeouts.delete(timelineId);
+    }
+    
     // Get all time spans within this timeline
     const timeSpans = timeline.querySelectorAll('span');
     
-    // Remove active class from all spans
+    // Remove active class from all spans immediately and consistently
     timeSpans.forEach(span => {
         span.classList.remove('active');
         span.style.transition = 'all 0.3s ease';
+        span.style.transform = ''; // Reset any existing transforms
     });
     
     // Determine which time marker should be active based on risk level
@@ -378,17 +397,23 @@ function updateTimelinePosition(timeline, riskValue) {
         activeIndex = 2;
     }
     
-    // Add active class to the appropriate span with animation
+    // Add active class to the appropriate span immediately to prevent race conditions
     if (timeSpans[activeIndex]) {
-        setTimeout(() => {
+        // Use requestAnimationFrame for smoother visual updates
+        requestAnimationFrame(() => {
             timeSpans[activeIndex].classList.add('active');
             
             // Add subtle pulse animation for better visual feedback
             timeSpans[activeIndex].style.transform = 'scale(1.05)';
-            setTimeout(() => {
+            
+            // Store timeout reference for cleanup
+            const pulseTimeout = setTimeout(() => {
                 timeSpans[activeIndex].style.transform = '';
+                timelineTimeouts.delete(timelineId);
             }, 200);
-        }, 100);
+            
+            timelineTimeouts.set(timelineId, pulseTimeout);
+        });
     }
     
     // Add visual feedback to the timeline container
@@ -768,12 +793,20 @@ function randomizeProfile() {
         
         valueDisplay.textContent = value;
         
+        // Update fill percentage for all sliders with dynamic fill
+        if (key === 'age' || key === 'diseaseProgress' || key === 'geneticRisk' || key === 'bmi') {
+            const min = parseFloat(slider.min) || 0;
+            const max = parseFloat(slider.max) || 100;
+            const fillPercent = ((parseFloat(slider.value) - min) / (max - min)) * 100;
+            slider.style.setProperty('--fill-percentage', `${fillPercent}%`);
+        }
+        
         // Calculate thumb position for tooltip
         const min = parseFloat(slider.min) || 0;
         const max = parseFloat(slider.max) || 100;
         const percent = (parseFloat(slider.value) - min) / (max - min);
         const sliderWidth = slider.offsetWidth;
-        const thumbWidth = 24;
+        const thumbWidth = 28; // match updated CSS thumb size
         const pos = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
         const sliderOffset = slider.offsetLeft;
         valueDisplay.style.left = `${sliderOffset + pos}px`;

@@ -394,6 +394,36 @@ main {
 .gene-bar {
     height: 20px;
     width: 100%;
+    position: relative;
+    transform: perspective(200px) rotateX(2deg);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.gene-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    border-radius: 4px 4px 0 0;
+    pointer-events: none;
+}
+
+.gene-bar:hover {
+    transform: perspective(200px) rotateX(1deg) translateY(-1px);
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* Gene bar gradients using the provided colors */
@@ -825,7 +855,7 @@ main {
     padding: 2.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    min-height: 650px; /* Increased to better match human video section */
+    min-height: 656px; /* Increased to better match human video section */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -890,44 +920,162 @@ main {
 
 .slider {
     flex: 1;
-    height: 8px;
-    border-radius: 4px;
-    background: #e5e7eb;
+    height: 22px;
+    border-radius: 16px;
+    background: #E6DFF080;
     outline: none;
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
     position: relative;
+    z-index: 1;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background: #667eea;
+    background: linear-gradient(119.39deg, #EF87FF -23.27%, #69B1FF 95.01%);
+    
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-    border: 3px solid white;
+    border: 4px solid white;
+    position: relative;
+    z-index: 10;
 }
 
 .slider::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: #667eea;
     cursor: pointer;
-    border: 3px solid white;
+    border: 4px solid white;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    position: relative;
+    z-index: 10;
 }
 
 .slider.genetic-risk {
-    background: linear-gradient(to right, #40e0d0 0%, #ff6b6b 100%);
+    background: #E6DFF080;
+    position: relative;
+}
+
+.slider.genetic-risk::-webkit-slider-thumb {
+    background: linear-gradient(119.39deg, #FFB347 -23.27%, #ff5c1b 95.01%);
+}
+
+.slider.genetic-risk::-moz-range-thumb {
+    background: linear-gradient(119.39deg, #ff8a47 -23.27%, #ff231b 95.01%);
 }
 
 .slider.bmi {
-    background: linear-gradient(to right, #40e0d0 0%, #ff6b6b 100%);
+    background: #E6DFF080;
+    position: relative;
+}
+
+.slider.bmi::-webkit-slider-thumb {
+    background: linear-gradient(119.39deg, #FF8C42 -23.27%, #FFB347 95.01%);
+}
+
+.slider.bmi::-moz-range-thumb {
+    background: linear-gradient(119.39deg, #FF8C42 -23.27%, #FFB347 95.01%);
+}
+
+/* Age and Disease Progress sliders with purple-red gradient and fill effect */
+.slider.age {
+    background: #E6DFF080;
+    position: relative;
+}
+
+.slider.disease-progress {
+    background: #E6DFF080;
+    position: relative;
+}
+
+.slider.age::before,
+.slider.disease-progress::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    width: calc(var(--fill-percentage, 0%) - 12px);
+    max-width: calc(100% - 12px);
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: 
+        /* Cylindrical highlight on top */
+        linear-gradient(to bottom, 
+            rgba(255, 255, 255, 0.4) 0%, 
+            rgba(255, 255, 255, 0.1) 25%, 
+            transparent 50%, 
+            rgba(0, 0, 0, 0.1) 75%, 
+            rgba(0, 0, 0, 0.2) 100%
+        ),
+        /* Diagonal texture */
+        repeating-linear-gradient(
+            -60deg,
+            transparent,
+            transparent 8px,
+            rgba(255, 255, 255, 0.2) 5px,
+            rgba(255, 255, 255, 0.2) 15px
+        ),
+        /* Base color gradient */
+        linear-gradient(to right, rgba(146, 51, 234, 0.534) 0%, rgba(220, 38, 38, 0.541) 100%);
+    border-radius: 6px;
+    transition: width 0.2s ease;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.slider.genetic-risk::before,
+.slider.bmi::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    width: calc(var(--fill-percentage, 0%) - 12px);
+    max-width: calc(100% - 12px);
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: 
+        /* Cylindrical highlight on top */
+        linear-gradient(to bottom, 
+            rgba(255, 255, 255, 0.4) 0%, 
+            rgba(255, 255, 255, 0.1) 25%, 
+            transparent 50%, 
+            rgba(0, 0, 0, 0.1) 75%, 
+            rgba(0, 0, 0, 0.2) 100%
+        ),
+        /* Diagonal texture */
+        repeating-linear-gradient(
+            -60deg,
+            transparent,
+            transparent 8px,
+            rgba(255, 255, 255, 0.2) 5px,
+            rgba(255, 255, 255, 0.2) 15px
+        ),
+        /* Base color gradient */
+        linear-gradient(to right, rgba(64, 224, 208, 0.623) 0%, rgba(255, 107, 107, 0.582) 100%);
+    border-radius: 6px;
+    transition: width 0.2s ease;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .slider-value {
@@ -943,8 +1091,8 @@ main {
     padding: 0.5rem 0.75rem;
     border-radius: 8px;
     min-width: 50px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 1px solid #e5e7eb;
+    border: 1px solid #8B5CF6;
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
     pointer-events: none;
     z-index: 10;
     transition: left 0.1s ease;
@@ -961,6 +1109,20 @@ main {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid white;
+}
+
+.slider-value::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #8B5CF6;
+    z-index: -1;
 }
 
 /* Smoking Discrete Slider */
@@ -988,7 +1150,7 @@ main {
     transform: translateY(-50%);
     width: 100%;
     height: 4px;
-    background: #e5e7eb;
+    background: #8258C833;
     border-radius: 4px;
     z-index: 0;
 }
@@ -1012,7 +1174,7 @@ main {
     transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
-    background: #e5e7eb;
+    background: #c7b6e4;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(.4,1.3,.6,1);
@@ -1122,7 +1284,7 @@ main {
 
 .sex-option input[type="radio"]:checked {
     background: radial-gradient(circle at 30% 30%, #EF87FF 0%, #69B1FF 100%);
-    box-shadow: 0 0 0 2.5px rgba(105, 177, 255, 0.15);
+    box-shadow: 0 0 0 4px rgba(192, 192, 192, 0.459);
 }
 
 .sex-option input[type="radio"]:not(:checked) {
@@ -1156,7 +1318,7 @@ main {
     overflow: hidden;
     width: 100%;
     max-width: 100%;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .human-silhouette {
@@ -1228,8 +1390,7 @@ main {
 
 .info-card .card-inner {
     background: white;
-    padding: 0.6rem 1rem 0.6rem 1rem;
-    padding-right: 0.5rem; /* Reduced right padding for better text wrapping */
+    padding: 0.8rem;
     white-space: normal;
     word-wrap: break-word;
     word-break: break-word;
@@ -1295,7 +1456,7 @@ main {
 
 /* Randomize shimmer effect for info cards */
 .info-card.randomize-shimmer {
-    animation: infoCardShimmer 0.6s ease-in-out;
+    animation: infoCardShimmer 1.2s ease-in-out;
 }
 
 @keyframes infoCardShimmer {
@@ -1349,11 +1510,9 @@ main {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.623)2);
-    position: relative;
-    z-index: 20;
-    align-self: center;
+    border: 1px solid rgba(255, 255, 255, 0.623);
 }
+
 
 .randomize-btn:hover {
     transform: translateY(-2px);
