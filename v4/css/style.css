@@ -304,6 +304,10 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
   display: flex; flex-direction: column; gap: 8px;
 }
 .service-group h3 { font-size: 1.5rem; letter-spacing: -0.01em; margin-bottom: 8px; }
+.service-visual {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+  border-radius: 12px; border: 1px solid var(--line-light); margin-bottom: 14px;
+}
 .service-group > p { color: var(--muted-light); font-size: 16.5px; margin: 0 0 12px; }
 .service-group ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
 .service-group li {
