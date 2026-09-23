@@ -224,4 +224,77 @@
 
     render(trackProgress());
   })();
+
+  // ---- Stage 5: motion polish, scroll reveals, page transitions ----
+  // Same driver philosophy: vanilla JS, transform/opacity only, no libraries.
+  // Progressive enhancement: .rv is only ever added by JS (under .js on <html>),
+  // so no-JS visitors see full content; reduced-motion visitors skip the effects.
+  document.documentElement.classList.add("js");
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Header deepens once the page is scrolled.
+  (function () {
+    var header = document.querySelector(".site-header");
+    if (!header) { return; }
+    function onScroll() {
+      header.classList.toggle("is-scrolled", window.pageYOffset > 8);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Scroll reveals for section content (the workshop drives its own animation).
+  if (!reducedMotion && "IntersectionObserver" in window) {
+    var SELECTORS = ".section-head, .work-block, .service-group, .service-strip," +
+      " .process-step, .person, .invest-card, .faq-list details, .contact-grid > *";
+    var els = Array.prototype.filter.call(
+      document.querySelectorAll(SELECTORS),
+      function (el) { return !el.closest("#workshop"); }
+    );
+    var byParent = new Map();
+    els.forEach(function (el) {
+      el.classList.add("rv");
+      var p = el.parentElement;
+      if (!byParent.has(p)) { byParent.set(p, []); }
+      byParent.get(p).push(el);
+    });
+    // Stagger siblings so groups cascade instead of popping in together.
+    byParent.forEach(function (list) {
+      list.forEach(function (el, i) {
+        el.style.setProperty("--rd", Math.min(i, 5) * 80 + "ms");
+      });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // Page transitions: fade a veil over same-site page navigations.
+  (function () {
+    var veil = document.getElementById("veil");
+    if (!veil || reducedMotion) { return; }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[href]");
+      if (!a || a.target === "_blank") { return; }
+      var href = a.getAttribute("href");
+      if (!href || href.charAt(0) === "#") { return; }
+      var url;
+      try { url = new URL(href, window.location.href); } catch (err) { return; }
+      if (url.origin !== window.location.origin) { return; }
+      if (url.pathname === window.location.pathname) { return; }
+      e.preventDefault();
+      veil.classList.add("is-on");
+      window.setTimeout(function () { window.location.href = url.href; }, 210);
+    });
+    // Clear the veil when arriving (including back/forward cache restores).
+    window.addEventListener("pageshow", function () {
+      veil.classList.remove("is-on");
+    });
+  })();
 })();
