@@ -271,7 +271,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
 .case-schema dd { margin: 0; font-size: 17px; color: var(--ink); }
 .case-schema dd.pending { color: var(--muted-light); font-style: italic; }
 
-/* ---------- workshop (static shell; 3D arrives in Stage 4) ---------- */
+/* ---------- workshop (interactive 3D assembly — Stage 4) ---------- */
 .workshop { background: var(--ink); color: #fff; }
 .stage-list {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
@@ -689,8 +689,85 @@ a.contact-row:hover .value { color: var(--lilac); }
   .a-panel h3 { font-size: 1.6rem; }
 }
 @media (max-width: 640px) {
-  .a-stack { --ss: 0.6; }
-  .assembly-viewport { height: 44vh; min-height: 330px; }
+  .a-stack { --ss: 0.52; }
+  .assembly-viewport { height: 42vh; min-height: 300px; }
+  .assembly-grid { gap: 28px; }
   .assembly-controls button { font-size: 14px; padding: 8px 14px 8px 10px; }
   .assembly-side { gap: 18px; }
+  .assembly-hint { font-size: 11px; bottom: 12px; }
+  .a-panel > p:last-child { font-size: 16px; }
 }
+
+/* ---------- Stage 5: motion polish, scroll reveals, page transitions ----------
+   Same rules as Stage 4: transform/opacity only, vanilla JS, no libraries.
+   Everything below is progressive enhancement:
+   - CSS entrance/ambient animation is gated behind prefers-reduced-motion: no-preference,
+     so reduced-motion visitors get a calm static page.
+   - Scroll reveals only apply when JS adds .rv (class .js on <html>), so no-JS
+     visitors always see full content. */
+
+/* --- header deepens once scrolled --- */
+.site-header.is-scrolled {
+  background: rgba(16, 16, 20, 0.96);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* --- hero entrance: staggered, plays once on load --- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy > * { animation: heroIn 720ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .hero-copy > :nth-child(1) { animation-delay: 40ms; }
+  .hero-copy > :nth-child(2) { animation-delay: 130ms; }
+  .hero-copy > :nth-child(3) { animation-delay: 220ms; }
+  .hero-copy > :nth-child(4) { animation-delay: 310ms; }
+  .hero-copy > :nth-child(5) { animation-delay: 400ms; }
+  .hero-visual { animation: heroIn 720ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards; animation-delay: 280ms; }
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(28px); }
+}
+
+/* --- hero poster: gentle continuous life --- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .assembly-stage { animation: posterDrift 16s ease-in-out infinite; }
+  .hero .signal path {
+    stroke-dasharray: 920; stroke-dashoffset: 920;
+    animation: signalDraw 6s ease-in-out infinite;
+  }
+  .hero .signal circle {
+    transform-box: fill-box; transform-origin: center;
+    animation: signalPulse 6s ease-in-out infinite;
+  }
+}
+@keyframes posterDrift {
+  0%, 100% { transform: rotateX(52deg) rotateZ(-36deg); }
+  50% { transform: rotateX(47deg) rotateZ(-31deg) translateZ(18px); }
+}
+@keyframes signalDraw {
+  0% { stroke-dashoffset: 920; opacity: 0; }
+  12% { opacity: 1; }
+  55% { stroke-dashoffset: 0; opacity: 1; }
+  78% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: -920; opacity: 0; }
+}
+@keyframes signalPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.65; }
+}
+
+/* --- scroll reveals (JS adds .rv; .in when the element enters view) --- */
+.js .rv {
+  opacity: 0; translate: 0 30px;
+  transition: opacity 700ms ease, translate 700ms ease;
+  transition-delay: var(--rd, 0ms);
+}
+.js .rv.in { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .rv { opacity: 1; translate: none; transition: none; }
+}
+
+/* --- page transition veil (cross-page link fade) --- */
+.veil {
+  position: fixed; inset: 0; z-index: 400; background: var(--ink);
+  opacity: 0; pointer-events: none; transition: opacity 200ms ease;
+}
+.veil.is-on { opacity: 1; pointer-events: auto; }
