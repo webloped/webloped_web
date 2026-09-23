@@ -346,7 +346,7 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
   padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
   margin-bottom: 80px;
 }
-.invest-card h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.015em; margin-bottom: 16px; }
+.invest-card h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.015em; margin-bottom: 16px; }
 .invest-card p { color: var(--muted-dark); margin: 0 0 28px; max-width: 44ch; }
 
 .faq-list { display: grid; gap: 16px; max-width: 860px; }
