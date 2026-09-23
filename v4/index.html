@@ -6,6 +6,33 @@
   <meta name="robots" content="noindex">
   <title>Webloped — Web design &amp; AI automation | Cambridge, Ontario</title>
   <meta name="description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta name="theme-color" content="#101014">
+  <link rel="canonical" href="https://webloped.ca/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="Webloped — Web design &amp; AI automation">
+  <meta property="og:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <meta property="og:url" content="https://webloped.ca/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Webloped — Web design &amp; AI automation">
+  <meta name="twitter:description" content="Webloped designs and builds websites that make your business easier to trust, choose, and contact. Web design, e-commerce, and AI automation from Cambridge, Ontario.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Webloped",
+    "url": "https://webloped.ca/",
+    "email": "contact@webloped.ca",
+    "telephone": "+1-647-694-7001",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cambridge",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "description": "Web design and AI automation studio in Cambridge, Ontario."
+  }
+  </script>
   <link rel="icon" href="assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +140,7 @@
               <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
               <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
             </dl>
+            <p class="work-link"><a href="work/case-study-01.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
 
@@ -133,43 +161,134 @@
               <div><dt>Scope</dt><dd class="pending">What Webloped designed and built</dd></div>
               <div><dt>Outcome</dt><dd class="pending">Measured results only — never invented</dd></div>
             </dl>
+            <p class="work-link"><a href="work/case-study-02.html">Read the draft case-study format <span aria-hidden="true">→</span></a></p>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- 3 · WORKSHOP (static shell — interactive 3D arrives in Stage 4) -->
+    <!-- 3 · WORKSHOP (interactive 3D assembly — Stage 4) -->
     <section class="section workshop on-dark" id="workshop" aria-labelledby="workshop-title">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">02 — The workshop</p>
           <h2 class="section-title" id="workshop-title">What goes into a website that works.</h2>
-          <p class="section-lede">Four stages, one assembled result. In the next stage of this redesign, this section becomes an interactive 3D assembly you can scroll through and skip at will.</p>
+          <p class="section-lede">Four stages, one assembled result. Scroll to watch a website come together layer by layer - or jump straight to any stage.</p>
         </div>
-        <ol class="stage-list">
+        <!-- Stage 4: interactive website assembly. Progressive enhancement:
+             hidden until JS confirms CSS 3D support. No-JS / no-3D visitors
+             get the plain stage list below, which stays fully readable. -->
+        <div class="assembly" id="assembly" hidden>
+          <div class="assembly-track" id="assemblyTrack">
+            <div class="assembly-sticky">
+              <div class="assembly-grid">
+                <div class="assembly-viewport">
+                  <div class="a-tilt" id="aTilt">
+                    <div class="a-sway">
+                      <div class="a-stack" id="aStack">
+                        <div class="a-layer a-l1" data-layer aria-hidden="true">
+                          <span class="a-tag">01 / Structure</span>
+                          <span class="bp bp-head"></span>
+                          <span class="bp bp-hero"></span>
+                          <span class="bp-cols"><i></i><i></i><i></i></span>
+                          <span class="bp bp-foot"></span>
+                        </div>
+                        <div class="a-layer a-l2" data-layer aria-hidden="true">
+                          <span class="a-tag">02 / Content</span>
+                          <span class="tx tx-h"></span>
+                          <span class="tx tx-h tx-h2"></span>
+                          <span class="tx tx-l"></span>
+                          <span class="tx tx-l"></span>
+                          <span class="tx tx-l tx-mid"></span>
+                          <span class="tx tx-q"></span>
+                        </div>
+                        <div class="a-layer a-l3" data-layer aria-hidden="true">
+                          <span class="a-tag">03 / Imagery</span>
+                          <span class="im im-hero"><i></i></span>
+                          <span class="im-row"><i></i><i></i></span>
+                          <span class="im-dev"><b class="d-desk"></b><b class="d-mob"></b></span>
+                        </div>
+                        <div class="a-layer a-l4" data-layer aria-hidden="true">
+                          <span class="a-tag">04 / Interface</span>
+                          <span class="ui ui-nav"><i></i><i></i><i></i><b></b></span>
+                          <span class="ui-cta"><b></b><b class="ghost"></b></span>
+                          <span class="ui-chat"><i></i><i></i><i></i></span>
+                          <span class="ui-nodes"><i></i><i></i><i></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="a-glow" id="aGlow" aria-hidden="true"></div>
+                  <p class="assembly-hint" id="assemblyHint" aria-hidden="true">Scroll to assemble</p>
+                </div>
+                <div class="assembly-side">
+                  <div class="assembly-panels" id="assemblyPanels">
+                    <div class="a-panel is-active" data-panel="0">
+                      <p class="a-stage-num">Stage 1</p>
+                      <h3>Strategy</h3>
+                      <p>Decide what visitors need to understand and do. We map your services, your customers, and the single action your site must drive.</p>
+                    </div>
+                    <div class="a-panel" data-panel="1" hidden>
+                      <p class="a-stage-num">Stage 2</p>
+                      <h3>Design</h3>
+                      <p>Make the business clear and credible. Layout, typography, and imagery composed around trust - reviewed with you before a line of code.</p>
+                    </div>
+                    <div class="a-panel" data-panel="2" hidden>
+                      <p class="a-stage-num">Stage 3</p>
+                      <h3>Development</h3>
+                      <p>Make it work across devices. Clean, fast, accessible builds - tested on desktop and mobile, with nothing decorative blocking content.</p>
+                    </div>
+                    <div class="a-panel" data-panel="3" hidden>
+                      <p class="a-stage-num">Stage 4</p>
+                      <h3>Automation</h3>
+                      <p>Connect the next step. Enquiry handling, follow-ups, and bookings wired so no lead waits on a manual process.</p>
+                    </div>
+                  </div>
+                  <div class="assembly-controls" role="group" aria-label="Jump to an assembly stage" id="assemblyControls">
+                    <button type="button" data-stage="0" aria-current="true"><span class="ac-num" aria-hidden="true">1</span> Strategy</button>
+                    <button type="button" data-stage="1" aria-current="false"><span class="ac-num" aria-hidden="true">2</span> Design</button>
+                    <button type="button" data-stage="2" aria-current="false"><span class="ac-num" aria-hidden="true">3</span> Development</button>
+                    <button type="button" data-stage="3" aria-current="false"><span class="ac-num" aria-hidden="true">4</span> Automation</button>
+                  </div>
+                  <div class="assembly-progress" aria-hidden="true"><span id="assemblyBar"></span></div>
+                  <a class="assembly-skip" href="#services">Skip the assembly</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ol class="stage-list" id="stageList">
           <li class="stage">
             <span class="stage-num">Stage 1</span>
             <h3>Strategy</h3>
             <p>Decide what visitors need to understand and do. We map your services, your customers, and the single action your site must drive.</p>
-            <div class="stage-figure">Interactive assembly<br>arrives in Stage 4</div>
+            <div class="stage-figure" role="img" aria-label="Blueprint wireframe icon: the structure stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="8" y="8" width="104" height="74" rx="6" fill="none" stroke="#C8B5FF" stroke-width="2" stroke-dasharray="6 5"/><rect x="20" y="20" width="80" height="18" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="20" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="48" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="76" y="46" width="24" height="24" rx="3" fill="none" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 4"/></svg>
+            </div>
           </li>
           <li class="stage">
             <span class="stage-num">Stage 2</span>
             <h3>Design</h3>
             <p>Make the business clear and credible. Layout, typography, and imagery composed around trust — reviewed with you before a line of code.</p>
-            <div class="stage-figure">Interactive assembly<br>arrives in Stage 4</div>
+            <div class="stage-figure" role="img" aria-label="Typography icon: the design stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="20" y="14" width="80" height="10" rx="5" fill="#F6F5F1"/><rect x="32" y="30" width="56" height="8" rx="4" fill="#F6F5F1" opacity="0.7"/><rect x="20" y="48" width="80" height="5" rx="2.5" fill="#C8B5FF" opacity="0.8"/><rect x="20" y="58" width="80" height="5" rx="2.5" fill="#C8B5FF" opacity="0.55"/><rect x="20" y="68" width="52" height="5" rx="2.5" fill="#C8B5FF" opacity="0.35"/></svg>
+            </div>
           </li>
           <li class="stage">
             <span class="stage-num">Stage 3</span>
             <h3>Development</h3>
             <p>Make it work across devices. Clean, fast, accessible builds — tested on desktop and mobile, with nothing decorative blocking content.</p>
-            <div class="stage-figure">Interactive assembly<br>arrives in Stage 4</div>
+            <div class="stage-figure" role="img" aria-label="Devices icon: the development stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><rect x="14" y="18" width="66" height="46" rx="6" fill="none" stroke="#C8B5FF" stroke-width="2"/><rect x="20" y="24" width="54" height="28" rx="3" fill="#6D38E8" opacity="0.45"/><rect x="86" y="26" width="20" height="38" rx="5" fill="none" stroke="#C8B5FF" stroke-width="2"/><rect x="90" y="32" width="12" height="20" rx="2" fill="#6D38E8" opacity="0.45"/><line x1="40" y1="70" x2="54" y2="70" stroke="#C8B5FF" stroke-width="2"/></svg>
+            </div>
           </li>
           <li class="stage">
             <span class="stage-num">Stage 4</span>
             <h3>Automation</h3>
             <p>Connect the next step. Enquiry handling, follow-ups, and bookings wired so no lead waits on a manual process.</p>
-            <div class="stage-figure">Interactive assembly<br>arrives in Stage 4</div>
+            <div class="stage-figure" role="img" aria-label="Connected nodes icon: the automation stage">
+              <svg viewBox="0 0 120 90" width="120" height="90" aria-hidden="true"><line x1="30" y1="45" x2="60" y2="24" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="30" y1="45" x2="60" y2="66" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="24" x2="92" y2="45" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="66" x2="92" y2="45" stroke="#C8B5FF" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="30" cy="45" r="8" fill="#6D38E8"/><circle cx="60" cy="24" r="8" fill="#6D38E8"/><circle cx="60" cy="66" r="8" fill="#6D38E8"/><circle cx="92" cy="45" r="8" fill="#C8B5FF"/></svg>
+            </div>
           </li>
         </ol>
       </div>
@@ -191,6 +310,7 @@
               <li>Custom design, mobile-first build</li>
               <li>Redesigns that keep your search visibility</li>
               <li>Copy structure and page planning</li>
+              <li>Contact and enquiry paths that actually work</li>
               <li>Launch checklist and quality review</li>
             </ul>
           </div>
@@ -202,6 +322,7 @@
               <li>Frictionless checkout and payments setup</li>
               <li>Order notifications and confirmations</li>
               <li>Analytics that show what's selling</li>
+              <li>Product and inventory handover training</li>
             </ul>
           </div>
           <div class="service-group">
@@ -215,6 +336,16 @@
               <li>Care plans: updates, backups, small changes</li>
             </ul>
           </div>
+        </div>
+
+        <div class="service-strip">
+          <h3>Included in every project</h3>
+          <ul>
+            <li><strong>Fixed quote in CAD</strong> before we start — the price you approve is the price you pay.</li>
+            <li><strong>You own everything</strong> — domain in your name, finished site, content, and documentation.</li>
+            <li><strong>Plain-language handover</strong> — no lock-in, no hostage clauses, no jargon.</li>
+            <li><strong>Honest scope</strong> — if something is outside our wheelhouse, we say so up front.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -343,6 +474,12 @@
               <p>Send us a few lines about your project through the form below, email us directly, or book a 30-minute call. We'll reply with next steps and a fixed quote.</p>
             </div>
           </details>
+          <details>
+            <summary>Where are you located?</summary>
+            <div class="faq-a">
+              <p>Cambridge, Ontario, Canada — reachable at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> or <a href="tel:+16476947001">+1 (647) 694-7001</a>. Most projects run fully remote; if you're nearby, we're happy to meet in person.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -367,6 +504,7 @@
           </div>
         </div>
         <form class="contact-form" id="quoteForm" novalidate>
+          <div class="form-errors" id="formErrors" role="alert" hidden></div>
           <div class="field">
             <label for="fName">Your name</label>
             <input type="text" id="fName" name="name" autocomplete="name" required>
@@ -380,11 +518,26 @@
             <input type="text" id="fCompany" name="company" autocomplete="organization">
           </div>
           <div class="field">
+            <label for="fType">What do you need?</label>
+            <select id="fType" name="project_type">
+              <option value="Not specified">Not sure yet</option>
+              <option value="New website">New website</option>
+              <option value="Redesign">Redesign of an existing site</option>
+              <option value="E-commerce">E-commerce store</option>
+              <option value="Automation">AI / automation</option>
+              <option value="Care plan">Hosting &amp; care plan</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="fMsg">About your project</label>
             <textarea id="fMsg" name="message" required aria-describedby="formNote" placeholder="What does your business do, and what should the website achieve?"></textarea>
           </div>
           <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Compose email</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
           <p class="form-note" id="formNote">Direct delivery is being wired up — for now this opens your email app with your message addressed to <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>. Nothing is sent without your review.</p>
+          <noscript>
+            <p class="form-note">JavaScript is off, so this form can't open your email app. Please email us directly at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a> instead.</p>
+          </noscript>
         </form>
       </div>
     </section>
