@@ -34,6 +34,15 @@
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="css/style.css">
+  <noscript><style>
+    @media (max-width: 900px) {
+      .menu-toggle { display: none !important; }
+      .mobile-nav {
+        position: static; opacity: 1; transform: none; pointer-events: auto;
+        border-top: 1px solid var(--line-dark);
+      }
+    }
+  </style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
