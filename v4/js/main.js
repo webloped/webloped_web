@@ -223,7 +223,7 @@
     });
 
     render(trackProgress());
-  })();
+    })();
 
   // ---- Stage 5: motion polish, scroll reveals, page transitions ----
   // Same driver philosophy: vanilla JS, transform/opacity only, no libraries.
@@ -297,4 +297,152 @@
       veil.classList.remove("is-on");
     });
   })();
+
+  // ---- Stage 8: hero particle constellation (vanilla canvas).
+  // Decorative only. Pauses off-screen; disabled under reduced motion.
+  (function initHeroFx() {
+    var canvas = document.getElementById("heroFx");
+    var hero = canvas && canvas.closest(".hero");
+    if (!canvas || !hero || !canvas.getContext) { return; }
+    if (reducedMotion) { return; }
+    var ctx = canvas.getContext("2d");
+    var W = 0, H = 0, parts = [], running = false, raf = 0;
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+      var r = hero.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    function seed() {
+      var n = Math.min(90, Math.floor(W * H / 22000));
+      parts = [];
+      for (var i = 0; i < n; i++) {
+        parts.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+          r: 1 + Math.random() * 1.8,
+          c: Math.random() < 0.7 ? "139,91,240" : "200,181,255",
+          a: 0.25 + Math.random() * 0.45
+        });
+      }
+    }
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+      var i, a, b, p, dx, dy, d2;
+      for (i = 0; i < parts.length; i++) {
+        p = parts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -10) { p.x = W + 10; } else if (p.x > W + 10) { p.x = -10; }
+        if (p.y < -10) { p.y = H + 10; } else if (p.y > H + 10) { p.y = -10; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = "rgba(" + p.c + "," + p.a.toFixed(2) + ")";
+        ctx.fill();
+      }
+      ctx.lineWidth = 1;
+      for (a = 0; a < parts.length; a++) {
+        for (b = a + 1; b < parts.length; b++) {
+          dx = parts[a].x - parts[b].x;
+          dy = parts[a].y - parts[b].y;
+          d2 = dx * dx + dy * dy;
+          if (d2 < 16900) {
+            ctx.strokeStyle = "rgba(139,91,240," +
+              (0.14 * (1 - d2 / 16900)).toFixed(2) + ")";
+            ctx.beginPath();
+            ctx.moveTo(parts[a].x, parts[a].y);
+            ctx.lineTo(parts[b].x, parts[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    function start() { if (!running) { running = true; tick(); } }
+    function stop() {
+      running = false;
+      cancelAnimationFrame(raf);
+      ctx.clearRect(0, 0, W, H);
+    }
+    resize();
+    seed();
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { start(); } else { stop(); }
+      }).observe(hero);
+    } else {
+      start();
+    }
+    window.addEventListener("resize", function () { resize(); seed(); });
+  })();
+
+  // ---- Stage 8: kinetic headline (word-by-word rise).
+  // Progressive enhancement: no-JS keeps the plain h1; reduced motion skips it.
+  (function initKinetic() {
+    var h1 = document.querySelector("[data-kinetic]");
+    if (!h1 || reducedMotion) { return; }
+    var words = [];
+    function pushWords(node, cls) {
+      node.textContent.split(/\s+/).forEach(function (w) {
+        if (w) { words.push({ t: w, c: cls }); }
+      });
+    }
+    Array.prototype.forEach.call(h1.childNodes, function (node) {
+      if (node.nodeType === 3) { pushWords(node, ""); }
+      else if (node.nodeType === 1) { pushWords(node, node.className); }
+    });
+    h1.textContent = "";
+    words.forEach(function (w, i) {
+      var outer = document.createElement("span");
+      outer.className = "w";
+      outer.setAttribute("aria-hidden", "true");
+      var inner = document.createElement("span");
+      inner.className = "wi" + (w.c ? " " + w.c : "");
+      inner.style.setProperty("--wd", (150 + i * 70) + "ms");
+      inner.textContent = w.t;
+      outer.appendChild(inner);
+      h1.appendChild(outer);
+      h1.appendChild(document.createTextNode(" "));
+    });
+    // Screen readers use the full sentence via aria-label; word spans are hidden.
+    h1.setAttribute("aria-label", words.map(function (w) { return w.t; }).join(" "));
+  })();
+
+  // ---- Stage 8: magnetic buttons (fine pointers only, no reduced motion). ----
+  (function initMagnetic() {
+    if (!window.matchMedia("(pointer: fine)").matches || reducedMotion) { return; }
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".hero-ctas .btn, .cta-band .btn"),
+      function (btn) {
+        btn.addEventListener("mousemove", function (e) {
+          var r = btn.getBoundingClientRect();
+          var x = (e.clientX - r.left - r.width / 2) / r.width;
+          var y = (e.clientY - r.top - r.height / 2) / r.height;
+          btn.style.transform = "translate(" + (x * 8).toFixed(1) + "px," +
+            (y * 8).toFixed(1) + "px)";
+        });
+        btn.addEventListener("mouseleave", function () { btn.style.transform = ""; });
+      }
+    );
+  })();
+
+  // ---- Stage 8: cascade the CTA band into the scroll-reveal system ----
+  if (!reducedMotion && "IntersectionObserver" in window) {
+    var ctaKids = document.querySelectorAll(".cta-band .cta-inner > *");
+    var ctaIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          ctaIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    Array.prototype.forEach.call(ctaKids, function (el, i) {
+      el.classList.add("rv");
+      el.style.setProperty("--rd", Math.min(i, 5) * 80 + "ms");
+      ctaIO.observe(el);
+    });
+  }
 })();

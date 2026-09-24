@@ -76,10 +76,12 @@
   <main id="main">
     <!-- 1 · HERO -->
     <section class="hero on-dark" id="top" aria-labelledby="hero-title">
+      <canvas class="hero-fx" id="heroFx" aria-hidden="true"></canvas>
+      <div class="hero-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="hero-eyebrow">Web design &amp; AI automation — Cambridge, Ontario</p>
-          <h1 id="hero-title">Your next website should be your <span class="accent">best salesperson.</span></h1>
+          <p class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>Web design &amp; AI automation — Cambridge, Ontario</p>
+          <h1 id="hero-title" data-kinetic>Your next website should be your <span class="accent">best salesperson.</span></h1>
           <p class="hero-sub">Webloped designs and builds websites that make your business easier to trust, choose, and contact.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="#contact">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
@@ -118,6 +120,7 @@
           <p class="assembly-caption">How we think: every site is structure, content, imagery, interface — connected by automation.</p>
         </div>
       </div>
+      <a class="scroll-cue" href="#work" aria-label="Scroll to selected work"><span aria-hidden="true"></span></a>
     </section>
 
     <!-- 2 · SELECTED WORK -->
@@ -550,6 +553,15 @@
         </form>
       </div>
     </section>
+    <!-- 9 · CTA BAND -->
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project — we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="#contact">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer on-dark">
@@ -579,6 +591,7 @@
         <span>© 2026 Webloped. All rights reserved.</span>
         <span>Design preview — not the live site.</span>
       </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
     </div>
   </footer>
 
