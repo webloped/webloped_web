@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hartwell &amp; Sons — Renovations Done Properly | Cambridge, Ontario</title>
+<meta name="description" content="Hartwell & Sons is a premium home renovation company serving Cambridge, Ontario and the surrounding region. Kitchens, bathrooms, and home additions — design, permits, and construction under one roof.">
+<link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+<style>
+  :root{
+    --green:#1E2B24;
+    --green-deep:#141E19;
+    --cream:#F7F3E8;
+    --cream-dim:#EFE8D6;
+    --brass:#B08D57;
+    --brass-soft:#C9A96F;
+    --ink:#2A2620;
+    --muted:#6E6759;
+    --on-dark:#EFE9DA;
+    --on-dark-muted:#B9B2A2;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Inter",-apple-system,"Segoe UI",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+
+  /* ---------- header ---------- */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(30,43,36,.96);
+    backdrop-filter:blur(8px);border-bottom:1px solid rgba(176,141,87,.28)}
+  .sitebar{display:flex;align-items:center;justify-content:space-between;
+    max-width:1120px;margin:0 auto;padding:16px 32px}
+  .brand{font-family:var(--serif);font-size:1.35rem;color:var(--on-dark);
+    text-decoration:none;letter-spacing:.01em}
+  .brand span{color:var(--brass-soft)}
+  nav.links{display:flex;gap:28px}
+  nav.links a{color:var(--on-dark-muted);text-decoration:none;font-size:.92rem;
+    letter-spacing:.02em}
+  nav.links a:hover{color:var(--on-dark)}
+  .btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:.95rem;
+    text-decoration:none;border-radius:6px;padding:13px 26px;transition:all .18s ease}
+  .btn-brass{background:var(--brass);color:#1B1408}
+  .btn-brass:hover{background:var(--brass-soft)}
+  .btn-outline{border:1px solid rgba(176,141,87,.7);color:var(--on-dark)}
+  .btn-outline:hover{border-color:var(--brass-soft);color:#fff}
+  .btn-dark{background:var(--green);color:var(--on-dark)}
+  .btn-dark:hover{background:var(--green-deep)}
+  .sitebar .btn{padding:10px 20px;font-size:.88rem}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--green);color:var(--on-dark);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(900px 480px at 82% 18%,rgba(176,141,87,.14),transparent 60%)}
+  .hero-motif{position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+    width:min(560px,44vw);opacity:.5;pointer-events:none}
+  .hero-motif svg{width:100%;height:auto;stroke:var(--brass);fill:none;
+    stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+  .hero .wrap{padding:110px 32px 100px;position:relative;z-index:1}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--brass-soft);margin-bottom:22px}
+  .eyebrow::before{content:"";display:inline-block;width:34px;height:1px;
+    background:var(--brass);vertical-align:middle;margin-right:12px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.4vw,4.3rem);
+    line-height:1.08;letter-spacing:-.01em;max-width:16ch;margin-bottom:24px}
+  .lede{font-size:1.12rem;color:var(--on-dark-muted);max-width:56ch;margin-bottom:38px}
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-note{margin-top:34px;font-size:.86rem;color:var(--on-dark-muted);
+    border-top:1px solid rgba(176,141,87,.3);padding-top:20px;max-width:60ch}
+
+  /* ---------- sections ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:56px}
+  .sec-head .eyebrow{color:var(--brass);margin-bottom:16px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,3.6vw,2.9rem);
+    line-height:1.12;letter-spacing:-.01em;margin-bottom:18px}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+  .on-dark-sec{background:var(--green);color:var(--on-dark)}
+  .on-dark-sec .sec-head p{color:var(--on-dark-muted)}
+  .on-dark-sec .eyebrow{color:var(--brass-soft)}
+
+  /* ---------- services ---------- */
+  .service{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;
+    padding:44px 0;border-top:1px solid rgba(42,38,32,.14)}
+  .service:last-of-type{border-bottom:1px solid rgba(42,38,32,.14)}
+  .motif{width:100%;max-width:300px;aspect-ratio:1/1;border:1px solid rgba(176,141,87,.45);
+    border-radius:8px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,rgba(176,141,87,.08),transparent 65%)}
+  .motif svg{width:62%;height:62%;stroke:var(--brass);fill:none;stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round}
+  .service h3{font-family:var(--serif);font-weight:500;font-size:1.7rem;margin-bottom:12px}
+  .service p{color:var(--muted);max-width:58ch}
+  .service p + p{margin-top:12px}
+  .svc-list{margin-top:18px;list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+  .svc-list li{font-size:.85rem;border:1px solid rgba(42,38,32,.2);border-radius:999px;
+    padding:6px 14px;color:var(--ink)}
+
+  /* ---------- process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .step .num{font-family:var(--serif);font-size:3.4rem;color:var(--brass);
+    line-height:1;display:block;margin-bottom:16px}
+  .step h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin-bottom:10px}
+  .step p{color:var(--on-dark-muted);font-size:.98rem}
+
+  /* ---------- areas ---------- */
+  .areas{background:var(--cream-dim)}
+  .towns{columns:3;column-gap:40px;list-style:none;max-width:760px}
+  .towns li{font-size:1.02rem;padding:10px 0;border-bottom:1px solid rgba(42,38,32,.12);
+    break-inside:avoid}
+  .areas-note{margin-top:28px;color:var(--muted);font-size:.95rem;max-width:60ch}
+
+  /* ---------- contact / footer ---------- */
+  .contact{background:var(--green-deep);color:var(--on-dark);text-align:center}
+  .contact .wrap{padding-top:24px;padding-bottom:24px}
+  .contact h2{max-width:20ch;margin:0 auto 18px}
+  .contact p.lede{margin:0 auto 36px;text-align:center}
+  .contact-cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:40px 0 30px}
+  .contact-cards a{color:var(--on-dark);text-decoration:none;border:1px solid rgba(176,141,87,.4);
+    border-radius:8px;padding:16px 28px;font-size:1.05rem;transition:border-color .18s}
+  .contact-cards a:hover{border-color:var(--brass-soft)}
+  .contact-cards small{display:block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--brass-soft);margin-bottom:6px}
+  .fine{font-size:.82rem;color:var(--on-dark-muted);max-width:62ch;margin:0 auto}
+  footer{background:#0F1512;color:#8E8776;font-size:.82rem}
+  footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;
+    gap:16px;flex-wrap:wrap}
+
+  @media (max-width:760px){
+    .hero-motif{display:none}
+    .wrap{padding:0 22px}
+    .sitebar{padding:14px 22px}
+    nav.links{display:none}
+    .hero .wrap{padding:76px 22px 70px}
+    section{padding:64px 0}
+    .service{grid-template-columns:1fr;gap:24px;padding:36px 0}
+    .motif{max-width:220px}
+    .steps{grid-template-columns:1fr;gap:32px}
+    .towns{columns:2}
+    .cta-row .btn{flex:1 1 100%;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="sitebar">
+    <a class="brand" href="#">Hartwell <span>&amp;</span> Sons</a>
+    <nav class="links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#areas">Service area</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-brass" href="#contact">Request an estimate</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding:0">
+    <div class="hero-motif" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <rect x="60" y="60" width="280" height="280" rx="2"/>
+        <rect x="88" y="88" width="224" height="224" rx="2" opacity=".6"/>
+        <path d="M88 200 L200 116 L312 200" />
+        <path d="M130 200 v112 h140 V200"/>
+        <path d="M186 312 v-52 h28 v52"/>
+        <path d="M60 340 h280" opacity=".6"/>
+        <path d="M110 60 v-24 h180 v24" opacity=".6"/>
+        <circle cx="200" cy="262" r="4" fill="currentColor" stroke="none" opacity=".8"/>
+      </svg>
+    </div>
+    <div class="wrap">
+      <p class="eyebrow">Home renovations — Cambridge, Ontario</p>
+      <h1>Renovations done properly, the first time.</h1>
+      <p class="lede">From kitchens and bathrooms to full home additions, we handle design,
+        permits, and construction under one roof — so your project finishes on
+        schedule and exactly as promised.</p>
+      <div class="cta-row">
+        <a class="btn btn-brass" href="#contact">Request an estimate</a>
+        <a class="btn btn-outline" href="#process">See how we work</a>
+      </div>
+      <p class="hero-note">Family-run since day one. One dedicated project lead from first
+        walkthrough to final walkthrough — no hand-offs, no surprises.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">What we build</p>
+        <h2>Three trades we know inside out.</h2>
+        <p>We keep our focus narrow on purpose. Fewer service lines means every
+          carpenter, tile setter, and electrician on your job does this work every
+          single week.</p>
+      </div>
+
+      <article class="service">
+        <div class="motif" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <path d="M28 22 h44 l6 18 H22 z"/>
+            <path d="M30 40 v34 M70 40 v34 M22 74 h56"/>
+            <path d="M38 50 h24 M38 58 h24"/>
+            <path d="M44 22 v-8 h12 v8"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Kitchens</h3>
+          <p>A kitchen renovation touches plumbing, electrical, cabinetry, and
+            stone — all at once. We sequence every trade so the room is never
+            sitting idle, and we mock up the layout full-scale before a single
+            cabinet is ordered.</p>
+          <p>You get one fixed quote, a written schedule, and a project lead who
+            answers the phone.</p>
+          <ul class="svc-list">
+            <li>Custom cabinetry</li><li>Stone &amp; tile</li><li>Layout redesign</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="motif" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <path d="M24 52 h52 v6 a16 16 0 0 1 -16 16 H40 a16 16 0 0 1 -16 -16 z"/>
+            <path d="M24 52 v-4 h52 v4"/>
+            <path d="M30 84 h40 M36 80 v4 M64 80 v4"/>
+            <path d="M66 30 v14 M66 30 c8 0 10 6 6 10"/>
+            <circle cx="60" cy="22" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Bathrooms</h3>
+          <p>Small rooms punish sloppy work. We rebuild bathrooms from the studs
+            out — proper waterproofing, level tile, and ventilation sized for the
+            room — so the finish you see on day one still looks right in year ten.</p>
+          <p>Most full bathrooms complete in three to four weeks, ensuite to powder room.</p>
+          <ul class="svc-list">
+            <li>Walk-in showers</li><li>Heated floors</li><li>Vanities &amp; fixtures</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="motif" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <path d="M18 44 L44 24 L70 44"/>
+            <path d="M26 40 v30 h36 V40"/>
+            <path d="M70 52 h14 v18 H70"/>
+            <path d="M70 48 l8 -5 8 5"/>
+            <path d="M40 70 v-12 h8 v12"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Home additions</h3>
+          <p>When the house is right but the space is wrong, an addition beats a
+            move. We handle drawings, permits, foundation, framing, and the
+            interior finish — blending the new square footage so it reads as
+            original to the home.</p>
+          <p>Permit paperwork is on us, and we keep you living comfortably in the
+            house while we build around you.</p>
+          <ul class="svc-list">
+            <li>Second storeys</li><li>Rear extensions</li><li>In-law suites</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="process" class="on-dark-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How we work</p>
+        <h2>A clear path from first call to final walkthrough.</h2>
+        <p>No vague timelines, no disappearing contractors. Here is exactly what
+          happens after you reach out.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num" aria-hidden="true">01</span>
+          <h3>Walkthrough &amp; estimate</h3>
+          <p>We visit, measure, and listen. Within a week you receive a fixed,
+            itemized quote — not a range, not a guess.</p>
+        </div>
+        <div class="step">
+          <span class="num" aria-hidden="true">02</span>
+          <h3>Design &amp; schedule</h3>
+          <p>Finishes are chosen, drawings finalized, permits filed. You approve a
+            written week-by-week schedule before work begins.</p>
+        </div>
+        <div class="step">
+          <span class="num" aria-hidden="true">03</span>
+          <h3>Build &amp; handover</h3>
+          <p>One project lead runs the site daily. We finish with a joint
+            walkthrough and a written warranty on our workmanship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="areas" class="areas">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Where we work</p>
+        <h2>Proudly serving Waterloo Region and beyond.</h2>
+        <p>Our crews are based in Cambridge, which keeps travel short and
+          scheduling honest across the region.</p>
+      </div>
+      <ul class="towns">
+        <li>Cambridge</li><li>Kitchener</li><li>Waterloo</li>
+        <li>Guelph</li><li>Paris</li><li>Ayr</li>
+        <li>St. Jacobs</li><li>Elmira</li><li>New Hamburg</li>
+      </ul>
+      <p class="areas-note">Just outside these towns? Ask anyway — for larger
+        projects we regularly travel further afield.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--brass-soft)">Start the conversation</p>
+      <h2>Tell us about your project.</h2>
+      <p class="lede">Call or write with a rough idea of the space and what you
+        want from it. We will take it from there.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn btn-brass" href="mailto:hello@example.com">Request an estimate</a>
+      </div>
+      <div class="contact-cards">
+        <a href="tel:+15195550147">
+          <small>Phone</small>(519) 555-0147
+        </a>
+        <a href="mailto:hello@example.com">
+          <small>Email</small>hello@example.com
+        </a>
+      </div>
+      <p class="fine">Sample contact details shown for illustration — replace with
+        real ones before launch. We reply to every enquiry within one business day.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Hartwell &amp; Sons — Cambridge, Ontario</span>
+    <span>Concept demonstration website by Webloped.</span>
+  </div>
+</footer>
+
+</body>
+</html>
