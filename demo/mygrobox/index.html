@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--
+  MyGroBox — concept website preview.
+  A design concept prepared for review. All product facts reflect mygrobox.com.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyGroBox — No Garden? No Problem.</title>
+  <meta name="description" content="MyGroBox is a portable 100% biodegradable fabric grow box that lets you grow fresh vegetables, herbs and flowers anywhere. No garden? No problem!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>" />
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="MyGroBox home">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="4" y="14" width="24" height="14" rx="3" fill="currentColor" opacity="0.9"/>
+          <path d="M16 14C16 9 13 5 7 4c1 6 5 9 9 10zm0 0c0-5 3-9 9-10-1 6-5 9-9 10z" fill="#7bc96f"/>
+        </svg>
+        <span>MyGroBox</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#mission">Mission</a>
+        <a href="#schools">Schools</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#pricing" class="btn btn-primary btn-sm">Order Now — $39.99</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero" id="top">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">🌿 Toronto-made · 100% biodegradable</p>
+        <h1 class="reveal" data-delay="80">No Garden?<br /><em>No Problem.</em></h1>
+        <p class="hero-sub reveal" data-delay="160">
+          MyGroBox is a portable fabric grow box that lets you grow fresh
+          vegetables, herbs and flowers anywhere — a balcony, a rooftop,
+          even a classroom. No tools, no assembly, no experience needed.
+        </p>
+        <div class="hero-actions reveal" data-delay="240">
+          <a href="#pricing" class="btn btn-primary">Get MyGroBox — $39.99</a>
+          <a href="#how" class="btn btn-ghost">See how it works ↓</a>
+        </div>
+        <div class="hero-ticks reveal" data-delay="320">
+          <span>✓ Pops up in seconds</span>
+          <span>✓ Fits a milk crate</span>
+          <span>✓ Zero waste</span>
+        </div>
+      </div>
+      <div class="hero-media reveal" data-delay="200">
+        <div class="hero-frame" id="heroFrame">
+          <img src="images/hero-balcony.jpg" alt="A MyGroBox fabric cube planter overflowing with tomatoes, lettuce and basil on a sunny Toronto balcony" fetchpriority="high" />
+        </div>
+        <div class="float-card float-a" aria-hidden="true">
+          <strong>28 cm</strong><span>perfect cube</span>
+        </div>
+        <div class="float-card float-b" aria-hidden="true">
+          <strong>750 g</strong><span>flat-packed</span>
+        </div>
+      </div>
+    </div>
+    <a class="scroll-hint" href="#stats" aria-label="Scroll to learn more">↓</a>
+  </header>
+
+  <!-- ══════════ STATS STRIP ══════════ -->
+  <section class="stats" id="stats">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num"><span class="counter" data-target="100">0</span>%</div>
+        <p>biodegradable &amp; compostable fabric</p>
+      </div>
+      <div class="stat reveal" data-delay="100">
+        <div class="stat-num"><span class="counter" data-target="28">0</span>&nbsp;cm</div>
+        <p>the perfect 11&#8243; growing cube</p>
+      </div>
+      <div class="stat reveal" data-delay="200">
+        <div class="stat-num"><span class="counter" data-target="750">0</span>&nbsp;g</div>
+        <p>featherlight &amp; flat-packed</p>
+      </div>
+      <div class="stat reveal" data-delay="300">
+        <div class="stat-num"><span class="counter" data-target="0">0</span></div>
+        <p>tools or assembly needed</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PRODUCT SHOWCASE ══════════ -->
+  <section class="section showcase" id="product">
+    <div class="container showcase-grid">
+      <div class="showcase-media reveal">
+        <img src="images/product-closeup.jpg" alt="Close-up of the natural woven jute MyGroBox cube with young seedlings sprouting from the soil" loading="lazy" />
+        <div class="showcase-badge" aria-hidden="true">100% natural<br />jute + cotton</div>
+      </div>
+      <div class="showcase-copy">
+        <p class="eyebrow reveal">The product</p>
+        <h2 class="reveal" data-delay="80">Meet the cube that <em>grows with you.</em></h2>
+        <p class="lead reveal" data-delay="160">
+          MyGroBox is an 11&#8243; fabric planter woven from all-natural fibres.
+          It ships flat, pops up in seconds, and turns any square foot of space
+          into a living garden.
+        </p>
+        <ul class="spec-list">
+          <li class="reveal"><strong>28 cm (11&#8243;) cube</strong> — one perfect square foot of growing space</li>
+          <li class="reveal" data-delay="60"><strong>Just 750 g</strong> — ships flat-packed, carries anywhere</li>
+          <li class="reveal" data-delay="120"><strong>Pops up in seconds</strong> — no assembly, no tools, ever</li>
+          <li class="reveal" data-delay="180"><strong>Fits a standard milk crate</strong> — modular &amp; stackable</li>
+          <li class="reveal" data-delay="240"><strong>All-natural woven fabric</strong> with sturdy cotton handles</li>
+          <li class="reveal" data-delay="300"><strong>100% biodegradable &amp; compostable</strong> — returns to the earth</li>
+        </ul>
+        <a href="#pricing" class="btn btn-primary reveal" data-delay="360">Get yours — $39.99</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ HOW IT WORKS ══════════ -->
+  <section class="section how" id="how">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow reveal">How it works</p>
+        <h2 class="reveal" data-delay="80">Growing food is <em>this</em> easy.</h2>
+        <p class="lead reveal" data-delay="160">Three steps. No green thumb required.</p>
+      </div>
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3>Pop it up</h3>
+          <p>Unfold your flat-packed MyGroBox and watch it spring into a sturdy 28&nbsp;cm cube. No tools, no instructions manual, no sweat.</p>
+        </article>
+        <article class="step reveal" data-delay="120">
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3>Fill with soil</h3>
+          <p>Add your favourite potting mix. The breathable woven fabric holds everything in while letting roots breathe.</p>
+        </article>
+        <article class="step reveal" data-delay="240">
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3>Plant &amp; grow</h3>
+          <p>Sow seeds or tuck in seedlings. Then sit back — the fabric does the heavy lifting for healthier, happier plants.</p>
+        </article>
+      </div>
+      <figure class="how-figure reveal">
+        <img src="images/flatlay-herbs.jpg" alt="Overhead view of modular MyGroBox planters growing basil, lettuce, tomatoes and peppers on a wooden deck" loading="lazy" />
+        <figcaption>One square foot is all it takes. Stack them, line them up, mix and match.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══════════ PARALLAX BAND ══════════ -->
+  <div class="band" aria-hidden="true">
+    <div class="band-bg" id="bandBg"></div>
+    <div class="band-veil"></div>
+    <p class="band-quote reveal">&ldquo;Everyone is equal in the garden.&rdquo;</p>
+  </div>
+
+  <!-- ══════════ BENEFITS ══════════ -->
+  <section class="section benefits" id="benefits">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow reveal">Why it works</p>
+        <h2 class="reveal" data-delay="80">Small box. <em>Serious</em> science.</h2>
+        <p class="lead reveal" data-delay="160">The fabric isn&rsquo;t just a container — it&rsquo;s a better way to grow.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">🌱</div>
+          <h3>Faster germination</h3>
+          <p>Breathable fabric creates the airy, living soil environment seeds love — so they sprout faster and stronger.</p>
+        </article>
+        <article class="card reveal" data-delay="80">
+          <div class="card-icon" aria-hidden="true">🪴</div>
+          <h3>Healthier roots, bigger yields</h3>
+          <p>Air flows through the woven walls, multiplying root growth instead of letting roots circle — for increased yields and healthier plants.</p>
+        </article>
+        <article class="card reveal" data-delay="160">
+          <div class="card-icon" aria-hidden="true">🌍</div>
+          <h3>Truly earth-friendly</h3>
+          <p>Made from 100% biodegradable and compostable all-natural fibres. When its growing days are done, it returns to the earth.</p>
+        </article>
+        <article class="card reveal" data-delay="240">
+          <div class="card-icon" aria-hidden="true">🧊</div>
+          <h3>Modular &amp; stackable</h3>
+          <p>Each cube fits neatly in a standard milk crate. Stack them, line them up, build the garden that fits your space.</p>
+        </article>
+        <article class="card reveal" data-delay="320">
+          <div class="card-icon" aria-hidden="true">💧</div>
+          <h3>Low maintenance</h3>
+          <p>The fabric retains moisture and regulates soil temperature, making your garden naturally drought resistant.</p>
+        </article>
+        <article class="card reveal" data-delay="400">
+          <div class="card-icon" aria-hidden="true">🏙️</div>
+          <h3>Made for urban life</h3>
+          <p>Balcony, rooftop, fire escape, classroom — if you have a square foot of sun, you have a garden.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ MISSION ══════════ -->
+  <section class="section mission" id="mission">
+    <div class="container mission-grid">
+      <div class="mission-media reveal">
+        <img src="images/lifestyle-child.jpg" alt="A child gently planting a seedling in a MyGroBox fabric planter in a community garden" loading="lazy" />
+      </div>
+      <div class="mission-copy">
+        <p class="eyebrow reveal">Our mission</p>
+        <h2 class="reveal" data-delay="80">Everyone is equal <em>in the garden.</em></h2>
+        <p class="lead reveal" data-delay="160">
+          MyGroBox exists to make growing food accessible to everyone —
+          one square foot at a time. No backyard, no budget, no experience?
+          No problem.
+        </p>
+        <p class="reveal" data-delay="220">
+          Founded in Toronto by <strong>Corina Ottnad</strong>, MyGroBox is on a
+          mission to put fresh, homegrown food within everyone&rsquo;s reach.
+        </p>
+        <div class="school-box reveal" data-delay="280" id="schools">
+          <p class="eyebrow">🌻 School Pilot Program</p>
+          <h3>Gardens for every classroom</h3>
+          <p>
+            The MyGroBox School Pilot Program brings hands-on gardens directly
+            into schools — because <strong>1 in 4 Toronto students faces food
+            insecurity</strong>. We&rsquo;re helping the next generation grow
+            their own food, right at their desks.
+          </p>
+          <a class="btn btn-light" href="https://instagram.com/take5prayer" target="_blank" rel="noopener">Bring MyGroBox to your school</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PRICING ══════════ -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="price-card reveal">
+        <p class="eyebrow">Limited-time launch pricing</p>
+        <h2>Start growing <em>today.</em></h2>
+        <div class="price-row">
+          <span class="price">$39.99</span>
+          <span class="price-old">$49.99</span>
+          <span class="price-save">Save 20%</span>
+        </div>
+        <p class="price-note">One MyGroBox fabric grow box · 28 cm cube · ships flat-packed</p>
+        <ul class="price-includes">
+          <li>✓ 100% biodegradable jute + cotton fabric</li>
+          <li>✓ Pops up in seconds — zero assembly</li>
+          <li>✓ Fits a standard milk crate</li>
+        </ul>
+        <a href="https://mygrobox.com" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Order MyGroBox — $39.99 CAD</a>
+        <p class="price-fine">Prices in CAD. Concept preview — order via mygrobox.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section class="section faq" id="faq">
+    <div class="container faq-inner">
+      <div class="section-head">
+        <p class="eyebrow reveal">Good questions</p>
+        <h2 class="reveal" data-delay="80">Everything you&rsquo;re <em>wondering.</em></h2>
+      </div>
+      <div class="accordion">
+        <div class="acc-item reveal">
+          <button class="acc-btn" aria-expanded="false">
+            <span>What makes MyGroBox different from a regular planter?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>Regular pots trap roots — they circle the walls and choke the plant. MyGroBox&rsquo;s breathable woven fabric lets air reach the roots, multiplying root growth for faster germination, increased yields and healthier plants.</p></div>
+        </div>
+        <div class="acc-item reveal" data-delay="60">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Is it really easy to set up?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>Yes — it arrives flat-packed and pops up into a sturdy 28&nbsp;cm cube in seconds. No tools, no assembly, no instructions needed.</p></div>
+        </div>
+        <div class="acc-item reveal" data-delay="120">
+          <button class="acc-btn" aria-expanded="false">
+            <span>What can I grow in it?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>Vegetables, herbs, flowers — anything suited to square-foot gardening. Tomatoes, lettuce, basil, peppers and more all thrive in a single cube.</p></div>
+        </div>
+        <div class="acc-item reveal" data-delay="180">
+          <button class="acc-btn" aria-expanded="false">
+            <span>How does the fabric help plants grow better?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>The all-natural woven fabric breathes, so roots get more oxygen and grow outward instead of circling. It also regulates soil temperature and retains moisture — keeping plants comfortable through hot and dry spells.</p></div>
+        </div>
+        <div class="acc-item reveal" data-delay="240">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Is it actually biodegradable?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>Completely. MyGroBox is made from 100% biodegradable and compostable all-natural woven fabric with cotton handles — no plastics, nothing to send to landfill.</p></div>
+        </div>
+        <div class="acc-item reveal" data-delay="300">
+          <button class="acc-btn" aria-expanded="false">
+            <span>Does it need a lot of watering?</span>
+            <span class="acc-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="acc-panel"><p>Less than you&rsquo;d think. The fabric retains moisture while still draining well, making your garden naturally drought resistant and low maintenance.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="logo" aria-label="MyGroBox home">
+          <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="4" y="14" width="24" height="14" rx="3" fill="currentColor" opacity="0.9"/>
+            <path d="M16 14C16 9 13 5 7 4c1 6 5 9 9 10zm0 0c0-5 3-9 9-10-1 6-5 9-9 10z" fill="#7bc96f"/>
+          </svg>
+          <span>MyGroBox</span>
+        </a>
+        <p>No Garden? No Problem.<br />Grown with care in Toronto, Ontario.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#mission">Mission</a>
+        <a href="#schools">Schools</a>
+        <a href="#faq">FAQ</a>
+        <a href="#pricing">Order</a>
+      </nav>
+      <div class="footer-contact">
+        <p><strong>Get in touch</strong></p>
+        <p><a href="tel:+14164586292">+1 416-458-6292</a></p>
+        <p>178 Baldwin St<br />Toronto, ON</p>
+        <p><a href="https://instagram.com/take5prayer" target="_blank" rel="noopener" aria-label="MyGroBox on Instagram">📸 @take5prayer</a></p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> MyGroBox. All rights reserved.</p>
+      <p class="footer-tag">Everyone is equal in the garden. 🌱</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
