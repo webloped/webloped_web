@@ -67,26 +67,32 @@
   var search = document.getElementById("finderSearch");
   var cards = Array.prototype.slice.call(document.querySelectorAll("#resourceCards .card"));
   var noResults = document.getElementById("noResults");
-  var activeChip = "all";
+
+  function currentChip() {
+    var el = document.querySelector(".chips .chip.active");
+    return el ? el.getAttribute("data-chip") : "all";
+  }
 
   function applyFilters() {
     var q = (search.value || "").trim().toLowerCase();
+    var chip = currentChip();
+    // The empty state may only ever appear while the user is actively filtering.
+    var filtering = q !== "" || chip !== "all";
     var shown = 0;
     cards.forEach(function (card) {
-      var okCat = activeChip === "all" || card.getAttribute("data-cat") === activeChip;
+      var okCat = chip === "all" || card.getAttribute("data-cat") === chip;
       var okQ = !q || (card.getAttribute("data-name") || "").toLowerCase().indexOf(q) !== -1;
       var show = okCat && okQ;
       card.hidden = !show;
       if (show) shown++;
     });
-    noResults.hidden = shown !== 0;
+    noResults.hidden = !(filtering && shown === 0 && cards.length > 0);
   }
 
   document.querySelectorAll(".chip").forEach(function (chip) {
     chip.addEventListener("click", function () {
       document.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
       chip.classList.add("active");
-      activeChip = chip.getAttribute("data-chip");
       applyFilters();
     });
   });
@@ -315,4 +321,35 @@
     decoy.hidden = true;
     document.getElementById("discreetBtn").focus();
   });
+
+  /* ---------- Subtle fade-up reveals: smooth, slow, once ---------- */
+  if (!reducedMotion && "IntersectionObserver" in window) {
+    var revealEls = document.querySelectorAll(
+      ".triage-card, .promise-list li, .crisis-strip, .card, .stepper, " +
+      ".checklist-box, .breath-box, .ground-box, .learn-card, .chat-mockup, " +
+      ".privacy-panel, .concept-badge, .site-footer"
+    );
+    var lastParent = null, sibIdx = 0;
+    revealEls.forEach(function (el) {
+      el.classList.add("reveal");
+      if (el.parentNode !== lastParent) { lastParent = el.parentNode; sibIdx = 0; }
+      if (sibIdx > 0) el.style.transitionDelay = Math.min(sibIdx, 5) * 60 + "ms";
+      sibIdx++;
+    });
+    var revealer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("revealed");
+        revealer.unobserve(en.target);
+        // Hand transitions back to the element's own hover rules once revealed
+        en.target.addEventListener("transitionend", function done(ev) {
+          if (ev.propertyName !== "opacity") return;
+          en.target.removeEventListener("transitionend", done);
+          en.target.classList.remove("reveal");
+          en.target.style.transitionDelay = "";
+        });
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -32px 0px" });
+    revealEls.forEach(function (el) { revealer.observe(el); });
+  }
 })();
