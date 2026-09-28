@@ -101,6 +101,7 @@
     { q: "What's the safest way for you to reach out for help?", hint: "A friend's phone, a work computer, a public library\u2026", encourage: "Almost done - one more step.", ph: "Your safest way\u2026" }
   ];
   var answers = ["", "", "", "", ""];
+  var visited = {};
   var stepIdx = 0;
   var stepCount = document.getElementById("stepCount");
   var stepBarFill = document.getElementById("stepBarFill");
@@ -122,6 +123,12 @@
     stepInput.value = answers[stepIdx];
     stepInput.placeholder = s.ph;
     stepInput.hidden = false;
+    // Encouragement appears only once the user has engaged with this step
+    stepEncourage.style.display = (visited[stepIdx] || answers[stepIdx]) ? "" : "none";
+    stepInput.oninput = function () {
+      visited[stepIdx] = true;
+      stepEncourage.style.display = "";
+    };
     stepBack.disabled = stepIdx === 0;
     stepBack.style.visibility = stepIdx === 0 ? "hidden" : "visible";
     stepNext.textContent = "Next";
@@ -141,6 +148,7 @@
   stepNext.addEventListener("click", function () {
     if (stepNext.textContent === "Start over") {
       answers = ["", "", "", "", ""];
+      visited = {};
       stepIdx = 0;
       // rebuild the step body that renderDone replaced
       stepper.querySelector(".step-body").innerHTML =
@@ -156,6 +164,7 @@
       return;
     }
     answers[stepIdx] = stepInput.value;
+    visited[stepIdx] = true;
     if (stepIdx < steps.length - 1) {
       stepIdx++;
       renderStep();
@@ -166,6 +175,7 @@
 
   stepBack.addEventListener("click", function () {
     answers[stepIdx] = stepInput.value;
+    visited[stepIdx] = true;
     if (stepIdx > 0) { stepIdx--; renderStep(); }
   });
 
@@ -173,19 +183,40 @@
 
   /* ---------- Breathing exercise: in 4, hold 4, out 6 - 4 cycles ---------- */
   var breathBtn = document.getElementById("breathBtn");
+  var breathStage = document.getElementById("breathStage");
   var breathCircle = document.getElementById("breathCircle");
+  var breathRing = document.getElementById("breathRing");
   var breathPhase = document.getElementById("breathPhase");
+  var breathCue = document.getElementById("breathCue");
   var breathCount = document.getElementById("breathCount");
+  var cycleDots = Array.prototype.slice.call(document.querySelectorAll("#breathCycles span"));
+  var RING_FULL = 653.45;
   var timers = [];
   var breathing = false;
+
+  function ringReset() {
+    breathRing.style.transition = "none";
+    breathRing.style.strokeDashoffset = RING_FULL;
+  }
+  function ringRun(secs) {
+    if (reducedMotion) return;
+    // force the reset to paint before starting the sweep
+    void breathRing.getBoundingClientRect();
+    breathRing.style.transition = "stroke-dashoffset " + secs + "s linear";
+    breathRing.style.strokeDashoffset = "0";
+  }
 
   function stopBreathing() {
     timers.forEach(clearTimeout);
     timers = [];
     breathing = false;
     breathCircle.style.transform = "scale(1)";
+    breathStage.classList.remove("breathing", "phase-in", "phase-hold", "phase-out");
+    ringReset();
+    cycleDots.forEach(function (d) { d.classList.remove("done"); });
     breathBtn.textContent = "Start breathing exercise";
     breathPhase.textContent = "Press start when you are ready.";
+    breathCue.textContent = "";
     breathCount.textContent = "4";
   }
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
@@ -194,15 +225,28 @@
     if (breathing) { stopBreathing(); return; }
     breathing = true;
     breathBtn.textContent = "Stop";
-    var phases = [["Breathe in", 4, 1.45], ["Hold", 4, 1.45], ["Breathe out", 6, 1.0]];
+    breathStage.classList.add("breathing");
+    var phases = [
+      ["Breathe in", "Feel your chest gently rise", 4, 1.5, "phase-in"],
+      ["Hold", "Rest here. Soften your shoulders.", 4, 1.5, "phase-hold"],
+      ["Breathe out", "Let it all drift away", 6, 1.0, "phase-out"]
+    ];
     var cycles = 4, t = 0;
     for (var c = 0; c < cycles; c++) {
-      (function (last) {
+      (function (cycle, last) {
+        later(function () {
+          cycleDots.forEach(function (d, i) { d.classList.toggle("done", i < cycle); });
+        }, t * 1000);
         phases.forEach(function (p) {
-          var label = p[0], secs = p[1], scale = p[2], start = t;
+          var label = p[0], cue = p[1], secs = p[2], scale = p[3], cls = p[4], start = t;
           later(function () {
-            breathPhase.textContent = label + " \u2026";
+            breathPhase.textContent = label;
+            breathCue.textContent = cue;
+            breathStage.classList.remove("phase-in", "phase-hold", "phase-out");
+            breathStage.classList.add(cls);
             if (!reducedMotion) breathCircle.style.transform = "scale(" + scale + ")";
+            ringReset();
+            ringRun(secs);
             breathCount.textContent = secs;
             for (var i = 1; i < secs; i++) {
               later((function (n) { return function () { breathCount.textContent = n; }; })(secs - i), i * 1000);
@@ -211,13 +255,17 @@
           t += secs;
         });
         later(function () {
+          cycleDots.forEach(function (d, i) { d.classList.toggle("done", i <= cycle); });
           if (last) {
-            breathPhase.textContent = "Well done. Take this calm with you.";
+            breathPhase.textContent = "Well done.";
+            breathCue.textContent = "Take this calm with you.";
+            breathStage.classList.remove("phase-in", "phase-hold", "phase-out");
             breathCircle.style.transform = "scale(1)";
-            later(stopBreathing, 2500);
+            ringReset();
+            later(stopBreathing, 3000);
           }
         }, t * 1000);
-      })(c === cycles - 1);
+      })(c, c === cycles - 1);
     }
   });
 
@@ -245,7 +293,7 @@
       groundStep.textContent = "Well done - notice how your body feels now.";
       groundNext.textContent = "Restart";
     }
-    groundBack.style.visibility = gIdx <= 0 ? "hidden" : "visible";
+    groundBack.style.display = gIdx <= 0 ? "none" : "";
   }
   groundNext.addEventListener("click", function () {
     if (gIdx >= groundSteps.length) { gIdx = -1; }

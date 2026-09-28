@@ -11,9 +11,6 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Always-visible quick exit -->
-  <button class="quick-exit" id="quickExit" type="button">Quick Exit <span aria-hidden="true">&#8599;</span></button>
-
   <header class="topbar">
     <a class="brand" href="#view-home" data-goto="home">
       <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
@@ -34,6 +31,8 @@
       <a href="#view-more" data-goto="more">More</a>
     </nav>
     <button class="discreet-btn" id="discreetBtn" type="button" title="Hide this page behind a neutral screen">Discreet</button>
+    <!-- Always-visible quick exit: lives in the sticky topbar so it can never overlap content -->
+    <button class="quick-exit" id="quickExit" type="button">Quick Exit <span aria-hidden="true">&#8599;</span></button>
   </header>
 
   <main id="main">
@@ -232,9 +231,23 @@
 
         <div class="breath-box">
           <h3>4-4-6 breathing</h3>
-          <p class="section-intro">Breathe in for 4, hold for 4, breathe out for 6. Four rounds.</p>
-          <div class="breath-circle" id="breathCircle" aria-hidden="true"><span id="breathCount">4</span></div>
+          <p class="breath-sub">Breathe in for 4, hold for 4, breathe out for 6. Four rounds.</p>
+          <div class="breath-stage" id="breathStage">
+            <svg class="breath-rings" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+              <circle class="ring-track" cx="120" cy="120" r="104"></circle>
+              <circle class="ring-progress" id="breathRing" cx="120" cy="120" r="104"></circle>
+            </svg>
+            <div class="breath-orb" id="breathCircle" aria-hidden="true">
+              <span class="breath-count" id="breathCount">4</span>
+            </div>
+            <div class="ripple ripple-a" aria-hidden="true"></div>
+            <div class="ripple ripple-b" aria-hidden="true"></div>
+          </div>
           <p class="breath-phase" id="breathPhase">Press start when you are ready.</p>
+          <p class="breath-cue" id="breathCue" aria-hidden="true"></p>
+          <div class="breath-cycles" id="breathCycles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
           <button class="btn btn-primary" id="breathBtn" type="button">Start breathing exercise</button>
         </div>
 
