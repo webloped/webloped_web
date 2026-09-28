@@ -18,13 +18,6 @@
   });
 
   /* ---------- Topbar: transparent over the hero, solid pine once scrolled ---------- */
-  var topbar = document.querySelector(".topbar");
-  function syncTopbar() {
-    topbar.classList.toggle("solid", window.scrollY > 8);
-  }
-  window.addEventListener("scroll", syncTopbar, { passive: true });
-  syncTopbar();
-
   /* ---------- View / tab switching ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
   var views = {};
