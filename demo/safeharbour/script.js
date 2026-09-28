@@ -1,361 +1,642 @@
-// Safe Harbour Toronto - demo concept
-// Nothing on this page is persisted: no localStorage, no cookies, no network calls.
-
+/* Safe Harbour Toronto — demo concept. Single-file app logic. */
 (function () {
   "use strict";
-  document.documentElement.classList.add("js");
 
-  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var isMobileView = function () { return window.matchMedia("(max-width: 768px)").matches; };
+  var $ = function (id) { return document.getElementById(id); };
 
-  /* ---------- Quick exit: button + Esc both wipe history ---------- */
-  function quickExit() {
-    window.location.replace("https://www.google.com");
+  /* ================= Verified directory data (Sept 2026) ================= */
+  var CATS = [
+    { key: "crisis", label: "Crisis support" },
+    { key: "shelter", label: "Shelter and housing" },
+    { key: "legal", label: "Legal support" },
+    { key: "counselling", label: "Counselling and community support" },
+    { key: "basic", label: "Food and basic needs" }
+  ];
+  function catLabel(k) {
+    for (var i = 0; i < CATS.length; i++) if (CATS[i].key === k) return CATS[i].label;
+    return k;
   }
-  document.getElementById("quickExit").addEventListener("click", quickExit);
+
+  var SERVICES = [
+    {
+      name: "Interval House", site: "https://intervalhouse.ca",
+      purpose: "Emergency shelter plus counselling, legal support and children's programs for women survivors of intimate partner violence and their children.",
+      audience: "Women and children escaping abuse; women survivors of intimate partner violence and their children",
+      hours: "Crisis line 24/7", languages: null,
+      contacts: [
+        { label: "Call 416-924-1491", href: "tel:+14169241491", kind: "call" },
+        { label: "Call 1-888-293-5516", href: "tel:+18882935516", kind: "call", note: "Toll-free crisis line" },
+        { label: "TTY 416-924-0899", href: "tel:+14169240899", kind: "call" }
+      ],
+      cats: ["shelter", "crisis"]
+    },
+    {
+      name: "Nellie's", site: "https://nellies.org",
+      purpose: "Emergency shelter with community outreach, skill-building programs and transitional housing support.",
+      audience: "Women and their children facing violence, poverty and homelessness (includes trans women, cis women, and nonbinary people who are femme-presenting)",
+      hours: null, languages: null,
+      contacts: [
+        { label: "Call (416) 461-1084", href: "tel:+14164611084", kind: "call", note: "Crisis line" },
+        { label: "Call (416) 461-8903", href: "tel:+14164618903", kind: "call", note: "General line" }
+      ],
+      cats: ["shelter", "crisis"]
+    },
+    {
+      name: "Central Intake (City of Toronto)", site: "https://www.toronto.ca/community-people/housing-shelter/homeless-help/central-intake/",
+      purpose: "City-run telephone service that matches callers with available emergency shelter spaces and connects them to related services.",
+      audience: "People experiencing homelessness who need emergency shelter, including families",
+      hours: "24/7", languages: null,
+      contacts: [
+        { label: "Call 416-338-4766", href: "tel:+14163384766", kind: "call" },
+        { label: "Call 1-877-338-3398", href: "tel:+18773383398", kind: "call", note: "Toll-free" },
+        { label: "Call 311", href: "tel:311", kind: "call" }
+      ],
+      cats: ["shelter"]
+    },
+    {
+      name: "Assaulted Women's Helpline", site: "https://awhl.org",
+      purpose: "Free, anonymous, confidential crisis line offering crisis counselling, safety planning, emotional support and referrals.",
+      audience: "All women in Ontario who have experienced any form of abuse",
+      hours: "24/7, 365 days", languages: "200+ languages (per Ontario.ca)",
+      contacts: [
+        { label: "Call 1-866-863-0511", href: "tel:+18668630511", kind: "call", note: "Toll-free" },
+        { label: "Call 416-863-0511", href: "tel:+14168630511", kind: "call", note: "GTA" },
+        { label: "TTY 1-866-863-7868", href: "tel:+18668637868", kind: "call" }
+      ],
+      extraNote: "#SAFE (#7233) also works from Bell, Rogers, Fido and Telus mobiles.",
+      cats: ["crisis"]
+    },
+    {
+      name: "Toronto Rape Crisis Centre (TRCC/MWAR)", site: "https://trccmwar.ca",
+      purpose: "24-hour crisis line plus peer counselling, support groups, legal accompaniment and advocacy.",
+      audience: "Survivors of sexual violence",
+      hours: "Crisis line 24/7 including holidays", languages: null,
+      contacts: [
+        { label: "Call 416-597-8808", href: "tel:+14165978808", kind: "call", note: "Crisis line, 24/7" },
+        { label: "Text 416-597-8808", href: "sms:+14165978808", kind: "text", note: "Wed\u2013Fri, 6pm\u2013midnight" }
+      ],
+      cats: ["crisis", "counselling"]
+    },
+    {
+      name: "Talk4Healing (by Beendigen)", site: "https://talk4healing.com",
+      purpose: "Free, confidential helpline offering culturally grounded support, counselling, referrals and crisis help.",
+      audience: "Indigenous women (services provided by Indigenous women)",
+      hours: null, languages: null,
+      contacts: [
+        { label: "Call 1-855-554-4325", href: "tel:+18555544325", kind: "call" },
+        { label: "Text 1-855-554-4325", href: "sms:+18555544325", kind: "text" }
+      ],
+      extraNote: "Call or text — hours not published on the official site.",
+      cats: ["crisis", "counselling"]
+    },
+    {
+      name: "Fem'aide", site: "https://femaide.ca",
+      purpose: "Provincial support line by phone, text and live chat, connecting victims and survivors to community services.",
+      audience: "Francophone women in Ontario affected by violence",
+      hours: "24/7", languages: "French",
+      contacts: [
+        { label: "Call 1-877-336-2433", href: "tel:+18773362433", kind: "call" },
+        { label: "Text 1-877-336-2433", href: "sms:+18773362433", kind: "text" }
+      ],
+      cats: ["crisis"]
+    },
+    {
+      name: "Victim Services Toronto", site: "https://victimservicestoronto.com",
+      purpose: "Trauma-informed crisis response, emotional support, safety planning, practical help and referrals.",
+      audience: "Anyone in Toronto who has experienced crime or sudden tragedy",
+      hours: "Crisis line 24/7, 365 days", languages: "35+ languages capacity",
+      contacts: [
+        { label: "Call (416) 808-7066", href: "tel:+14168087066", kind: "call" }
+      ],
+      cats: ["crisis", "counselling"]
+    },
+    {
+      name: "Barbra Schlifer Commemorative Clinic", site: "https://schliferclinic.com",
+      purpose: "Legal representation, counselling, interpretation and referral services, including a Family Court Support Program.",
+      audience: "Women who have experienced violence",
+      hours: null, languages: "Multilingual interpretation arranged",
+      contacts: [
+        { label: "Call 416-323-9149", href: "tel:+14163239149", kind: "call", note: "Intake, option 1" }
+      ],
+      cats: ["legal", "counselling"]
+    },
+    {
+      name: "Legal Aid Ontario", site: "https://legalaid.on.ca",
+      purpose: "Funds lawyers for eligible clients; summary legal advice, duty counsel and family law services.",
+      audience: "People who qualify financially and have a covered legal issue",
+      hours: "Mon\u2013Fri 8am\u20135pm ET", languages: "300+ languages",
+      contacts: [
+        { label: "Call 416-979-1446", href: "tel:+14169791446", kind: "call", note: "Toronto" },
+        { label: "Call 1-800-668-8258", href: "tel:+18006688258", kind: "call", note: "Toll-free" }
+      ],
+      cats: ["legal"]
+    },
+    {
+      name: "Daily Bread Food Bank", site: "https://dailybread.ca",
+      purpose: "Food bank providing food plus information and referral services (housing, legal, ID, employment and more).",
+      audience: null,
+      hours: "Food bank drop-in Sun & Mon (see site); Tue\u2013Sat by appointment; Info & Referral Mon\u2013Fri 9am\u20134pm, Sun 11am\u20133pm",
+      languages: null,
+      contacts: [
+        { label: "Call 416-203-0050", href: "tel:+14162030050", kind: "call", note: "Ext. 1" }
+      ],
+      cats: ["basic"]
+    },
+    {
+      name: "211 Ontario", site: "https://211ontario.ca",
+      purpose: "Free helpline connecting people to community, social, health and government services.",
+      audience: "People in Ontario looking for community services",
+      hours: "24/7 in 150+ languages; live chat Mon\u2013Fri 7am\u20139pm ET", languages: "150+ languages by phone",
+      contacts: [
+        { label: "Call 2-1-1", href: "tel:211", kind: "call" },
+        { label: "Text 2-1-1", href: "sms:211", kind: "text" }
+      ],
+      cats: ["counselling"]
+    },
+    {
+      name: "9-8-8 Suicide Crisis Helpline", site: "https://988.ca",
+      purpose: "Canada's national suicide crisis line connecting callers with trained responders.",
+      audience: "Anyone thinking about suicide, or worried about someone else",
+      hours: "24/7, 365 days", languages: "English and French 24/7; other languages via interpreter on request",
+      contacts: [
+        { label: "Call 9-8-8", href: "tel:988", kind: "call" },
+        { label: "Text 9-8-8", href: "sms:988", kind: "text" }
+      ],
+      cats: ["crisis"]
+    }
+  ];
+
+  /* ================= Routing ================= */
+  var ROUTES = {
+    home: { title: "Support for your next step", label: "Home" },
+    find: { title: "Find help", label: "Find Help" },
+    plan: { title: "Make a safety plan", label: "Safety Plan" },
+    calm: { title: "Calm", label: "Calm" },
+    learn: { title: "Learn", label: "Learn" },
+    about: { title: "About", label: "About" },
+    privacy: { title: "Privacy", label: "Privacy" },
+    accessibility: { title: "Accessibility", label: "Accessibility" },
+    contact: { title: "Contact", label: "Contact" }
+  };
+  var liveRegion = $("live-region");
+
+  function parseHash() {
+    var h = (location.hash || "").replace(/^#\/?/, "");
+    var parts = h.split("?");
+    var path = parts[0] || "home";
+    var params = {};
+    if (parts[1]) {
+      parts[1].split("&").forEach(function (kv) {
+        var p = kv.split("=");
+        params[decodeURIComponent(p[0])] = decodeURIComponent(p[1] || "");
+      });
+    }
+    if (!ROUTES[path]) path = "home";
+    return { path: path, params: params };
+  }
+
+  var currentRoute = null;
+  function render() {
+    var r = parseHash();
+    var leavingPlan = currentRoute === "plan" && r.path !== "plan";
+    currentRoute = r.path;
+
+    if (leavingPlan) resetPlan();
+    stopBreath();
+
+    document.querySelectorAll(".view").forEach(function (v) { v.hidden = true; });
+    var view = $("view-" + r.path);
+    view.hidden = false;
+
+    document.querySelectorAll(".tab, .desktop-nav a").forEach(function (a) {
+      if (a.getAttribute("data-route") === r.path) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+
+    if (r.path === "find" && r.params.need) {
+      var need = r.params.need;
+      if (CATS.some(function (c) { return c.key === need; })) {
+        filterState.cats = {};
+        filterState.cats[need] = true;
+        syncFilterUI();
+      }
+    }
+    applyFilters(false);
+
+    document.title = "Safe Harbour Toronto \u2014 " + ROUTES[r.path].title;
+    window.scrollTo(0, 0);
+    var h1 = view.querySelector("h1");
+    if (h1) h1.focus({ preventScroll: true });
+    liveRegion.textContent = ROUTES[r.path].label;
+  }
+  window.addEventListener("hashchange", render);
+
+  /* ================= Quick Exit ================= */
+  function quickExit() {
+    try { location.replace("https://www.google.com"); }
+    catch (e) { location.href = "https://www.google.com"; }
+  }
+  $("quick-exit").addEventListener("click", quickExit);
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") quickExit();
   });
 
-  /* ---------- Topbar: transparent over the hero, solid pine once scrolled ---------- */
-  /* ---------- View / tab switching ---------- */
-  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
-  var views = {};
-  Array.prototype.forEach.call(document.querySelectorAll(".view"), function (v) {
-    views[v.getAttribute("data-view")] = v;
+  /* ================= Discreet mode ================= */
+  var discreetOverlay = $("discreet-overlay");
+  var lastFocusBeforeDiscreet = null;
+  $("discreet-btn").addEventListener("click", function () {
+    lastFocusBeforeDiscreet = document.activeElement;
+    discreetOverlay.hidden = false;
+    $("discreet-return").focus();
   });
+  function closeDiscreet() {
+    discreetOverlay.hidden = true;
+    if (lastFocusBeforeDiscreet && lastFocusBeforeDiscreet.focus) lastFocusBeforeDiscreet.focus();
+    else $("discreet-btn").focus();
+  }
+  $("discreet-return").addEventListener("click", closeDiscreet);
 
-  function activate(name) {
-    tabs.forEach(function (t) {
-      var on = t.getAttribute("data-goto") === name;
-      t.classList.toggle("active", on);
-      if (on) { t.setAttribute("aria-current", "page"); }
-      else { t.removeAttribute("aria-current"); }
-    });
-    Object.keys(views).forEach(function (k) {
-      views[k].classList.toggle("active", k === name);
-    });
-    if (isMobileView()) window.scrollTo(0, 0);
+  /* ================= Directory: search + filters ================= */
+  var filterState = { cats: {}, q: "" };
+  var searchInput = $("find-search");
+  var serviceList = $("service-list");
+  var resultCount = $("result-count");
+  var noResults = $("no-results");
+  var filtersCount = $("filters-count");
+
+  function icon(name) {
+    return '<svg aria-hidden="true" focusable="false"><use href="#' + name + '"/></svg>';
   }
 
-  function gotoView(name) {
-    if (isMobileView()) {
-      activate(name);
-    } else {
-      var el = views[name];
-      if (el) el.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  function renderFilterLists() {
+    ["filter-list-desktop", "filter-list-mobile"].forEach(function (id, idx) {
+      var host = $(id);
+      var prefix = idx === 0 ? "d" : "m";
+      host.innerHTML = CATS.map(function (c) {
+        var checked = filterState.cats[c.key] ? " checked" : "";
+        return '<label><input type="checkbox" id="' + prefix + "-cat-" + c.key +
+          '" data-cat="' + c.key + '"' + checked + '><span>' + c.label + "</span></label>";
+      }).join("");
+    });
+  }
+  function syncFilterUI() {
+    renderFilterLists();
+    updateCountBadge();
+  }
+  function readDialogCats() {
+    var cats = {};
+    document.querySelectorAll("#filter-list-mobile input[type=checkbox]").forEach(function (cb) {
+      if (cb.checked) cats[cb.getAttribute("data-cat")] = true;
+    });
+    return cats;
+  }
+  function activeCatCount() { return Object.keys(filterState.cats).length; }
+  function updateCountBadge() {
+    var n = activeCatCount();
+    filtersCount.hidden = n === 0;
+    filtersCount.textContent = n;
+  }
+
+  function serviceMatches(s) {
+    var keys = Object.keys(filterState.cats);
+    if (keys.length && !s.cats.some(function (c) { return filterState.cats[c]; })) return false;
+    var q = filterState.q.trim().toLowerCase();
+    if (!q) return true;
+    var hay = (s.name + " " + s.purpose + " " + (s.audience || "") + " " + (s.languages || "") +
+      " " + s.cats.map(catLabel).join(" ")).toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+  }
+
+  function contactHTML(c) {
+    var ic = c.kind === "text" ? "i-msg" : "i-phone";
+    var sub = c.note ? '<span class="visually-hidden"> \u2014 ' + c.note + "</span>" : "";
+    return '<a class="contact-btn" href="' + c.href + '">' + icon(ic) +
+      "<span>" + c.label + sub + "</span></a>";
+  }
+
+  function serviceHTML(s) {
+    var tags = s.cats.map(function (c) { return '<span class="tag">' + catLabel(c) + "</span>"; }).join("");
+    var contacts = s.contacts.map(contactHTML).join("");
+    var note = s.extraNote ? '<p class="contact-note">' + s.extraNote + "</p>" : "";
+    var rows = "";
+    if (s.audience) rows += "<dt>Audience</dt><dd>" + s.audience + "</dd>";
+    if (s.hours) rows += "<dt>Hours</dt><dd>" + s.hours + "</dd>";
+    if (s.languages) rows += "<dt>Languages</dt><dd>" + s.languages + "</dd>";
+    rows += '<dt>Website</dt><dd><a href="' + s.site + '" target="_blank" rel="noopener">' +
+      s.site.replace(/^https?:\/\/(www\.)?/, "") + "</a></dd>";
+    return '<article class="service">' +
+      '<h3 class="service-name">' + s.name + "</h3>" +
+      '<p class="service-tags">' + tags + "</p>" +
+      '<p class="service-purpose">' + s.purpose + "</p>" +
+      '<div class="service-contacts">' + contacts + "</div>" + note +
+      '<details class="service-more"><summary>Details</summary><dl>' + rows + "</dl></details>" +
+      "</article>";
+  }
+
+  function applyFilters(announce) {
+    var matches = SERVICES.filter(serviceMatches);
+    serviceList.innerHTML = matches.map(serviceHTML).join("");
+    var n = matches.length;
+    resultCount.textContent = n + (n === 1 ? " service" : " services") +
+      (activeCatCount() || filterState.q ? " matching your search" : "") + ".";
+    noResults.hidden = n !== 0;
+    serviceList.style.display = n === 0 ? "none" : "";
+    updateCountBadge();
+    if (announce) liveRegion.textContent = resultCount.textContent;
+  }
+
+  searchInput.addEventListener("input", function () {
+    filterState.q = searchInput.value;
+    applyFilters(true);
+  });
+
+  /* Desktop sidebar: immediate */
+  $("filter-list-desktop").addEventListener("change", function (e) {
+    var cb = e.target;
+    if (cb && cb.getAttribute("data-cat")) {
+      if (cb.checked) filterState.cats[cb.getAttribute("data-cat")] = true;
+      else delete filterState.cats[cb.getAttribute("data-cat")];
+      applyFilters(true);
+      updateCountBadge();
     }
-  }
-
-  function setChip(cat) {
-    var chips = document.querySelectorAll(".chip");
-    chips.forEach(function (c) { c.classList.toggle("active", c.getAttribute("data-chip") === cat); });
-    applyFilters();
-  }
-
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-goto]");
-    if (!t) return;
-    e.preventDefault();
-    var name = t.getAttribute("data-goto");
-    gotoView(name);
-    if (name === "find" && t.getAttribute("data-chip")) setChip(t.getAttribute("data-chip"));
+  });
+  $("clear-desktop").addEventListener("click", function () {
+    filterState.cats = {};
+    syncFilterUI();
+    applyFilters(true);
   });
 
-  activate("home");
-
-  /* ---------- Resource finder: live search + category chips ---------- */
-  var search = document.getElementById("finderSearch");
-  var cards = Array.prototype.slice.call(document.querySelectorAll("#resourceCards .card"));
-  var noResults = document.getElementById("noResults");
-
-  var CHIP_CATS = ["all", "shelter", "crisis", "legal", "basic", "community"];
-
-  function currentChip() {
-    var el = document.querySelector(".chips .chip.active");
-    var v = el ? el.getAttribute("data-chip") : "all";
-    // Unknown values can never hide everything: treat them as "all".
-    return CHIP_CATS.indexOf(v) !== -1 ? v : "all";
+  /* Mobile dialog */
+  var backdrop = $("filters-backdrop");
+  var lastFocusBeforeDialog = null;
+  function openDialog() {
+    lastFocusBeforeDialog = document.activeElement;
+    renderFilterLists();
+    backdrop.hidden = false;
+    $("filters-close").focus();
   }
-
-  function applyFilters() {
-    var q = (search.value || "").trim().toLowerCase();
-    var chip = currentChip();
-    // The empty state may only ever appear while the user is actively filtering.
-    var filtering = q !== "" || chip !== "all";
-    var shown = 0;
-    cards.forEach(function (card) {
-      var okCat = chip === "all" || card.getAttribute("data-cat") === chip;
-      var okQ = !q || (card.getAttribute("data-name") || "").toLowerCase().indexOf(q) !== -1;
-      var show = okCat && okQ;
-      // Class-based hiding: the hidden attribute is unreliable once author CSS sets display.
-      card.classList.toggle("is-hidden", !show);
-      if (show) shown++;
-    });
-    noResults.hidden = !(filtering && shown === 0 && cards.length > 0);
+  function closeDialog() {
+    backdrop.hidden = true;
+    if (lastFocusBeforeDialog && lastFocusBeforeDialog.focus) lastFocusBeforeDialog.focus();
   }
-
-  document.querySelectorAll(".chip").forEach(function (chip) {
-    chip.addEventListener("click", function () {
-      document.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
-      chip.classList.add("active");
-      applyFilters();
-    });
+  $("filters-btn").addEventListener("click", openDialog);
+  $("filters-close").addEventListener("click", closeDialog);
+  backdrop.addEventListener("click", function (e) { if (e.target === backdrop) closeDialog(); });
+  $("filters-clear").addEventListener("click", function () {
+    document.querySelectorAll("#filter-list-mobile input[type=checkbox]").forEach(function (cb) { cb.checked = false; });
   });
-  search.addEventListener("input", applyFilters);
+  $("filters-apply").addEventListener("click", function () {
+    filterState.cats = readDialogCats();
+    closeDialog();
+    syncFilterUI();
+    applyFilters(true);
+  });
+  $("reset-filters").addEventListener("click", function () {
+    filterState.cats = {};
+    filterState.q = "";
+    searchInput.value = "";
+    syncFilterUI();
+    applyFilters(true);
+  });
+  /* Basic focus trap for the dialog */
+  backdrop.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var focusables = backdrop.querySelectorAll("button, input[type=checkbox]");
+    focusables = Array.prototype.filter.call(focusables, function (el) { return el.offsetParent !== null; });
+    if (!focusables.length) return;
+    var first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
 
-  /* ---------- Safety plan: guided 6-step flow, memory only ---------- */
-  var steps = [
-    { q: "Who is one person you trust?", hint: "A first name or nickname is enough.", encourage: "Good - knowing who to turn to is a strong first step.", ph: "First name or nickname" },
-    { q: "Pick a code word to signal them.", hint: "Something ordinary, like asking about the cat.", encourage: "A code word can speak when you can't.", ph: "Your code word" },
-    { q: "Where are two places you could go at any hour?", hint: "A friend's home, a 24-hour shop, a shelter\u2026", encourage: "Knowing your options ahead of time matters.", ph: "Place one, place two\u2026" },
-    { q: "Where could you keep important documents and a go bag?", hint: "With someone you trust, or somewhere easy to reach.", encourage: "You're thinking ahead - that's brave.", ph: "Somewhere safe\u2026" },
-    { q: "What's the safest way for you to reach out for help?", hint: "A friend's phone, a work computer, a public library\u2026", encourage: "Almost done - one more step.", ph: "Your safest way\u2026" }
+  /* ================= Safety plan ================= */
+  var PLAN_STEPS = [
+    { key: "trust", title: "Who is one person you could reach out to?",
+      text: "Think of someone you trust \u2014 a friend, a family member, a neighbour, a support worker.",
+      hint: "A first name or nickname is enough. You don\u2019t have to write anything." },
+    { key: "codeword", title: "A code word or phrase",
+      text: "Something ordinary you could say or text to signal that you need help \u2014 like asking about the cat.",
+      hint: "Pick something that would sound normal to anyone else." },
+    { key: "places", title: "Two places you could go at any hour",
+      text: "Somewhere you could get to quickly, any time of day or night \u2014 a friend\u2019s home, a 24-hour shop, a shelter.",
+      hint: "Two options gives you a backup." },
+    { key: "documents", title: "Where to keep documents and a go bag",
+      text: "Important papers and a small bag with essentials \u2014 somewhere you can reach quickly, or with someone you trust.",
+      hint: "See the go-bag checklist below for what to include." },
+    { key: "reach", title: "The safest way to reach out",
+      text: "How would you ask for help if you needed to right now? A friend\u2019s phone, a work computer, a public library.",
+      hint: "Choose whatever feels safest for you." }
   ];
-  var answers = ["", "", "", "", ""];
-  var visited = {};
-  var stepIdx = 0;
-  var stepCount = document.getElementById("stepCount");
-  var stepBarFill = document.getElementById("stepBarFill");
-  var stepQ = document.getElementById("stepQ");
-  var stepHint = document.getElementById("stepHint");
-  var stepInput = document.getElementById("stepInput");
-  var stepEncourage = document.getElementById("stepEncourage");
-  var stepBack = document.getElementById("stepBack");
-  var stepNext = document.getElementById("stepNext");
-  var stepper = document.getElementById("safetyStepper");
+  var planIdx = 0;
+  var planAnswers = {};
 
-  function renderStep() {
-    var s = steps[stepIdx];
-    stepCount.textContent = "Step " + (stepIdx + 1) + " of 6";
-    stepBarFill.style.width = ((stepIdx + 1) / 6 * 100) + "%";
-    stepQ.textContent = s.q;
-    stepHint.textContent = s.hint;
-    stepEncourage.textContent = s.encourage;
-    stepInput.value = answers[stepIdx];
-    stepInput.placeholder = s.ph;
-    stepInput.hidden = false;
-    // Encouragement appears only once the user has engaged with this step
-    stepEncourage.style.display = (visited[stepIdx] || answers[stepIdx]) ? "" : "none";
-    stepInput.oninput = function () {
-      visited[stepIdx] = true;
-      stepEncourage.style.display = "";
-    };
-    stepBack.disabled = stepIdx === 0;
-    stepBack.style.visibility = stepIdx === 0 ? "hidden" : "visible";
-    stepNext.textContent = "Next";
+  function planProgressText() { return "Step " + (planIdx + 1) + " of 6"; }
+
+  function renderPlan() {
+    $("plan-progress").textContent = planProgressText();
+    $("plan-bar-fill").style.width = ((planIdx + 1) / 6 * 100) + "%";
+    var host = $("plan-step");
+    var nav = $("plan-nav");
+    if (planIdx < PLAN_STEPS.length) {
+      var s = PLAN_STEPS[planIdx];
+      var val = planAnswers[s.key] || "";
+      host.innerHTML =
+        '<div class="plan-step">' +
+        '<h2 class="plan-step-title">' + s.title + "</h2>" +
+        '<p class="plan-step-text">' + s.text + "</p>" +
+        '<label for="plan-answer" class="visually-hidden">Your notes (optional)</label>' +
+        '<textarea id="plan-answer" placeholder="Your notes (optional)">' + val.replace(/</g, "&lt;") + "</textarea>" +
+        '<p class="field-hint">' + s.hint + "</p></div>";
+      nav.style.display = "";
+      $("plan-back").disabled = planIdx === 0;
+      $("plan-next").textContent = "Next";
+    } else {
+      var items = PLAN_STEPS.map(function (s) {
+        var a = (planAnswers[s.key] || "").trim();
+        return "<li><strong>" + s.title + "</strong><span>" + (a ? a.replace(/</g, "&lt;") : "\u2014") + "</span></li>";
+      }).join("");
+      host.innerHTML =
+        '<div class="plan-step"><h2 class="plan-step-title">Your plan so far</h2>' +
+        '<p class="plan-step-text">Read it over. You can go back and change anything, or leave whenever you like.</p>' +
+        '<ul class="review-list">' + items + "</ul></div>";
+      nav.style.display = "";
+      $("plan-back").disabled = false;
+      $("plan-next").textContent = "Finish";
+    }
+    var ta = $("plan-answer");
+    if (ta) ta.focus();
+  }
+  function savePlanStep() {
+    var ta = $("plan-answer");
+    if (ta && planIdx < PLAN_STEPS.length) planAnswers[PLAN_STEPS[planIdx].key] = ta.value;
+  }
+  function resetPlan() {
+    planIdx = 0;
+    planAnswers = {};
+    if (currentRoute === "plan") renderPlan();
   }
 
-  function renderDone() {
-    stepCount.textContent = "Step 6 of 6";
-    stepBarFill.style.width = "100%";
-    stepper.querySelector(".step-body").innerHTML =
-      '<div class="step-done"><span class="big" aria-hidden="true">\u2764</span>' +
-      "<p><strong>You've just thought through a safety plan.</strong> That's a real, practical step, and it took courage.</p>" +
-      "<p>You deserve support. The numbers on the Find Help tab are here whenever you're ready.</p></div>";
-    stepBack.style.visibility = "hidden";
-    stepNext.textContent = "Start over";
-  }
+  $("plan-next").addEventListener("click", function () {
+    savePlanStep();
+    if (planIdx >= PLAN_STEPS.length) { location.hash = "#/home"; return; }
+    planIdx++;
+    renderPlan();
+  });
+  $("plan-back").addEventListener("click", function () {
+    savePlanStep();
+    if (planIdx > 0) { planIdx--; renderPlan(); }
+  });
+  $("plan-skip").addEventListener("click", function () {
+    if (planIdx < PLAN_STEPS.length) { planIdx++; renderPlan(); }
+  });
+  $("plan-clear").addEventListener("click", function () {
+    planAnswers = {};
+    renderPlan();
+    liveRegion.textContent = "Your answers have been cleared.";
+  });
+  $("plan-leave").addEventListener("click", function () {
+    planAnswers = {};
+    planIdx = 0;
+  });
 
-  stepNext.addEventListener("click", function () {
-    if (stepNext.textContent === "Start over") {
-      answers = ["", "", "", "", ""];
-      visited = {};
-      stepIdx = 0;
-      // rebuild the step body that renderDone replaced
-      stepper.querySelector(".step-body").innerHTML =
-        '<label class="step-q" id="stepQ" for="stepInput"></label>' +
-        '<p class="step-hint" id="stepHint"></p>' +
-        '<textarea class="step-input" id="stepInput" rows="3"></textarea>' +
-        '<p class="step-encourage" id="stepEncourage"></p>';
-      stepQ = document.getElementById("stepQ");
-      stepHint = document.getElementById("stepHint");
-      stepInput = document.getElementById("stepInput");
-      stepEncourage = document.getElementById("stepEncourage");
-      renderStep();
+  /* ================= Calm: tool switch ================= */
+  var tabBreath = $("calm-tab-breath"), tabGround = $("calm-tab-ground");
+  function showCalm(which) {
+    var breath = which === "breath";
+    tabBreath.setAttribute("aria-pressed", breath ? "true" : "false");
+    tabGround.setAttribute("aria-pressed", breath ? "false" : "true");
+    $("calm-breath").hidden = !breath;
+    $("calm-ground").hidden = breath;
+  }
+  tabBreath.addEventListener("click", function () { showCalm("breath"); });
+  tabGround.addEventListener("click", function () { showCalm("ground"); });
+
+  /* ================= Calm: breathing ================= */
+  var PHASES = [
+    { label: "Breathe in", dur: 4000 },
+    { label: "Hold", dur: 4000 },
+    { label: "Breathe out", dur: 6000 }
+  ];
+  var ROUNDS = 4;
+  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var breath = { running: false, paused: false, round: 1, phase: 0, phaseStart: 0, timer: 0 };
+  var circle = $("breath-circle"), phaseEl = $("breath-phase"), roundEl = $("breath-round");
+  var bStart = $("breath-start"), bPause = $("breath-pause"), bStop = $("breath-stop"), bReset = $("breath-reset");
+
+  function setBreathButtons() {
+    bStart.disabled = breath.running && !breath.paused;
+    bPause.disabled = !breath.running;
+    bStop.disabled = !breath.running;
+    bReset.disabled = !breath.running && breath.round === 1 && breath.phase === 0;
+    bPause.innerHTML = breath.paused
+      ? icon("i-play") + "Resume"
+      : icon("i-pause") + "Pause";
+  }
+  function breathIdle(msg) {
+    breath.running = false; breath.paused = false;
+    breath.round = 1; breath.phase = 0;
+    clearInterval(breath.timer);
+    phaseEl.textContent = msg || "Press start when you are ready.";
+    roundEl.textContent = "";
+    circle.style.transform = "";
+    setBreathButtons();
+  }
+  function tickBreath() {
+    var now = Date.now();
+    var ph = PHASES[breath.phase];
+    var elapsed = now - breath.phaseStart;
+    if (elapsed >= ph.dur) {
+      breath.phase++;
+      if (breath.phase >= PHASES.length) {
+        breath.phase = 0;
+        breath.round++;
+        if (breath.round > ROUNDS) {
+          breathIdle("Complete \u2014 thank you for taking a minute.");
+          return;
+        }
+      }
+      breath.phaseStart = now;
+      phaseEl.textContent = PHASES[breath.phase].label + "\u2026";
+      roundEl.textContent = "Round " + breath.round + " of " + ROUNDS;
       return;
     }
-    answers[stepIdx] = stepInput.value;
-    visited[stepIdx] = true;
-    if (stepIdx < steps.length - 1) {
-      stepIdx++;
-      renderStep();
+    var p = elapsed / ph.dur;
+    var scale;
+    if (breath.phase === 0) scale = 1 + 0.4 * p;
+    else if (breath.phase === 1) scale = 1.4;
+    else scale = 1.4 - 0.4 * p;
+    if (!reducedMotion) circle.style.transform = "scale(" + scale.toFixed(3) + ")";
+  }
+  bStart.addEventListener("click", function () {
+    if (breath.running && !breath.paused) return;
+    if (breath.paused) {
+      breath.paused = false;
+      breath.phaseStart = Date.now() - (breath.pausedElapsed || 0);
+      breath.timer = setInterval(tickBreath, 100);
     } else {
-      renderDone();
+      breath.running = true; breath.paused = false;
+      breath.round = 1; breath.phase = 0;
+      breath.phaseStart = Date.now();
+      phaseEl.textContent = PHASES[0].label + "\u2026";
+      roundEl.textContent = "Round 1 of " + ROUNDS;
+      breath.timer = setInterval(tickBreath, 100);
+    }
+    setBreathButtons();
+  });
+  bPause.addEventListener("click", function () {
+    if (!breath.running) return;
+    if (breath.paused) {
+      bStart.click();
+    } else {
+      breath.paused = true;
+      breath.pausedElapsed = Date.now() - breath.phaseStart;
+      clearInterval(breath.timer);
+      phaseEl.textContent = "Paused. Resume when you are ready.";
+      setBreathButtons();
     }
   });
+  bStop.addEventListener("click", function () { breathIdle("Stopped. Press start when you are ready."); });
+  bReset.addEventListener("click", function () { breathIdle(); });
+  function stopBreath() { if (breath.running) breathIdle(); }
 
-  stepBack.addEventListener("click", function () {
-    answers[stepIdx] = stepInput.value;
-    visited[stepIdx] = true;
-    if (stepIdx > 0) { stepIdx--; renderStep(); }
-  });
-
-  renderStep();
-
-  /* ---------- Breathing exercise: in 4, hold 4, out 6 - 4 cycles ---------- */
-  var breathBtn = document.getElementById("breathBtn");
-  var breathStage = document.getElementById("breathStage");
-  var breathCircle = document.getElementById("breathCircle");
-  var breathRing = document.getElementById("breathRing");
-  var breathPhase = document.getElementById("breathPhase");
-  var breathCue = document.getElementById("breathCue");
-  var breathCount = document.getElementById("breathCount");
-  var cycleDots = Array.prototype.slice.call(document.querySelectorAll("#breathCycles span"));
-  var RING_FULL = 653.45;
-  var timers = [];
-  var breathing = false;
-
-  function ringReset() {
-    breathRing.style.transition = "none";
-    breathRing.style.strokeDashoffset = RING_FULL;
-  }
-  function ringRun(secs) {
-    if (reducedMotion) return;
-    // force the reset to paint before starting the sweep
-    void breathRing.getBoundingClientRect();
-    breathRing.style.transition = "stroke-dashoffset " + secs + "s linear";
-    breathRing.style.strokeDashoffset = "0";
-  }
-
-  function stopBreathing() {
-    timers.forEach(clearTimeout);
-    timers = [];
-    breathing = false;
-    breathCircle.style.transform = "scale(1)";
-    breathStage.classList.remove("breathing", "phase-in", "phase-hold", "phase-out");
-    ringReset();
-    cycleDots.forEach(function (d) { d.classList.remove("done"); });
-    breathBtn.textContent = "Start breathing exercise";
-    breathPhase.textContent = "Press start when you are ready.";
-    breathCue.textContent = "";
-    breathCount.textContent = "4";
-  }
-  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-
-  breathBtn.addEventListener("click", function () {
-    if (breathing) { stopBreathing(); return; }
-    breathing = true;
-    breathBtn.textContent = "Stop";
-    breathStage.classList.add("breathing");
-    var phases = [
-      ["Breathe in", "Feel your chest gently rise", 4, 1.5, "phase-in"],
-      ["Hold", "Rest here. Soften your shoulders.", 4, 1.5, "phase-hold"],
-      ["Breathe out", "Let it all drift away", 6, 1.0, "phase-out"]
-    ];
-    var cycles = 4, t = 0;
-    for (var c = 0; c < cycles; c++) {
-      (function (cycle, last) {
-        later(function () {
-          cycleDots.forEach(function (d, i) { d.classList.toggle("done", i < cycle); });
-        }, t * 1000);
-        phases.forEach(function (p) {
-          var label = p[0], cue = p[1], secs = p[2], scale = p[3], cls = p[4], start = t;
-          later(function () {
-            breathPhase.textContent = label;
-            breathCue.textContent = cue;
-            breathStage.classList.remove("phase-in", "phase-hold", "phase-out");
-            breathStage.classList.add(cls);
-            if (!reducedMotion) breathCircle.style.transform = "scale(" + scale + ")";
-            ringReset();
-            ringRun(secs);
-            breathCount.textContent = secs;
-            for (var i = 1; i < secs; i++) {
-              later((function (n) { return function () { breathCount.textContent = n; }; })(secs - i), i * 1000);
-            }
-          }, start * 1000);
-          t += secs;
-        });
-        later(function () {
-          cycleDots.forEach(function (d, i) { d.classList.toggle("done", i <= cycle); });
-          if (last) {
-            breathPhase.textContent = "Well done.";
-            breathCue.textContent = "Take this calm with you.";
-            breathStage.classList.remove("phase-in", "phase-hold", "phase-out");
-            breathCircle.style.transform = "scale(1)";
-            ringReset();
-            later(stopBreathing, 3000);
-          }
-        }, t * 1000);
-      })(c, c === cycles - 1);
-    }
-  });
-
-  /* ---------- 5-4-3-2-1 grounding ---------- */
-  var groundSteps = [
-    "Name 5 things you can see around you.",
-    "Notice 4 things you can touch or feel.",
-    "Listen for 3 sounds near you.",
-    "Notice 2 things you can smell.",
-    "Notice 1 thing you can taste."
+  /* ================= Calm: grounding ================= */
+  var GROUND = [
+    { t: "Name 5 things you can see", h: "Look around slowly. Notice colours, shapes and light." },
+    { t: "Notice 4 things you can feel", h: "Your feet on the floor, the air on your skin, the chair beneath you." },
+    { t: "Listen for 3 things you can hear", h: "Near or far \u2014 just notice them, without judging." },
+    { t: "Notice 2 things you can smell", h: "Take a gentle breath in through your nose." },
+    { t: "Name 1 thing you can taste", h: "Or one thing you look forward to tasting later." }
   ];
-  var gIdx = -1;
-  var groundStep = document.getElementById("groundStep");
-  var groundNext = document.getElementById("groundNext");
-  var groundBack = document.getElementById("groundBack");
-
+  var gIdx = 0, gDone = false;
   function renderGround() {
-    if (gIdx === -1) {
-      groundStep.textContent = "Press begin, then notice each thing slowly.";
-      groundNext.textContent = "Begin";
-    } else if (gIdx < groundSteps.length) {
-      groundStep.textContent = groundSteps[gIdx];
-      groundNext.textContent = gIdx === groundSteps.length - 1 ? "Finish" : "Next";
+    $("ground-step").textContent = gDone ? "Complete" : "Step " + (gIdx + 1) + " of 5";
+    if (gDone) {
+      $("ground-prompt").textContent = "You\u2019ve finished the exercise.";
+      $("ground-hint").textContent = "Well done for taking a moment. You can return here any time.";
+      $("ground-next").textContent = "Start over";
     } else {
-      groundStep.textContent = "Well done - notice how your body feels now.";
-      groundNext.textContent = "Restart";
+      $("ground-prompt").textContent = GROUND[gIdx].t;
+      $("ground-hint").textContent = GROUND[gIdx].h;
+      $("ground-next").textContent = gIdx === GROUND.length - 1 ? "Finish" : "Next";
     }
-    groundBack.style.display = gIdx <= 0 ? "none" : "";
+    $("ground-back").disabled = gIdx === 0 && !gDone;
   }
-  groundNext.addEventListener("click", function () {
-    if (gIdx >= groundSteps.length) { gIdx = -1; }
-    else { gIdx++; }
+  $("ground-next").addEventListener("click", function () {
+    if (gDone) { gDone = false; gIdx = 0; }
+    else if (gIdx < GROUND.length - 1) gIdx++;
+    else gDone = true;
     renderGround();
   });
-  groundBack.addEventListener("click", function () {
-    if (gIdx > 0) { gIdx--; renderGround(); }
+  $("ground-back").addEventListener("click", function () {
+    if (gDone) { gDone = false; gIdx = GROUND.length - 1; }
+    else if (gIdx > 0) gIdx--;
+    renderGround();
   });
+
+  /* ================= Init ================= */
+  renderFilterLists();
+  renderPlan();
   renderGround();
-
-  /* ---------- Discreet mode: neutral decoy screen ---------- */
-  var decoy = document.getElementById("decoy");
-  document.getElementById("discreetBtn").addEventListener("click", function () {
-    decoy.hidden = false;
-    document.getElementById("decoyBack").focus();
-  });
-  document.getElementById("decoyBack").addEventListener("click", function () {
-    decoy.hidden = true;
-    document.getElementById("discreetBtn").focus();
-  });
-
-  /* ---------- Subtle fade-up reveals: smooth, slow, once ---------- */
-  if (!reducedMotion && "IntersectionObserver" in window) {
-    var revealEls = document.querySelectorAll(
-      ".triage-card, .promise-list li, .crisis-strip, .card, .stepper, " +
-      ".checklist-box, .breath-box, .ground-box, .learn-card, .chat-mockup, " +
-      ".privacy-panel, .concept-badge, .site-footer"
-    );
-    var lastParent = null, sibIdx = 0;
-    revealEls.forEach(function (el) {
-      el.classList.add("reveal");
-      if (el.parentNode !== lastParent) { lastParent = el.parentNode; sibIdx = 0; }
-      if (sibIdx > 0) el.style.transitionDelay = Math.min(sibIdx, 5) * 60 + "ms";
-      sibIdx++;
-    });
-    var revealer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.classList.add("revealed");
-        revealer.unobserve(en.target);
-        // Hand transitions back to the element's own hover rules once revealed
-        en.target.addEventListener("transitionend", function done(ev) {
-          if (ev.propertyName !== "opacity") return;
-          en.target.removeEventListener("transitionend", done);
-          en.target.classList.remove("reveal");
-          en.target.style.transitionDelay = "";
-        });
-      });
-    }, { threshold: 0.06, rootMargin: "0px 0px -32px 0px" });
-    revealEls.forEach(function (el) { revealer.observe(el); });
-  }
+  setBreathButtons();
+  render();
 })();
