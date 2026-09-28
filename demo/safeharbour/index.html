@@ -39,10 +39,55 @@
     <!-- ============ HOME ============ -->
     <section class="view" id="view-home" data-view="home" aria-label="Home">
       <div class="hero">
-        <p class="eyebrow">Demo concept - not a live service</p>
-        <h1>A light when<br>you need it most</h1>
-        <p class="lede">Private support and crisis resources for women and girls in Toronto experiencing abuse. No account, no tracking, nothing saved.</p>
-        <p class="privacy-strip">If you are in immediate danger, call <a href="tel:911">911</a> now.</p>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Demo concept - not a live service</p>
+            <h1>A light when<br>you need it most</h1>
+            <p class="lede">Private support and crisis resources for women and girls in Toronto experiencing abuse. No account, no tracking, nothing saved.</p>
+            <p class="privacy-strip">If you are in immediate danger, call <a href="tel:911">911</a> now.</p>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <svg viewBox="0 0 400 380" focusable="false">
+              <defs>
+                <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#f2b544" stop-opacity=".55"></stop>
+                  <stop offset="1" stop-color="#f2b544" stop-opacity="0"></stop>
+                </linearGradient>
+                <radialGradient id="lampGlow" cx=".5" cy=".5" r=".5">
+                  <stop offset="0" stop-color="#ffe9b8" stop-opacity=".85"></stop>
+                  <stop offset="1" stop-color="#ffe9b8" stop-opacity="0"></stop>
+                </radialGradient>
+              </defs>
+              <g fill="#faf6ec">
+                <circle class="star" cx="42" cy="48" r="2" style="animation-delay: 0s"></circle>
+                <circle class="star" cx="110" cy="28" r="1.5" style="animation-delay: 1.2s"></circle>
+                <circle class="star" cx="180" cy="60" r="1.8" style="animation-delay: 2.1s"></circle>
+                <circle class="star" cx="260" cy="34" r="1.5" style="animation-delay: .6s"></circle>
+                <circle class="star" cx="70" cy="120" r="1.6" style="animation-delay: 2.8s"></circle>
+                <circle class="star" cx="300" cy="120" r="2" style="animation-delay: 1.7s"></circle>
+                <circle class="star" cx="350" cy="180" r="1.5" style="animation-delay: 3.3s"></circle>
+                <circle class="star" cx="24" cy="200" r="1.8" style="animation-delay: 2.4s"></circle>
+              </g>
+              <circle cx="332" cy="56" r="24" fill="#f7ecd2" opacity=".92"></circle>
+              <circle cx="324" cy="50" r="20" fill="#12293b" opacity=".18"></circle>
+              <path d="M0 302 Q 50 294 100 302 T 200 302 T 300 302 T 400 302 V 380 H 0 Z" fill="#0b1d2a"></path>
+              <path d="M0 302 Q 50 294 100 302 T 200 302 T 300 302 T 400 302" stroke="#f2b544" stroke-width="1.5" opacity=".22" fill="none"></path>
+              <path d="M150 308 L186 276 L226 308 Z" fill="#1d3a4f"></path>
+              <path d="M212 310 L246 284 L276 310 Z" fill="#16293a"></path>
+              <g class="hero-beam">
+                <polygon points="200,138 400,92 400,184" fill="url(#beamGrad)"></polygon>
+              </g>
+              <path d="M182 302 L192 152 L208 152 L218 302 Z" fill="#f4ead6"></path>
+              <path d="M186 272 L214 272 L212 252 L188 252 Z" fill="#c96f4a" opacity=".8"></path>
+              <path d="M189 222 L211 222 L209 202 L191 202 Z" fill="#c96f4a" opacity=".8"></path>
+              <rect x="188" y="128" width="24" height="26" rx="3" fill="#12293b"></rect>
+              <rect x="192" y="132" width="16" height="12" fill="#ffe9b8"></rect>
+              <circle cx="200" cy="138" r="34" fill="url(#lampGlow)"></circle>
+              <polygon points="184,128 216,128 200,110" fill="#c96f4a"></polygon>
+              <rect x="194" y="280" width="12" height="22" rx="6" fill="#12293b"></rect>
+            </svg>
+          </div>
+        </div>
       </div>
 
       <div class="wrap">
@@ -192,6 +237,7 @@
         <p class="section-intro">One small question at a time, at your own pace.</p>
         <p class="memory-note"><strong>Private by design:</strong> nothing you enter here is saved or sent anywhere - it disappears when you leave this page.</p>
 
+        <div class="safety-grid">
         <div class="stepper" id="safetyStepper">
           <p class="step-count" id="stepCount">Step 1 of 6</p>
           <div class="step-bar" aria-hidden="true"><span id="stepBarFill"></span></div>
@@ -220,6 +266,7 @@
             <li><label><input type="checkbox"> Comfort item for children, if needed</label></li>
           </ul>
         </div>
+        </div>
       </div>
     </section>
 
@@ -229,6 +276,7 @@
         <h2 class="section-title">Take one minute</h2>
         <p class="section-intro">For when everything feels like too much. These stay on this page - nothing is recorded.</p>
 
+        <div class="calm-grid">
         <div class="breath-box">
           <h3>4-4-6 breathing</h3>
           <p class="breath-sub">Breathe in for 4, hold for 4, breathe out for 6. Four rounds.</p>
@@ -259,6 +307,7 @@
             <button class="btn btn-ghost" id="groundBack" type="button">Back</button>
             <button class="btn btn-primary" id="groundNext" type="button">Begin</button>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -302,6 +351,7 @@
 
         <h2 class="section-title">Private text-based support</h2>
         <p class="section-intro">Prefer not to call? This is how a private, text-based support chat could work - designed so nobody looking over your shoulder would know what it is.</p>
+        <div class="more-grid">
         <div class="chat-mockup" aria-label="Concept preview of a private text support chat">
           <p class="concept-badge">Concept preview - not functional</p>
           <div class="chat-window">
@@ -331,6 +381,7 @@
             <li>Checklist ticks and anything you type disappear when you leave or reload.</li>
             <li>Quick Exit (or the Esc key) instantly replaces this page with Google and leaves no history entry.</li>
           </ul>
+        </div>
         </div>
 
         <footer class="site-footer">
