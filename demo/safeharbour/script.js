@@ -17,6 +17,14 @@
     if (e.key === "Escape") quickExit();
   });
 
+  /* ---------- Topbar: transparent over the hero, solid pine once scrolled ---------- */
+  var topbar = document.querySelector(".topbar");
+  function syncTopbar() {
+    topbar.classList.toggle("solid", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", syncTopbar, { passive: true });
+  syncTopbar();
+
   /* ---------- View / tab switching ---------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
   var views = {};
@@ -68,9 +76,13 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll("#resourceCards .card"));
   var noResults = document.getElementById("noResults");
 
+  var CHIP_CATS = ["all", "shelter", "crisis", "legal", "basic", "community"];
+
   function currentChip() {
     var el = document.querySelector(".chips .chip.active");
-    return el ? el.getAttribute("data-chip") : "all";
+    var v = el ? el.getAttribute("data-chip") : "all";
+    // Unknown values can never hide everything: treat them as "all".
+    return CHIP_CATS.indexOf(v) !== -1 ? v : "all";
   }
 
   function applyFilters() {
@@ -83,7 +95,8 @@
       var okCat = chip === "all" || card.getAttribute("data-cat") === chip;
       var okQ = !q || (card.getAttribute("data-name") || "").toLowerCase().indexOf(q) !== -1;
       var show = okCat && okQ;
-      card.hidden = !show;
+      // Class-based hiding: the hidden attribute is unreliable once author CSS sets display.
+      card.classList.toggle("is-hidden", !show);
       if (show) shown++;
     });
     noResults.hidden = !(filtering && shown === 0 && cards.length > 0);
