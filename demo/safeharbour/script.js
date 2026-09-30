@@ -179,6 +179,8 @@
     contact: { title: "Contact", label: "Contact" }
   };
   var liveRegion = $("live-region");
+  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
 
   function parseHash() {
     var h = (location.hash || "").replace(/^#\/?/, "");
@@ -207,6 +209,9 @@
     document.querySelectorAll(".view").forEach(function (v) { v.hidden = true; });
     var view = $("view-" + r.path);
     view.hidden = false;
+    view.classList.remove("view-enter");
+    void view.offsetWidth;
+    if (!reducedMotion) view.classList.add("view-enter");
 
     document.querySelectorAll(".tab, .desktop-nav a").forEach(function (a) {
       if (a.getAttribute("data-route") === r.path) a.setAttribute("aria-current", "page");
@@ -255,6 +260,60 @@
     else $("discreet-btn").focus();
   }
   $("discreet-return").addEventListener("click", closeDiscreet);
+
+  /* ================= Scroll reveal ================= */
+  function initReveal() {
+    var els = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window) || reducedMotion) {
+      Array.prototype.forEach.call(els, function (el) { el.classList.add("in"); });
+      return;
+    }
+    // gentle stagger inside grids
+    Array.prototype.forEach.call(document.querySelectorAll(".steps-3 [data-reveal], .need-list [data-reveal]"), function (el, i) {
+      el.style.transitionDelay = ((i % 4) * 80) + "ms";
+    });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); obs.unobserve(en.target); }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+    Array.prototype.forEach.call(els, function (el) { obs.observe(el); });
+  }
+
+  /* ================= 3D tilt (desktop, fine pointer) ================= */
+  function bindTilt(root) {
+    if (!finePointer || reducedMotion || !root.querySelectorAll) return;
+    var els = root.querySelectorAll(".tilt:not([data-tilt-bound])");
+    Array.prototype.forEach.call(els, function (el) {
+      el.setAttribute("data-tilt-bound", "1");
+      var raf = 0;
+      el.addEventListener("pointermove", function (e) {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = "perspective(950px) rotateX(" + (-py * 5).toFixed(2) +
+            "deg) rotateY(" + (px * 7).toFixed(2) + "deg) translateY(-3px)";
+        });
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+  }
+
+  /* ================= Hero parallax ================= */
+  function initHeroParallax() {
+    var hero = $("hero"), heroText = $("hero-text");
+    if (!hero || !heroText || !finePointer || reducedMotion) return;
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      heroText.style.transform = "translate3d(" + (px * 16).toFixed(1) + "px," + (py * 10).toFixed(1) + "px,0)";
+    });
+    hero.addEventListener("pointerleave", function () { heroText.style.transform = ""; });
+  }
 
   /* ================= Directory: search + filters ================= */
   var filterState = { cats: {}, q: "" };
@@ -324,7 +383,7 @@
     if (s.languages) rows += "<dt>Languages</dt><dd>" + s.languages + "</dd>";
     rows += '<dt>Website</dt><dd><a href="' + s.site + '" target="_blank" rel="noopener">' +
       s.site.replace(/^https?:\/\/(www\.)?/, "") + "</a></dd>";
-    return '<article class="service">' +
+    return '<article class="service tilt">' +
       '<h3 class="service-name">' + s.name + "</h3>" +
       '<p class="service-tags">' + tags + "</p>" +
       '<p class="service-purpose">' + s.purpose + "</p>" +
@@ -336,6 +395,7 @@
   function applyFilters(announce) {
     var matches = SERVICES.filter(serviceMatches);
     serviceList.innerHTML = matches.map(serviceHTML).join("");
+    bindTilt(serviceList);
     var n = matches.length;
     resultCount.textContent = n + (n === 1 ? " service" : " services") +
       (activeCatCount() || filterState.q ? " matching your search" : "") + ".";
@@ -420,21 +480,29 @@
     { key: "places", title: "Two places you could go at any hour",
       text: "Somewhere you could get to quickly, any time of day or night \u2014 a friend\u2019s home, a 24-hour shop, a shelter.",
       hint: "Two options gives you a backup." },
+    { key: "exits", title: "The safest exits from your home and workplace",
+      text: "Think through the quickest way out of each room you spend time in \u2014 doors, windows, stairwells.",
+      hint: "Knowing your exits ahead of time matters more than speed in the moment." },
     { key: "documents", title: "Where to keep documents and a go bag",
       text: "Important papers and a small bag with essentials \u2014 somewhere you can reach quickly, or with someone you trust.",
       hint: "See the go-bag checklist below for what to include." },
     { key: "reach", title: "The safest way to reach out",
       text: "How would you ask for help if you needed to right now? A friend\u2019s phone, a work computer, a public library.",
-      hint: "Choose whatever feels safest for you." }
+      hint: "Choose whatever feels safest for you. Some people save crisis numbers under an ordinary-looking contact name." }
   ];
+  var PLAN_TOTAL = PLAN_STEPS.length + 1;
+  var RING_C = 125.6;
   var planIdx = 0;
   var planAnswers = {};
 
-  function planProgressText() { return "Step " + (planIdx + 1) + " of 6"; }
+  function planProgressText() { return "Step " + (planIdx + 1) + " of " + PLAN_TOTAL; }
 
   function renderPlan() {
     $("plan-progress").textContent = planProgressText();
-    $("plan-bar-fill").style.width = ((planIdx + 1) / 6 * 100) + "%";
+    var frac = (planIdx + 1) / PLAN_TOTAL;
+    $("plan-bar-fill").style.width = (frac * 100) + "%";
+    var ring = $("plan-ring-fill");
+    if (ring) ring.style.strokeDashoffset = (RING_C * (1 - frac)).toFixed(1);
     var host = $("plan-step");
     var nav = $("plan-nav");
     if (planIdx < PLAN_STEPS.length) {
@@ -451,9 +519,9 @@
       $("plan-back").disabled = planIdx === 0;
       $("plan-next").textContent = "Next";
     } else {
-      var items = PLAN_STEPS.map(function (s) {
-        var a = (planAnswers[s.key] || "").trim();
-        return "<li><strong>" + s.title + "</strong><span>" + (a ? a.replace(/</g, "&lt;") : "\u2014") + "</span></li>";
+      var items = PLAN_STEPS.map(function (st) {
+        var a = (planAnswers[st.key] || "").trim();
+        return "<li><strong>" + st.title + "</strong><span>" + (a ? a.replace(/</g, "&lt;") : "\u2014") + "</span></li>";
       }).join("");
       host.innerHTML =
         '<div class="plan-step"><h2 class="plan-step-title">Your plan so far</h2>' +
@@ -518,10 +586,16 @@
     { label: "Breathe out", dur: 6000 }
   ];
   var ROUNDS = 4;
-  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var breath = { running: false, paused: false, round: 1, phase: 0, phaseStart: 0, timer: 0 };
   var circle = $("breath-circle"), phaseEl = $("breath-phase"), roundEl = $("breath-round");
   var bStart = $("breath-start"), bPause = $("breath-pause"), bStop = $("breath-stop"), bReset = $("breath-reset");
+
+  /* Bridge to the 3D breath orb (harbour3d.js); safe no-op if it never loads. */
+  function breathBridge(phase, progress, running) {
+    if (window.SHBreath && typeof window.SHBreath.set === "function") {
+      try { window.SHBreath.set(phase, progress, running); } catch (e) { /* decorative only */ }
+    }
+  }
 
   function setBreathButtons() {
     bStart.disabled = breath.running && !breath.paused;
@@ -539,6 +613,7 @@
     phaseEl.textContent = msg || "Press start when you are ready.";
     roundEl.textContent = "";
     circle.style.transform = "";
+    breathBridge(-1, 0, false);
     setBreathButtons();
   }
   function tickBreath() {
@@ -558,6 +633,7 @@
       breath.phaseStart = now;
       phaseEl.textContent = PHASES[breath.phase].label + "\u2026";
       roundEl.textContent = "Round " + breath.round + " of " + ROUNDS;
+      breathBridge(breath.phase, 0, true);
       return;
     }
     var p = elapsed / ph.dur;
@@ -566,6 +642,7 @@
     else if (breath.phase === 1) scale = 1.4;
     else scale = 1.4 - 0.4 * p;
     if (!reducedMotion) circle.style.transform = "scale(" + scale.toFixed(3) + ")";
+    breathBridge(breath.phase, p, true);
   }
   bStart.addEventListener("click", function () {
     if (breath.running && !breath.paused) return;
@@ -573,6 +650,7 @@
       breath.paused = false;
       breath.phaseStart = Date.now() - (breath.pausedElapsed || 0);
       breath.timer = setInterval(tickBreath, 100);
+      breathBridge(breath.phase, 0, true);
     } else {
       breath.running = true; breath.paused = false;
       breath.round = 1; breath.phase = 0;
@@ -580,6 +658,7 @@
       phaseEl.textContent = PHASES[0].label + "\u2026";
       roundEl.textContent = "Round 1 of " + ROUNDS;
       breath.timer = setInterval(tickBreath, 100);
+      breathBridge(0, 0, true);
     }
     setBreathButtons();
   });
@@ -592,6 +671,7 @@
       breath.pausedElapsed = Date.now() - breath.phaseStart;
       clearInterval(breath.timer);
       phaseEl.textContent = "Paused. Resume when you are ready.";
+      breathBridge(-1, 0, false);
       setBreathButtons();
     }
   });
@@ -638,5 +718,8 @@
   renderPlan();
   renderGround();
   setBreathButtons();
+  initReveal();
+  bindTilt(document);
+  initHeroParallax();
   render();
 })();

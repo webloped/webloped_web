@@ -5,10 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Safe Harbour Toronto — Support for your next step</title>
 <meta name="description" content="Demo concept: find verified support services in Toronto, explore safety information, and take things at your own pace.">
+<meta property="og:title" content="Safe Harbour Toronto — Support for your next step">
+<meta property="og:description" content="Verified Toronto support services, safety planning, and calming tools. A demo concept.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260928f">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260929a">
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -65,14 +71,20 @@
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <path d="M6 6l12 12M18 6L6 18"/>
     </symbol>
-    <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 4.5h5.5V10M19.5 4.5 11 13"/><path d="M18.5 13.5V19a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1H11"/>
-    </symbol>
     <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>
     </symbol>
     <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
       <circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c-4.8 4.7-4.8 12.3 0 17 4.8-4.7 4.8-12.3 0-17z"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20.5S3.5 15.5 3.5 9.6A4.6 4.6 0 0 1 8.2 5c1.6 0 3 .8 3.8 2A4.6 4.6 0 0 1 15.8 5a4.6 4.6 0 0 1 4.7 4.6c0 5.9-8.5 10.9-8.5 10.9z"/>
+    </symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
     </symbol>
   </defs>
 </svg>
@@ -114,10 +126,15 @@
   <!-- ============ HOME ============ -->
   <section class="view" id="view-home" aria-labelledby="h-home">
     <p class="eyebrow">Demo concept — not a live service</p>
-    <div class="hero">
-      <div class="hero-text">
+    <div class="hero" id="hero">
+      <div class="hero-scene" aria-hidden="true" focusable="false">
+        <div class="hero-fallback"></div>
+        <canvas id="hero-gl"></canvas>
+        <div class="hero-vignette"></div>
+      </div>
+      <div class="hero-text" id="hero-text">
         <h1 id="h-home" tabindex="-1">Support for your next step.</h1>
-        <p class="lede">Find support services in Toronto, explore safety information, and take things at your own pace.</p>
+        <p class="lede">Find verified support services in Toronto, explore safety information, and take things at your own pace.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#/find?need=crisis">Get help now</a>
           <a class="btn btn-outline btn-lg" href="#/find">Find a service</a>
@@ -125,56 +142,76 @@
         </div>
         <p class="danger-notice">If you are in immediate danger, call <a href="tel:911"><strong>911</strong></a>.</p>
       </div>
-      <div class="hero-art" aria-hidden="true" focusable="false">
-        <svg viewBox="0 0 360 250" role="presentation">
-          <path d="M0 150 H360" stroke="#123E3A" stroke-width="2" opacity=".8"/>
-          <circle cx="268" cy="62" r="13" fill="#B58A47"/>
-          <g stroke="#B58A47" stroke-width="2.4" stroke-linecap="round" opacity=".85">
-            <path d="M268 36v-12M268 88v12M242 62h-12M294 62h12M250 44l-8.5-8.5M286 80l8.5 8.5M286 44l8.5-8.5M250 80l-8.5 8.5"/>
-          </g>
-          <path d="M268 78v62" stroke="#B58A47" stroke-width="2" stroke-dasharray="5 7" opacity=".5"/>
-          <path d="M0 172c40-10 70 8 110-2s70-14 110-4 70 10 140-2" stroke="#123E3A" stroke-width="1.6" fill="none" opacity=".45"/>
-          <path d="M0 198c50-8 80 10 130 0s80-12 120-2 60 8 110-2" stroke="#123E3A" stroke-width="1.6" fill="none" opacity=".3"/>
-          <path d="M0 224c60-6 90 8 150 0s90-8 120 0 50 6 90 0" stroke="#123E3A" stroke-width="1.6" fill="none" opacity=".18"/>
-          <path d="M0 150c60 26 120 30 180 18" stroke="#123E3A" stroke-width="1.6" fill="none" opacity=".35"/>
-        </svg>
+      <a class="hero-scroll" href="#home-start" aria-label="Scroll to content"><svg aria-hidden="true" focusable="false"><use href="#i-chev-d"/></svg></a>
+    </div>
+
+    <div class="crisis-strip" id="home-start" data-reveal>
+      <p class="crisis-strip-label">Need someone right now?</p>
+      <div class="crisis-strip-btns">
+        <a class="btn btn-danger" href="tel:911">Call 911</a>
+        <a class="btn btn-outline" href="tel:988">Call or text 9-8-8</a>
+        <a class="btn btn-outline" href="tel:211">Call 211</a>
       </div>
     </div>
 
-    <h2 class="section-title">Find support by need</h2>
-    <ul class="need-list">
-      <li><a href="#/find?need=crisis"><span><strong>Crisis support</strong><small>Helplines and crisis lines, many 24/7</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
-      <li><a href="#/find?need=shelter"><span><strong>Shelter and housing</strong><small>Emergency shelter and intake services</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
-      <li><a href="#/find?need=legal"><span><strong>Legal support</strong><small>Legal advice and representation</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
-      <li><a href="#/find?need=counselling"><span><strong>Counselling and community</strong><small>Support, referrals and community services</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
-      <li><a href="#/find?need=basic"><span><strong>Food and basic needs</strong><small>Food banks and practical help</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
+    <h2 class="section-title" data-reveal>Find support by need</h2>
+    <ul class="need-list" data-reveal>
+      <li class="tilt"><a href="#/find?need=crisis"><span><strong>Crisis support</strong><small>Helplines and crisis lines, many 24/7</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
+      <li class="tilt"><a href="#/find?need=shelter"><span><strong>Shelter and housing</strong><small>Emergency shelter and intake services</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
+      <li class="tilt"><a href="#/find?need=legal"><span><strong>Legal support</strong><small>Legal advice and representation</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
+      <li class="tilt"><a href="#/find?need=counselling"><span><strong>Counselling and community</strong><small>Support, referrals and community services</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
+      <li class="tilt"><a href="#/find?need=basic"><span><strong>Food and basic needs</strong><small>Food banks and practical help</small></span><svg aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a></li>
     </ul>
 
-    <h2 class="section-title">When everything feels like too much</h2>
-    <p class="body-copy">Short breathing and grounding exercises you can use any time, at your own pace. <a href="#/calm">Try a calming tool</a>.</p>
+    <h2 class="section-title" data-reveal>How Safe Harbour helps</h2>
+    <div class="steps-3" data-reveal>
+      <article class="step-card tilt">
+        <svg aria-hidden="true" focusable="false"><use href="#i-compass"/></svg>
+        <h3>Find verified help</h3>
+        <p>Shelters, crisis lines, legal support and community services — checked against official sources, with numbers you can tap to call.</p>
+        <a href="#/find">Search the directory</a>
+      </article>
+      <article class="step-card tilt">
+        <svg aria-hidden="true" focusable="false"><use href="#i-shield"/></svg>
+        <h3>Plan at your pace</h3>
+        <p>A gentle, step-by-step safety plan and go-bag checklist. Nothing is saved or sent anywhere — it all stays on this page.</p>
+        <a href="#/plan">Start your plan</a>
+      </article>
+      <article class="step-card tilt">
+        <svg aria-hidden="true" focusable="false"><use href="#i-calm"/></svg>
+        <h3>Steady yourself</h3>
+        <p>Guided breathing and grounding exercises for difficult moments, plus plain-language reading on your options and rights.</p>
+        <a href="#/calm">Try a calming tool</a>
+      </article>
+    </div>
 
-    <h2 class="section-title">Understand your options</h2>
-    <p class="body-copy">Brief, plain-language reading on recognising abuse, healthy relationships, your rights, and safer browsing. <a href="#/learn">Browse learning resources</a>.</p>
+    <h2 class="section-title" data-reveal>When everything feels like too much</h2>
+    <p class="body-copy" data-reveal>Short breathing and grounding exercises you can use any time, at your own pace. <a href="#/calm">Try a calming tool</a>.</p>
 
-    <h2 class="section-title">About Safe Harbour</h2>
-    <p class="body-copy">Safe Harbour Toronto is a community project that brings together verified support services for people experiencing abuse, with a focus on women and girls in Toronto — including women with children. <a href="#/about">More about this project</a>.</p>
+    <h2 class="section-title" data-reveal>Understand your options</h2>
+    <p class="body-copy" data-reveal>Brief, plain-language reading on recognising abuse, healthy relationships, your rights, and safer browsing. <a href="#/learn">Browse learning resources</a>.</p>
 
-    <h2 class="section-title">Your privacy</h2>
-    <p class="body-copy">This demo sends nothing anywhere. Anything you type stays on this page and disappears when you leave or reload. <a href="#/privacy">How privacy works here</a>.</p>
+    <h2 class="section-title" data-reveal>About Safe Harbour</h2>
+    <p class="body-copy" data-reveal>Safe Harbour Toronto is a community project that brings together verified support services for people experiencing abuse, with a focus on women and girls in Toronto — including women with children. <a href="#/about">More about this project</a>.</p>
+
+    <h2 class="section-title" data-reveal>Your privacy</h2>
+    <p class="body-copy" data-reveal>This demo sends nothing anywhere. Anything you type stays on this page and disappears when you leave or reload. <a href="#/privacy">How privacy works here</a>.</p>
   </section>
 
   <!-- ============ FIND ============ -->
   <section class="view" id="view-find" aria-labelledby="h-find" hidden>
-    <h1 id="h-find" tabindex="-1">Find help</h1>
-    <p class="lede">Search verified shelters, helplines, legal support and community services. Select any number to call.</p>
+    <div class="page-head" data-reveal>
+      <h1 id="h-find" tabindex="-1">Find help</h1>
+      <p class="lede">Search verified shelters, helplines, legal support and community services. Select any number to call.</p>
+    </div>
     <div class="find-layout">
-      <aside class="find-sidebar" aria-label="Directory filters">
+      <aside class="find-sidebar" aria-label="Directory filters" data-reveal>
         <h2>Filter by need</h2>
         <div id="filter-list-desktop" class="filter-list"></div>
         <button type="button" id="clear-desktop" class="linklike">Clear all filters</button>
       </aside>
       <div class="find-main">
-        <div class="find-controls">
+        <div class="find-controls" data-reveal>
           <div class="search-wrap">
             <label for="find-search">Search services</label>
             <input id="find-search" type="search" autocomplete="off" placeholder="Try &ldquo;shelter&rdquo;, &ldquo;legal&rdquo;, &ldquo;French&rdquo;&hellip;">
@@ -191,7 +228,7 @@
           <p>Try removing a filter or clearing your search — or call <a href="tel:211">211</a>, who can point you to the right service.</p>
           <button type="button" id="reset-filters" class="btn btn-primary">Show all services</button>
         </div>
-        <aside class="text-note" aria-labelledby="text-note-h">
+        <aside class="text-note" aria-labelledby="text-note-h" data-reveal>
           <h2 id="text-note-h">Prefer to text?</h2>
           <ul>
             <li><strong>9-8-8</strong> — call or text <a href="tel:988">9-8-8</a></li>
@@ -208,11 +245,19 @@
 
   <!-- ============ PLAN ============ -->
   <section class="view" id="view-plan" aria-labelledby="h-plan" hidden>
-    <h1 id="h-plan" tabindex="-1">Make a safety plan</h1>
-    <p class="lede">One small topic at a time, at your own pace. You can read and reflect without typing anything.</p>
-    <p class="data-note">Your answers stay on this page only. They are not sent or stored anywhere, and they disappear if you leave or reload.</p>
-    <div class="plan-card">
-      <p id="plan-progress" class="plan-progress" role="status">Step 1 of 6</p>
+    <div class="page-head" data-reveal>
+      <h1 id="h-plan" tabindex="-1">Make a safety plan</h1>
+      <p class="lede">One small topic at a time, at your own pace. You can read and reflect without typing anything.</p>
+      <p class="data-note">Your answers stay on this page only. They are not sent or stored anywhere, and they disappear if you leave or reload.</p>
+    </div>
+    <div class="plan-card tilt" data-reveal>
+      <div class="plan-progress-row">
+        <svg class="plan-ring" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <circle class="ring-track" cx="24" cy="24" r="20"/>
+          <circle class="ring-fill" id="plan-ring-fill" cx="24" cy="24" r="20"/>
+        </svg>
+        <p id="plan-progress" class="plan-progress" role="status">Step 1 of 7</p>
+      </div>
       <div class="plan-bar" aria-hidden="true"><div id="plan-bar-fill"></div></div>
       <div id="plan-step"></div>
       <div class="plan-nav" id="plan-nav">
@@ -225,32 +270,35 @@
         <button type="button" id="plan-clear" class="linklike">Clear my answers</button>
       </div>
     </div>
-    <h2 class="section-title">Emergency go bag</h2>
-    <p class="body-copy">Tick off what you already have somewhere safe. Ticks stay on this screen only.</p>
-    <ul class="checklist" id="gobag-list">
-      <li><label><input type="checkbox"><span>ID and copies of important documents</span></label></li>
-      <li><label><input type="checkbox"><span>Cash and bank cards</span></label></li>
-      <li><label><input type="checkbox"><span>Phone and charger</span></label></li>
-      <li><label><input type="checkbox"><span>Medications and prescriptions</span></label></li>
-      <li><label><input type="checkbox"><span>Keys</span></label></li>
-      <li><label><input type="checkbox"><span>Change of clothes</span></label></li>
-      <li><label><input type="checkbox"><span>Comfort item for children, if needed</span></label></li>
+    <h2 class="section-title" data-reveal>Emergency go bag</h2>
+    <p class="body-copy" data-reveal>Tick off what you already have somewhere safe. Ticks stay on this screen only.</p>
+    <ul class="checklist" id="gobag-list" data-reveal>
+      <li><label><input type="checkbox"><span>Photo ID, health card, passports, immigration papers</span></label></li>
+      <li><label><input type="checkbox"><span>Bank cards, some cash, a spare phone charger</span></label></li>
+      <li><label><input type="checkbox"><span>Medication, prescriptions, glasses</span></label></li>
+      <li><label><input type="checkbox"><span>Copies of a lease, custody or court orders</span></label></li>
+      <li><label><input type="checkbox"><span>Keys, a change of clothes, comfort items for children</span></label></li>
     </ul>
   </section>
 
   <!-- ============ CALM ============ -->
   <section class="view" id="view-calm" aria-labelledby="h-calm" hidden>
-    <h1 id="h-calm" tabindex="-1">Calm</h1>
-    <p class="lede">Optional tools for difficult moments. Nothing here is recorded, and you can stop or leave any time.</p>
-    <div class="segmented" role="group" aria-label="Choose a calming tool">
+    <div class="page-head" data-reveal>
+      <h1 id="h-calm" tabindex="-1">Calm</h1>
+      <p class="lede">Optional tools for difficult moments. Nothing here is recorded, and you can stop or leave any time.</p>
+    </div>
+    <div class="segmented" role="group" aria-label="Choose a calming tool" data-reveal>
       <button type="button" id="calm-tab-breath" class="segmented-btn" aria-pressed="true">Breathing</button>
       <button type="button" id="calm-tab-ground" class="segmented-btn" aria-pressed="false">Grounding</button>
     </div>
 
-    <div id="calm-breath" class="calm-panel">
+    <div id="calm-breath" class="calm-panel" data-reveal>
       <h2 class="panel-title">4-4-6 breathing</h2>
       <p class="body-copy">Breathe in for 4 counts, hold for 4, breathe out for 6. We&rsquo;ll do 4 rounds together. Some people find slow breathing steadies them — go at your own pace, and stop any time.</p>
       <div class="breath-stage">
+        <div class="breath-gl-wrap" aria-hidden="true" focusable="false">
+          <canvas id="breath-gl"></canvas>
+        </div>
         <div id="breath-circle" class="breath-circle" aria-hidden="true"><span></span></div>
         <p id="breath-phase" class="breath-phase" role="status">Press start when you are ready.</p>
         <p id="breath-round" class="breath-round"></p>
@@ -264,10 +312,10 @@
       <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Leave this exercise</a></p>
     </div>
 
-    <div id="calm-ground" class="calm-panel" hidden>
+    <div id="calm-ground" class="calm-panel" hidden data-reveal>
       <h2 class="panel-title">5-4-3-2-1 grounding</h2>
       <p class="body-copy">Name what is around you, one sense at a time. Take as long as you like with each step.</p>
-      <div class="ground-card">
+      <div class="ground-card tilt">
         <p id="ground-step" class="plan-progress" role="status">Step 1 of 5</p>
         <h3 id="ground-prompt" class="ground-prompt"></h3>
         <p id="ground-hint" class="body-copy"></p>
@@ -282,12 +330,14 @@
 
   <!-- ============ LEARN ============ -->
   <section class="view view-article" id="view-learn" aria-labelledby="h-learn" hidden>
-    <h1 id="h-learn" tabindex="-1">Learn</h1>
-    <p class="lede">Brief, plain-language reading. Take what is useful; leave the rest.</p>
+    <div class="page-head" data-reveal>
+      <h1 id="h-learn" tabindex="-1">Learn</h1>
+      <p class="lede">Brief, plain-language reading. Take what is useful; leave the rest.</p>
+    </div>
 
-    <article class="article" aria-labelledby="learn-abuse">
+    <article class="article tilt" aria-labelledby="learn-abuse" data-reveal>
       <h2 id="learn-abuse">Recognising abuse</h2>
-      <p>Abuse can be physical, sexual, emotional, financial or digital. It is about power and control, not about what you did or didn&rsquo;t do.</p>
+      <p>Abuse can be physical, sexual, emotional, financial or digital. It is about power and control, not about what you did or didn&rsquo;t do. Controlling money, tracking your phone or isolating you from family are all forms of abuse.</p>
       <details>
         <summary>Common warning signs</summary>
         <ul>
@@ -302,9 +352,9 @@
       <p>If any of this sounds familiar, it can help to talk it through — see <a href="#/find?need=crisis">crisis support</a>.</p>
     </article>
 
-    <article class="article" aria-labelledby="learn-healthy">
-      <h2 id="learn-healthy">Healthy relationships</h2>
-      <p>In a healthy relationship you feel safe saying no, disagreements happen without fear, your boundaries and friendships are respected, and support goes both ways.</p>
+    <article class="article tilt" aria-labelledby="learn-healthy" data-reveal>
+      <h2 id="learn-healthy">Signs of a healthy relationship</h2>
+      <p>Respect for your decisions, honest conversation about money, space for your friendships, and disagreements that never involve fear.</p>
       <details>
         <summary>What this looks like day to day</summary>
         <ul>
@@ -316,9 +366,9 @@
       </details>
     </article>
 
-    <article class="article" aria-labelledby="learn-rights">
-      <h2 id="learn-rights">Rights and routes to legal support</h2>
-      <p>In Ontario, you can call 911 in an emergency without anyone&rsquo;s permission. Legal protections can include restraining orders and peace bonds, and free legal help may be available depending on your situation.</p>
+    <article class="article tilt" aria-labelledby="learn-rights" data-reveal>
+      <h2 id="learn-rights">Your rights in Ontario</h2>
+      <p>You can call police at any time, apply for a restraining order or peace bond, access free legal aid, and stay in a shelter regardless of immigration status.</p>
       <details>
         <summary>Where to start</summary>
         <ul>
@@ -330,7 +380,7 @@
       <p class="fine-print">This is general information, not legal advice. Verify details directly with each service.</p>
     </article>
 
-    <article class="article" aria-labelledby="learn-digital">
+    <article class="article tilt" aria-labelledby="learn-digital" data-reveal>
       <h2 id="learn-digital">Digital privacy and safer browsing</h2>
       <p>If someone monitors your devices, a few habits can reduce what is visible — but no technique makes activity invisible on a monitored device or network.</p>
       <details>
@@ -345,7 +395,7 @@
       <p><a href="#/privacy">More about privacy on this page</a>.</p>
     </article>
 
-    <article class="article" aria-labelledby="learn-about">
+    <article class="article tilt" aria-labelledby="learn-about" data-reveal>
       <h2 id="learn-about">About Safe Harbour</h2>
       <p>Safe Harbour Toronto is a demo concept for a community support project: a calm, easy-to-use place that gathers verified Toronto-area support services for people experiencing abuse, with a focus on women and girls — including women with children.</p>
       <p>It is not an operating service. Listings are compiled from organisations&rsquo; public websites and official directories, reviewed against official sources in September 2026.</p>
@@ -356,39 +406,45 @@
   <!-- ============ ABOUT ============ -->
   <section class="view view-article" id="view-about" aria-labelledby="h-about" hidden>
     <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Back to home</a></p>
-    <h1 id="h-about" tabindex="-1">About</h1>
-    <p class="lede">What this site is, and what it isn&rsquo;t.</p>
-    <p class="body-copy">Safe Harbour Toronto is a <strong>demo concept</strong> for a community support project. It brings together verified shelters, helplines, legal support and community services for people experiencing abuse, with a focus on women and girls in Toronto — including women with children.</p>
-    <p class="body-copy">This demonstration is not an operating service. It takes no referrals, keeps no records, and has no staff. For real help, use the verified services in <a href="#/find">Find Help</a>.</p>
-    <h2 class="section-title">Who maintains this directory</h2>
-    <p class="body-copy">Listings are compiled from organisations&rsquo; public websites and official directories, and were reviewed against official sources in September 2026. Details change — verify directly with each service before relying on them.</p>
+    <div class="page-head" data-reveal>
+      <h1 id="h-about" tabindex="-1">About</h1>
+      <p class="lede">What this site is, and what it isn&rsquo;t.</p>
+    </div>
+    <p class="body-copy" data-reveal>Safe Harbour Toronto is a <strong>demo concept</strong> for a community support project. It brings together verified shelters, helplines, legal support and community services for people experiencing abuse, with a focus on women and girls in Toronto — including women with children.</p>
+    <p class="body-copy" data-reveal>This demonstration is not an operating service. It takes no referrals, keeps no records, and has no staff. For real help, use the verified services in <a href="#/find">Find Help</a>.</p>
+    <h2 class="section-title" data-reveal>Who maintains this directory</h2>
+    <p class="body-copy" data-reveal>Listings are compiled from organisations&rsquo; public websites and official directories, and were reviewed against official sources in September 2026. Details change — verify directly with each service before relying on them.</p>
   </section>
 
   <!-- ============ PRIVACY ============ -->
   <section class="view view-article" id="view-privacy" aria-labelledby="h-privacy" hidden>
     <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Back to home</a></p>
-    <h1 id="h-privacy" tabindex="-1">Privacy</h1>
-    <p class="lede">Precisely what this demo does — and doesn&rsquo;t do — with your activity.</p>
-    <h2 class="section-title">On this page</h2>
-    <ul class="body-list">
+    <div class="page-head" data-reveal>
+      <h1 id="h-privacy" tabindex="-1">Privacy</h1>
+      <p class="lede">Precisely what this demo does — and doesn&rsquo;t do — with your activity.</p>
+    </div>
+    <h2 class="section-title" data-reveal>On this page</h2>
+    <ul class="body-list" data-reveal>
       <li>This demo sends nothing anywhere. There are no accounts, no analytics, and no trackers.</li>
       <li>Anything you type into the safety plan or search stays in this page&rsquo;s memory only. It disappears if you leave or reload.</li>
       <li>Checklist ticks are not saved anywhere.</li>
     </ul>
-    <h2 class="section-title">Quick Exit</h2>
-    <p class="body-copy">Quick Exit opens Google in this tab right away. It does not delete your browser history, and it cannot hide your activity from someone monitoring this device or network.</p>
-    <h2 class="section-title">Discreet mode</h2>
-    <p class="body-copy">Discreet mode hides this page behind a weather screen. It does not hide your browsing history or make your activity invisible on this device.</p>
-    <h2 class="section-title">Beyond this page</h2>
-    <p class="body-copy">Your browser, your device, and your network provider may still record that you visited this site. If someone monitors your devices, consider using a safer device — a friend&rsquo;s phone, a work computer, or a public library. See <a href="#/learn">safer browsing</a>.</p>
+    <h2 class="section-title" data-reveal>Quick Exit</h2>
+    <p class="body-copy" data-reveal>Quick Exit opens Google in this tab right away. It does not delete your browser history, and it cannot hide your activity from someone monitoring this device or network.</p>
+    <h2 class="section-title" data-reveal>Discreet mode</h2>
+    <p class="body-copy" data-reveal>Discreet mode hides this page behind a weather screen. It does not hide your browsing history or make your activity invisible on this device.</p>
+    <h2 class="section-title" data-reveal>Beyond this page</h2>
+    <p class="body-copy" data-reveal>Your browser, your device, and your network provider may still record that you visited this site. If someone monitors your devices, consider using a safer device — a friend&rsquo;s phone, a work computer, or a public library. See <a href="#/learn">safer browsing</a>.</p>
   </section>
 
   <!-- ============ ACCESSIBILITY ============ -->
   <section class="view view-article" id="view-accessibility" aria-labelledby="h-access" hidden>
     <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Back to home</a></p>
-    <h1 id="h-access" tabindex="-1">Accessibility</h1>
-    <p class="lede">This demo aims to be usable by everyone.</p>
-    <ul class="body-list">
+    <div class="page-head" data-reveal>
+      <h1 id="h-access" tabindex="-1">Accessibility</h1>
+      <p class="lede">This demo aims to be usable by everyone.</p>
+    </div>
+    <ul class="body-list" data-reveal>
       <li>Full keyboard support: every action works with Tab, Enter and Escape.</li>
       <li>Visible focus indicators on all interactive elements.</li>
       <li>Decorative motion is reduced or removed when your device requests reduced motion.</li>
@@ -396,15 +452,17 @@
       <li>Touch targets are at least 44&times;44 pixels.</li>
       <li>Screen-reader announcements for view changes and search results.</li>
     </ul>
-    <p class="body-copy">This demo concept has no published contact channel. If you hit a barrier using it, the verified services in <a href="#/find">Find Help</a> are the right place to turn.</p>
+    <p class="body-copy" data-reveal>This demo concept has no published contact channel. If you hit a barrier using it, the verified services in <a href="#/find">Find Help</a> are the right place to turn.</p>
   </section>
 
   <!-- ============ CONTACT ============ -->
   <section class="view view-article" id="view-contact" aria-labelledby="h-contact" hidden>
     <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Back to home</a></p>
-    <h1 id="h-contact" tabindex="-1">Contact</h1>
-    <p class="lede">This demo concept has no published contact channel.</p>
-    <p class="body-copy">There is no inbox, phone line or office behind this demonstration page. If you need help, please use the verified services in <a href="#/find">Find Help</a> — for example, the <a href="tel:+18668630511">Assaulted Women&rsquo;s Helpline</a> (1-866-863-0511, 24/7) or <a href="tel:211">211 Ontario</a>.</p>
+    <div class="page-head" data-reveal>
+      <h1 id="h-contact" tabindex="-1">Contact</h1>
+      <p class="lede">This demo concept has no published contact channel.</p>
+    </div>
+    <p class="body-copy" data-reveal>There is no inbox, phone line or office behind this demonstration page. If you need help, please use the verified services in <a href="#/find">Find Help</a> — for example, the <a href="tel:+18668630511">Assaulted Women&rsquo;s Helpline</a> (1-866-863-0511, 24/7) or <a href="tel:211">211 Ontario</a>.</p>
   </section>
 </main>
 
@@ -443,6 +501,7 @@
   </div>
 </div>
 
-<script src="script.js?v=20260928f"></script>
+<script src="script.js?v=20260929a"></script>
+<script type="module" src="harbour3d.js?v=20260929a"></script>
 </body>
 </html>
