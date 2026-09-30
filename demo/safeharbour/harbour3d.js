@@ -200,35 +200,17 @@
       var group = new THREE.Group();
       var wire = new THREE.Mesh(
         new THREE.IcosahedronGeometry(2.1, 1),
-        new THREE.MeshBasicMaterial({ color: 0xe8c98a, wireframe: true, transparent: true, opacity: 0.75 })
-      );
-      var core = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(1.55, 2),
-        new THREE.MeshBasicMaterial({ color: 0xb58a47, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false })
+        new THREE.MeshBasicMaterial({ color: 0xe8c98a, wireframe: true, transparent: true, opacity: 0.7 })
       );
       var inner = new THREE.Mesh(
         new THREE.SphereGeometry(0.85, 24, 24),
-        new THREE.MeshBasicMaterial({ color: 0xfff3d9, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false })
+        new THREE.MeshBasicMaterial({ color: 0xfff3d9, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false })
       );
-      group.add(wire); group.add(core); group.add(inner);
+      group.add(wire); group.add(inner);
       scene.add(group);
-
-      var tex = new THREE.CanvasTexture(spriteTexture());
-      var COUNT = 90;
-      var pos = new Float32Array(COUNT * 3);
-      for (var i = 0; i < COUNT; i++) {
-        var th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1), rr = 3.1 + Math.random() * 1.6;
-        pos[i * 3] = rr * Math.sin(ph) * Math.cos(th);
-        pos[i * 3 + 1] = rr * Math.sin(ph) * Math.sin(th);
-        pos[i * 3 + 2] = rr * Math.cos(ph);
-      }
-      var pgeo = new THREE.BufferGeometry();
-      pgeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      var motes = new THREE.Points(pgeo, new THREE.PointsMaterial({
-        size: 0.22, map: tex, transparent: true, opacity: 0.5,
-        color: 0xffdca0, depthWrite: false, blending: THREE.AdditiveBlending
-      }));
-      scene.add(motes);
+      /* 2D fallback circle takes over only if WebGL is unavailable; hide it now. */
+      var stageEl = canvas.closest(".breath-stage");
+      if (stageEl) stageEl.classList.add("webgl");
 
       function resize() {
         var w = stage.clientWidth, h = stage.clientHeight;
@@ -256,9 +238,8 @@
           var idle = 1 + Math.sin(t * 1.1) * 0.02;
           var s = breathCtl.cur * idle;
           group.scale.set(s, s, s);
-          group.rotation.y += dt * (breathCtl.running ? 0.35 : 0.12);
-          group.rotation.x = Math.sin(t * 0.3) * 0.18;
-          motes.rotation.y -= dt * 0.06;
+          group.rotation.y += dt * (breathCtl.running ? 0.3 : 0.1);
+          group.rotation.x = Math.sin(t * 0.3) * 0.15;
           renderer.render(scene, camera);
         },
         still: function () { if (panelVisible()) renderer.render(scene, camera); }

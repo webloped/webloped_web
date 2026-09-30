@@ -394,29 +394,29 @@ main { padding-bottom: 110px; }
 .breath-stage {
   position: relative; text-align: center;
   max-width: 560px; margin: 28px auto;
-  min-height: 440px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
   background: radial-gradient(130% 130% at 50% 28%, #1E4B44 0%, var(--ink-2) 48%, #081E1B 100%);
-  border-radius: 24px; padding: 44px 28px; overflow: hidden;
+  border-radius: 24px; padding: 36px 28px 30px; overflow: hidden;
   box-shadow: var(--shadow);
 }
-.breath-gl-wrap { position: absolute; inset: 0; pointer-events: none; }
+.breath-gl-wrap { position: relative; width: 100%; height: 280px; pointer-events: none; }
 #breath-gl { width: 100%; height: 100%; display: block; }
 .breath-circle {
-  position: relative; z-index: 2;
+  position: absolute; top: calc(50% - 75px); left: calc(50% - 75px);
   width: 150px; height: 150px; margin: 0; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, rgba(255,244,220,.95), rgba(181,138,71,.55) 55%, rgba(181,138,71,.12) 100%);
   box-shadow: 0 0 70px 12px rgba(181,138,71,.35), inset 0 0 40px rgba(255,255,255,.25);
   display: grid; place-items: center;
   transition: transform .12s linear;
 }
+.breath-stage.webgl .breath-circle { display: none; }
 .breath-circle span {
   width: 62%; height: 62%; border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, #FFFDF4, #F0DDB8);
   box-shadow: inset 0 0 24px rgba(181,138,71,.3);
 }
-.breath-phase { position: relative; z-index: 2; color: #FFFDF4; font-family: var(--font-display); font-size: 26px; margin: 0; }
-.breath-round { position: relative; z-index: 2; color: rgba(255,253,244,.75); font-size: 15px; margin: 0; min-height: 24px; }
+.breath-phase { color: #FFFDF4; font-family: var(--font-display); font-size: 26px; margin: 0; }
+.breath-round { color: rgba(255,253,244,.75); font-size: 15px; margin: 0; min-height: 24px; }
 .breath-controls { display: flex; gap: 10px; flex-wrap: wrap; }
 .ground-card {
   background: var(--card); border: 1px solid var(--line); border-radius: 22px;
@@ -504,13 +504,19 @@ main { padding-bottom: 110px; }
   #filters-btn { display: none; }
   .dialog-backdrop { place-items: center; padding: 24px; }
   .dialog { border-radius: 24px; animation: viewIn .3s cubic-bezier(.2,.7,.2,1); }
-  .service-list { grid-template-columns: 1fr 1fr; }
+  .service-list { grid-template-columns: 1fr 1fr; align-items: start; }
+  .service { padding: 22px; }
+  .service-name { font-size: 21px; }
+  .service-purpose { margin-bottom: 12px; }
+  .service-contacts { align-items: flex-start; }
+  .contact-btn { flex: 0 0 auto; white-space: nowrap; font-size: 14.5px; padding: 10px 16px; }
 }
 @media (min-width: 1180px) {
-  .service-list { grid-template-columns: 1fr 1fr 1fr; }
+  .service-list { grid-template-columns: 1fr 1fr 1fr; align-items: start; }
   .find-layout { grid-template-columns: 300px 1fr; }
 }
 @media (max-width: 480px) {
+  .breath-gl-wrap { height: 240px; }
   body { font-size: 16px; }
   .hero-actions .btn-lg { width: 100%; }
   .crisis-strip-btns { width: 100%; }
