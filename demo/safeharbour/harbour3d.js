@@ -141,7 +141,11 @@
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
       }
-      window.addEventListener("resize", resize);
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(function () { resize(); }).observe(hero);
+      } else {
+        window.addEventListener("resize", resize);
+      }
       resize();
 
       scenes.push({
@@ -233,7 +237,11 @@
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
       }
-      window.addEventListener("resize", resize);
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(function () { resize(); }).observe(stage);
+      } else {
+        window.addEventListener("resize", resize);
+      }
       resize();
 
       function panelVisible() {

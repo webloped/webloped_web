@@ -18,13 +18,14 @@
   --line: #E4DCCB;
   --radius: 18px;
   --radius-sm: 12px;
-  --shadow: 0 18px 50px -18px rgba(14, 43, 39, .28);
-  --shadow-sm: 0 8px 24px -10px rgba(14, 43, 39, .22);
+  --shadow: 0 16px 44px -22px rgba(14, 43, 39, .22);
+  --shadow-sm: 0 6px 20px -10px rgba(14, 43, 39, .16);
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
   --topbar-h: 64px;
 }
 * { box-sizing: border-box; }
+::selection { background: rgba(181, 138, 71, .28); }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -42,6 +43,9 @@ a:hover { color: var(--amber-deep); }
 .skip { position: absolute; left: 12px; top: -48px; z-index: 200; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; transition: top .2s; }
 .skip:focus { top: 12px; color: #fff; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 6px; }
+/* View headings receive programmatic focus on route change for screen readers;
+   they are never in keyboard tab order, so hide the ring for sighted users. */
+.view h1[tabindex="-1"]:focus { outline: none; }
 
 /* ---------- Top bar ---------- */
 .topbar {
@@ -150,7 +154,7 @@ main { padding-bottom: 110px; }
 #view-home .eyebrow { max-width: 1120px; margin-left: auto; margin-right: auto; padding: 0 clamp(16px, 4vw, 32px); }
 .hero {
   position: relative;
-  min-height: max(620px, 92svh);
+  min-height: max(560px, 88svh);
   display: flex; align-items: center; justify-content: center;
   overflow: clip;
   border-radius: 0 0 34px 34px;
@@ -219,7 +223,7 @@ main { padding-bottom: 110px; }
   padding: 18px 20px; text-decoration: none; box-shadow: var(--shadow-sm);
   transition: transform .2s, box-shadow .25s, border-color .2s;
 }
-.need-list a:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--amber); }
+.need-list a:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--amber); }
 .need-list span { display: flex; flex-direction: column; gap: 2px; margin-right: auto; }
 .need-list strong { font-size: 18px; color: var(--ink); }
 .need-list small { color: var(--muted); font-size: 14.5px; }
@@ -236,7 +240,7 @@ main { padding-bottom: 110px; }
   content: ""; position: absolute; inset: 0 0 auto 0; height: 5px;
   background: linear-gradient(90deg, var(--amber), var(--seaglass-2));
 }
-.step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.step-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .step-card svg { width: 34px; height: 34px; color: var(--amber-deep); margin-bottom: 10px; }
 .step-card h3 { margin: 0 0 8px; font-size: 22px; }
 .step-card p { margin: 0 0 14px; color: var(--muted); font-size: 15.5px; }
@@ -372,7 +376,7 @@ main { padding-bottom: 110px; }
   background: var(--card); border: 1.5px solid var(--line); border-radius: var(--radius-sm);
   padding: 15px 18px; font-size: 16px; transition: border-color .2s, background .2s, transform .15s;
 }
-.checklist label:hover { border-color: var(--amber); transform: translateX(3px); }
+.checklist label:hover { border-color: var(--amber); transform: translateX(2px); }
 .checklist input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--ink-2); flex: none; margin-top: 2px; }
 .checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
 
@@ -388,16 +392,19 @@ main { padding-bottom: 110px; }
 .calm-panel { margin-top: 14px; }
 .panel-title { font-size: clamp(24px, 3.6vw, 32px); margin: 0 0 8px; }
 .breath-stage {
-  position: relative; text-align: center; margin: 26px 0;
-  background: linear-gradient(160deg, var(--ink-2), #081E1B);
-  border-radius: 26px; padding: 40px 20px 34px; overflow: hidden;
+  position: relative; text-align: center;
+  max-width: 560px; margin: 28px auto;
+  min-height: 440px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  background: radial-gradient(130% 130% at 50% 28%, #1E4B44 0%, var(--ink-2) 48%, #081E1B 100%);
+  border-radius: 24px; padding: 44px 28px; overflow: hidden;
   box-shadow: var(--shadow);
 }
-.breath-gl-wrap { position: absolute; inset: 0; }
+.breath-gl-wrap { position: absolute; inset: 0; pointer-events: none; }
 #breath-gl { width: 100%; height: 100%; display: block; }
 .breath-circle {
   position: relative; z-index: 2;
-  width: 150px; height: 150px; margin: 0 auto 22px; border-radius: 50%;
+  width: 150px; height: 150px; margin: 0; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, rgba(255,244,220,.95), rgba(181,138,71,.55) 55%, rgba(181,138,71,.12) 100%);
   box-shadow: 0 0 70px 12px rgba(181,138,71,.35), inset 0 0 40px rgba(255,255,255,.25);
   display: grid; place-items: center;
@@ -408,7 +415,7 @@ main { padding-bottom: 110px; }
   background: radial-gradient(circle at 40% 35%, #FFFDF4, #F0DDB8);
   box-shadow: inset 0 0 24px rgba(181,138,71,.3);
 }
-.breath-phase { position: relative; z-index: 2; color: #FFFDF4; font-family: var(--font-display); font-size: 26px; margin: 0 0 6px; }
+.breath-phase { position: relative; z-index: 2; color: #FFFDF4; font-family: var(--font-display); font-size: 26px; margin: 0; }
 .breath-round { position: relative; z-index: 2; color: rgba(255,253,244,.75); font-size: 15px; margin: 0; min-height: 24px; }
 .breath-controls { display: flex; gap: 10px; flex-wrap: wrap; }
 .ground-card {
@@ -428,7 +435,7 @@ main { padding-bottom: 110px; }
   content: ""; position: absolute; inset: 0 auto 0 0; width: 5px;
   background: linear-gradient(180deg, var(--amber), var(--seaglass-2));
 }
-.article:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.article:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .article h2 { margin: 0 0 10px; font-size: clamp(23px, 3.4vw, 30px); }
 .article p { max-width: 64ch; }
 .article details { margin: 14px 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 18px; }

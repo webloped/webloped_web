@@ -294,8 +294,8 @@
           var r = el.getBoundingClientRect();
           var px = (e.clientX - r.left) / r.width - 0.5;
           var py = (e.clientY - r.top) / r.height - 0.5;
-          el.style.transform = "perspective(950px) rotateX(" + (-py * 5).toFixed(2) +
-            "deg) rotateY(" + (px * 7).toFixed(2) + "deg) translateY(-3px)";
+          el.style.transform = "perspective(950px) rotateX(" + (-py * 3.5).toFixed(2) +
+            "deg) rotateY(" + (px * 5).toFixed(2) + "deg) translateY(-2px)";
         });
       });
       el.addEventListener("pointerleave", function () { el.style.transform = ""; });
