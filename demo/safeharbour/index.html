@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260930c">
+<link rel="stylesheet" href="styles.css?v=20261006a">
 <script type="importmap">
 {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
 </script>
@@ -80,6 +80,12 @@
     <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 20.5S3.5 15.5 3.5 9.6A4.6 4.6 0 0 1 8.2 5c1.6 0 3 .8 3.8 2A4.6 4.6 0 0 1 15.8 5a4.6 4.6 0 0 1 4.7 4.6c0 5.9-8.5 10.9-8.5 10.9z"/>
     </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.4 14.3c2.3.3 4 1.9 4.5 4.2"/>
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 3 10.5 13.5"/><path d="M21 3l-6.8 18-3.7-7.5L3 9.8z"/>
+    </symbol>
     <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/>
     </symbol>
@@ -107,6 +113,7 @@
     <a href="#/plan" data-route="plan">Safety Plan</a>
     <a href="#/calm" data-route="calm">Calm</a>
     <a href="#/learn" data-route="learn">Learn</a>
+    <a href="#/circle" data-route="circle">Circle</a>
   </nav>
   <div class="topbar-actions">
     <button type="button" id="discreet-btn" class="discreet-btn">Discreet</button>
@@ -120,6 +127,7 @@
   <a href="#/plan" class="tab" data-route="plan"><svg aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><span>Safety Plan</span></a>
   <a href="#/calm" class="tab" data-route="calm"><svg aria-hidden="true" focusable="false"><use href="#i-calm"/></svg><span>Calm</span></a>
   <a href="#/learn" class="tab" data-route="learn"><svg aria-hidden="true" focusable="false"><use href="#i-book"/></svg><span>Learn</span></a>
+  <a href="#/circle" class="tab" data-route="circle"><svg aria-hidden="true" focusable="false"><use href="#i-users"/></svg><span>Circle</span></a>
 </nav>
 
 <main id="main">
@@ -187,6 +195,15 @@
 
     <h2 class="section-title" data-reveal>When everything feels like too much</h2>
     <p class="body-copy" data-reveal>Short breathing and grounding exercises you can use any time, at your own pace. <a href="#/calm">Try a calming tool</a>.</p>
+
+    <aside class="circle-banner tilt" data-reveal>
+      <svg aria-hidden="true" focusable="false"><use href="#i-users"/></svg>
+      <div>
+        <h2>New: Community Circle</h2>
+        <p>An anonymous space to connect with others who understand — plus a Harbour Guide chat assistant on every page.</p>
+      </div>
+      <a class="btn btn-primary" href="#/circle">Visit the Circle</a>
+    </aside>
 
     <h2 class="section-title" data-reveal>Understand your options</h2>
     <p class="body-copy" data-reveal>Brief, plain-language reading on recognising abuse, healthy relationships, your rights, and safer browsing. <a href="#/learn">Browse learning resources</a>.</p>
@@ -403,6 +420,47 @@
     </article>
   </section>
 
+  <!-- ============ CIRCLE ============ -->
+  <section class="view view-article" id="view-circle" aria-labelledby="h-circle" hidden>
+    <div class="page-head" data-reveal>
+      <h1 id="h-circle" tabindex="-1">Community Circle</h1>
+      <p class="lede">A quiet corner to connect with others who understand. Share, listen, and support each other — no names needed.</p>
+    </div>
+
+    <aside class="demo-note" data-reveal>
+      <h2>Demo preview</h2>
+      <p>In the full version, this is a live, moderated space. In this demo the conversation is simulated, so you can see how it would feel.</p>
+    </aside>
+
+    <article class="article tilt" data-reveal aria-labelledby="circle-guide-h">
+      <h2 id="circle-guide-h">Circle guidelines</h2>
+      <ul class="body-list">
+        <li><strong>Be kind.</strong> Everyone here is going through something.</li>
+        <li><strong>Stay anonymous.</strong> No real names, addresses, phone numbers or photos.</li>
+        <li><strong>Peer support, not professional advice.</strong> In a crisis, call <a href="tel:911">911</a> or the <a href="tel:+18668630511">Assaulted Women&rsquo;s Helpline</a> (1-866-863-0511, 24/7).</li>
+        <li><strong>Kept safe.</strong> A moderator reviews messages and removes anything harmful.</li>
+      </ul>
+    </article>
+
+    <div class="alias-row" data-reveal>
+      <p class="alias-label">You are posting as</p>
+      <p class="alias-name" id="circle-alias">Harbour Guest</p>
+      <button type="button" id="circle-alias-change" class="btn btn-outline btn-sm">Change name</button>
+    </div>
+
+    <div id="circle-messages" class="circle-messages" role="log" aria-live="polite" aria-label="Community Circle messages" data-reveal></div>
+
+    <form id="circle-form" class="circle-composer" data-reveal>
+      <label class="visually-hidden" for="circle-input">Share with the circle</label>
+      <textarea id="circle-input" rows="2" maxlength="500" placeholder="Share what&rsquo;s on your mind&hellip;"></textarea>
+      <div class="circle-composer-row">
+        <p class="fine-print">Demo: your message is kept only in this browser.</p>
+        <button type="submit" class="btn btn-primary">Post anonymously</button>
+      </div>
+    </form>
+    <p data-reveal><button type="button" id="circle-clear" class="linklike">Clear my messages</button></p>
+  </section>
+
   <!-- ============ ABOUT ============ -->
   <section class="view view-article" id="view-about" aria-labelledby="h-about" hidden>
     <p><a href="#/home" class="back-link"><svg aria-hidden="true" focusable="false"><use href="#i-chev-l"/></svg>Back to home</a></p>
@@ -428,6 +486,8 @@
       <li>This demo sends nothing anywhere. There are no accounts, no analytics, and no trackers.</li>
       <li>Anything you type into the safety plan or search stays in this page&rsquo;s memory only. It disappears if you leave or reload.</li>
       <li>Checklist ticks are not saved anywhere.</li>
+      <li>Words you type to the Harbour Guide chat assistant stay on this page and are never sent anywhere.</li>
+      <li>Messages you post in the Community Circle demo are stored only in this browser, so the demo can show them back to you. Use &ldquo;Clear my messages&rdquo; on the Circle page to remove them any time.</li>
     </ul>
     <h2 class="section-title" data-reveal>Quick Exit</h2>
     <p class="body-copy" data-reveal>Quick Exit opens Google in this tab right away. It does not delete your browser history, and it cannot hide your activity from someone monitoring this device or network.</p>
@@ -501,7 +561,39 @@
   </div>
 </div>
 
-<script src="script.js?v=20260930c"></script>
-<script type="module" src="harbour3d.js?v=20260930c"></script>
+<!-- ============ Harbour Guide chat ============ -->
+<button type="button" id="chat-fab" class="chat-fab" aria-expanded="false" aria-controls="chat-panel" aria-label="Chat with Harbour Guide">
+  <svg aria-hidden="true" focusable="false"><use href="#i-msg"/></svg>
+</button>
+<div id="chat-hint" class="chat-hint" hidden>
+  <p><strong>Harbour Guide</strong> — tap to chat, any time.</p>
+  <button type="button" id="chat-hint-close" class="icon-btn" aria-label="Dismiss"><svg aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+</div>
+<div id="chat-panel" class="chat-panel" role="dialog" aria-labelledby="chat-title" hidden>
+  <div class="chat-head">
+    <div class="chat-id">
+      <span class="chat-avatar" aria-hidden="true"><svg focusable="false"><use href="#i-msg"/></svg></span>
+      <div>
+        <h2 id="chat-title">Harbour Guide</h2>
+        <p>A demo assistant — not a person</p>
+      </div>
+    </div>
+    <div class="chat-head-btns">
+      <button type="button" id="chat-exit" class="chat-exit-btn">Quick Exit</button>
+      <button type="button" id="chat-close" class="icon-btn icon-btn-light" aria-label="Close chat"><svg aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+  <div id="chat-messages" class="chat-messages" role="log" aria-live="polite" aria-label="Harbour Guide conversation"></div>
+  <div id="chat-chips" class="chat-chips" aria-label="Suggested questions"></div>
+  <form id="chat-form" class="chat-form" autocomplete="off">
+    <label class="visually-hidden" for="chat-input">Type your message</label>
+    <input id="chat-input" type="text" placeholder="Type here&hellip;" maxlength="500" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><svg aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
+  </form>
+  <p class="chat-privacy">Demo only — what you type stays on this page and is never sent anywhere.</p>
+</div>
+
+<script src="script.js?v=20261006a"></script>
+<script type="module" src="harbour3d.js?v=20261006a"></script>
 </body>
 </html>

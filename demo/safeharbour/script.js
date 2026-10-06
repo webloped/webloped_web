@@ -173,6 +173,7 @@
     plan: { title: "Make a safety plan", label: "Safety Plan" },
     calm: { title: "Calm", label: "Calm" },
     learn: { title: "Learn", label: "Learn" },
+    circle: { title: "Community Circle", label: "Community Circle" },
     about: { title: "About", label: "About" },
     privacy: { title: "Privacy", label: "Privacy" },
     accessibility: { title: "Accessibility", label: "Accessibility" },
@@ -713,11 +714,288 @@
     renderGround();
   });
 
+  /* ================= Harbour Guide chat ================= */
+  var chatFab = $("chat-fab"), chatPanel = $("chat-panel"),
+      chatMsgs = $("chat-messages"), chatChipRow = $("chat-chips"),
+      chatForm = $("chat-form"), chatInput = $("chat-input"),
+      chatHint = $("chat-hint");
+  var chatStarted = false, chatWaiting = false;
+
+  var CRISIS_WORDS = ["suicide", "suicidal", "kill myself", "end my life", "self-harm", "self harm",
+    "in danger", "emergency", "he's here", "hes here", "she's here", "shes here",
+    "attacking me", "hitting me", "threatening me", "strangle", "strangling", "choking me",
+    "scared he", "afraid he", "scared she", "afraid she"];
+  var DEFAULT_CHIPS = ["I need help right now", "Find a shelter", "Make a safety plan", "Calm me down"];
+
+  function escHTML(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function chatScroll() { chatMsgs.scrollTop = chatMsgs.scrollHeight; }
+
+  function addMsg(html, who, crisis) {
+    var d = document.createElement("div");
+    d.className = "msg msg-" + who + (crisis ? " msg-crisis" : "");
+    d.innerHTML = html;
+    chatMsgs.appendChild(d);
+    chatScroll();
+  }
+  function setChips(list) {
+    chatChipRow.innerHTML = "";
+    (list || []).forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.textContent = c;
+      b.addEventListener("click", function () { sendUser(c); });
+      chatChipRow.appendChild(b);
+    });
+  }
+
+  function crisisHTML() {
+    return "<strong>I\u2019m really glad you reached out.</strong> If you are in danger right now, please call " +
+      "<a href=\"tel:911\"><strong>911</strong></a> immediately.<br><br>" +
+      "You can also call or text <a href=\"tel:988\"><strong>9-8-8</strong></a> any time, or the " +
+      "<a href=\"tel:+18668630511\"><strong>Assaulted Women\u2019s Helpline</strong></a> at 1-866-863-0511 " +
+      "\u2014 free, confidential, 24/7, in 200+ languages.<br><br>" +
+      "You don\u2019t have to go through this alone. If you need to leave this page fast, use " +
+      "<strong>Quick Exit</strong> (top right, or the Esc key) \u2014 it jumps straight to Google.";
+  }
+
+  function botReply(text) {
+    var t = " " + text.toLowerCase() + " ";
+    var escRe = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); };
+    var has = function (words) {
+      return words.some(function (w) { return new RegExp("\\b" + escRe(w) + "\\b").test(t); });
+    };
+    if (has(CRISIS_WORDS))
+      return { html: crisisHTML(), chips: ["Talk to a real person", "Find a shelter"], crisis: true };
+    if (has(["i need help right now"]))
+      return { html: crisisHTML(), chips: ["Talk to a real person", "Find a shelter"], crisis: true };
+    if (has(["shelter", "shelters", "housing", "place to stay", "homeless", "nowhere to go"]))
+      return { html: "For a safe place to stay, these Toronto services can help \u2014 many answer 24/7. " +
+        "<a href=\"#/find?need=shelter\">See shelters and housing</a>. If you need to leave quickly, the " +
+        "<a href=\"#/plan\">safety plan</a> walks through it one small step at a time.",
+        chips: ["Make a safety plan", "Talk to a real person", "Calm me down"] };
+    if (has(["legal", "lawyer", "lawyers", "court", "courts", "restraining", "custody", "divorce", "peace bond"]))
+      return { html: "You have options. In Ontario you can call police any time, apply for a restraining order or peace bond, " +
+        "and access free legal aid. <a href=\"#/find?need=legal\">See legal support services</a> \u2014 the Barbra Schlifer Clinic " +
+        "(416-323-9149) specialises in helping women who have experienced violence.",
+        chips: ["Find a shelter", "Talk to a real person"] };
+    if (has(["counselling", "counseling", "counsel", "counsellor", "counselor", "therapist", "therapists", "therapy", "talk to someone", "support group", "someone to talk"]))
+      return { html: "Talking it through can help. Toronto has free, confidential counselling and support lines \u2014 " +
+        "many 24/7. <a href=\"#/find?need=counselling\">See counselling and community support</a>. " +
+        "The Assaulted Women\u2019s Helpline (1-866-863-0511) is a good first call: kind people, no judgement.",
+        chips: ["Calm me down", "I need help right now"] };
+    if (has(["safety plan", "go bag", "go-bag", "leave safely", "leaving", "make a safety plan", " plan"]))
+      return { html: "A safety plan breaks a big, scary thing into small steps \u2014 who to call, where to go, what to pack. " +
+        "<a href=\"#/plan\">Start your safety plan</a>. Nothing you write is saved or sent anywhere; it stays on that page.",
+        chips: ["Find a shelter", "Talk to a real person"] };
+    if (has(["breath", "breathe", "breathing", "calm", "anxious", "anxiety", "panic", "panicking", "stress", "stressed", "grounding", "can't sleep", "cant sleep", "overwhelm", "overwhelmed", "calm me down"]))
+      return { html: "Let\u2019s slow things down together. The <a href=\"#/calm\">Calm page</a> has a guided 4-4-6 breathing " +
+        "exercise and a 5-4-3-2-1 grounding tool \u2014 both at your own pace, and you can stop any time.",
+        chips: ["Make a safety plan", "Talk to a real person"] };
+    if (has(["child", "children", "kid", "kids", "baby", "babies", "son", "sons", "daughter", "daughters"]))
+      return { html: "Many Toronto shelters welcome women with children \u2014 Interval House, for example, has children\u2019s " +
+        "programs alongside emergency shelter. <a href=\"#/find?need=shelter\">See shelters and housing</a>, " +
+        "and the <a href=\"#/plan\">safety plan</a> covers comfort items for children.",
+        chips: ["Find a shelter", "Make a safety plan"] };
+    if (has(["money", "financial", "job", "jobs", "work", "food", "rent", "basic"]))
+      return { html: "Practical help exists: <a href=\"#/find?need=basic\">food and basic needs</a> covers food banks and referrals, " +
+        "and <a href=\"#/find?need=legal\">legal support</a> can advise on financial control \u2014 which is a form of abuse, " +
+        "not your fault. 211 Ontario (call or text 211) can also point you to the right service.",
+        chips: ["Find a shelter", "Talk to a real person"] };
+    if (has(["privacy", "browsing", "history", "discreet", "monitor", "monitoring", "spy", "spying", "tracked", "tracking", "my phone"]))
+      return { html: "Good instinct to think about this. Quick notes: the <strong>Discreet</strong> button (top right) hides this page " +
+        "behind a weather screen, and <strong>Quick Exit</strong> (or Esc) jumps to Google \u2014 but neither erases your browser history. " +
+        "If someone monitors your devices, a safer device helps: a friend\u2019s phone, a work computer, a library. " +
+        "<a href=\"#/learn\">More on safer browsing</a>.",
+        chips: DEFAULT_CHIPS };
+    if (has(["real person", "human", "helpline", "hotline", "call someone", "talk to a real person"]))
+      return { html: "Of course \u2014 I\u2019m just a demo assistant. Real people, 24/7:<br>\u2022 " +
+        "<a href=\"tel:+18668630511\"><strong>Assaulted Women\u2019s Helpline</strong></a> \u2014 1-866-863-0511<br>\u2022 " +
+        "<a href=\"tel:988\"><strong>9-8-8</strong></a> \u2014 call or text<br>\u2022 " +
+        "<a href=\"tel:211\"><strong>211 Ontario</strong></a> \u2014 call or text 211<br>" +
+        "In immediate danger, call <a href=\"tel:911\"><strong>911</strong></a>.",
+        chips: ["Find a shelter", "Calm me down"] };
+    if (has(["hi", "hello", "hey", "thanks", "thank you"]))
+      return { html: "Hello \u2014 I\u2019m glad you\u2019re here. I can point you to shelters, crisis lines, legal support, " +
+        "the safety plan, or calming tools. What would help most right now?",
+        chips: DEFAULT_CHIPS };
+    return { html: "I\u2019m a simple demo assistant, so I only know this site \u2014 but I can point you to " +
+      "<a href=\"#/find?need=shelter\">shelters</a>, <a href=\"#/find?need=crisis\">crisis lines</a>, " +
+      "<a href=\"#/find?need=legal\">legal support</a>, the <a href=\"#/plan\">safety plan</a>, or " +
+      "<a href=\"#/calm\">calming tools</a>. For a real person any time, call or text " +
+      "<a href=\"tel:988\"><strong>9-8-8</strong></a>.",
+      chips: DEFAULT_CHIPS };
+  }
+
+  function botSay(reply) {
+    chatWaiting = true;
+    var tp = document.createElement("div");
+    tp.className = "msg msg-bot typing";
+    tp.innerHTML = "<i></i><i></i><i></i>";
+    tp.setAttribute("aria-label", "Harbour Guide is typing");
+    chatMsgs.appendChild(tp);
+    chatScroll();
+    setTimeout(function () {
+      tp.remove();
+      chatWaiting = false;
+      addMsg(reply.html, "bot", reply.crisis);
+      setChips(reply.chips);
+    }, 750 + Math.random() * 450);
+  }
+
+  function sendUser(text) {
+    text = (text || "").trim();
+    if (!text || chatWaiting) return;
+    addMsg(escHTML(text), "user");
+    chatInput.value = "";
+    setChips([]);
+    botSay(botReply(text));
+  }
+
+  function greetChat() {
+    addMsg("Hi, I\u2019m the <strong>Harbour Guide</strong> \u2014 a demo assistant, not a person. " +
+      "I can point you to shelters, crisis lines, legal support, the safety plan, or calming tools. " +
+      "What would help most right now?", "bot");
+    setChips(DEFAULT_CHIPS);
+  }
+
+  function toggleChat(force) {
+    var open = typeof force === "boolean" ? force : chatPanel.hidden;
+    chatPanel.hidden = !open;
+    chatFab.setAttribute("aria-expanded", open ? "true" : "false");
+    chatFab.setAttribute("aria-label", open ? "Close Harbour Guide chat" : "Chat with Harbour Guide");
+    if (open) {
+      if (chatHint) chatHint.hidden = true;
+      if (!chatStarted) { chatStarted = true; greetChat(); }
+      setTimeout(function () { chatInput.focus(); }, 60);
+    } else {
+      chatFab.focus();
+    }
+  }
+
+  chatFab.addEventListener("click", function () { toggleChat(); });
+  $("chat-close").addEventListener("click", function () { toggleChat(false); });
+  $("chat-exit").addEventListener("click", quickExit);
+  chatForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    sendUser(chatInput.value);
+  });
+  if (chatHint) {
+    $("chat-hint-close").addEventListener("click", function () {
+      chatHint.hidden = true;
+      try { sessionStorage.setItem("sh_chat_hint", "1"); } catch (e) { /* private mode */ }
+    });
+    try {
+      if (!sessionStorage.getItem("sh_chat_hint")) {
+        setTimeout(function () { if (chatPanel.hidden) chatHint.hidden = false; }, 2600);
+      }
+    } catch (e) { /* private mode */ }
+  }
+
+  /* ================= Community Circle ================= */
+  var CIRCLE_ALIASES = ["Wren", "Willow", "River", "Dawn", "Fern", "Lark", "Maple", "Sage", "Robin", "Ivy"];
+  var circleAliasIdx = Math.floor(Math.random() * CIRCLE_ALIASES.length);
+  var CIRCLE_KEY = "sh_circle_msgs_v1";
+  var circleSim = [];
+  var circleReplyPending = false;
+
+  var CIRCLE_SEED = [
+    { alias: "Harbour Guest \u00B7 Wren", time: "3h ago",
+      text: "First time posting. I left six months ago and I still have hard days, but they get further apart. If you\u2019re reading this and wondering whether it gets better \u2014 it does, slowly." },
+    { alias: "Harbour Guest \u00B7 Maple", time: "5h ago",
+      text: "Does anyone else keep rewriting their go-bag list? Third version and it finally feels right. Small things feel big right now." },
+    { alias: "Harbour Guest \u00B7 River", time: "8h ago",
+      text: "Small win: I called the helpline today. I was shaking the whole time and the person on the other end was so kind. If you\u2019re scared to call, that\u2019s completely normal." },
+    { alias: "Harbour Guest \u00B7 Sage", time: "1d ago",
+      text: "To whoever needs this tonight: you deserve to feel safe in your own home. Full stop." },
+    { alias: "Harbour Guest \u00B7 Lark", time: "1d ago",
+      text: "Question for the group \u2014 how did you talk to your kids about what\u2019s happening? Mine are 6 and 9 and I don\u2019t know where to start." }
+  ];
+  var CIRCLE_REPLIES = [
+    "Thank you for trusting us with that. You\u2019re not alone in feeling this way.",
+    "That took courage to write. We\u2019re listening.",
+    "I\u2019ve been where you are. One small step at a time is enough.",
+    "Sending you strength. This circle is here whenever you need it.",
+    "Your feelings make complete sense. Thank you for sharing them here.",
+    "Proud of you for putting that into words. Keep going at your pace."
+  ];
+
+  function circleAlias() { return "Harbour Guest \u00B7 " + CIRCLE_ALIASES[circleAliasIdx]; }
+
+  function getCircleUserMsgs() {
+    try { return JSON.parse(localStorage.getItem(CIRCLE_KEY)) || []; }
+    catch (e) { return []; }
+  }
+
+  function circleMsgHTML(alias, time, text, mine) {
+    return '<article class="cmsg' + (mine ? " cmsg-mine" : "") + '">' +
+      '<div class="cmsg-head"><span class="cmsg-alias">' + escHTML(alias) + "</span>" +
+      '<span class="cmsg-time">' + escHTML(time) + "</span></div>" +
+      "<p>" + escHTML(text) + "</p></article>";
+  }
+
+  function renderCircle() {
+    var host = $("circle-messages");
+    if (!host) return;
+    var html = "";
+    CIRCLE_SEED.forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
+    circleSim.forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
+    getCircleUserMsgs().forEach(function (m) { html += circleMsgHTML(m.alias, "just now", m.text, true); });
+    host.innerHTML = html;
+  }
+
+  function scheduleCircleReply() {
+    if (circleReplyPending) return;
+    circleReplyPending = true;
+    setTimeout(function () {
+      circleReplyPending = false;
+      var r = CIRCLE_REPLIES[Math.floor(Math.random() * CIRCLE_REPLIES.length)];
+      var alias = "Harbour Guest \u00B7 " +
+        CIRCLE_ALIASES[(circleAliasIdx + 1 + Math.floor(Math.random() * (CIRCLE_ALIASES.length - 1))) % CIRCLE_ALIASES.length];
+      circleSim.push({ alias: alias, time: "just now", text: r });
+      renderCircle();
+    }, 6000 + Math.random() * 5000);
+  }
+
+  function initCircle() {
+    var aliasEl = $("circle-alias");
+    if (!aliasEl) return;
+    aliasEl.textContent = circleAlias();
+    renderCircle();
+    $("circle-alias-change").addEventListener("click", function () {
+      circleAliasIdx = (circleAliasIdx + 1) % CIRCLE_ALIASES.length;
+      aliasEl.textContent = circleAlias();
+    });
+    $("circle-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var ta = $("circle-input");
+      var text = ta.value.trim();
+      if (!text) return;
+      var msgs = getCircleUserMsgs();
+      msgs.push({ alias: circleAlias(), text: text.slice(0, 500) });
+      try { localStorage.setItem(CIRCLE_KEY, JSON.stringify(msgs)); } catch (err) { /* private mode */ }
+      ta.value = "";
+      renderCircle();
+      liveRegion.textContent = "Your message was posted to the Circle.";
+      scheduleCircleReply();
+    });
+    $("circle-clear").addEventListener("click", function () {
+      try { localStorage.removeItem(CIRCLE_KEY); } catch (e) { /* private mode */ }
+      circleSim = [];
+      renderCircle();
+      liveRegion.textContent = "Your Circle messages have been cleared.";
+    });
+  }
+
   /* ================= Init ================= */
   renderFilterLists();
   renderPlan();
   renderGround();
   setBreathButtons();
+  initCircle();
   initReveal();
   bindTilt(document);
   initHeroParallax();
