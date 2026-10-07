@@ -898,22 +898,54 @@
   /* ================= Community Circle ================= */
   var CIRCLE_ALIASES = ["Wren", "Willow", "River", "Dawn", "Fern", "Lark", "Maple", "Sage", "Robin", "Ivy"];
   var circleAliasIdx = Math.floor(Math.random() * CIRCLE_ALIASES.length);
-  var CIRCLE_KEY = "sh_circle_msgs_v1";
-  var circleSim = [];
+  var CIRCLE_KEY_PREFIX = "sh_circle_msgs_v2_";
+  var circleRoomId = "welcome";
+  var circleSim = {};
   var circleReplyPending = false;
 
-  var CIRCLE_SEED = [
-    { alias: "Harbour Guest \u00B7 Wren", time: "3h ago",
-      text: "First time posting. I left six months ago and I still have hard days, but they get further apart. If you\u2019re reading this and wondering whether it gets better \u2014 it does, slowly." },
-    { alias: "Harbour Guest \u00B7 Maple", time: "5h ago",
-      text: "Does anyone else keep rewriting their go-bag list? Third version and it finally feels right. Small things feel big right now." },
-    { alias: "Harbour Guest \u00B7 River", time: "8h ago",
-      text: "Small win: I called the helpline today. I was shaking the whole time and the person on the other end was so kind. If you\u2019re scared to call, that\u2019s completely normal." },
-    { alias: "Harbour Guest \u00B7 Sage", time: "1d ago",
-      text: "To whoever needs this tonight: you deserve to feel safe in your own home. Full stop." },
-    { alias: "Harbour Guest \u00B7 Lark", time: "1d ago",
-      text: "Question for the group \u2014 how did you talk to your kids about what\u2019s happening? Mine are 6 and 9 and I don\u2019t know where to start." }
+  var CIRCLE_ROOMS = [
+    {
+      id: "welcome", name: "Welcome Circle",
+      blurb: "Say hello, share what\u2019s on your mind, or just listen for a while.",
+      seeds: [
+        { alias: "Harbour Guest \u00B7 Wren", time: "3h ago",
+          text: "First time posting. I left six months ago and I still have hard days, but they get further apart. If you\u2019re reading this and wondering whether it gets better \u2014 it does, slowly." },
+        { alias: "Harbour Guest \u00B7 River", time: "8h ago",
+          text: "Small win: I called the helpline today. I was shaking the whole time and the person on the other end was so kind. If you\u2019re scared to call, that\u2019s completely normal." },
+        { alias: "Harbour Guest \u00B7 Sage", time: "1d ago",
+          text: "To whoever needs this tonight: you deserve to feel safe in your own home. Full stop." }
+      ]
+    },
+    {
+      id: "beginnings", name: "New Beginnings",
+      blurb: "For women rebuilding after leaving \u2014 housing, paperwork, and starting over.",
+      seeds: [
+        { alias: "Harbour Guest \u00B7 Fern", time: "2h ago",
+          text: "Two weeks in my new apartment. I keep expecting to feel relieved all the time, but mostly I just feel tired. Is that normal?" },
+        { alias: "Harbour Guest \u00B7 Dawn", time: "1h ago",
+          text: "Completely normal. I slept for a month straight when I first left. Your body is finally catching up \u2014 let it." },
+        { alias: "Harbour Guest \u00B7 Maple", time: "6h ago",
+          text: "Does anyone else keep rewriting their go-bag list? Third version and it finally feels right. Small things feel big right now." }
+      ]
+    },
+    {
+      id: "parenting", name: "Parenting Through It",
+      blurb: "For mums navigating safety, custody questions, and talking to little ones.",
+      seeds: [
+        { alias: "Harbour Guest \u00B7 Lark", time: "4h ago",
+          text: "How did you talk to your kids about what\u2019s happening? Mine are 6 and 9 and I don\u2019t know where to start." },
+        { alias: "Harbour Guest \u00B7 Willow", time: "2h ago",
+          text: "My 9-year-old asked why we left. I told her: because everyone deserves to feel safe at home \u2014 including us. She just nodded and hugged me." },
+        { alias: "Harbour Guest \u00B7 Ivy", time: "1d ago",
+          text: "Many shelters here take mums with kids \u2014 Interval House even has children\u2019s programs. You don\u2019t have to choose between safety and staying together." }
+      ]
+    }
   ];
+  function circleRoom() {
+    for (var i = 0; i < CIRCLE_ROOMS.length; i++)
+      if (CIRCLE_ROOMS[i].id === circleRoomId) return CIRCLE_ROOMS[i];
+    return CIRCLE_ROOMS[0];
+  }
   var CIRCLE_REPLIES = [
     "Thank you for trusting us with that. You\u2019re not alone in feeling this way.",
     "That took courage to write. We\u2019re listening.",
@@ -926,7 +958,7 @@
   function circleAlias() { return "Harbour Guest \u00B7 " + CIRCLE_ALIASES[circleAliasIdx]; }
 
   function getCircleUserMsgs() {
-    try { return JSON.parse(localStorage.getItem(CIRCLE_KEY)) || []; }
+    try { return JSON.parse(localStorage.getItem(CIRCLE_KEY_PREFIX + circleRoomId)) || []; }
     catch (e) { return []; }
   }
 
@@ -941,8 +973,11 @@
     var host = $("circle-messages");
     if (!host) return;
     var html = "";
-    CIRCLE_SEED.forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
-    circleSim.forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
+    var room = circleRoom();
+    var blurb = $("room-blurb");
+    if (blurb) blurb.textContent = room.blurb;
+    room.seeds.forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
+    (circleSim[circleRoomId] || []).forEach(function (m) { html += circleMsgHTML(m.alias, m.time, m.text, false); });
     getCircleUserMsgs().forEach(function (m) { html += circleMsgHTML(m.alias, "just now", m.text, true); });
     host.innerHTML = html;
   }
@@ -950,20 +985,33 @@
   function scheduleCircleReply() {
     if (circleReplyPending) return;
     circleReplyPending = true;
+    var roomId = circleRoomId;
     setTimeout(function () {
       circleReplyPending = false;
       var r = CIRCLE_REPLIES[Math.floor(Math.random() * CIRCLE_REPLIES.length)];
       var alias = "Harbour Guest \u00B7 " +
         CIRCLE_ALIASES[(circleAliasIdx + 1 + Math.floor(Math.random() * (CIRCLE_ALIASES.length - 1))) % CIRCLE_ALIASES.length];
-      circleSim.push({ alias: alias, time: "just now", text: r });
-      renderCircle();
+      if (!circleSim[roomId]) circleSim[roomId] = [];
+      circleSim[roomId].push({ alias: alias, time: "just now", text: r });
+      if (roomId === circleRoomId) renderCircle();
     }, 6000 + Math.random() * 5000);
+  }
+
+  function setCircleRoom(id) {
+    circleRoomId = id;
+    document.querySelectorAll(".circle-rooms .segmented-btn").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-room") === id ? "true" : "false");
+    });
+    renderCircle();
   }
 
   function initCircle() {
     var aliasEl = $("circle-alias");
     if (!aliasEl) return;
     aliasEl.textContent = circleAlias();
+    document.querySelectorAll(".circle-rooms .segmented-btn").forEach(function (b) {
+      b.addEventListener("click", function () { setCircleRoom(b.getAttribute("data-room")); });
+    });
     renderCircle();
     $("circle-alias-change").addEventListener("click", function () {
       circleAliasIdx = (circleAliasIdx + 1) % CIRCLE_ALIASES.length;
@@ -976,15 +1024,15 @@
       if (!text) return;
       var msgs = getCircleUserMsgs();
       msgs.push({ alias: circleAlias(), text: text.slice(0, 500) });
-      try { localStorage.setItem(CIRCLE_KEY, JSON.stringify(msgs)); } catch (err) { /* private mode */ }
+      try { localStorage.setItem(CIRCLE_KEY_PREFIX + circleRoomId, JSON.stringify(msgs)); } catch (err) { /* private mode */ }
       ta.value = "";
       renderCircle();
       liveRegion.textContent = "Your message was posted to the Circle.";
       scheduleCircleReply();
     });
     $("circle-clear").addEventListener("click", function () {
-      try { localStorage.removeItem(CIRCLE_KEY); } catch (e) { /* private mode */ }
-      circleSim = [];
+      try { localStorage.removeItem(CIRCLE_KEY_PREFIX + circleRoomId); } catch (e) { /* private mode */ }
+      circleSim[circleRoomId] = [];
       renderCircle();
       liveRegion.textContent = "Your Circle messages have been cleared.";
     });

@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261006a">
+<link rel="stylesheet" href="styles.css?v=20261006b">
 <script type="importmap">
 {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
 </script>
@@ -200,7 +200,7 @@
       <svg aria-hidden="true" focusable="false"><use href="#i-users"/></svg>
       <div>
         <h2>New: Community Circle</h2>
-        <p>An anonymous space to connect with others who understand — plus a Harbour Guide chat assistant on every page.</p>
+        <p>An anonymous space for women to connect with others who understand — plus a Harbour Guide chat assistant on every page.</p>
       </div>
       <a class="btn btn-primary" href="#/circle">Visit the Circle</a>
     </aside>
@@ -424,12 +424,12 @@
   <section class="view view-article" id="view-circle" aria-labelledby="h-circle" hidden>
     <div class="page-head" data-reveal>
       <h1 id="h-circle" tabindex="-1">Community Circle</h1>
-      <p class="lede">A quiet corner to connect with others who understand. Share, listen, and support each other — no names needed.</p>
+      <p class="lede">A quiet corner for women to connect with others who understand. Share, listen, and support each other — no names needed.</p>
     </div>
 
     <aside class="demo-note" data-reveal>
       <h2>Demo preview</h2>
-      <p>In the full version, this is a live, moderated space. In this demo the conversation is simulated, so you can see how it would feel.</p>
+      <p>In the full version, these are live, moderated rooms. In this demo the conversations are simulated, so you can see how they would feel.</p>
     </aside>
 
     <article class="article tilt" data-reveal aria-labelledby="circle-guide-h">
@@ -447,6 +447,13 @@
       <p class="alias-name" id="circle-alias">Harbour Guest</p>
       <button type="button" id="circle-alias-change" class="btn btn-outline btn-sm">Change name</button>
     </div>
+
+    <div class="segmented circle-rooms" role="group" aria-label="Choose a chat room" data-reveal>
+      <button type="button" class="segmented-btn" data-room="welcome" aria-pressed="true">Welcome Circle</button>
+      <button type="button" class="segmented-btn" data-room="beginnings" aria-pressed="false">New Beginnings</button>
+      <button type="button" class="segmented-btn" data-room="parenting" aria-pressed="false">Parenting Through It</button>
+    </div>
+    <p class="body-copy room-blurb" id="room-blurb" data-reveal></p>
 
     <div id="circle-messages" class="circle-messages" role="log" aria-live="polite" aria-label="Community Circle messages" data-reveal></div>
 
@@ -593,7 +600,7 @@
   <p class="chat-privacy">Demo only — what you type stays on this page and is never sent anywhere.</p>
 </div>
 
-<script src="script.js?v=20261006a"></script>
-<script type="module" src="harbour3d.js?v=20261006a"></script>
+<script src="script.js?v=20261006b"></script>
+<script type="module" src="harbour3d.js?v=20261006b"></script>
 </body>
 </html>

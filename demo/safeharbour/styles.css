@@ -653,6 +653,8 @@ main { padding-bottom: 110px; }
 .circle-composer textarea:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(181,138,71,.2); }
 .circle-composer-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
 .circle-composer-row .fine-print { margin: 0; }
+.circle-rooms { margin: 20px 0 6px; }
+.room-blurb { color: var(--muted); margin: 0 0 4px; font-size: 15.5px; }
 
 /* ---------- Circle banner (home) ---------- */
 .circle-banner {
