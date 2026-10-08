@@ -366,6 +366,30 @@ h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
 .person .role { color: var(--violet); font-weight: 600; font-size: 16px; margin: 0 0 12px; }
 .person p { color: var(--muted-light); font-size: 16.5px; margin: 0; }
 
+/* ---------- recent work ---------- */
+.work { background: var(--paper); border-top: 1px solid var(--line-light); }
+.work-card {
+  display: grid; grid-template-columns: 7fr 5fr;
+  background: var(--white); border: 1px solid var(--line-light);
+  border-radius: var(--radius-media); overflow: hidden;
+}
+.work-thumb { position: relative; display: block; overflow: hidden; }
+.work-thumb img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 8/5; display: block; transition: transform .6s ease; }
+.work-card:hover .work-thumb img { transform: scale(1.03); }
+.work-tag {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px;
+}
+.work-copy { padding: 44px; display: grid; align-content: center; gap: 18px; }
+.work-copy h3 { font-size: 1.65rem; margin: 0; letter-spacing: -0.01em; }
+.work-copy p { color: var(--muted-light); margin: 0; font-size: 17px; }
+.work-copy .btn { justify-self: start; }
+@media (max-width: 900px) {
+  .work-card { grid-template-columns: 1fr; }
+  .work-copy { padding: 28px; }
+}
+
 /* ---------- investment & FAQ ---------- */
 .invest { background: var(--white); border-top: 1px solid var(--line-light); }
 .invest-card {
