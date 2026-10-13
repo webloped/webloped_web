@@ -28,8 +28,14 @@
   <url>
     <loc>https://webloped.ca/blog/</loc>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webloped.ca/blog/how-to-set-up-google-analytics.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://webloped.ca/blog/how-to-write-website-copy-that-converts.html</loc>

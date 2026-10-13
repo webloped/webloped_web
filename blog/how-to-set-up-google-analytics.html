@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How to set up Google Analytics for my website: a 2026 small business guide | Webloped Blog</title>
+  <meta name="description" content="How to set up Google Analytics for my website, step by step. A practical 2026 guide for small businesses: create your free GA4 property, install the tag on WordPress, Shopify, Wix, or plain HTML, verify data, track enquiries as key events, and connect Search Console.">
+  <link rel="canonical" href="https://webloped.ca/blog/how-to-set-up-google-analytics.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="How to set up Google Analytics for my website: a 2026 small business guide">
+  <meta property="og:description" content="Set up Google Analytics (GA4) in under an hour: install the tag, verify it works, track the enquiries that matter, and connect Search Console. Free, practical, no jargon.">
+  <meta property="og:url" content="https://webloped.ca/blog/how-to-set-up-google-analytics.html">
+  <meta property="og:image" content="https://webloped.ca/assets/img/og-card.jpg">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to set up Google Analytics for my website: a 2026 small business guide","description":"How to set up Google Analytics for my website, step by step. A practical 2026 guide for small businesses: create your free GA4 property, install the tag on WordPress, Shopify, Wix, or plain HTML, verify data, track enquiries as key events, and connect Search Console.","datePublished":"2026-10-13","author":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"publisher":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"mainEntityOfPage":"https://webloped.ca/blog/how-to-set-up-google-analytics.html"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is Google Analytics really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Google Analytics 4 is free for the standard version, and the standard version is more than enough for virtually every small business website. Google also sells a paid tier called Analytics 360, aimed at very large enterprises with huge traffic volumes. You will never need it. If an agency quote includes a line item for Analytics itself, question it."}},
+    {"@type":"Question","name":"How long does it take to set up Google Analytics?","acceptedAnswer":{"@type":"Answer","text":"About 20 to 40 minutes for the technical setup: creating the property, installing the tag, and verifying data in the Realtime report. Key events and the Search Console connection add another 15 to 20 minutes. The data itself needs a few weeks to become useful, because one afternoon of traffic tells you nothing. Judge the setup after a full month."}},
+    {"@type":"Question","name":"Can I set up Google Analytics without a developer?","acceptedAnswer":{"@type":"Answer","text":"Yes. WordPress, Shopify, Wix, and Squarespace all have built-in integrations or free plugins that install the tag with no code. You only need a developer if your site is custom-coded or if you want advanced event tracking. Most small businesses can complete the full setup in this guide with no technical help."}},
+    {"@type":"Question","name":"Does Google Analytics slow down my website?","acceptedAnswer":{"@type":"Answer","text":"Not meaningfully. The GA4 tag loads asynchronously, meaning it does not block your page from rendering, and it is small compared to typical images or page-builder code. If your site is slow, the cause is almost always something else, such as oversized images or a heavy theme, which our guide to slow websites covers."}}
+  ]}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html" aria-label="Webloped - home">
+        <img src="../assets/img/logo-w.png" alt="" width="40" height="40">
+        <span class="brand-name">Webloped</span>
+      </a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="index.html" aria-current="page">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="../contact.html">Get a project quote</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+          <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <article>
+      <section class="page-hero on-dark" aria-labelledby="post-title">
+        <div class="wrap">
+          <nav class="case-crumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="index.html" aria-current="page">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Website analytics</span>
+          </nav>
+          <div class="section-head">
+            <p class="eyebrow">Webloped blog · 11 min read</p>
+            <h1 id="post-title">How to set up Google Analytics for my website</h1>
+            <p class="section-lede">You cannot improve what you cannot see. This guide walks through how to set up Google Analytics (GA4) on a small business website in under an hour: create the property, install the tag, verify it works, track the enquiries that matter, and connect Search Console. Free, practical, no jargon.</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <div class="prose">
+            <h2>The short answer</h2>
+            <p>How to set up Google Analytics for my website? Create a free GA4 property in a Google account your business controls, add the Google tag to your site (a plugin, a built-in integration, or a short snippet pasted into the page head), and confirm visitors show up in the Realtime report. Then mark your important actions, like contact form submissions and phone number clicks, as key events, and connect Google Search Console so you can also see which search terms bring you visitors.</p>
+            <p>The technical part takes 20 to 40 minutes and costs nothing. The payoff is that you stop guessing: you will know which pages people actually read, where your enquiries come from, and whether your marketing spend is doing anything. That is the whole reason to do it. Everything below is the step-by-step detail.</p>
+
+            <h2>What Google Analytics actually tells a small business</h2>
+            <p>Most small business owners make marketing decisions on feeling. "The website seems fine." "Instagram feels like it is working." "We should probably run some ads." Google Analytics replaces feelings with three facts that actually matter:</p>
+            <ul>
+              <li><strong>Where your visitors come from.</strong> Google search, social media, direct visits, referrals from other sites. If 70% of your traffic comes from Google and 5% from Instagram, that tells you exactly where your next marketing dollar goes.</li>
+              <li><strong>What visitors do.</strong> Which pages they read, how long they stay, where they leave. If your pricing page gets the most traffic but nobody reaches the contact page, you do not have a traffic problem, you have a copy problem.</li>
+              <li><strong>Whether enquiries are happening.</strong> This is the big one. Raw visitor counts are vanity; contact form submissions and phone calls are the number your business runs on. Analytics lets you track those actions directly.</li>
+            </ul>
+            <p>This also settles a question our clients ask constantly: is the money we spend on ads or SEO doing anything? Without Analytics, a <a href="how-much-does-google-ads-cost-in-canada.html">Google Ads campaign</a> is a monthly charge and a hope. With Analytics, it is a number: 14 quote requests from ads this month at a cost of $48 each. That turns marketing from an expense into a calculation.</p>
+
+            <h2>One important note: GA4, not Universal Analytics</h2>
+            <p>If you have ever set up Analytics before, or you are following an older tutorial, you may see references to "Universal Analytics" and tracking codes that look like UA-12345678-1. That product is gone. Google shut down Universal Analytics in July 2023, and the replacement, <strong>Google Analytics 4 (GA4)</strong>, is the only version that exists now.</p>
+            <p>GA4 works differently in one way worth knowing: instead of counting pageviews and sessions as the core idea, it counts <em>events</em>. A page view is an event. A scroll is an event. A form submission is an event. This is actually better for small businesses, because it means tracking a quote request is a first-class feature, not a hack. GA4 measurement IDs look like <strong>G-XXXXXXXXXX</strong> (a G followed by ten characters). If a tutorial tells you to paste a UA- code, close the tutorial; it is out of date.</p>
+
+            <h2>Before you start: two ownership rules</h2>
+            <p>Do these first. They take two minutes and they prevent a very common, very annoying problem.</p>
+            <p><strong>Rule 1: use a Google account your business controls.</strong> Not your web developer's account, not your nephew's account, not the agency's account. Create the Analytics property in a Google account owned by the business (for example, your Google Business Profile login). If you ever change developers or agencies, your years of historical data walk away with whoever owns the account. Developers can be granted access without owning the property.</p>
+            <p><strong>Rule 2: you need access to edit your website.</strong> You will be installing a tag. That means admin access to WordPress, Shopify, Wix, or Squarespace, or the ability to edit your site's HTML. If someone else manages your site, ask them for access or ask them to install the tag from step 3, which takes about five minutes.</p>
+
+            <h2>Step 1: Create your GA4 property</h2>
+            <p>Go to <strong>analytics.google.com</strong> and sign in with your business Google account. Click <strong>Admin</strong> (the gear icon, bottom left), then <strong>Create</strong>, then <strong>Property</strong>.</p>
+            <ol>
+              <li><strong>Property details:</strong> name it after your business and website (for example, "Smith Plumbing - smithplumbing.ca"). Set the reporting time zone to your own, such as America/Toronto, and the currency to CAD. Getting the time zone right matters: your daily and weekly reports follow it.</li>
+              <li><strong>Business details:</strong> pick your industry and business size. These answers only shape the default reports and benchmarks Google shows you; there is no wrong answer.</li>
+              <li><strong>Business objectives:</strong> for most small businesses, choose "Generate leads" or "Drive online sales." This pre-configures the key reports you will actually use.</li>
+            </ol>
+            <p>Then add a <strong>data stream</strong>: choose Web, enter your website URL (including https://), and give the stream a name. Google will generate your <strong>Measurement ID</strong>, which looks like G-1A2B3C4D5E. Copy it somewhere safe, like a business password manager or a document you keep for website logins. You will need it in the next step.</p>
+
+            <h2>Step 2: Install the Google tag on your site</h2>
+            <p>The Google tag is a small piece of code that loads Analytics on every page. There are two ways to install it: a platform integration (easier, no code) or a manual snippet (works everywhere). Pick one method per site. Installing two at once double-counts every visitor, which is the single most common Analytics mistake.</p>
+            <h3>WordPress</h3>
+            <p>The easiest reliable method is the official <strong>Site Kit by Google</strong> plugin: install it, activate it, sign in with your business Google account, and connect Analytics. Site Kit reads your existing property, so there is nothing to paste. If you prefer a lighter plugin, <strong>GA Google Analytics</strong> (by Jeff Starr) lets you paste just the Measurement ID into the settings page.</p>
+            <p>If your theme already has a "header scripts" field and you paste the tag there manually, do not also install a plugin. One method only.</p>
+
+            <h3>Shopify</h3>
+            <p>Install the <strong>Google &amp; YouTube</strong> app from the Shopify App Store, sign in with your business Google account, and connect your GA4 property. The app installs the tag across your store, including checkout pages, which a manual snippet cannot reach. This is the one platform where the app route is clearly better than manual installation.</p>
+
+            <h3>Wix and Squarespace</h3>
+            <p>Both have a dedicated field for this. In Wix, go to Marketing &amp; SEO, then Marketing Integrations, then connect Google Analytics and paste your Measurement ID. In Squarespace, go to Settings, then Developer Tools (or External API Keys on some plans), and enter the ID in the Google Analytics field. Save and publish. No code, no plugins.</p>
+
+            <h3>Custom or hand-coded websites</h3>
+            <p>Google gives you the full tag snippet in the property setup under Data Streams, then "View tag instructions," then "Install manually." It looks like this (with your own ID in place of G-XXXXXXXXXX):</p>
+<pre><code>&lt;!-- Google tag (gtag.js) --&gt;
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+&lt;/script&gt;</code></pre>
+            <p>Paste it immediately after the opening <code>&lt;head&gt;</code> tag on every page of your site. On most hand-coded sites that means pasting it once into the shared header template. Save, upload, done.</p>
+
+            <h2>Step 3: Verify it is working</h2>
+            <p>Go back to Analytics, open <strong>Reports</strong>, then <strong>Realtime</strong>. In a different browser window (or on your phone), visit your website and click around a few pages. Within a minute, the Realtime report should show at least one active user: you.</p>
+            <p>If nothing appears after five to ten minutes, run through this checklist:</p>
+            <ul>
+              <li><strong>Did you install it twice?</strong> A plugin plus a manual snippet means double counting and sometimes conflicting tags. Pick one and remove the other.</li>
+              <li><strong>Is the tag on every page?</strong> Test a few different pages, not just the homepage. A tag pasted into one page's template only measures that page.</li>
+              <li><strong>Is the Measurement ID right?</strong> One mistyped character breaks the whole thing. Compare the ID in your site's settings with the one in Admin, then Data Streams.</li>
+              <li><strong>Are you blocking yourself?</strong> Ad blockers and strict privacy browser settings block Analytics. Test in a normal browser window or your phone.</li>
+            </ul>
+            <p>Also check <strong>Reports, then Engagement, then Events</strong> after a day or two. You should see <code>page_view</code> events plus automatically collected events like <code>scroll</code>, <code>click</code> (outbound links), and <code>file_download</code>. GA4 collects these with no extra setup, which is one of its genuine advantages over the old version.</p>
+
+            <h2>Step 4: Track the actions that actually matter</h2>
+            <p>Here is where most small businesses stop, and it is exactly where the value starts. Page views tell you people visited. What you need to know is whether they enquired, called, or bought. In GA4, these are <strong>key events</strong> (formerly called conversions).</p>
+            <p>Start by deciding what counts. For a typical small business website, a key event is one of these: a contact form submission, a quote request submission, a booking confirmation, a click on your phone number (<code>tel:</code> link), a click on your email address (<code>mailto:</code> link), or a completed purchase. Pick the one or two that equal money in your business and ignore the rest for now.</p>
+            <p>To set one up, go to <strong>Admin, then Events</strong>. You will see the events GA4 has already collected. Find the event that represents your key action (for example, <code>form_submit</code> if your contact form uses a standard form), and toggle <strong>Mark as key event</strong>. That is the entire setup for most sites. Your key events now appear in the Realtime report and in every acquisition report, so you can see not just that 40 people visited, but that 3 of them requested a quote, and which channel they came from.</p>
+            <p>If your form uses a third-party widget or your phone link is an image rather than a <code>tel:</code> link, the automatic events may not capture it cleanly. That is the point where a developer earns their fee: they can add a custom event for the exact button or form. This is usually a small job, not a project.</p>
+
+            <h2>Step 5: Connect Google Search Console</h2>
+            <p>Analytics shows you what happened on your site. Search Console shows you how people found it on Google: the exact search phrases, your average position for each, and how many clicked through. Together they answer the two halves of the question every business owner asks: are we being found, and is it turning into business?</p>
+            <p>The connection takes two minutes: in Analytics, go to <strong>Admin, then Product links, then Search Console links</strong>, and follow the prompts to link your Search Console property. If you do not have Search Console set up yet, our guide on <a href="how-to-get-your-business-on-google.html">getting your business on Google</a> walks through it, along with the rest of the free setup every local business should do.</p>
+            <p>Once linked, you get a <strong>Search Console</strong> section inside Analytics reports showing queries and landing pages side by side with your key events. This is also the report to watch while you wait for SEO to work: our post on <a href="how-long-does-seo-take.html">how long SEO takes</a> explains the timeline, and this report is how you see the early signs before the phone starts ringing.</p>
+
+            <h2>Your first month: three reports to check, everything else to ignore</h2>
+            <p>GA4 has a lot of menus, and most of them are noise for a small business. Check these three once a month and ignore the rest:</p>
+            <ol>
+              <li><strong>Reports, then Acquisition, then Traffic acquisition.</strong> This shows where visitors come from: Organic Search, Direct, Social, Referral, Paid Search. This is the report that tells you whether your Google presence, your Instagram, or your ads are doing the work.</li>
+              <li><strong>Reports, then Engagement, then Pages and screens.</strong> This shows which pages people actually read. If your services pages get the traffic and your contact page gets none of it, the fix is on the page, not in your marketing. Our guide on <a href="how-to-write-website-copy-that-converts.html">writing website copy that converts</a> is the next step for exactly that problem.</li>
+              <li><strong>Your key events, in either report.</strong> Add the key event column and look at the same two reports again, this time counting enquiries instead of visitors. "120 visitors, 4 quote requests" is a business metric. "120 visitors" is a vanity metric.</li>
+            </ol>
+            <p>Check monthly, not daily. Daily numbers bounce around for meaningless reasons and tempt you to react to noise. Monthly numbers show trends you can actually act on. Record the three numbers in a spreadsheet each month: visitors by channel, top pages, key events. After three months you have a baseline, and after six you can see whether any change you make, a copy rewrite, a new service page, an ad campaign, actually moved the needle.</p>
+
+            <h2>Five mistakes that waste the whole setup</h2>
+            <ul>
+              <li><strong>Installing the tag twice.</strong> Plugin plus manual snippet, or a tag in both the theme and a tag manager. Every visitor counts twice, every conversion counts twice, and all your numbers are fiction. One installation method per site.</li>
+              <li><strong>Measuring the wrong number.</strong> Chasing total "users" is the classic trap. A thousand visitors and zero enquiries means the site is not working. Ten visitors and three quote requests means it is. Key events are the metric; everything else is context.</li>
+              <li><strong>Comparing against a period before the tag existed.</strong> If you installed Analytics in October, you have no September data to compare against. Baselines start the day the tag goes live. Give it a full month before drawing any conclusion.</li>
+              <li><strong>Filtering yourself out wrong, or not at all.</strong> If you and your staff visit the site daily, you are polluting your own data. In Admin, then Data Settings, then Data Filters, you can exclude your office IP address. For a one-person business working from a home office with a dynamic IP, this is less reliable, so just be aware your own visits are in the numbers.</li>
+              <li><strong>Looking for a bounce rate.</strong> GA4 does not have the classic bounce rate. It has <em>engagement rate</em>, which is roughly the opposite: the share of sessions that lasted more than 10 seconds, had a key event, or viewed more than one page. Do not try to translate old bounce-rate advice one-to-one.</li>
+            </ul>
+
+            <h2>The Canadian privacy note</h2>
+            <p>Analytics collects data about your visitors, so it belongs in your <strong>privacy policy</strong>. Canada's federal privacy law, PIPEDA, expects businesses to be open about what data they collect and why, and Quebec's Law 25 adds consent requirements for businesses operating in Quebec. At minimum, your privacy policy should name Google Analytics as a tool you use and explain, in plain language, what it measures.</p>
+            <p>If you run a cookie consent banner, the clean setup is to load the Analytics tag only after the visitor accepts. Many consent banner tools have a Google Consent Mode integration that handles this automatically. This paragraph is not legal advice, and privacy rules have real penalties attached, so if you handle sensitive customer data or operate in Quebec, talk to a lawyer. For the policy itself, see our guide on <a href="do-i-need-a-privacy-policy-on-my-website-canada.html">whether your website needs a privacy policy in Canada</a>.</p>
+
+            <h2>Frequently asked questions</h2>
+
+            <h3>Is Google Analytics really free?</h3>
+            <p>Yes. Google Analytics 4 is free for the standard version, and the standard version is more than enough for virtually every small business website. Google also sells a paid tier called Analytics 360, aimed at very large enterprises with huge traffic volumes. You will never need it. If an agency quote includes a line item for Analytics itself, question it.</p>
+
+            <h3>How long does it take to set up Google Analytics?</h3>
+            <p>About 20 to 40 minutes for the technical setup: creating the property, installing the tag, and verifying data in the Realtime report. Key events and the Search Console connection add another 15 to 20 minutes. The data itself needs a few weeks to become useful, because one afternoon of traffic tells you nothing. Judge the setup after a full month.</p>
+
+            <h3>Can I set up Google Analytics without a developer?</h3>
+            <p>Yes. WordPress, Shopify, Wix, and Squarespace all have built-in integrations or free plugins that install the tag with no code. You only need a developer if your site is custom-coded or if you want advanced event tracking for forms and buttons that GA4 does not capture automatically. Most small businesses can complete this whole guide with no technical help.</p>
+
+            <h3>Does Google Analytics slow down my website?</h3>
+            <p>Not meaningfully. The GA4 tag loads asynchronously, which means it does not block your page from rendering, and it is small compared to typical images or page-builder code. If your site is slow, the cause is almost always something else. Our guide on <a href="why-is-my-website-so-slow.html">why websites get slow</a> covers the usual suspects.</p>
+
+            <h2>How Webloped works</h2>
+            <p>We are a web design and AI automation company based in Cambridge, Ontario. Every website we build ships with analytics set up properly: the tag installed once and correctly, key events tracking the actions that equal revenue, Search Console connected, and a short handover showing you which three reports to check each month. If your site has no analytics, or you suspect the numbers have never been right, <a href="../contact.html">send us a message</a> or <a href="mailto:contact@webloped.ca">email us directly</a> and we will sort it out as part of a <a href="../services.html">website project</a>. <a href="../pricing.html">Pricing is listed in CAD</a>, upfront, before you decide.</p>
+
+          </div>
+        </div>
+      </section>
+    </article>
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project - we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="../contact.html">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/img/logo-w.png" alt="" width="44" height="44">
+          <p>Web design &amp; AI automation.<br>Cambridge, Ontario, Canada.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="index.html" aria-current="page">Blog</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
+          <a href="tel:+16476947001">+1 (647) 694-7001</a>
+          <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a 30-min call</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Webloped. All rights reserved.</span>
+        <span>Design preview - not the live site.</span>
+      </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
+    </div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
