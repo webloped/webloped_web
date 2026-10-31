@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to set up Google Search Console for your website: a small business guide | Webloped Blog</title>
+  <meta name="description" content="How to set up Google Search Console for your website: choose the right property type, verify ownership, submit your sitemap, link Google Analytics, and read the reports that show how Google sees your site.">
+  <link rel="canonical" href="https://webloped.ca/blog/how-to-set-up-google-search-console.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="How to set up Google Search Console for your website: a small business guide">
+  <meta property="og:description" content="How to set up Google Search Console: verify ownership, submit your sitemap, link Google Analytics, and read the reports that show how Google sees your site.">
+  <meta property="og:url" content="https://webloped.ca/blog/how-to-set-up-google-search-console.html">
+  <meta property="og:image" content="https://webloped.ca/assets/img/og-card.jpg">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to set up Google Search Console for your website: a small business guide","description":"How to set up Google Search Console for your website: choose the right property type, verify ownership, submit your sitemap, link Google Analytics, and read the reports that show how Google sees your site.","datePublished":"2026-10-31","author":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"publisher":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"mainEntityOfPage":"https://webloped.ca/blog/how-to-set-up-google-search-console.html"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html" aria-label="Webloped - home">
+        <img src="../assets/img/logo-w.png" alt="" width="40" height="40">
+        <span class="brand-name">Webloped</span>
+      </a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="index.html" aria-current="page">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="../contact.html">Get a project quote</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+          <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <article>
+      <section class="page-hero on-dark" aria-labelledby="post-title">
+        <div class="wrap">
+          <nav class="case-crumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="index.html" aria-current="page">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">SEO tools</span>
+          </nav>
+          <div class="section-head">
+            <p class="eyebrow">Webloped blog · 20 min read</p>
+            <h1 id="post-title">How to set up Google Search Console for your website: a small business guide</h1>
+            <p class="section-lede">It is free, it takes about half an hour, and it is the only place where Google tells you directly how it sees your website. Here is how to set it up properly the first time.</p>
+          </div>
+        </div>
+      </section>
+      <section class="section" aria-label="Article">
+        <div class="wrap">
+          <div class="prose">
+            <p>A bakery in Kitchener launches a new website, waits a month, and wonders why Google searches for "bakery near me" never seem to bring anyone in. A contractor in Surrey adds a new services page and assumes it is live in search the same day. A retailer in Halifax watches traffic dip and has no idea whether Google dropped a page, a competitor outranked them, or fewer people simply searched that month. All three owners are guessing, and all three could stop guessing with one free tool.</p>
+            <p>Google Search Console is Google's own tool for website owners. It shows which searches your pages appear for, how often people click them, which pages Google has indexed, and which pages it cannot or will not show. It also warns you about problems: pages that fail, security issues, and manual penalties. It costs nothing, it does not slow your website down, and it only collects data from the day you set it up, which means every month you wait is a month of history you will never get back. If you have a website and you have not set it up yet, this is the highest-value half hour you can spend on it.</p>
+
+            <h2>The short answer</h2>
+            <p>To set up Google Search Console, sign in with a Google account the business controls, add your site as a Domain property, verify ownership by adding a TXT record to your domain's DNS settings, submit your XML sitemap, link the property to Google Analytics, and add the people who need access with the right permission levels. Data usually starts appearing within a few days. Then check the Performance and Page indexing reports once a month, and use URL Inspection whenever an important page seems to be missing from Google.</p>
+            <p>The rest of this guide walks through each step in detail, including the choices that trip people up: which property type to pick, which verification method fits your situation, and what to do when the setup does not work on the first try.</p>
+
+            <h2>What Search Console is, and what it is not</h2>
+            <p>Search Console answers questions about what happens before a visitor arrives. Which searches showed your pages? How many times were they shown, and how many of those impressions turned into clicks? Is a specific page in Google's index at all? If not, why not? Has Google flagged a security problem or a manual action against the site? These are questions no other tool can answer, because only Google knows what Google does with your site.</p>
+            <p>It is different from Google Analytics, and you want both. Analytics shows what visitors do after they arrive: which pages they visit, how long they stay, and whether they fill out a form or buy something. Search Console shows how they found you in the first place. Our guide to <a href="how-to-set-up-google-analytics.html">setting up Google Analytics for your website</a> covers the other half of the pair, and step 4 below links the two tools together so you can see search queries alongside on-site behaviour.</p>
+            <p>Two common misunderstandings are worth clearing up before you start. First, adding your site to Search Console does not improve your rankings. It is a reporting and diagnostic tool, not a ranking boost. Google does not rank a site higher because the owner verified it. Second, Search Console does not fix problems by itself. It tells you a page is not indexed and why. Fixing the cause is still your job, or your developer's job, but at least you will know the cause instead of guessing.</p>
+
+            <h2>Before you start: use an account the business controls</h2>
+            <p>The single most important setup decision has nothing to do with technology. It is which Google account you use. Search Console properties are tied to the account that verifies them, and if that account belongs to a freelancer, a former employee, or a developer who stops working with you, your access can leave with them. We see this more often than any technical problem: a business that cannot get into its own Search Console property because the only verified owner was a contractor from three years ago.</p>
+            <p>Set it up with a Google account the business itself controls, ideally a business email on Google Workspace, or a dedicated Gmail address created for the business rather than anyone's personal inbox. Then, once the property is verified, add a second person as a verified owner. If one owner leaves or loses access, the other still holds the keys. When an agency or freelancer stops working with you, remove their access in the same week you part ways. The same rule applies to your Analytics property, your Google Business Profile, and your domain registrar: business assets live in business-controlled accounts, never in one individual's personal account.</p>
+            <p>Before you begin, you will also need one of three kinds of access: your domain's DNS settings (usually at your domain registrar or hosting provider), the ability to edit your website's HTML, or access to a Google Analytics or Google Tag Manager account already installed on the site. If you have none of these, you will need your developer or host to help with verification, which is a normal, short job.</p>
+
+            <h2>Step 1: Choose the right property type</h2>
+            <p>When you open Search Console and click Add property, Google offers two types, and the choice matters more than it looks.</p>
+            <p>A Domain property covers your entire domain: the www and non-www versions, http and https, and every subdomain, such as shop.yourbusiness.ca or blog.yourbusiness.ca, all in one place. A URL-prefix property covers only URLs that start with one exact address, for example https://www.yourbusiness.ca/, and it treats the www version, the non-www version, and each subdomain as separate properties with separate data.</p>
+            <p>Choose a Domain property whenever you can. It gives you the complete picture in one report, so nothing falls between the cracks when visitors arrive through a www link one day and a non-www link the next. The only catch is that a Domain property can only be verified with a DNS record, which means you need access to your domain's DNS settings. If you cannot get DNS access, a URL-prefix property is the fallback: it can be verified several other ways, and it still gives you useful data for that one version of the site. Just be aware that its numbers will undercount your total search traffic, because visits to other versions of the domain land in a different property or in none at all.</p>
+            <p>For a Domain property, enter the bare domain only, such as yourbusiness.ca, with no https://, no www, and no trailing slash. For a URL-prefix property, enter the full address exactly as it appears in a browser, including https:// and www if your site uses them.</p>
+
+            <h2>Step 2: Verify that you own the site</h2>
+            <p>Verification is Google's way of confirming you control the website before it shows you its search data. It is a one-time step, but the verification must stay in place: Google rechecks it from time to time, and if the record or tag is removed, you can lose access to the property. Never remove a verification record after setup, even during a redesign or a host migration, unless you are replacing it with a new one immediately.</p>
+            <p>For a Domain property, the method is a DNS TXT record. Search Console will show you a unique string of text. Log in to wherever your DNS is managed, which is usually your domain registrar, your hosting panel, or a DNS provider, and add a new TXT record at the root of the domain with that exact value. Save it, go back to Search Console, and click Verify. DNS changes can take minutes or a few hours to propagate, so if verification fails immediately, wait and try again later in the day rather than changing the record repeatedly. One common mistake is adding the record to the wrong domain, for example to yourbusiness.com when your site is yourbusiness.ca, so double-check the domain name before you save.</p>
+            <p>For a URL-prefix property, you have more options. The HTML file method asks you to upload a small file Google provides to your site's root folder, which needs file access through your host or a developer. The HTML tag method asks you to paste a short meta tag into the head section of your homepage, which many platforms let you do through a settings field or a header and footer plugin. If Google Analytics or Google Tag Manager is already installed on your site, and the same Google account has edit access to that Analytics or Tag Manager account, you can verify with one click using that existing code. This last route is often the fastest for a business owner who does not have DNS or file access, as long as the accounts line up.</p>
+            <p>Platform notes are worth knowing. On WordPress, Google's own Site Kit plugin can verify the site and show Search Console data inside your WordPress dashboard, which suits owners who prefer to stay in one place. On Shopify, verification usually happens with the HTML tag pasted into the theme's main layout file, and note that Shopify generates a sitemap automatically at yourstore.com/sitemap.xml, which you will use in step 3. On Wix and Squarespace, verification is typically done through a field in the site's SEO or marketing settings where you paste the meta tag, and both platforms generate a sitemap for you. If your site is on a platform you do not fully control, your developer or the platform's help pages will have the exact clicks, but the principle is the same: prove you control the site, then keep the proof in place.</p>
+
+            <h2>Step 3: Submit your sitemap</h2>
+            <p>A sitemap is a file that lists your site's pages and helps Google discover them and understand how they relate. Most platforms generate one automatically. On WordPress with a common SEO plugin, it is usually at yourbusiness.ca/sitemap.xml. On Shopify, Wix, and Squarespace, the sitemap is also generated for you at a standard address. On a custom-built site, your developer will have created one or can add one quickly.</p>
+            <p>In Search Console, open Sitemaps in the sidebar, paste the sitemap address, and click Submit. Google will fetch it and report how many URLs it found. You do not need to resubmit it every time you add a page: Google re-fetches it on its own schedule, and most platforms update it automatically when content changes. Resubmit only if the sitemap address itself changes, for example after a platform migration. If Search Console reports that it could not fetch your sitemap, check that the address loads in a browser, that it is not blocked by a password page or a robots.txt rule, and that it uses the same domain version as your property.</p>
+            <p>Submitting a sitemap does not guarantee that every listed page will be indexed. Google still decides which pages are worth showing, based on quality, uniqueness, and usefulness. What a sitemap does is make sure Google knows the pages exist, which is the necessary first step, and it gives you a report on how many submitted pages actually made it into the index.</p>
+
+            <h2>Step 4: Link Search Console to Google Analytics</h2>
+            <p>Linking the two tools lets you see Search Console data inside Analytics, so search queries sit next to the behaviour of the visitors who arrived through them. In Analytics, go to Admin, then Product links, then Search Console links, and connect the property you just verified. You need to be an owner of the Search Console property and have the right permission in Analytics, which is another reason to set both up under business-controlled accounts from the start.</p>
+            <p>Once linked, Analytics gains a Search Console section with two reports: Queries, which shows the search terms people used, and Google organic search traffic, which shows landing pages and their search performance. The numbers in Analytics will not match Search Console exactly, because the two tools count and attribute things slightly differently, and Search Console data in Analytics is limited to recent months. That is normal. Use Search Console itself as the source of truth for search data, and Analytics for what visitors did after they arrived.</p>
+
+            <h2>Step 5: Set up users and email alerts</h2>
+            <p>Under Settings, then Users and permissions, add the people who need access. Search Console offers three permission levels: Owner, Full, and Restricted. Give Full access to people who work on the site and need to submit sitemaps, request indexing, and view everything. Give Restricted access to people who only need to look at reports, such as a business partner or a marketing advisor. Owners can manage users and settings, so keep the owner list short: the business account and one trusted second person.</p>
+            <p>Make sure email notifications reach someone who actually reads them. Search Console sends alerts for serious issues: a sudden rise in indexing errors, a security problem, or a manual action against the site. These messages go to verified owners, so confirm the notification address is a monitored inbox, not an old address nobody checks. If the only person receiving alerts goes on holiday for two weeks, a security warning can sit unread for two weeks, which is exactly when you want to know about it.</p>
+            <p>While you are here, consider adding your site to Bing Webmaster Tools as well. It can import your Search Console property in a few clicks, and it covers Bing search, which also powers results for several other services. It takes minutes, and it gives you the same kind of direct view into the second-largest search engine.</p>
+
+            <h2>What to look at first</h2>
+            <p>Data starts appearing within a few days of verification, and it only covers the period after setup, so the first visit will look sparse. That is expected. Once a few weeks of data have accumulated, these are the reports worth your time.</p>
+            <p><strong>Performance.</strong> This is the report you will open most often. It shows total clicks, total impressions, average click-through rate, and average position for your pages and queries. Filter by query to see the exact searches bringing people in, and by page to see which pages earn the most clicks. A page with many impressions but few clicks is a page whose title or description is not earning the click, which is often a quick copy fix. A query you had never thought of, bringing steady clicks, is a hint about what customers actually want from you. If you want to grow search traffic, start here, because it tells you what is already working before you spend money chasing new keywords. Our guide to <a href="how-to-increase-website-traffic.html">increasing website traffic</a> builds on exactly this kind of evidence.</p>
+            <p><strong>Page indexing.</strong> This report shows how many of your pages are indexed and how many are not, with reasons for the ones left out. Some reasons are fine: a page deliberately excluded by a noindex tag, or a duplicate page Google chose not to index. Others need action: pages blocked by robots.txt, pages returning server errors, or pages Google crawled but decided not to index because of thin or duplicate content. Work through the errors first, then the warnings, and ignore the deliberate exclusions. If an important page is missing, the fix depends on the reason, which is why this report matters more than any generic "index my site" advice.</p>
+            <p><strong>URL Inspection.</strong> Paste any single URL into the search bar at the top of Search Console and you get that page's verdict: is it indexed, when was it last crawled, and are there any problems? If you just published or updated an important page, you can request indexing here, which asks Google to crawl it sooner rather than waiting for its normal schedule. Use this sparingly, for pages that matter, not for every blog post. It is also the tool to reach for when a page you expect to find in Google is missing: the report will tell you whether Google knows about it at all, and if not, why not.</p>
+            <p><strong>Experience and Core Web Vitals.</strong> These reports summarize how your pages perform for real visitors on phones and desktops: loading speed, responsiveness, and visual stability. You do not need to chase perfect scores, but a page flagged as poor here is worth fixing, because slow, jumpy pages lose visitors and rank worse. Our guide to <a href="why-is-my-website-so-slow.html">why your website is so slow</a> covers the common causes and fixes.</p>
+            <p><strong>Security and Manual Actions.</strong> Check these occasionally, and immediately if you ever receive an alert. A manual action means a human reviewer at Google penalized the site, usually for spammy or manipulative practices, and it can remove pages from search until fixed and reviewed. A security issue means Google found hacked content or malware. Both are rare for a well-run small business site, but finding out from Search Console beats finding out from a customer who tells you Google flagged your site.</p>
+
+            <h2>Common setup problems, and how to fix them</h2>
+            <p><strong>Verification keeps failing.</strong> The most common cause is a DNS record that has not propagated yet, or that was added to the wrong domain or with a typo. Wait a few hours, recheck the record value character by character, and try again. For the HTML tag method, check that the tag is on the homepage Google can actually see: a tag on a staging site, a password-protected page, or a page that redirects will not verify.</p>
+            <p><strong>No data after a week.</strong> First, confirm the property is verified and that you are looking at the right property, because a Domain property and a URL-prefix property for the same site show different data. Second, remember that data only starts from verification day, and that Search Console data lags by two to three days. A brand-new site with little search traffic may also show very little simply because few people have searched for it yet, which is a traffic problem, not a setup problem.</p>
+            <p><strong>A page is not indexed.</strong> Run it through URL Inspection and read the reason before doing anything else. If it says "Discovered, currently not indexed" or "Crawled, currently not indexed," Google knows about the page but chose not to index it, which usually points to thin, duplicate, or low-value content, or to a site with too many similar pages. Improving the page's content, adding internal links to it from your important pages, and making sure it is not accidentally blocked are the fixes that work. Repeatedly requesting indexing for the same unchanged page does not.</p>
+            <p><strong>Traffic suddenly drops.</strong> Before panicking, check the Performance report by date and by page. A drop on one page is a page problem. A drop across the whole site on one date may be a technical issue, a Google update, or a seasonal change in what people search for. Search Console lets you compare date ranges, which is the fastest way to tell whether the drop is real, where it is concentrated, and whether it lines up with a site change you made.</p>
+            <p><strong>You cannot get into a property someone else set up.</strong> If a former developer or agency holds the only owner access, ask them to add your business account as an owner and then transfer primary ownership. If they are unreachable, Google has a verification process for reclaiming a property, but it takes time and proof of ownership, which is why the business-account rule in the first section of this guide matters so much. Get this sorted before you need the data urgently, not after.</p>
+
+            <h2>A simple monthly routine</h2>
+            <p>Search Console rewards a small, regular habit far more than occasional deep dives. Once a month, spend twenty minutes on this list: open Performance and note your top queries and pages, and whether clicks are trending up or down; open Page indexing and fix any new errors; check Security and Manual Actions for anything new; and glance at Core Web Vitals for pages flagged as poor. If you published an important page this month, run it through URL Inspection to confirm it is indexed. That is the whole routine, and it is enough to catch most problems while they are still small.</p>
+            <p>Once a quarter, go a little further: review who has access to the property and remove anyone who no longer works with you, confirm your verification record is still in place after any hosting or platform change, and check that your sitemap is still being fetched successfully. Once a year, confirm the business account that owns the property is still active and that a second owner is still in place, so a single lost password can never lock the business out of its own search data.</p>
+
+            <h2>How Webloped fits in</h2>
+            <p>We are a web design and AI automation company based in Cambridge, Ontario. Every site we build is set up with Search Console and Analytics from day one, verified under an account the client controls, with the sitemap submitted and the two tools linked, so the business owns its search data from the start rather than discovering the gap a year later. Our <a href="../services.html">services page</a> outlines what we do, and our <a href="../pricing.html">pricing page</a> explains how projects are structured in CAD. If your site is already live but Search Console was never set up, or was set up under someone else's account, <a href="../contact.html">send us a message</a> or email <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>. We will get it set up properly and walk you through the first reports, whether or not you hire us for anything else.</p>
+
+            <h2>Frequently asked questions</h2>
+            <h3>Does setting up Google Search Console improve my rankings?</h3>
+            <p>No. Search Console is a reporting and diagnostic tool. It does not change how Google ranks your pages, and verifying your site gives no ranking advantage. Its value is information: it shows you which searches bring visitors, which pages are indexed, and what problems are holding pages back, so the work you do to improve rankings is aimed at real evidence instead of guesswork.</p>
+            <h3>How long does it take before I see data in Search Console?</h3>
+            <p>Verification itself can be immediate or take a few hours while DNS changes propagate. After verification, the first Performance and indexing data usually appears within a few days, and it only covers the period from setup onward, with a lag of two to three days. Give it two to four weeks before judging what the reports say, because a few days of data on a small site will look thin no matter how well the setup went.</p>
+            <h3>Do I still need Search Console if I already have Google Analytics?</h3>
+            <p>Yes, because they measure different halves of the journey. Analytics shows what visitors do after they arrive on your site. Search Console shows how they found you: the searches, the impressions, the clicks, and whether your pages are in Google's index at all. Analytics cannot tell you that a page is not indexed or that Google flagged a security issue. For a complete picture, run both and link them together.</p>
+            <h3>What should I do if my developer set up Search Console under their own account?</h3>
+            <p>Ask them to add a Google account the business controls as an owner, verify it, and then remove their own access once yours is confirmed, or keep them at Full access while they work with you and remove it when the relationship ends. If the developer is unreachable, Google offers a property recovery process, but it takes time and requires proof that you own the site. Sort this out now, while things are calm, rather than during a traffic drop or a security incident when you need the data urgently.</p>
+          </div>
+        </div>
+      </section>
+    </article>
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project - we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="../contact.html">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/img/logo-w.png" alt="" width="44" height="44">
+          <p>Web design &amp; AI automation.<br>Cambridge, Ontario, Canada.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="index.html" aria-current="page">Blog</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
+          <a href="tel:+16476947001">+1 (647) 694-7001</a>
+          <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a 30-min call</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Webloped. All rights reserved.</span>
+        <span>Design preview - not the live site.</span>
+      </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
+    </div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
