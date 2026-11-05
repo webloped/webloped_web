@@ -18,8 +18,12 @@
   body{margin:0;font-family:"Cormorant Garamond",Georgia,serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
   a{color:var(--maroon)}
   .progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:60}
-  .petal{position:fixed;top:-40px;z-index:5;pointer-events:none;opacity:.7;animation:fall linear infinite}
+  .fall-item{position:fixed;top:-40px;z-index:5;pointer-events:none;opacity:.9;animation:fall linear infinite,sway 3s ease-in-out infinite alternate}
   @keyframes fall{to{transform:translateY(110vh) rotate(340deg)}}
+  @keyframes sway{from{margin-left:-14px}to{margin-left:14px}}
+  .fall-petal{width:16px;height:22px;border-radius:100% 4px 100% 4px;background:linear-gradient(135deg,#f9a8c0,#b3123f);box-shadow:0 0 8px rgba(255,120,160,.35)}
+  .fall-flower{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe082,#ff9d00 60%,#e65100);box-shadow:0 0 0 3px rgba(255,157,0,.3),0 0 12px rgba(255,157,0,.5)}
+  .fall-star{width:18px;height:18px;background:linear-gradient(135deg,#fff3c4,#d4af37);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 6px rgba(212,175,55,.9))}
   /* Opening cover, like an envelope opening */
   .cover{position:fixed;inset:0;z-index:50;background:linear-gradient(rgba(61,10,22,.72),rgba(61,10,22,.82)),url(images/royal-bg.jpg) center/cover;color:#f7ecd2;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .9s ease,visibility .9s;padding:24px}
   .cover.gone{opacity:0;visibility:hidden}
@@ -92,7 +96,7 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{opacity:1;transform:none;transition:none}
-    .petal,.scroll-hint{animation:none}
+    .fall-item,.scroll-hint{animation:none}
   }
 </style>
 </head>
@@ -263,17 +267,16 @@
   }
   window.addEventListener('scroll', onScroll, {passive: true});
   onScroll();
-  // Falling petals, slow and soft
-  var symbols = ['\2726','\273F','\2022'];
-  for(var i = 0; i < 14; i++){
+  // Falling festive shapes, rose petals, marigolds and gold stars, gently swaying
+  var types = ['fall-petal','fall-flower','fall-star'];
+  for(var i = 0; i < 18; i++){
     var s = document.createElement('span');
-    s.className = 'petal';
-    s.textContent = symbols[i % symbols.length];
+    s.className = 'fall-item ' + types[i % types.length];
     s.style.left = (Math.random() * 100) + 'vw';
-    s.style.fontSize = (12 + Math.random() * 16) + 'px';
-    s.style.color = i % 2 ? '#d4af37' : '#e89bb0';
-    s.style.animationDuration = (11 + Math.random() * 10) + 's';
-    s.style.animationDelay = (Math.random() * 12) + 's';
+    var sz = 14 + Math.random() * 10;
+    s.style.width = sz + 'px'; s.style.height = sz + 'px';
+    s.style.animationDuration = (11 + Math.random() * 10) + 's, ' + (2.5 + Math.random() * 2) + 's';
+    s.style.animationDelay = (Math.random() * 12) + 's, 0s';
     document.body.appendChild(s);
   }
   // Countdown to the first function, 9 December 2026, 3:30 PM India time
