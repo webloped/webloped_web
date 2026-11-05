@@ -66,9 +66,19 @@
   .music-btn{position:fixed;right:18px;bottom:18px;z-index:40;background:#fff;border:1px solid #e8d9a8;border-radius:999px;padding:12px 18px;font-size:1rem;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.15)}
   footer{padding:26px;text-align:center;color:var(--muted);font-size:1rem}
   @media (max-width:760px){
+    .event{padding:56px 16px}
     .event-inner{grid-template-columns:1fr;gap:26px}
     .event:nth-child(odd) .event-text,.event:nth-child(odd) .event-media{order:initial}
     .cover .frame{padding:36px 20px}
+    header.hero{padding:64px 18px 48px}
+    .intro{padding:56px 18px;font-size:1.3rem}
+    .countdown{gap:10px}
+    .countdown div{min-width:64px;padding:10px 10px}
+    .countdown b{font-size:1.5rem}
+    .poster{border-width:4px;border-radius:14px}
+    .directions,.share-btn,.open-btn{width:100%;text-align:center}
+    .music-btn{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));padding:13px 18px}
+    .finale{padding:80px 18px}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
