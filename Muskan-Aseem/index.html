@@ -24,6 +24,9 @@
   .cover{position:fixed;inset:0;z-index:50;background:linear-gradient(rgba(61,10,22,.72),rgba(61,10,22,.82)),url(images/royal-bg.jpg) center/cover;color:#f7ecd2;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .9s ease,visibility .9s;padding:24px}
   .cover.gone{opacity:0;visibility:hidden}
   .cover .frame{border:1px solid rgba(212,175,55,.8);outline:1px solid rgba(212,175,55,.35);outline-offset:10px;padding:48px 28px;max-width:520px}
+  .name-line{display:block}
+  .name-with{display:block;font-family:"Great Vibes",cursive;font-size:.48em;line-height:1.1;color:#ffe9a8}
+  .cap-a{font-family:"Cinzel",Georgia,serif;font-weight:700;font-size:.82em;letter-spacing:.02em}
   .cover h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:clamp(3.2rem,13vw,5.2rem);margin:.2em 0;line-height:1.15;color:#fff3c4;text-shadow:0 3px 18px rgba(0,0,0,.6)}
   .cover p{font-size:1.25rem;letter-spacing:.12em;text-transform:uppercase}
   .open-btn{margin-top:28px;background:var(--gold2);border:0;color:#3d0a16;font-family:"Playfair Display",Georgia,serif;font-size:1.1rem;padding:14px 30px;border-radius:999px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
@@ -100,7 +103,7 @@
 <div class="cover" id="cover">
   <div class="frame">
     <p>You are cordially invited</p>
-    <h1>Muskan<br><i>with</i> Aseem</h1>
+    <h1><span class="name-line">Muskan</span><span class="name-with">with</span><span class="name-line"><span class="cap-a">A</span>seem</span></h1>
     <p>9 to 12 December 2026 &middot; Amritsar</p>
     <button class="open-btn" id="openBtn" type="button">Open Invitation &#10022;</button>
   </div>
@@ -111,7 +114,7 @@
 
 <header class="hero">
   <p class="eyebrow">Marriage Function Programme</p>
-  <h1>Muskan<br><i>with</i> Aseem</h1>
+  <h1><span class="name-line">Muskan</span><span class="name-with">with</span><span class="name-line"><span class="cap-a">A</span>seem</span></h1>
   <div class="gold-rule"></div>
   <p class="dates">9 to 12 December 2026 &middot; Amritsar, Punjab</p>
   <p>Four days of celebration, in order, from the first bangle to the baraat.</p>
@@ -222,7 +225,7 @@
 
   <section class="finale reveal">
     <p>Muskan &middot; Daughter of Smt. Romy and Sh. Rajesh Sharma</p>
-    <h2>Muskan <i>with</i> Aseem</h2>
+    <h2><span class="name-line">Muskan</span><span class="name-with">with</span><span class="name-line"><span class="cap-a">A</span>seem</span></h2>
     <p>Your presence is the greatest gift. We cannot wait to celebrate with you in Amritsar.</p>
     <button class="share-btn" id="shareBtn" type="button">Share this invitation</button>
     <p id="shareNote" style="font-size:1.1rem;margin-top:16px"></p>
