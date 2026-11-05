@@ -21,14 +21,20 @@
   .petal{position:fixed;top:-40px;z-index:5;pointer-events:none;opacity:.7;animation:fall linear infinite}
   @keyframes fall{to{transform:translateY(110vh) rotate(340deg)}}
   /* Opening cover, like an envelope opening */
-  .cover{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 30%,#7a1a2e,#3d0a16 70%);color:#f7ecd2;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .9s ease,visibility .9s;padding:24px}
+  .cover{position:fixed;inset:0;z-index:50;background:linear-gradient(rgba(61,10,22,.72),rgba(61,10,22,.82)),url(images/royal-bg.jpg) center/cover;color:#f7ecd2;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .9s ease,visibility .9s;padding:24px}
   .cover.gone{opacity:0;visibility:hidden}
   .cover .frame{border:1px solid rgba(212,175,55,.8);outline:1px solid rgba(212,175,55,.35);outline-offset:10px;padding:48px 28px;max-width:520px}
   .cover h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.4rem,9vw,4rem);margin:.2em 0;line-height:1.05}
   .cover p{font-size:1.25rem;letter-spacing:.12em;text-transform:uppercase}
   .open-btn{margin-top:28px;background:var(--gold2);border:0;color:#3d0a16;font-family:"Playfair Display",Georgia,serif;font-size:1.1rem;padding:14px 30px;border-radius:999px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
   .open-btn:hover{filter:brightness(1.08)}
-  header.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 22px 60px;background:radial-gradient(circle at 50% 20%,#fff8e0,#f7ecd2 55%,#f0dcb0);position:relative}
+  header.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 22px 60px;background:linear-gradient(rgba(61,10,22,.68),rgba(61,10,22,.78)),url(images/royal-bg.jpg) center/cover;position:relative;color:#f7ecd2}
+  header.hero .eyebrow{color:#f3d27a}
+  header.hero h1{color:#f7ecd2;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+  header.hero .dates{color:#f3d27a}
+  header.hero p{color:#f7ecd2}
+  header.hero .countdown div{background:rgba(255,255,255,.92)}
+  header.hero .scroll-hint{color:#f3d27a}
   .hero .eyebrow{letter-spacing:.25em;text-transform:uppercase;color:var(--maroon);font-size:.95rem}
   .hero h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(3rem,12vw,6.5rem);line-height:1;margin:.25em 0;color:var(--maroon)}
   .hero h1 i{font-weight:500}
@@ -53,13 +59,13 @@
   .meta{font-size:1.3rem;line-height:1.5}
   .meta b{color:var(--maroon)}
   .hosts{font-size:1.15rem;line-height:1.6;color:var(--muted)}
-  .poster{border-radius:18px;overflow:hidden;box-shadow:0 24px 50px rgba(91,18,32,.22);border:6px solid #fff;will-change:transform}
+  .poster{border-radius:170px 170px 18px 18px;overflow:hidden;box-shadow:0 24px 50px rgba(91,18,32,.28);border:3px solid var(--gold);outline:3px solid #fff;outline-offset:4px;will-change:transform}
   .poster img{width:100%;height:auto;display:block}
   .directions{display:inline-block;margin-top:18px;background:var(--maroon);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:1.15rem}
   .directions:hover{background:var(--maroon2)}
   .reveal{opacity:0;transform:translateY(36px) scale(.985);transition:opacity .9s ease,transform .9s ease}
   .reveal.visible{opacity:1;transform:none}
-  .finale{background:radial-gradient(circle at 50% 30%,#7a1a2e,#3d0a16 75%);color:#f7ecd2;text-align:center;padding:110px 22px}
+  .finale{background:linear-gradient(rgba(61,10,22,.75),rgba(61,10,22,.85)),url(images/royal-bg.jpg) center/cover;color:#f7ecd2;text-align:center;padding:110px 22px}
   .finale h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(2.4rem,9vw,4.2rem);margin:.2em 0}
   .finale p{font-size:1.4rem;line-height:1.6;max-width:640px;margin:0 auto}
   .share-btn{margin-top:28px;background:var(--gold2);border:0;color:#3d0a16;font-family:"Playfair Display",Georgia,serif;font-size:1.1rem;padding:14px 28px;border-radius:999px;cursor:pointer}
@@ -100,8 +106,8 @@
   </div>
 </div>
 
-<audio id="music" src="music.mp3" loop preload="none"></audio>
-<button class="music-btn" id="musicBtn" type="button" aria-label="Play or pause music">&#9834; Music: off</button>
+<audio id="music" src="music.mp3" loop preload="auto"></audio>
+<button class="music-btn" id="musicBtn" type="button" aria-label="Play or pause music">&#9834; Music: on</button>
 
 <header class="hero">
   <p class="eyebrow">Marriage Function Programme</p>
@@ -229,6 +235,8 @@
   // Opening cover
   document.getElementById('openBtn').addEventListener('click', function(){
     document.getElementById('cover').classList.add('gone');
+    var m = document.getElementById('music');
+    m.play().then(function(){ document.getElementById('musicBtn').innerHTML = '&#9834; Music: on'; }).catch(function(){});
   });
   // Reveal on scroll, like a film unfolding section by section
   var io = new IntersectionObserver(function(entries){
