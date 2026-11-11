@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to set up a business email address: a practical guide for Canadian small businesses | Webloped Blog</title>
+  <meta name="description" content="How to set up a business email address for your Canadian small business: choose the right address format, pick between hosting email, Google Workspace, and Microsoft 365, set up MX, SPF, DKIM, and DMARC, and avoid the mistakes that lose mail.">
+  <link rel="canonical" href="https://webloped.ca/blog/how-to-set-up-a-business-email-address-canada.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="How to set up a business email address: a practical guide for Canadian small businesses">
+  <meta property="og:description" content="How to set up a business email address for your Canadian small business: choose the right format, pick the right provider, set up authentication, and avoid the mistakes that lose mail.">
+  <meta property="og:url" content="https://webloped.ca/blog/how-to-set-up-a-business-email-address-canada.html">
+  <meta property="og:image" content="https://webloped.ca/assets/img/og-card.jpg">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"How to set up a business email address: a practical guide for Canadian small businesses","description":"How to set up a business email address for your Canadian small business: choose the right address format, pick between hosting email, Google Workspace, and Microsoft 365, set up MX, SPF, DKIM, and DMARC, and avoid the mistakes that lose mail.","datePublished":"2026-11-11","author":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"publisher":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"mainEntityOfPage":"https://webloped.ca/blog/how-to-set-up-a-business-email-address-canada.html"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html" aria-label="Webloped - home">
+        <img src="../assets/img/logo-w.png" alt="" width="40" height="40">
+        <span class="brand-name">Webloped</span>
+      </a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="index.html" aria-current="page">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="../contact.html">Get a project quote</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+          <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <article>
+      <section class="page-hero on-dark" aria-labelledby="post-title">
+        <div class="wrap">
+          <nav class="case-crumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="index.html" aria-current="page">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Business email address</span>
+          </nav>
+          <div class="section-head">
+            <p class="eyebrow">Webloped blog · 19 min read</p>
+            <h1 id="post-title">How to set up a business email address: a practical guide for Canadian small businesses</h1>
+            <p class="section-lede">A business email address is yourname@yourbusiness.ca instead of yourbusiness@gmail.com. Here is how to set one up properly: the right address format, the three hosting options, the DNS records that keep your mail out of spam, and the mistakes that lose messages.</p>
+          </div>
+        </div>
+      </section>
+      <section class="section" aria-label="Article">
+        <div class="wrap">
+          <div class="prose">
+            <p>Every invoice, quote, appointment confirmation, and customer question your business sends travels by email. Yet plenty of Canadian small businesses still run that entire operation from a free Gmail or Hotmail address, sometimes years after launching a proper website. The result is predictable: customers quietly wonder whether the business is real, quotes land in spam, and when an employee leaves, the business loses access to its own correspondence.</p>
+            <p>Setting up a business email address is not hard, but it has a few steps that are easy to get wrong, and getting them wrong means lost mail. This guide walks through the whole job in order: what you need before you start, how to choose your addresses, the three realistic ways to host your mail, the DNS records that prove your mail is legitimate, and the mistakes that cost small businesses the most.</p>
+
+            <h2>The short answer</h2>
+            <p>A business email address is an email address that uses your own domain name after the @ sign, for example jane@yourbusiness.ca or info@yourbusiness.ca, instead of a free address like yourbusiness@gmail.com. To set one up, you need two things: a registered domain name and an email provider to host your mail.</p>
+            <p>The setup itself has five steps: register or confirm your domain, create the mailboxes you need, point your domain's MX records at your email provider, publish SPF, DKIM, and DMARC records so other servers trust your mail, and connect your computers and phones. Done carefully, the whole job takes an afternoon for a small business, and most of that time is waiting for DNS changes to take effect.</p>
+
+            <h2>Why a business email address matters</h2>
+            <p>It is tempting to treat this as cosmetic. It is not. A domain-based email address changes four practical things about how your business operates:</p>
+            <h3>1. Customers trust it more</h3>
+            <p>A quote arriving from sarah@cambridgeplumbing.ca reads as a business. The same quote from cambridgeplumbing88@gmail.com reads as a side project. Customers may never say this out loud, but first impressions form in seconds, and an email address is often the first thing a customer sees from you. For trades, consultants, and anyone asking a customer to pay a deposit before work starts, that trust is worth real money.</p>
+            <h3>2. Your mail is more likely to reach the inbox</h3>
+            <p>Email providers filter aggressively. Mail sent from a free address, especially in bulk or with attachments and links, is more likely to be flagged. A domain with proper authentication records (SPF, DKIM, and DMARC, covered below) tells Gmail, Outlook, and other providers that your mail is really from you. It does not guarantee inbox delivery, but it removes one of the most common reasons legitimate business mail ends up in spam.</p>
+            <h3>3. You own the address, not the employee</h3>
+            <p>When your bookkeeper uses her personal Gmail for invoices and then leaves, your business history walks out the door with her. With domain email, the business owns every mailbox. When someone leaves, you change the password or close the account, and the mail stays with the business. The same applies to role addresses like info@ or sales@: the address survives staff changes because it belongs to a job, not a person.</p>
+            <h3>4. It keeps your website and your brand consistent</h3>
+            <p>Your website, your email, your invoices, and your business cards should all carry the same domain. That consistency makes your business easier to find, easier to remember, and harder to impersonate. It also helps with local search: a consistent business name and domain across your website, your Google Business Profile, and your email signature reinforces the identity Google associates with your business. Our <a href="how-to-do-local-seo-for-small-business.html">local SEO guide</a> explains how that consistency helps you show up for searches near you.</p>
+
+            <h2>What you need before you start</h2>
+            <p>Before you create a single mailbox, gather these four things. Skipping this step is how most setups go sideways.</p>
+            <ul>
+              <li><strong>A registered domain name.</strong> This is usually the same domain your website uses, for example yourbusiness.ca. If you do not have one yet, our guide on <a href="how-to-choose-a-domain-name-canada.html">how to choose a domain name in Canada</a> walks through the choice, including the Canadian presence requirements for .ca domains.</li>
+              <li><strong>Access to where your DNS is managed.</strong> DNS is the settings panel that controls where your domain points. It usually lives with your domain registrar or your web host. You will need to log in there to add records, so find those credentials now rather than halfway through the setup.</li>
+              <li><strong>A list of the addresses you want.</strong> Decide who gets a mailbox and which shared addresses you need before you start creating accounts. Changing the plan mid-setup is how duplicate mailboxes and forgotten addresses happen.</li>
+              <li><strong>A plan for existing mail.</strong> If your domain is already receiving email somewhere, or your business currently runs on a personal address, decide what happens to the old mail before you change anything. Old messages, contacts, and calendar entries may need to be moved, and that takes planning.</li>
+            </ul>
+
+            <h2>Step 1: Choose your email addresses</h2>
+            <p>Pick a format and stick to it. For a small team, first names are simple and friendly: jane@yourbusiness.ca, mike@yourbusiness.ca. For a larger team, or one where staff turnover is common, first name plus last initial (jane.s@) or first.last@ keeps addresses unique and professional. The exact format matters less than consistency: a customer should be able to guess the pattern, and a new hire should slot into it without a discussion.</p>
+            <p>Alongside personal mailboxes, set up role addresses for functions rather than people:</p>
+            <ul>
+              <li><strong>info@ or hello@</strong> for general enquiries, the address that appears on your website contact page.</li>
+              <li><strong>sales@ or quotes@</strong> for new business and pricing requests.</li>
+              <li><strong>support@ or service@</strong> for existing customers with problems or questions.</li>
+              <li><strong>billing@ or accounts@</strong> for invoices, payments, and receipts.</li>
+              <li><strong>bookings@</strong> for appointment or reservation requests, if your business takes them.</li>
+            </ul>
+            <p>Role addresses are usually set up as shared mailboxes or as forwarders that deliver to one or more real people. Either way, two rules apply. First, someone specific must be responsible for checking each one: an info@ address that nobody monitors is worse than no info@ address at all, because customers assume their message was received. Second, give each staff member their own mailbox rather than sharing one login. Shared passwords are a security risk, and individual accounts are far easier to secure, audit, and remove when someone leaves.</p>
+            <p>One more decision: how many mailboxes do you actually need? Every mailbox on Google Workspace or Microsoft 365 costs a monthly fee per user, so a five-person business does not need fifteen mailboxes. Start with one mailbox per person plus the role addresses you will genuinely monitor, and add more as the business grows.</p>
+
+            <h2>Step 2: Pick where your email lives</h2>
+            <p>For most Canadian small businesses, there are three realistic options. They differ in cost, in what else you get, and in how much administration they need.</p>
+            <h3>Option 1: Email included with your web hosting</h3>
+            <p>Most traditional web hosting plans include email hosting for your domain at no extra charge beyond the hosting fee. You create mailboxes in the hosting control panel, usually cPanel, and you get browser-based webmail plus support for Outlook, Apple Mail, Thunderbird, and phone mail apps using IMAP. Our guide on <a href="how-much-does-web-hosting-cost-in-canada.html">how much web hosting costs in Canada</a> covers what these plans typically cost: shared hosting usually runs from a few dollars to about $20 per month.</p>
+            <p>This is the cheapest option and it is perfectly fine for a one- or two-person business that mainly needs reliable mailboxes. The trade-offs are real, though: storage is usually limited, spam filtering is basic, there is no shared calendar or document storage, and if your hosting goes down, your email goes down with it. It is also the option with the least help when something breaks: support is generalist hosting support, not email specialists.</p>
+            <h3>Option 2: Google Workspace</h3>
+            <p>Google Workspace gives you Gmail using your own domain, along with Google Drive, Docs, Sheets, Calendar, and Meet. You get a familiar interface your staff probably already know, strong spam filtering, generous storage, and shared calendars and documents that make a small team work smoothly. It suits a business that lives in Chrome, uses Android phones, and is happy working in Google's tools.</p>
+            <p>It is a paid service, billed per user per month, and every mailbox costs money, including role addresses unless you set those up as free aliases or groups. It is also a US company: Google operates Canadian data infrastructure, but data location and legal jurisdiction are not the same thing, and US law can in some circumstances reach data held by US companies even when it is stored outside the United States. For most small businesses that is a footnote, but if your clients include government or healthcare organizations, ask what their contracts require.</p>
+            <h3>Option 3: Microsoft 365</h3>
+            <p>Microsoft 365 provides Exchange-based email on your domain, along with Outlook, Word, Excel, Teams, and OneDrive. It is the natural fit for a business built around Outlook desktop, Excel spreadsheets, and Word documents, or for any business whose clients and suppliers work in Microsoft formats. Its admin controls are the strongest of the three options, which matters once you have more than a handful of staff.</p>
+            <p>Like Google Workspace, it is billed per user per month, and the same note about US jurisdiction applies: Microsoft is a US company with Canadian data centres. For most small businesses, the honest way to choose between Google and Microsoft is to look at what your staff already use. If everyone lives in Gmail and Google Docs, Workspace is the smoother move. If everyone lives in Outlook and Excel, Microsoft 365 is. Switching later is possible but annoying, so it is worth choosing deliberately now.</p>
+            <p>One point that surprises people: your website and your email do not need to be hosted by the same company. Your website can live on one hosting plan while your email runs on Google Workspace or Microsoft 365. DNS records are what connect your domain to each service, so the two can be split, moved, or changed independently. Our guide on <a href="domain-name-vs-web-hosting-canada.html">domain names vs web hosting</a> explains how the pieces fit together.</p>
+
+            <h2>Step 3: Set it up, in the right order</h2>
+            <p>The order matters. The single biggest mistake in business email setup is changing DNS records before the new mailboxes exist, which sends incoming mail to a provider that is not ready to receive it. Follow this sequence:</p>
+            <ol>
+              <li><strong>Register your domain, or confirm the one you already have.</strong> If your website already uses yourbusiness.ca, that is the domain your email should use. Keep the domain registration in the business's name, with an admin email the business controls, so you can prove ownership and renew it.</li>
+              <li><strong>Create your email accounts.</strong> Set up a mailbox for each person and add role addresses as shared mailboxes, aliases, or forwarders, depending on your provider. On hosting email this happens in the control panel; on Google Workspace and Microsoft 365 it happens in the admin console. Do this before touching DNS.</li>
+              <li><strong>Point your domain at the email provider.</strong> Your provider will give you a set of MX records to add where your DNS is managed. MX records tell the rest of the internet where mail for your domain should be delivered. If your hosting company manages your DNS, this may happen automatically; with Google Workspace or Microsoft 365, you will normally add the records yourself. MX changes can take minutes or several hours to take effect, so do this when you can afford a short delay, not five minutes before a big quote goes out.</li>
+              <li><strong>Publish your authentication records.</strong> Add the SPF, DKIM, and DMARC records your provider gives you. These are the records that prove your mail is really from you, and they are covered in detail in the next section.</li>
+              <li><strong>Connect your computers and phones, then test.</strong> Add the account to Outlook, Apple Mail, or your phone's mail app using IMAP, which keeps mail synced across all your devices. Then send test messages both ways: from the new address to a personal Gmail and Outlook address, and back again. Check that replies arrive, attachments work, and nothing lands in spam. A mailbox is not ready for business use until sending, receiving, and authentication have all been tested.</li>
+            </ol>
+
+            <h2>SPF, DKIM, and DMARC in plain English</h2>
+            <p>These three acronyms are the reason most business email setups fail silently. Here is what each one does, in one sentence each:</p>
+            <ul>
+              <li><strong>SPF (Sender Policy Framework)</strong> is a public list of the servers allowed to send mail for your domain. When Gmail receives a message claiming to be from your business, it checks the SPF record to see whether the sending server is on the list.</li>
+              <li><strong>DKIM (DomainKeys Identified Mail)</strong> is a digital signature on every message you send. Your provider signs outgoing mail with a private key, and receiving servers verify the signature using a public key published in your DNS. If the message was altered in transit, the signature breaks.</li>
+              <li><strong>DMARC (Domain-based Message Authentication, Reporting, and Conformance)</strong> is the policy that tells receiving servers what to do when a message fails SPF or DKIM: let it through anyway, send it to spam, or reject it outright. It also sends you reports about who is trying to send mail as your domain, which is how you spot impersonation attempts.</li>
+            </ul>
+            <p>Your email provider generates the correct values for all three; your job is to publish them in your DNS and verify they are working. Free checkers such as Google's Admin Toolbox or MXToolbox can confirm each record from the outside. Two practical tips: add every service that sends mail on your behalf to your SPF record, including your website's contact form, your invoicing software, and your email marketing tool, or their mail will fail authentication. And start DMARC with a monitoring policy (p=none) so you can see the reports before you tighten it to quarantine or reject, which is the setting that actually blocks impersonators.</p>
+            <p>This matters more every year. Major providers now treat unauthenticated mail from business domains with suspicion, and a missing DMARC record is one of the most common reasons legitimate mail from small businesses lands in spam. If you take one technical step from this guide, make it this one.</p>
+
+            <h2>Common mistakes that lose mail</h2>
+            <p>Most business email problems trace back to a short list of avoidable errors. Check your setup against these before you call the job done:</p>
+            <ul>
+              <li><strong>Changing MX records before the mailboxes exist.</strong> Mail sent during the gap bounces or vanishes. Create the mailboxes first, then change the records.</li>
+              <li><strong>Skipping SPF, DKIM, and DMARC.</strong> The mailboxes work, so the setup feels finished, but without authentication a growing share of your mail quietly lands in spam folders you never see.</li>
+              <li><strong>Using a personal address for business mail.</strong> A Gmail address on your invoices and website undermines trust, and the business loses its correspondence when the person behind the address moves on.</li>
+              <li><strong>Sharing one login across the team.</strong> One password for info@, shared by four people, cannot be revoked for one person, cannot be audited, and becomes the weakest link in your security. Give everyone their own account.</li>
+              <li><strong>No multi-factor authentication.</strong> Email is the key to your business: password resets for your bank, your website, your suppliers, and your social accounts all flow through it. Statistics Canada reported that about one in six Canadian businesses experienced a cyber security incident in 2023, and a compromised mailbox is one of the most common entry points. Turn on multi-factor authentication for every mailbox, including the role addresses, and use a recovery email and phone number the business controls.</li>
+              <li><strong>Forgetting the website's mail.</strong> Your contact form, your online store's order confirmations, and your booking system all send email too, and they need to be authenticated under your domain. A contact form that sends from a generic address, or from an address with no SPF record, is a classic source of lost enquiries. If your website collects email addresses, our guide on <a href="how-to-collect-email-addresses-on-your-website.html">collecting email addresses on your website</a> covers the consent and storage side of that job.</li>
+              <li><strong>No backup or exit plan.</strong> Know how you would get your mail out if you changed providers. Export mailboxes periodically, keep a copy of your DNS records, and make sure more than one person in the business knows where the admin accounts live. The person who set up the first mailbox will not always be around.</li>
+            </ul>
+
+            <h2>Moving from a personal email address</h2>
+            <p>Most small businesses are not starting from zero: they are moving from a personal Gmail or Hotmail address that has carried the business for years. That move needs a little care, because your old address is printed on invoices, business cards, and supplier records.</p>
+            <p>First, set up the new mailboxes and confirm they send and receive properly before you tell anyone about them. Second, migrate the old mail: Google Workspace and Microsoft 365 both have migration tools that can pull messages from an old Gmail account, and hosting providers can usually import mailboxes too. Decide what is worth keeping; a decade of newsletters is not, but customer correspondence, supplier quotes, and warranty records are.</p>
+            <p>Third, run both addresses in parallel for at least a month. Put the new address on your website, your email signature, and your invoices, and set the old address to forward to the new one with an automatic reply telling people about the change. Most of your regular contacts will switch within weeks; the stragglers are usually suppliers and customers who only email twice a year. After a few months, you can retire the old address, but keep the forwarder running for a year if it costs nothing: a single lost quote in month eleven is worth more than the small effort of leaving a forward in place.</p>
+
+            <h2>What does a business email address cost in Canada?</h2>
+            <p>Costs depend on which option you choose and how many mailboxes you need:</p>
+            <ul>
+              <li><strong>Email with web hosting:</strong> usually included in a shared hosting plan, which runs from a few dollars to about $20 per month. No per-mailbox fee, but limited storage and basic spam filtering. Best for one- or two-person businesses on a tight budget.</li>
+              <li><strong>Google Workspace:</strong> billed per user per month, roughly $8 to $20 CAD per user per month for the entry-level and standard business plans, depending on the plan and current pricing. Includes Gmail on your domain plus Drive, Docs, Calendar, and Meet.</li>
+              <li><strong>Microsoft 365:</strong> billed per user per month, in a similar range to Google Workspace for the comparable business plans. Includes Outlook and Exchange plus Word, Excel, Teams, and OneDrive.</li>
+              <li><strong>Your domain:</strong> a .ca domain typically costs about $15 to $25 per year to renew, on top of whichever email option you choose.</li>
+            </ul>
+            <p>Those prices change, so check the provider's Canadian pricing page before you commit, and remember to compare in Canadian dollars: several providers show US prices by default. For a five-person business on a standard plan, expect roughly $50 to $100 CAD per month all in. That is a small cost against what a single lost quote or a single impersonation scam can cost a business.</p>
+            <p>One cost that is easy to miss: role addresses. On Google Workspace and Microsoft 365, a role address set up as a full mailbox costs the same as a person's mailbox. Setting role addresses up as aliases or shared mailboxes, which most plans include at no extra charge, keeps the bill in line. Ask your provider which option is free on your plan before you create them.</p>
+
+            <h2>Canadian legal notes: CASL and privacy</h2>
+            <p>Two Canadian laws touch business email, and both are simpler than they sound. <strong>CASL</strong>, Canada's anti-spam legislation, applies to commercial electronic messages: marketing emails, newsletters, and promotional messages sent to people in Canada. It requires consent and a working unsubscribe mechanism. It does not apply to ordinary one-to-one business correspondence, like replying to a customer's question or sending a quote they asked for. If your business also sends marketing email, our guide on <a href="how-to-start-email-marketing-for-small-business.html">how to start email marketing for small business</a> covers CASL compliance in detail.</p>
+            <p><strong>PIPEDA</strong>, Canada's federal privacy law, applies to personal information your business collects in the course of commercial activity, and business email is full of it: customer names, addresses, phone numbers, and payment details. In practice that means three things for email: limit who can access each mailbox, use multi-factor authentication, and have a plan for what happens when someone leaves. If your business handles health information or operates in a province with its own privacy law, such as Alberta, British Columbia, or Quebec, check whether additional rules apply.</p>
+            <p>Neither law requires a specific email provider, and neither is a reason to delay setting up proper business email. If anything, both are reasons to do it: a business-owned mailbox with proper access controls is easier to keep compliant than a tangle of personal accounts nobody can audit.</p>
+
+            <h2>How Webloped fits in</h2>
+            <p>We are a web design and AI automation company based in Cambridge, Ontario. Setting up business email is part of the foundation we build for clients: the right domain, mailboxes that match how the business actually works, authentication records published and verified, and contact forms that send from the business's own domain so enquiries stop disappearing. Our <a href="../services.html">services page</a> outlines what we do, and our <a href="../pricing.html">pricing page</a> explains how projects are structured. If you are setting up email alongside a new website, or untangling a setup that has never quite worked, <a href="../contact.html">send us a message</a> and we will give you a straight answer on what your setup needs. You can also reach us at <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>.</p>
+
+            <h2>Frequently asked questions</h2>
+            <h3>Do I need a domain name before I can set up a business email address?</h3>
+            <p>Yes. A business email address uses your domain after the @ sign, so you need to own the domain first. If you already have a website, you already own the domain you need. If you do not, register one before you start: a .ca domain costs about $15 to $25 per year, and our guide on <a href="how-to-choose-a-domain-name-canada.html">how to choose a domain name in Canada</a> explains what to look for.</p>
+            <h3>Can I use my domain with free Gmail?</h3>
+            <p>Not properly. A free Gmail account can be set to send mail that looks like it comes from your domain, but it is a workaround, not a real business mailbox: the mail is still stored in a personal account the business does not own, authentication is fragile, and deliverability suffers. Google Workspace is the paid version of Gmail that gives you a real mailbox on your own domain, with proper authentication and admin controls. If the budget is tight, email included with web hosting is the better free or cheap option.</p>
+            <h3>How much does a business email address cost in Canada?</h3>
+            <p>Email included with web hosting is usually bundled into a hosting plan of a few dollars to about $20 per month. Google Workspace and Microsoft 365 charge per user per month, roughly $8 to $20 CAD per user per month for entry-level and standard business plans, with prices changing over time. A .ca domain adds about $15 to $25 per year. For a small team, the total is usually well under $100 CAD per month.</p>
+            <h3>What happens to my email if I change web hosts?</h3>
+            <p>Nothing has to happen to it. Your website and your email can live with different providers, because DNS records connect your domain to each service separately. If your email is hosted with your web host and you move the website, move the email first or switch email to Google Workspace or Microsoft 365, then move the website. Changing the website's hosting without touching the MX records leaves your mail exactly where it was.</p>
+          </div>
+        </div>
+      </section>
+    </article>
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project - we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="../contact.html">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/img/logo-w.png" alt="" width="44" height="44">
+          <p>Web design &amp; AI automation.<br>Cambridge, Ontario, Canada.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="index.html" aria-current="page">Blog</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
+          <a href="tel:+16476947001">+1 (647) 694-7001</a>
+          <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a 30-min call</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Webloped. All rights reserved.</span>
+        <span>Design preview - not the live site.</span>
+      </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
+    </div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
