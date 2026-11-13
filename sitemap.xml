@@ -28,7 +28,7 @@
   <url>
     <loc>https://webloped.ca/blog/</loc>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -99,6 +99,12 @@
   <url>
     <loc>https://webloped.ca/blog/how-to-show-up-in-ai-search.html</loc>
     <lastmod>2026-10-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://webloped.ca/blog/how-to-choose-a-colour-scheme-for-your-website.html</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
