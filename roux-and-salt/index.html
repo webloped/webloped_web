@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roux &amp; Salt | Exceptional Food. Thoughtfully Crafted. Catering &amp; Private Dining in Durham Region &amp; the GTA</title>
+<meta name="description" content="Roux &amp; Salt is a premium culinary brand by Executive Chef Renier Schoeman, offering bespoke catering, private dining, chef-prepared meals, artisan baked goods and specialty food products across Pickering, Ajax, Whitby, Durham Region and the Greater Toronto Area. Crafted with Love.">
+<meta name="keywords" content="catering Durham Region, private dining Pickering, corporate catering Ajax, chef prepared meals Whitby, artisan bakery GTA, Roux and Salt">
+<meta property="og:title" content="Roux &amp; Salt | Exceptional Food. Thoughtfully Crafted.">
+<meta property="og:description" content="Bespoke catering, private dining and chef-prepared gourmet food by Executive Chef Renier Schoeman. Serving Pickering, Ajax, Whitby, Durham Region and the GTA.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/hero.jpg">
+<meta name="theme-color" content="#FAF7F1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23B08D57' d='M12 1.8c.9 3.2-2.1 4.9-2.1 7.4a2.1 2.1 0 0 0 4.2 0c0-1-.5-1.9-.5-1.9s2.7 1.8 2.7 4.9a4.3 4.3 0 1 1-8.6 0C7.7 7.9 10.9 5.6 12 1.8z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "Roux & Salt",
+  "slogan": "Crafted with Love",
+  "description": "Premium culinary brand offering bespoke catering, private dining, chef-prepared meals, artisan baked goods and specialty food products.",
+  "email": "contact@rouxandsalt.com",
+  "founder": { "@type": "Person", "name": "Renier Schoeman", "jobTitle": "Executive Chef" },
+  "areaServed": ["Pickering", "Ajax", "Whitby", "Durham Region", "Greater Toronto Area"],
+  "servesCuisine": ["Contemporary European", "Fine Dining"],
+  "priceRange": "$$$"
+}
+</script>
+<style>
+:root{
+  --ivory:#FAF7F1;
+  --cream:#F3EDE1;
+  --stone:#E7DECF;
+  --beige:#D8C9AE;
+  --gold:#B08D57;
+  --gold-dark:#96754A;
+  --charcoal:#23211E;
+  --ink:#171614;
+  --muted:#7C7263;
+  --line:rgba(176,141,87,.35);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;color:var(--charcoal);background:var(--ivory);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:#fff}
+
+/* ---------- Header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s ease,box-shadow .4s ease,padding .4s ease;padding:22px 0}
+header.scrolled{background:rgba(250,247,241,.96);box-shadow:0 1px 0 var(--line);padding:12px 0;backdrop-filter:blur(8px)}
+.header-inner{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;transition:color .4s ease}
+header.scrolled .logo{color:var(--charcoal)}
+.logo svg{width:26px;height:26px;flex:none}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:var(--serif);font-size:1.45rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.logo-tag{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+nav.main-nav{display:flex;align-items:center;gap:34px}
+nav.main-nav a{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;position:relative;padding:4px 0;transition:color .4s ease}
+header.scrolled nav.main-nav a{color:var(--charcoal)}
+nav.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
+nav.main-nav a:hover::after{width:100%}
+.btn{display:inline-block;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 32px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;transition:all .35s ease;text-align:center}
+.btn:hover{background:var(--gold);color:#fff}
+.btn-solid{background:var(--gold);color:#fff}
+.btn-solid:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
+.btn-light{border-color:rgba(255,255,255,.85);color:#fff}
+.btn-light:hover{background:#fff;color:var(--charcoal);border-color:#fff}
+.nav-cta{padding:11px 22px}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:110}
+.menu-toggle span{display:block;width:26px;height:2px;background:#fff;margin:6px 0;transition:all .35s ease}
+header.scrolled .menu-toggle span{background:var(--charcoal)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover no-repeat;animation:heroZoom 24s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,22,20,.55) 0%,rgba(23,22,20,.35) 45%,rgba(23,22,20,.62) 100%)}
+.hero-content{position:relative;z-index:2;max-width:880px;padding:140px 28px 90px}
+.eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.hero .eyebrow{color:#E3CDA3}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,7vw,5.2rem);line-height:1.08;letter-spacing:.01em}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero-sub{max-width:640px;margin:26px auto 0;font-size:1.08rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,.92)}
+.hero-ctas{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.hero-scroll::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(180deg,var(--gold),transparent);margin:10px auto 0}
+
+/* ---------- Sections ---------- */
+section{padding:110px 0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.section-head{max-width:720px;margin-bottom:56px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-num{font-size:.72rem;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.section-head.center .section-num{justify-content:center}
+.section-num::after{content:"";width:52px;height:1px;background:var(--gold)}
+.section-head.center .section-num::before{content:"";width:52px;height:1px;background:var(--gold)}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,4.5vw,3.2rem);line-height:1.15;color:var(--ink)}
+h2 em{font-style:italic;font-weight:400;color:var(--gold-dark)}
+.lede{margin-top:18px;font-size:1.05rem;color:#4A453C;max-width:640px}
+.section-head.center .lede{margin-left:auto;margin-right:auto}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-bg{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+<style>
+/* ---------- Welcome pillars ---------- */
+.welcome{background:var(--ivory);padding-bottom:40px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pillar{padding:44px 34px;text-align:center}
+.pillar + .pillar{border-left:1px solid var(--line)}
+.pillar svg{width:30px;height:30px;margin:0 auto 16px;color:var(--gold)}
+.pillar h3{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:10px}
+.pillar p{font-size:.95rem;color:#5A544A;max-width:300px;margin:0 auto}
+.service-area{margin-top:40px;text-align:center;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.service-area strong{color:var(--gold-dark);font-weight:500}
+
+/* ---------- Story ---------- */
+.story{background:var(--cream)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.split-img{position:relative}
+.split-img img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.split-img::after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.55);pointer-events:none}
+.split-text p{margin-bottom:18px;color:#4A453C;font-size:1.02rem}
+.credentials{margin:28px 0 6px;border-top:1px solid var(--line)}
+.credentials li{list-style:none;padding:13px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:.92rem}
+.credentials li span:first-child{letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;color:var(--gold-dark);font-weight:500;padding-top:3px;white-space:nowrap}
+.signature{font-family:var(--serif);font-style:italic;font-size:1.7rem;color:var(--ink);margin-top:26px}
+.signature small{display:block;font-family:var(--sans);font-style:normal;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* ---------- Catering ---------- */
+.catering{background:var(--ivory)}
+.catering-feature{margin-bottom:64px}
+.catering-feature img{width:100%;aspect-ratio:16/7;object-fit:cover}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border:1px solid var(--stone);padding:38px 32px;transition:transform .4s ease,box-shadow .4s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(35,33,30,.09)}
+.card .card-num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--gold);margin-bottom:14px}
+.card h3{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:var(--ink);margin-bottom:12px;line-height:1.25}
+.card p{font-size:.95rem;color:#5A544A}
+
+/* Sample menus */
+.menus{margin-top:80px}
+.menus-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.menu-card{background:var(--charcoal);color:#EDE6D8;padding:48px 42px;position:relative}
+.menu-card::before{content:"";position:absolute;inset:12px;border:1px solid rgba(176,141,87,.4);pointer-events:none}
+.menu-card h3{font-family:var(--serif);font-size:1.7rem;font-weight:500;color:#fff;text-align:center;margin-bottom:6px}
+.menu-card .menu-sub{text-align:center;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:30px}
+.menu-course{margin-bottom:24px;text-align:center}
+.menu-course h4{font-size:.72rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#C9B48A;margin-bottom:8px}
+.menu-course p{font-family:var(--serif);font-size:1.12rem;font-style:italic;color:#F3EDE1;line-height:1.55}
+.menu-note{margin-top:26px;text-align:center;font-size:.88rem;color:var(--muted)}
+.menu-note a{color:var(--gold-dark);border-bottom:1px solid var(--gold)}
+
+/* Inquiry form */
+.inquiry{margin-top:80px;background:var(--cream);border:1px solid var(--stone);padding:56px}
+.inquiry-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px}
+.inquiry-intro h3{font-family:var(--serif);font-size:2rem;font-weight:500;color:var(--ink);margin-bottom:14px;line-height:1.2}
+.inquiry-intro p{color:#5A544A;font-size:.98rem;margin-bottom:16px}
+.inquiry-intro .direct{font-size:.9rem;color:var(--muted)}
+.inquiry-intro .direct a{color:var(--gold-dark);border-bottom:1px solid var(--gold)}
+form.inquiry-form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:flex;flex-direction:column}
+.field.full{grid-column:1/-1}
+.field label{font-size:.7rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px}
+.field input,.field select,.field textarea{font-family:var(--sans);font-weight:300;font-size:1rem;color:var(--charcoal);background:#fff;border:1px solid var(--stone);padding:13px 15px;outline:none;transition:border-color .3s ease;border-radius:0;-webkit-appearance:none;appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:110px}
+.form-note{grid-column:1/-1;font-size:.82rem;color:var(--muted)}
+.form-btn{grid-column:1/-1;justify-self:start}
+
+/* ---------- At Home ---------- */
+.athome{background:var(--charcoal);color:#EDE6D8}
+.athome h2{color:#fff}
+.athome .lede{color:#CFC6B4}
+.athome .split-img::after{border-color:rgba(176,141,87,.5)}
+.offerings{list-style:none;margin-top:8px}
+.offerings li{padding:16px 0;border-bottom:1px solid rgba(237,230,216,.14);display:flex;gap:18px;align-items:baseline}
+.offerings li:first-child{border-top:1px solid rgba(237,230,216,.14)}
+.offerings .off-num{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem;flex:none}
+.offerings h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:#fff;display:inline}
+.offerings p{color:#B9B0A0;font-size:.94rem;margin-top:2px}
+.coming-soon{margin-top:30px;display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(176,141,87,.55);padding:12px 20px;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:#E3CDA3}
+.coming-soon::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+
+/* ---------- Gallery ---------- */
+.gallery{background:var(--ivory)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.g-item{position:relative;overflow:hidden;cursor:pointer}
+.g-item img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .8s ease}
+.g-item:hover img{transform:scale(1.06)}
+.g-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 22px 18px;background:linear-gradient(180deg,transparent,rgba(23,22,20,.72));color:#fff;font-family:var(--serif);font-style:italic;font-size:1.08rem;opacity:0;transition:opacity .45s ease}
+.g-item:hover figcaption{opacity:1}
+
+/* ---------- Vision ---------- */
+.vision{background:var(--cream);text-align:center}
+.vision .wrap{max-width:820px}
+.vision p{color:#4A453C;font-size:1.05rem;margin-bottom:18px}
+.vision-points{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:34px 0 40px}
+.vision-points span{border:1px solid var(--line);padding:10px 20px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dark);background:#fff}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--ink);color:#EDE6D8;text-align:center}
+.contact h2{color:#fff}
+.contact .lede{color:#B9B0A0;margin-left:auto;margin-right:auto}
+.contact-email{display:inline-block;margin-top:8px;font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.3rem);font-style:italic;color:#E3CDA3;border-bottom:1px solid rgba(176,141,87,.5);padding-bottom:4px;transition:color .3s ease}
+.contact-email:hover{color:#fff}
+.contact-meta{margin-top:38px;display:flex;justify-content:center;gap:44px;flex-wrap:wrap;font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;color:#9A917F}
+.socials{margin-top:34px;display:flex;justify-content:center;gap:16px}
+.socials a{width:44px;height:44px;border:1px solid rgba(237,230,216,.3);display:flex;align-items:center;justify-content:center;transition:all .35s ease}
+.socials a:hover{border-color:var(--gold);background:rgba(176,141,87,.15)}
+.socials svg{width:18px;height:18px;color:#EDE6D8}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9A917F;padding:56px 0 40px}
+.footer-inner{max-width:1240px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap}
+.footer-brand .logo{color:#fff}
+.footer-brand p{margin-top:14px;font-size:.88rem;max-width:300px}
+.footer-nav{display:flex;gap:28px;flex-wrap:wrap}
+.footer-nav a{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;transition:color .3s ease}
+.footer-nav a:hover{color:#E3CDA3}
+.footer-bottom{max-width:1240px;margin:44px auto 0;padding:24px 28px 0;border-top:1px solid rgba(237,230,216,.1);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem}
+.footer-bottom a{color:#C9B48A}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  section{padding:76px 0}
+  nav.main-nav{position:fixed;inset:0;background:rgba(23,22,20,.97);flex-direction:column;justify-content:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .4s ease}
+  nav.main-nav.open{opacity:1;pointer-events:auto}
+  nav.main-nav a{color:#fff !important;font-size:1.05rem}
+  .menu-toggle{display:block}
+  .menu-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-toggle.active span:nth-child(2){opacity:0}
+  .menu-toggle.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .menu-toggle.active span{background:#fff !important}
+  .split{grid-template-columns:1fr;gap:44px}
+  .pillars{grid-template-columns:1fr}
+  .pillar + .pillar{border-left:none;border-top:1px solid var(--line)}
+  .menus-grid{grid-template-columns:1fr}
+  .inquiry{padding:36px 24px}
+  .inquiry-grid{grid-template-columns:1fr;gap:36px}
+  form.inquiry-form{grid-template-columns:1fr}
+  .catering-feature img{aspect-ratio:4/3}
+}
+@media (max-width:560px){
+  .cards{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%}
+  .logo-name{font-size:1.15rem}
+  .contact-meta{gap:18px}
+}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Roux and Salt home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#B08D57" d="M12 1.8c.9 3.2-2.1 4.9-2.1 7.4a2.1 2.1 0 0 0 4.2 0c0-1-.5-1.9-.5-1.9s2.7 1.8 2.7 4.9a4.3 4.3 0 1 1-8.6 0C7.7 7.9 10.9 5.6 12 1.8z"/></svg>
+      <span class="logo-text">
+        <span class="logo-name">Roux &amp; Salt</span>
+        <span class="logo-tag">Crafted with Love</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="#story">Our Story</a>
+      <a href="#catering">Catering &amp; Events</a>
+      <a href="#at-home">At Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#inquiry" class="btn btn-solid nav-cta">Request a Quote</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Roux &amp; Salt &middot; Crafted with Love</p>
+    <h1>Exceptional Food.<br><em>Thoughtfully Crafted.</em></h1>
+    <p class="hero-sub">An expression of culinary craftsmanship, where exceptional ingredients, refined techniques, and a genuine love for food come together.</p>
+    <div class="hero-ctas">
+      <a href="#catering" class="btn btn-solid">Explore Catering</a>
+      <a href="#at-home" class="btn btn-light">Roux &amp; Salt at Home</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Discover</div>
+</section>
+
+<section class="welcome">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="section-num">Welcome</p>
+      <h2>A premium culinary destination, <em>rooted in craftsmanship</em></h2>
+      <p class="lede">Roux &amp; Salt brings five-star culinary expertise to bespoke catering, private dining, chef-prepared meals and artisan food products, refined yet approachable, exceptional yet comforting.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 2v20M12 2c-2 3-5 4-5 8a5 5 0 0 0 10 0c0-4-3-5-5-8z"/><path d="M5 22h14"/></svg>
+        <h3>Craftsmanship</h3>
+        <p>Every dish is composed with precision, technique and an uncompromising eye for detail.</p>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 21c-5-3.5-8-6.8-8-11a8 8 0 0 1 16 0c0 4.2-3 7.5-8 11z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>Exceptional Ingredients</h3>
+        <p>Seasonal, thoughtfully sourced ingredients, treated with respect and allowed to speak.</p>
+      </div>
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 20.5S3 15 3 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 9 2.8C21 15 12 20.5 12 20.5z"/></svg>
+        <h3>Genuine Hospitality</h3>
+        <p>Warm, personal service that makes every gathering feel considered and memorable.</p>
+      </div>
+    </div>
+    <p class="service-area reveal">Serving <strong>Pickering &middot; Ajax &middot; Whitby &middot; Durham Region &middot; Greater Toronto Area</strong></p>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-img reveal">
+        <img src="images/story.jpg" alt="Chef hands plating a fine dining dish with tweezers" loading="lazy">
+      </div>
+      <div class="split-text reveal">
+        <p class="section-num">01 &middot; Our Story</p>
+        <h2>Meet the chef behind <em>Roux &amp; Salt</em></h2>
+        <p style="margin-top:20px">Roux &amp; Salt is the creation of <strong>Renier Schoeman</strong>, an Executive Chef whose career has been shaped in some of the world's finest kitchens, with international luxury hospitality experience and five-star hotel expertise at its heart.</p>
+        <p>His philosophy is simple: food should be exceptional and comforting at once. Refined technique, quality ingredients and genuine creativity come together in dishes that are as memorable as they are approachable, crafted for the moments that matter, from intimate dinners at home to celebrations shared with hundreds.</p>
+        <p>Every menu is personal. Every plate is a small act of hospitality. That is what "Crafted with Love" means at Roux &amp; Salt.</p>
+        <ul class="credentials">
+          <li><span>Founder</span><span>Renier Schoeman, Executive Chef</span></li>
+          <li><span>Experience</span><span>International luxury hospitality &amp; five-star hotels</span></li>
+          <li><span>Philosophy</span><span>Refined yet approachable cuisine</span></li>
+          <li><span>Based in</span><span>Durham Region, serving the GTA</span></li>
+        </ul>
+        <p class="signature">Renier Schoeman<small>Founder &amp; Executive Chef</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="catering" id="catering">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-num">02 &middot; Catering &amp; Events</p>
+      <h2>Occasions, <em>beautifully catered</em></h2>
+      <p class="lede">From boardroom lunches to candlelit private dinners, every Roux &amp; Salt event is bespoke. Menus are designed around your guests, your setting and the season, then executed with five-star precision.</p>
+    </div>
+    <div class="catering-feature reveal">
+      <img src="images/catering.jpg" alt="Elegant high tea and canape spread with tiered stand, pastries and finger sandwiches" loading="lazy">
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <p class="card-num">No. 01</p>
+        <h3>Corporate Catering</h3>
+        <p>Polished catering for meetings, launches and business functions, from working lunches to full reception service, delivered seamlessly to your office or venue.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-num">No. 02</p>
+        <h3>Private Dining</h3>
+        <p>An intimate chef-led dining experience in your home or chosen setting. Multi-course tasting menus, plated with intention, served with warmth.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-num">No. 03</p>
+        <h3>High Tea &amp; Gatherings</h3>
+        <p>Elegant afternoon teas and refined gatherings, with delicate pastries, finger sandwiches, scones and fine teas presented in classic style.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-num">No. 04</p>
+        <h3>Canap&eacute;s &amp; Hors d'oeuvres</h3>
+        <p>Bite-sized creations for receptions and cocktail occasions, designed to be as beautiful as they are delicious, and effortless for guests to enjoy.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-num">No. 05</p>
+        <h3>Family-Style Celebrations</h3>
+        <p>Generous shared platters for birthdays, anniversaries and family milestones. Abundant, comforting food that brings everyone to the table.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-num">No. 06</p>
+        <h3>Seasonal &amp; Holiday</h3>
+        <p>Festive menus for the holidays and special seasons, from elegant Christmas gatherings to summer garden celebrations, crafted around the best of the moment.</p>
+      </div>
+    </div>
+
+    <div class="menus">
+      <div class="section-head center reveal">
+        <p class="section-num">Sample Menus</p>
+        <h2>A taste of <em>what we create</em></h2>
+        <p class="lede">Two examples from recent occasions. Every Roux &amp; Salt menu is written for your event, your guests and your budget.</p>
+      </div>
+      <div class="menus-grid">
+        <div class="menu-card reveal">
+          <h3>Corporate Luncheon</h3>
+          <p class="menu-sub">Sample Menu</p>
+          <div class="menu-course">
+            <h4>To Begin</h4>
+            <p>Heirloom tomato &amp; burrata, basil oil, aged balsamic</p>
+          </div>
+          <div class="menu-course">
+            <h4>Mains</h4>
+            <p>Herb-roasted chicken supreme, seasonal vegetables<br>Cedar-plank salmon, citrus beurre blanc</p>
+          </div>
+          <div class="menu-course">
+            <h4>Sides</h4>
+            <p>Truffle potato gratin<br>Charred broccolini, almond &amp; lemon</p>
+          </div>
+          <div class="menu-course">
+            <h4>To Finish</h4>
+            <p>Vanilla bean panna cotta, macerated berries<br>Artisan breads &amp; cultured butter throughout</p>
+          </div>
+        </div>
+        <div class="menu-card reveal">
+          <h3>Private Dining</h3>
+          <p class="menu-sub">Sample Tasting Menu</p>
+          <div class="menu-course">
+            <h4>Amuse</h4>
+            <p>Seared scallop, cauliflower velout&eacute;, caviar</p>
+          </div>
+          <div class="menu-course">
+            <h4>First</h4>
+            <p>Yellowfin tuna crudo, yuzu, avocado, finger lime</p>
+          </div>
+          <div class="menu-course">
+            <h4>Second</h4>
+            <p>Wild mushroom risotto, parmesan, black truffle</p>
+          </div>
+          <div class="menu-course">
+            <h4>Main</h4>
+            <p>Beef fillet, pomme pur&eacute;e, glazed shallots, red wine jus</p>
+          </div>
+          <div class="menu-course">
+            <h4>Dessert</h4>
+            <p>Dark chocolate fondant, salted caramel, gold leaf</p>
+          </div>
+        </div>
+      </div>
+      <p class="menu-note reveal">Menus change with the seasons and are tailored to dietary needs. <a href="#inquiry">Request a custom quotation</a> for your occasion.</p>
+    </div>
+
+    <div class="inquiry reveal" id="inquiry">
+      <div class="inquiry-grid">
+        <div class="inquiry-intro">
+          <p class="section-num">Request a Quote</p>
+          <h3>Tell us about your occasion</h3>
+          <p>Share a few details and we will reply with a bespoke menu proposal and quotation. The more we know about your event, the better we can craft it.</p>
+          <p class="direct">Prefer email? Write to us directly at <a href="mailto:contact@rouxandsalt.com">contact@rouxandsalt.com</a></p>
+        </div>
+        <form class="inquiry-form" id="inquiryForm" novalidate>
+          <div class="field">
+            <label for="f-name">Your Name *</label>
+            <input id="f-name" name="name" type="text" placeholder="Full name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email *</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="f-type">Inquiry Type *</label>
+            <select id="f-type" name="type" required>
+              <option value="">Select an option</option>
+              <option>Corporate Catering</option>
+              <option>Private Dining</option>
+              <option>High Tea / Celebration</option>
+              <option>Canap&eacute;s &amp; Reception</option>
+              <option>Family-Style Event</option>
+              <option>Roux &amp; Salt at Home</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Event Date</label>
+            <input id="f-date" name="date" type="date">
+          </div>
+          <div class="field">
+            <label for="f-guests">Number of Guests</label>
+            <input id="f-guests" name="guests" type="number" min="1" placeholder="e.g. 40">
+          </div>
+          <div class="field full">
+            <label for="f-message">Tell Us More</label>
+            <textarea id="f-message" name="message" placeholder="Venue, occasion, favourite dishes, dietary needs, anything that helps us craft your menu..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-solid form-btn">Send Inquiry</button>
+          <p class="form-note">Submitting opens your email app with your inquiry addressed to contact@rouxandsalt.com. We typically reply within one business day.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="athome" id="at-home">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-text reveal">
+        <p class="section-num">03 &middot; Roux &amp; Salt at Home</p>
+        <h2>Chef-prepared, <em>for your table</em></h2>
+        <p class="lede" style="margin-bottom:30px">The Roux &amp; Salt kitchen, brought home. Everyday gourmet offerings prepared by our chefs, ready for your family table, your weekend guests, or a quiet evening done properly.</p>
+        <ul class="offerings">
+          <li>
+            <span class="off-num">i.</span>
+            <div>
+              <h3>Family-Style Prepared Meals</h3>
+              <p>Complete chef-prepared dishes, ready to heat and serve, made fresh in small batches.</p>
+            </div>
+          </li>
+          <li>
+            <span class="off-num">ii.</span>
+            <div>
+              <h3>Artisan Breads &amp; Baked Goods</h3>
+              <p>Slow-fermented sourdoughs, croissants and pastries, baked fresh with traditional technique.</p>
+            </div>
+          </li>
+          <li>
+            <span class="off-num">iii.</span>
+            <div>
+              <h3>Signature Sauces &amp; Preserves</h3>
+              <p>Our own sauces, condiments and preserves, jarred in small batches to elevate everyday cooking.</p>
+            </div>
+          </li>
+          <li>
+            <span class="off-num">iv.</span>
+            <div>
+              <h3>Gourmet Desserts &amp; Pastries</h3>
+              <p>Refined patisserie for celebrations and sweet endings, from fondants to celebration cakes.</p>
+            </div>
+          </li>
+          <li>
+            <span class="off-num">v.</span>
+            <div>
+              <h3>Seasonal Specialties</h3>
+              <p>Limited creations that follow the seasons, from holiday hampers to summer preserves.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="coming-soon">Online ordering, collection &amp; delivery coming soon</p>
+      </div>
+      <div class="split-img reveal">
+        <img src="images/athome.jpg" alt="Artisan sourdough loaves, croissants and a fig tart on a stone counter" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="section-num">04 &middot; Culinary Gallery</p>
+      <h2>From the <em>Roux &amp; Salt kitchen</em></h2>
+      <p class="lede">A glimpse of the plates, pastries and presentations that define our craft. Precision, authenticity and attention to detail in every frame.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="g-item reveal">
+        <img src="images/hero.jpg" alt="Seared scallops with micro herbs on a ceramic plate" loading="lazy">
+        <figcaption>Seared scallops, herb velout&eacute;</figcaption>
+      </figure>
+      <figure class="g-item reveal">
+        <img src="images/gallery-dessert.jpg" alt="Dark chocolate dessert dome with gold leaf" loading="lazy">
+        <figcaption>Chocolate &amp; gold leaf fondant</figcaption>
+      </figure>
+      <figure class="g-item reveal">
+        <img src="images/gallery-private.jpg" alt="Candlelit private dining table with plated courses" loading="lazy">
+        <figcaption>Private dining, candlelit</figcaption>
+      </figure>
+      <figure class="g-item reveal">
+        <img src="images/gallery-family.jpg" alt="Family style roast dinner spread with candles" loading="lazy">
+        <figcaption>Family-style celebrations</figcaption>
+      </figure>
+      <figure class="g-item reveal">
+        <img src="images/gallery-sauces.jpg" alt="Jars of artisan sauces and preserves" loading="lazy">
+        <figcaption>Signature sauces &amp; preserves</figcaption>
+      </figure>
+      <figure class="g-item reveal">
+        <img src="images/catering.jpg" alt="High tea tiered stand with pastries and sandwiches" loading="lazy">
+        <figcaption>High tea, the Roux &amp; Salt way</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="vision" id="vision">
+  <div class="wrap reveal">
+    <p class="section-num" style="justify-content:center">05 &middot; The Vision</p>
+    <h2>Growing toward a <em>caf&eacute; &amp; gourmet destination</em></h2>
+    <p style="margin-top:20px">Roux &amp; Salt is evolving from a chef-led culinary business into a recognizable gourmet food and hospitality brand. Our long-term vision is a caf&eacute; and gourmet retail concept, a place where fresh food, artisan products and an elevated culinary experience meet.</p>
+    <p>This website grows with us. An online shop, gift cards and caf&eacute; information are all on the way, built on the same foundation of craftsmanship and hospitality that defines our food today.</p>
+    <div class="vision-points">
+      <span>Online Shop</span>
+      <span>Gift Cards</span>
+      <span>The Caf&eacute;</span>
+      <span>Gourmet Retail</span>
+    </div>
+    <a href="#contact" class="btn">Follow the Journey</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <p class="section-num" style="justify-content:center">06 &middot; Contact &amp; Inquiries</p>
+    <h2>Let us craft <em>your next occasion</em></h2>
+    <p class="lede">For catering quotations, private dining and general inquiries, we would love to hear from you.</p>
+    <a class="contact-email" href="mailto:contact@rouxandsalt.com">contact@rouxandsalt.com</a>
+    <div class="contact-meta">
+      <span>Pickering</span>
+      <span>Ajax</span>
+      <span>Whitby</span>
+      <span>Durham Region</span>
+      <span>Greater Toronto Area</span>
+    </div>
+    <div class="socials">
+      <a href="#" aria-label="Roux and Salt on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" aria-label="Roux and Salt on Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V3h-2.6C11.7 3 11 4.8 11 6.5v2H8.5V12H11v9h3v-9h2.4l.4-3.5H14z"/></svg>
+      </a>
+      <a href="mailto:contact@rouxandsalt.com" aria-label="Email Roux and Salt">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="#top" aria-label="Roux and Salt home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#B08D57" d="M12 1.8c.9 3.2-2.1 4.9-2.1 7.4a2.1 2.1 0 0 0 4.2 0c0-1-.5-1.9-.5-1.9s2.7 1.8 2.7 4.9a4.3 4.3 0 1 1-8.6 0C7.7 7.9 10.9 5.6 12 1.8z"/></svg>
+        <span class="logo-text">
+          <span class="logo-name">Roux &amp; Salt</span>
+          <span class="logo-tag">Crafted with Love</span>
+        </span>
+      </a>
+      <p>Exceptional food, thoughtfully crafted. Bespoke catering, private dining and chef-prepared gourmet food across Durham Region and the GTA.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#story">Our Story</a>
+      <a href="#catering">Catering &amp; Events</a>
+      <a href="#at-home">At Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#inquiry">Request a Quote</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year">2026</span> Roux &amp; Salt. All rights reserved.</span>
+    <span>Website by <a href="https://webloped.ca" target="_blank" rel="noopener">Webloped</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Header scroll state
+  var header = document.getElementById('siteHeader');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 60); }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Mobile menu
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('mainNav');
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // Inquiry form -> email
+  var form = document.getElementById('inquiryForm');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var type = document.getElementById('f-type').value;
+    if (!name || !email || !type) {
+      alert('Please add your name, email and inquiry type so we can reply to you.');
+      return;
+    }
+    var phone = document.getElementById('f-phone').value.trim();
+    var date = document.getElementById('f-date').value;
+    var guests = document.getElementById('f-guests').value.trim();
+    var message = document.getElementById('f-message').value.trim();
+    var subject = 'Roux & Salt Inquiry: ' + type;
+    var lines = [
+      'Name: ' + name,
+      'Email: ' + email,
+      phone ? 'Phone: ' + phone : null,
+      'Inquiry type: ' + type,
+      date ? 'Event date: ' + date : null,
+      guests ? 'Number of guests: ' + guests : null,
+      '',
+      message || '(No additional details provided)'
+    ].filter(function(x){ return x !== null; });
+    window.location.href = 'mailto:contact@rouxandsalt.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
