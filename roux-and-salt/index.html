@@ -66,13 +66,13 @@ nav.main-nav a{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;col
 header.scrolled nav.main-nav a{color:var(--charcoal)}
 nav.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
 nav.main-nav a:hover::after{width:100%}
-.btn{display:inline-block;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 32px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;transition:all .35s ease;text-align:center}
+.btn{display:inline-block;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 32px;border:1px solid var(--gold);border-radius:4px;color:var(--gold);background:transparent;cursor:pointer;transition:all .35s ease;text-align:center}
 .btn:hover{background:var(--gold);color:#fff}
 .btn-solid{background:var(--gold);color:#fff}
 .btn-solid:hover{background:var(--gold-dark);border-color:var(--gold-dark)}
 .btn-light{border-color:rgba(255,255,255,.85);color:#fff}
 .btn-light:hover{background:#fff;color:var(--charcoal);border-color:#fff}
-.nav-cta{padding:11px 22px}
+.nav-cta{padding:13px 28px}
 .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:110}
 .menu-toggle span{display:block;width:26px;height:2px;background:#fff;margin:6px 0;transition:all .35s ease}
 header.scrolled .menu-toggle span{background:var(--charcoal)}
@@ -238,7 +238,7 @@ footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9
 @media (max-width:1150px){
   nav.main-nav{gap:22px}
   nav.main-nav a{font-size:.74rem;letter-spacing:.14em}
-  .nav-cta{padding:10px 16px}
+  .nav-cta{padding:11px 22px}
 }
 @media (max-width:1024px){
   .cards{grid-template-columns:repeat(2,1fr)}
@@ -251,6 +251,7 @@ footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9
   header.menu-open{backdrop-filter:none;background:transparent;box-shadow:none}
   header.menu-open .logo{color:#fff;position:relative;z-index:110}
   nav.main-nav a{color:#fff !important;font-size:1.05rem}
+  nav.main-nav .nav-cta{padding:15px 36px}
   .menu-toggle{display:block}
   .menu-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
   .menu-toggle.active span:nth-child(2){opacity:0}
