@@ -248,6 +248,8 @@ footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9
   section{padding:76px 0}
   nav.main-nav{position:fixed;inset:0;background:rgba(23,22,20,.97);flex-direction:column;justify-content:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .4s ease}
   nav.main-nav.open{opacity:1;pointer-events:auto}
+  header.menu-open{backdrop-filter:none;background:transparent;box-shadow:none}
+  header.menu-open .logo{color:#fff;position:relative;z-index:110}
   nav.main-nav a{color:#fff !important;font-size:1.05rem}
   .menu-toggle{display:block}
   .menu-toggle.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
@@ -689,6 +691,7 @@ footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9
   toggle.addEventListener('click', function(){
     var open = nav.classList.toggle('open');
     toggle.classList.toggle('active', open);
+    header.classList.toggle('menu-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     document.body.style.overflow = open ? 'hidden' : '';
   });
@@ -696,6 +699,7 @@ footer{background:var(--ink);border-top:1px solid rgba(237,230,216,.12);color:#9
     a.addEventListener('click', function(){
       nav.classList.remove('open');
       toggle.classList.remove('active');
+      header.classList.remove('menu-open');
       toggle.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     });
