@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>What are Core Web Vitals? How to check and improve them | Webloped Blog</title>
+  <meta name="description" content="What are Core Web Vitals? LCP, INP, and CLS explained in plain English for Canadian small businesses: the good scores to aim for, how to check yours for free, and the fixes that actually improve them.">
+  <link rel="canonical" href="https://webloped.ca/blog/what-are-core-web-vitals.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Webloped">
+  <meta property="og:title" content="What are Core Web Vitals? How to check and improve them">
+  <meta property="og:description" content="LCP, INP, and CLS explained in plain English: the good scores to aim for, how to check yours for free, and the fixes that actually improve them.">
+  <meta property="og:url" content="https://webloped.ca/blog/what-are-core-web-vitals.html">
+  <meta property="og:image" content="https://webloped.ca/assets/img/og-card.jpg">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"What are Core Web Vitals? How to check and improve them","description":"What are Core Web Vitals? LCP, INP, and CLS explained in plain English for Canadian small businesses: the good scores to aim for, how to check yours for free, and the fixes that actually improve them.","datePublished":"2026-11-23","author":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"publisher":{"@type":"Organization","name":"Webloped","url":"https://webloped.ca"},"mainEntityOfPage":"https://webloped.ca/blog/what-are-core-web-vitals.html"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What are Core Web Vitals?","acceptedAnswer":{"@type":"Answer","text":"Core Web Vitals are three measurements Google uses to describe how a page feels to real visitors: Largest Contentful Paint (LCP) for loading speed, Interaction to Next Paint (INP) for responsiveness to taps and clicks, and Cumulative Layout Shift (CLS) for visual stability. A page passes when all three are in the good range for at least 75 percent of real visits."}},
+    {"@type":"Question","name":"What are good Core Web Vitals scores?","acceptedAnswer":{"@type":"Answer","text":"Good means LCP of 2.5 seconds or less, INP of 200 milliseconds or less, and CLS of 0.1 or less, measured at the 75th percentile of real Chrome visits. LCP over 4 seconds, INP over 500 milliseconds, and CLS over 0.25 are rated poor. Check mobile first, because that is where most local customers visit."}},
+    {"@type":"Question","name":"How do I check my Core Web Vitals for free?","acceptedAnswer":{"@type":"Answer","text":"Use Google PageSpeed Insights: paste in a page address and read the field data section, which shows real visitor data from the last 28 days. Then open the Core Web Vitals report in Google Search Console to see every page grouped as good, needs improvement, or poor. Both tools are free."}},
+    {"@type":"Question","name":"Do Core Web Vitals affect my Google rankings?","acceptedAnswer":{"@type":"Answer","text":"Yes, but modestly. Core Web Vitals are part of Google page experience signals, so they can help one relevant page edge out another. They do not outweigh relevant content, a complete Google Business Profile, and real reviews. Treat them first as a customer experience problem, with some search upside, and never let anyone promise rankings from scores alone."}}
+  ]}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html" aria-label="Webloped - home">
+        <img src="../assets/img/logo-w.png" alt="" width="40" height="40">
+        <span class="brand-name">Webloped</span>
+      </a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../pricing.html">Pricing</a></li>
+          <li><a href="index.html" aria-current="page">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href="../contact.html">Get a project quote</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+          <path d="M1 1h20M1 8h20M1 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <article>
+      <section class="page-hero on-dark" aria-labelledby="post-title">
+        <div class="wrap">
+          <nav class="case-crumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="index.html" aria-current="page">Blog</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Website speed</span>
+          </nav>
+          <div class="section-head">
+            <p class="eyebrow">Webloped blog · 13 min read</p>
+            <h1 id="post-title">What are Core Web Vitals? How to check and improve them</h1>
+            <p class="section-lede">Google keeps telling you to fix your Core Web Vitals, but nobody explains what they are in plain English. They are three simple measurements of how your page feels to a real visitor: how fast the main content shows up, how quickly the page responds when someone taps, and how much the layout jumps around while loading. This guide explains each one, the scores to aim for, how to check yours for free, and the fixes that actually work on a small business website.</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <div class="prose">
+            <h2>The short answer</h2>
+            <p>What are Core Web Vitals? They are three performance measurements Google uses to describe how a web page feels to real visitors:</p>
+            <ul>
+              <li><strong>Largest Contentful Paint (LCP):</strong> how fast the main content appears. Good is <strong>2.5 seconds or less</strong>.</li>
+              <li><strong>Interaction to Next Paint (INP):</strong> how fast the page visibly responds to taps, clicks, and key presses. Good is <strong>200 milliseconds or less</strong>.</li>
+              <li><strong>Cumulative Layout Shift (CLS):</strong> how much visible content moves unexpectedly while the page loads. Good is <strong>0.1 or less</strong>.</li>
+            </ul>
+            <p>A page passes when all three are in the good range for at least 75 percent of real visits, which Google calls the 75th percentile. That detail matters: your own fast office connection is not the test. The test is your customers, on their phones, on their connections, across a full month of visits.</p>
+            <p>Core Web Vitals are worth fixing for two reasons. First, they describe real frustration: a slow hero image, a button that ignores a tap, or a page that jumps just as someone goes to click your phone number. Those moments cost enquiries. Second, they are part of Google's page experience signals, so they can help one relevant page edge out another in search results. They do not outweigh relevant content, a complete Google Business Profile, and genuine reviews, and no honest person can promise rankings from scores alone. Treat them as a customer experience problem with some search upside.</p>
+
+            <h2>What each metric actually measures</h2>
+            <h3>Largest Contentful Paint (LCP): "Did the main content show up quickly?"</h3>
+            <p>LCP measures when the largest text block or image in the visible part of the screen finishes rendering. On most small business pages, that is the hero image at the top, or the main headline if there is no large image. Google rates LCP good at 2.5 seconds or less, needs improvement between 2.5 and 4 seconds, and poor over 4 seconds.</p>
+            <p>Google's own guidance breaks LCP into four parts: how fast the server sends the page (time to first byte), how soon the browser starts loading the main image or text, how long that resource takes to download, and how long the browser takes to display it. On a typical local business site, the two biggest culprits are an oversized hero image and a slow, uncached server response. LCP is usually the hardest of the three metrics to pass, so if only one of your scores is red, it is probably this one.</p>
+            <h3>Interaction to Next Paint (INP): "Did the page respond when I tried to use it?"</h3>
+            <p>INP measures the delay between a visitor interacting with your page, such as tapping a menu button or a phone number, and the page visibly responding. Google rates INP good at 200 milliseconds or less, needs improvement between 200 and 500 milliseconds, and poor over 500 milliseconds. INP replaced an older metric called First Input Delay in March 2024, so any guide that still talks about FID is out of date.</p>
+            <p>On small business sites, slow INP is usually caused by third-party scripts: chat widgets, cookie consent banners, review widgets, tag managers, and heavy page builder JavaScript all compete for the phone's attention at the exact moment a visitor taps. The page is not broken, it is busy. Your visitor experiences it as a button that feels sticky or dead, which is worse than a slightly slow load, because it happens at the moment they decided to contact you.</p>
+            <h3>Cumulative Layout Shift (CLS): "Did anything jump around and make me misclick?"</h3>
+            <p>CLS measures how much visible content moves unexpectedly while the page loads. You have felt this one: you go to tap a button and it slides down because an image or banner loaded above it. Google rates CLS good at 0.1 or less, needs improvement between 0.1 and 0.25, and poor over 0.25. CLS has no unit like seconds; it is a score based on how much of the screen moved and how far.</p>
+            <p>The usual causes are images without set dimensions, embedded maps and videos without reserved space, web fonts that swap in late, and announcement bars or cookie banners that push content down after the page starts rendering. Most sites pass CLS, but when one fails, it is often the easiest of the three to fix.</p>
+
+            <h2>How to check your Core Web Vitals for free</h2>
+            <p>You do not need paid tools. Google gives you two free ones, and they answer different questions.</p>
+            <p><strong>PageSpeed Insights</strong> tests one page at a time. Paste in a page address and look at the top section first, labelled with real-user data. That is field data: how actual Chrome visitors experienced your page over the last 28 days. It is the number Google uses for the assessment. Below it, the lab data section is a single simulated test on a mid-range phone connection. Lab data is useful for diagnosing what to fix, but it is not your official score. If a page shows no field data, it simply does not get enough Chrome visits yet; use the lab results and the fixes below as your guide.</p>
+            <p><strong>Google Search Console</strong> shows the whole site. Its Core Web Vitals report groups every page into good, needs improvement, or poor, separately for mobile and desktop, and tells you which metric is failing. This is where you find patterns: if 40 pages fail LCP on mobile, the problem is probably your template's hero image or your hosting, not 40 separate mistakes. If you have not set it up yet, our guide on <a href="how-to-set-up-google-search-console.html">how to set up Google Search Console</a> walks through it in about half an hour.</p>
+            <p>Two habits make the numbers useful. First, check mobile before desktop. For a Canadian local business, most customers arrive on a phone, often searching in a hurry, so mobile is the score that describes their experience. Second, measure before and after each change, one change at a time. Field data updates over a rolling 28 days, so a fix you ship today will not fully show in the field score for a few weeks. Use lab tests to confirm a fix helped, then let the field data catch up.</p>
+
+            <h2>How to improve LCP</h2>
+            <p>Work through these in order. On most small business sites, the first two fixes do most of the work.</p>
+            <p><strong>1. Shrink the hero image.</strong> A photo straight off a camera or phone can be 4,000 pixels wide and several megabytes. Your page only displays it at a fraction of that size. Resize it to the largest size it actually appears at, compress it, and save it as WebP or AVIF, which are typically far smaller than JPEG at the same quality. This single change is the most common LCP fix on local business sites.</p>
+            <p><strong>2. Do not lazy-load the main image.</strong> Lazy loading delays images until a visitor scrolls near them, which is good for images further down the page. On the hero image, it delays the exact thing LCP measures. Make sure the top image loads immediately, and lazy-load everything below the fold instead.</p>
+            <p><strong>3. Put the main image in the page, not behind a script.</strong> Sliders and some page builders load the hero image with JavaScript, so the browser has to download and run the script before it even starts on the image. A plain image tag in the HTML lets the browser find it right away. If your homepage opens with an auto-rotating slider, replacing it with one strong static image usually improves LCP and gives visitors a clearer first impression at the same time.</p>
+            <p><strong>4. Speed up the server response.</strong> If your host rebuilds every page from scratch on every visit, the browser waits before anything can start. A page cache fixes this on most WordPress sites, and a decent host matters more than any plugin. Our guide on <a href="how-to-make-your-website-load-faster.html">how to make your website load faster</a> covers caching, image compression, and the hosting decisions in more detail, and our guide on <a href="why-is-my-website-so-slow.html">why your website is so slow</a> helps you find which cause is yours.</p>
+            <p><strong>5. Mind the fonts.</strong> If your headline waits for a custom font file before it appears, LCP waits with it. Use at most two font families, load only the weights you actually use, and make sure text can display in a fallback font while the custom one loads. The trade-off is a brief font swap, which you then manage under CLS below.</p>
+
+            <h2>How to improve INP</h2>
+            <p>INP is about keeping the page responsive when someone interacts with it. The fixes are mostly about doing less, later.</p>
+            <p><strong>1. Audit your third-party scripts.</strong> List everything loading on your pages: chat widget, cookie banner, review widget, booking widget, analytics, tag manager, social feeds, pop-up tools. Each one adds work the phone must do. Remove anything you are not actively using. A chat widget nobody monitors and a social feed nobody reads are not free; your visitors pay for them in responsiveness. If you are weighing a chat tool, our guide on <a href="should-i-add-a-chatbot-to-my-website.html">whether to add a chatbot</a> covers when one earns its place.</p>
+            <p><strong>2. Delay what does not need to load immediately.</strong> Review widgets, maps, and social embeds can load when a visitor scrolls near them or after the page is usable, instead of competing with your menu button. Most modern tools offer a lazy or deferred loading option; turn it on.</p>
+            <p><strong>3. Keep forms and menus simple.</strong> Heavy page builder animations and complicated menus add interaction work. A menu that opens with a plain, fast transition feels more responsive than one with layered effects, and it is easier to use one-handed on a phone. Our guide on <a href="how-to-make-your-website-mobile-friendly.html">making your website mobile friendly</a> covers thumb-friendly design that also happens to keep interactions light.</p>
+            <p><strong>4. Update or remove heavy plugins.</strong> On WordPress, an outdated or bloated plugin can hold up every interaction. Keep plugins updated, delete the ones you no longer use, and be suspicious of any single plugin that tries to do five jobs. Test your key pages after changes, especially the contact page and booking flow, because those are the interactions that turn into revenue.</p>
+
+            <h2>How to improve CLS</h2>
+            <p>CLS fixes are the most mechanical of the three. The rule behind all of them is simple: reserve space for anything that arrives late, so nothing has to move to make room.</p>
+            <p><strong>1. Give every image a width and height.</strong> Without dimensions, the browser does not know how much space to save, so the page jumps when the image arrives. Google's own research notes that a large share of pages still have at least one image without a set size. Modern editors and builders usually add dimensions automatically when you insert an image properly; the gaps come from hand-added or copied code. Check your key pages first.</p>
+            <p><strong>2. Reserve space for embeds.</strong> Maps, videos, booking calendars, and review widgets all load after the page starts rendering. Wrap each one in a container with a fixed height or aspect ratio so the layout holds still while the embed fills in.</p>
+            <p><strong>3. Stabilise your fonts.</strong> When a custom font swaps in and is wider or narrower than the fallback, text reflows and the page shifts. Loading fonts early, using fewer weights, and choosing a fallback with similar proportions all reduce the jump. If CLS is your only failing metric and images already have dimensions, fonts are the next suspect.</p>
+            <p><strong>4. Place banners so they do not push content.</strong> Announcement bars and cookie banners that slide in at the top and shove the page down are a classic CLS cause. Reserve their space from the start, or position them so they overlay rather than displace. Your visitor should never have to chase a moving button.</p>
+
+            <h2>What you can and cannot control, by platform</h2>
+            <p>Your platform decides which fixes are in your hands. On <strong>WordPress</strong>, you control almost everything: caching, image handling, plugins, and code. That freedom is why WordPress sites can pass easily or fail badly, depending on how they are built and maintained. On hosted builders such as <strong>Wix and Squarespace</strong>, the platform controls the server, the code, and much of the loading behaviour. You can still fix the big content-level causes, mainly oversized images, too many widgets and embeds, and heavy pages, but you cannot change how the platform delivers the page. On <strong>Shopify</strong>, the same split applies: your theme, apps, and images are yours to optimise; the platform plumbing is not.</p>
+            <p>The practical takeaway: on any platform, fix images, embeds, and widget clutter first, because those are yours everywhere. If a hosted builder still fails LCP after that work, the remaining gap is usually the platform itself, and that becomes one factor, among many, in whether the platform still fits your business.</p>
+
+            <h2>A sensible priority order</h2>
+            <p>If your report is a wall of red, do not try to fix everything at once. This order gets the most customer benefit per hour of work:</p>
+            <ul>
+              <li><strong>Week 1:</strong> run PageSpeed Insights on your homepage, main service page, and contact page. Note which metric fails on each. Fix image sizes and dimensions, and remove lazy loading from the top image.</li>
+              <li><strong>Week 2:</strong> audit third-party scripts and widgets. Remove or delay anything unused. Reserve space for maps, videos, and banners.</li>
+              <li><strong>Week 3:</strong> turn on caching, update plugins and themes, and check fonts. Re-test in the lab to confirm each change helped.</li>
+              <li><strong>Week 4 and beyond:</strong> watch the Search Console report monthly. Field data lags by up to 28 days, so judge the trend, not a single day. Re-test after any redesign, new plugin, or new widget, because each one can move your scores.</li>
+            </ul>
+            <p>One honest note on expectations: passing Core Web Vitals will not, by itself, move a page from position 30 to position 3. Content relevance, your Google Business Profile, reviews, and links do the heavy lifting in local search, as our guide on <a href="how-to-do-local-seo-for-small-business.html">local SEO for small business</a> explains. What passing does do is remove a reason for visitors to leave and a reason for Google to prefer a competitor's equally relevant page. For a business that lives on phone calls and form submissions, that is reason enough.</p>
+
+            <h2>Frequently asked questions</h2>
+
+            <h3>What are Core Web Vitals?</h3>
+            <p>Core Web Vitals are three measurements Google uses to describe how a page feels to real visitors: Largest Contentful Paint (LCP) for loading speed, Interaction to Next Paint (INP) for responsiveness to taps and clicks, and Cumulative Layout Shift (CLS) for visual stability. A page passes when all three are in the good range for at least 75 percent of real visits.</p>
+
+            <h3>What are good Core Web Vitals scores?</h3>
+            <p>Good means LCP of 2.5 seconds or less, INP of 200 milliseconds or less, and CLS of 0.1 or less, measured at the 75th percentile of real Chrome visits. LCP over 4 seconds, INP over 500 milliseconds, and CLS over 0.25 are rated poor. Check mobile first, because that is where most local customers visit.</p>
+
+            <h3>How do I check my Core Web Vitals for free?</h3>
+            <p>Use Google PageSpeed Insights: paste in a page address and read the field data section, which shows real visitor data from the last 28 days. Then open the Core Web Vitals report in Google Search Console to see every page grouped as good, needs improvement, or poor. Both tools are free.</p>
+
+            <h3>Do Core Web Vitals affect my Google rankings?</h3>
+            <p>Yes, but modestly. Core Web Vitals are part of Google page experience signals, so they can help one relevant page edge out another. They do not outweigh relevant content, a complete Google Business Profile, and real reviews. Treat them first as a customer experience problem, with some search upside, and never let anyone promise rankings from scores alone.</p>
+
+            <h2>How Webloped works</h2>
+            <p>We are a web design and AI automation company based in Cambridge, Ontario. Every website we build is checked against Core Web Vitals before launch: images sized and compressed, dimensions set, scripts kept lean, and mobile tested first, because that is where your customers are. If your Search Console report is full of red and you would rather hand the whole thing over, <a href="../contact.html">send us a message</a> or <a href="mailto:contact@webloped.ca">email us directly</a> and we will take a look as part of a <a href="../services.html">website project</a>. <a href="../pricing.html">Pricing is listed in CAD</a>, upfront, before you decide.</p>
+
+          </div>
+        </div>
+      </section>
+    </article>
+    <section class="cta-band on-dark" aria-labelledby="cta-title">
+      <div class="wrap cta-inner">
+        <p class="eyebrow">Ready when you are</p>
+        <h2 id="cta-title">Let's build your <span class="grad-text">best salesperson.</span></h2>
+        <p class="cta-sub">Tell us about your project - we'll reply with next steps and a fixed quote in CAD.</p>
+        <a class="btn btn-primary btn-lg" href="../contact.html">Get a project quote <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/img/logo-w.png" alt="" width="44" height="44">
+          <p>Web design &amp; AI automation.<br>Cambridge, Ontario, Canada.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="index.html" aria-current="page">Blog</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:contact@webloped.ca">contact@webloped.ca</a>
+          <a href="tel:+16476947001">+1 (647) 694-7001</a>
+          <a href="https://calendly.com/webloped/30min" target="_blank" rel="noopener">Book a 30-min call</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Webloped. All rights reserved.</span>
+        <span>Design preview - not the live site.</span>
+      </div>
+      <p class="footer-word" aria-hidden="true">Webloped</p>
+    </div>
+  </footer>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

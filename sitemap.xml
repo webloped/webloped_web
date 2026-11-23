@@ -28,8 +28,14 @@
   <url>
     <loc>https://webloped.ca/blog/</loc>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://webloped.ca/blog/what-are-core-web-vitals.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://webloped.ca/blog/what-is-a-good-conversion-rate.html</loc>
