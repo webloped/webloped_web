@@ -44,6 +44,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://webloped.ca/blog/what-is-schema-markup-for-small-business.html</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://webloped.ca/blog/what-are-core-web-vitals.html</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>yearly</changefreq>
